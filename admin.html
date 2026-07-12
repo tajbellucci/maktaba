@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ڈیش بورڈ — دار الافتاء مکتبہ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- lock screen -->
+<div id="lock">
+  <div class="lock-card">
+    <div class="lock-orn">۞</div>
+    <h2>مکتبہ ڈیش بورڈ</h2>
+    <p>داخلے کے لیے پاس ورڈ درج کریں</p>
+    <input type="password" id="pw" autocomplete="current-password" placeholder="••••••••">
+    <div class="lock-err" id="pwErr"></div>
+    <button class="btn gold" id="pwBtn">داخل ہوں</button>
+  </div>
+</div>
+
+<div class="frame">
+
+  <nav class="page-nav"><a href="index.html">&larr; Catalogue</a></nav>
+
+  <header class="masthead">
+    <h1 class="lib-title">مکتبہ ڈیش بورڈ</h1>
+    <div class="lib-sub">Madarsa Naumania &mdash; Manage Books</div>
+  </header>
+
+  <details class="settings">
+    <summary>⚙ GitHub سیٹنگز (محفوظ کرنے کے لیے درکار)</summary>
+    <div class="settings-grid">
+      <label>Owner (GitHub username)
+        <input type="text" id="cfgOwner" placeholder="username">
+      </label>
+      <label>Repository
+        <input type="text" id="cfgRepo" placeholder="maktaba">
+      </label>
+      <label>Branch
+        <input type="text" id="cfgBranch" placeholder="main">
+      </label>
+      <label>Token (fine-grained PAT, contents: read/write)
+        <input type="password" id="cfgToken" placeholder="github_pat_…">
+      </label>
+      <div class="settings-hint">
+        ٹوکن صرف اسی براؤزر میں محفوظ ہوتا ہے (localStorage) — کسی اور جگہ نہیں بھیجا جاتا۔
+        محفوظ کرنے پر <span style="direction:ltr; unicode-bidi:embed; font-family:var(--latin)">books.json</span> ریپو میں کمٹ ہو جاتی ہے اور سائٹ خود اپڈیٹ ہو جاتی ہے۔
+      </div>
+    </div>
+  </details>
+
+  <div class="admin-bar">
+    <button class="btn gold" id="btnAdd">＋ نئی کتاب</button>
+    <button class="btn" id="btnSave">GitHub پر محفوظ کریں</button>
+    <button class="btn ghost" id="btnDownload">JSON ڈاؤن لوڈ</button>
+    <button class="btn ghost" id="btnImport">JSON درآمد</button>
+    <input type="file" id="fileImport" accept=".json" hidden>
+    <span class="dirty-flag" id="dirtyFlag" hidden>● غیر محفوظ تبدیلیاں</span>
+  </div>
+
+  <div class="admin-bar">
+    <input type="search" class="admin-filter" id="adminQ" placeholder="فہرست میں تلاش…">
+  </div>
+
+  <div class="admin-table-wrap">
+    <table class="admin">
+      <thead>
+        <tr>
+          <th style="width:36px">#</th>
+          <th>کتاب کا نام</th>
+          <th>مصنف</th>
+          <th>موضوع</th>
+          <th style="width:70px">جلدیں</th>
+          <th style="width:110px">حالت</th>
+          <th>نوٹ</th>
+          <th style="width:40px"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <datalist id="catList"></datalist>
+
+  <footer>Dashboard &middot; Darul Ifta Maktaba &middot; Madarsa Naumania</footer>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let DATA = { library: "دار الافتاء مکتبہ — مدرسہ نعمانیہ", updated: "", books: [] };
+let dirty = false;
+
+const $ = (id) => document.getElementById(id);
+const CFG_KEY = "maktaba_cfg";
+const AUTH_KEY = "maktaba_auth";
+const PW_HASH = "038151879e7ab9f626aac8602f689a5ceb35324001eaea38e0e2c235c7b7ef0f";
+
+/* ——— lock screen ——— */
+
+async function sha256(s) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function tryUnlock() {
+  const val = $("pw").value;
+  if (!val) return;
+  if (await sha256(val) === PW_HASH) {
+    sessionStorage.setItem(AUTH_KEY, "1");
+    $("lock").classList.add("open");
+  } else {
+    $("pwErr").textContent = "غلط پاس ورڈ";
+    const card = document.querySelector(".lock-card");
+    card.classList.remove("lock-shake");
+    void card.offsetWidth;
+    card.classList.add("lock-shake");
+    $("pw").select();
+  }
+}
+
+$("pwBtn").addEventListener("click", tryUnlock);
+$("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
+
+if (sessionStorage.getItem(AUTH_KEY) === "1") {
+  $("lock").classList.add("open");
+} else {
+  setTimeout(() => $("pw").focus(), 100);
+}
+
+/* ——— config ——— */
+
+function loadCfg() {
+  let cfg = {};
+  try { cfg = JSON.parse(localStorage.getItem(CFG_KEY) || "{}"); } catch {}
+  $("cfgOwner").value = cfg.owner || "";
+  $("cfgRepo").value = cfg.repo || "";
+  $("cfgBranch").value = cfg.branch || "main";
+  $("cfgToken").value = cfg.token || "";
+}
+
+function saveCfg() {
+  const cfg = {
+    owner: $("cfgOwner").value.trim(),
+    repo: $("cfgRepo").value.trim(),
+    branch: $("cfgBranch").value.trim() || "main",
+    token: $("cfgToken").value.trim(),
+  };
+  localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+  return cfg;
+}
+
+["cfgOwner", "cfgRepo", "cfgBranch", "cfgToken"].forEach(id =>
+  $(id).addEventListener("change", saveCfg));
+
+/* ——— data ——— */
+
+function norm(s) {
+  return String(s)
+    .replace(/[ً-ْٰـ]/g, "")
+    .replace(/[يئ]/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ہ")
+    .toLowerCase();
+}
+
+async function load() {
+  try {
+    const res = await fetch("books.json?t=" + Date.now());
+    if (res.ok) DATA = await res.json();
+  } catch {}
+  render();
+}
+
+function setDirty(v) {
+  dirty = v;
+  $("dirtyFlag").hidden = !v;
+}
+
+function buildCatList() {
+  const dl = $("catList");
+  dl.innerHTML = "";
+  for (const c of [...new Set(DATA.books.map(b => b.category).filter(Boolean))]) {
+    const o = document.createElement("option");
+    o.value = c;
+    dl.appendChild(o);
+  }
+}
+
+function render() {
+  buildCatList();
+  const q = norm($("adminQ").value.trim());
+  const tb = $("tbody");
+  tb.innerHTML = "";
+  DATA.books.forEach((b, i) => {
+    if (q && !norm(b.title + " " + (b.author || "") + " " + (b.category || "")).includes(q)) return;
+    const tr = document.createElement("tr");
+    if (!b.present) tr.className = "missing-row";
+    tr.innerHTML = `
+      <td style="font-family:var(--latin); text-align:center; color:var(--gold)">${i + 1}</td>
+      <td><input type="text" data-i="${i}" data-k="title" value="${escAttr(b.title)}"></td>
+      <td><input type="text" data-i="${i}" data-k="author" value="${escAttr(b.author || "")}"></td>
+      <td><input type="text" list="catList" data-i="${i}" data-k="category" value="${escAttr(b.category || "")}"></td>
+      <td><input type="number" min="1" data-i="${i}" data-k="volumes" value="${b.volumes || 1}"></td>
+      <td><button class="toggle-present ${b.present ? "yes" : "no"}" data-i="${i}">${b.present ? "موجود" : "غیر موجود"}</button></td>
+      <td><input type="text" data-i="${i}" data-k="notes" value="${escAttr(b.notes || "")}"></td>
+      <td><button class="row-del" data-i="${i}" title="حذف کریں">✕</button></td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function escAttr(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+$("adminQ").addEventListener("input", render);
+
+$("tbody").addEventListener("input", (e) => {
+  const t = e.target;
+  if (!t.dataset.k) return;
+  const b = DATA.books[+t.dataset.i];
+  b[t.dataset.k] = t.dataset.k === "volumes" ? Math.max(1, +t.value || 1) : t.value;
+  setDirty(true);
+});
+
+$("tbody").addEventListener("click", (e) => {
+  const t = e.target;
+  if (t.classList.contains("toggle-present")) {
+    const b = DATA.books[+t.dataset.i];
+    b.present = !b.present;
+    setDirty(true);
+    render();
+  }
+  if (t.classList.contains("row-del")) {
+    const b = DATA.books[+t.dataset.i];
+    if (confirm(`حذف کریں: «${b.title}»؟`)) {
+      DATA.books.splice(+t.dataset.i, 1);
+      setDirty(true);
+      render();
+    }
+  }
+});
+
+$("btnAdd").addEventListener("click", () => {
+  const nextId = DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0) + 1;
+  DATA.books.push({ id: nextId, title: "", author: "", category: "", volumes: 1, present: true, notes: "" });
+  setDirty(true);
+  $("adminQ").value = "";
+  render();
+  const rows = $("tbody").querySelectorAll("tr");
+  rows[rows.length - 1]?.querySelector('input[data-k="title"]')?.focus();
+});
+
+/* ——— export / import ——— */
+
+function serialize() {
+  DATA.updated = new Date().toISOString().slice(0, 10);
+  return JSON.stringify(DATA, null, 2);
+}
+
+$("btnDownload").addEventListener("click", () => {
+  const blob = new Blob([serialize()], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "books.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("btnImport").addEventListener("click", () => $("fileImport").click());
+$("fileImport").addEventListener("change", async (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  try {
+    const parsed = JSON.parse(await f.text());
+    if (!Array.isArray(parsed.books)) throw new Error("no books array");
+    DATA = parsed;
+    setDirty(true);
+    render();
+    toast("JSON درآمد ہو گئی — اب محفوظ کریں");
+  } catch {
+    toast("فائل درست JSON نہیں", true);
+  }
+  e.target.value = "";
+});
+
+/* ——— GitHub save ——— */
+
+$("btnSave").addEventListener("click", async () => {
+  const cfg = saveCfg();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    toast("پہلے GitHub سیٹنگز مکمل کریں", true);
+    document.querySelector("details.settings").open = true;
+    return;
+  }
+  const btn = $("btnSave");
+  btn.disabled = true;
+  try {
+    const api = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/books.json`;
+    const headers = {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json",
+    };
+    let sha;
+    const head = await fetch(`${api}?ref=${encodeURIComponent(cfg.branch)}`, { headers });
+    if (head.ok) sha = (await head.json()).sha;
+    else if (head.status !== 404) throw new Error(`GET ${head.status}`);
+
+    const content = btoa(unescape(encodeURIComponent(serialize())));
+    const res = await fetch(api, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({
+        message: "Update books via dashboard",
+        content,
+        branch: cfg.branch,
+        ...(sha ? { sha } : {}),
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `PUT ${res.status}`);
+    }
+    setDirty(false);
+    toast("محفوظ ہو گیا ✓ — سائٹ چند منٹ میں اپڈیٹ ہو گی");
+  } catch (err) {
+    toast("خرابی: " + err.message, true);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+/* ——— toast ——— */
+
+let toastTimer;
+function toast(msg, isErr) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.className = isErr ? "err show" : "show";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 4000);
+}
+
+window.addEventListener("beforeunload", (e) => {
+  if (dirty) e.preventDefault();
+});
+
+loadCfg();
+load();
+</script>
+</body>
+</html>

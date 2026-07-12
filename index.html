@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دار الافتاء مکتبہ — مدرسہ نعمانیہ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="frame">
+
+  <nav class="page-nav"><a href="admin.html">Dashboard →</a></nav>
+
+  <header class="masthead">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <h1 class="lib-title">دار الافتاء مکتبہ</h1>
+    <div class="lib-sub">Madarsa Naumania &mdash; Library Catalogue</div>
+    <div class="updated-line" id="updatedLine"></div>
+  </header>
+
+  <section class="stats" aria-label="خلاصہ">
+    <div class="stat">
+      <div class="num" id="statTotal">—</div>
+      <div class="lbl">کل کتابیں</div>
+    </div>
+    <div class="stat">
+      <div class="num" id="statPresent">—</div>
+      <div class="lbl">موجود</div>
+    </div>
+    <div class="stat">
+      <div class="num" id="statMissing">—</div>
+      <div class="lbl">غیر موجود</div>
+    </div>
+  </section>
+
+  <section class="controls" aria-label="تلاش">
+    <input type="search" id="q" placeholder="کتاب یا مصنف تلاش کریں…">
+  </section>
+  <div class="chips" id="statusChips">
+    <button class="chip active" data-v="">سب کتابیں</button>
+    <button class="chip chip-yes" data-v="yes">موجود</button>
+    <button class="chip chip-no" data-v="no">غیر موجود</button>
+  </div>
+  <div class="chips" id="catChips"></div>
+
+  <main class="book-list" id="list"></main>
+  <div class="empty-msg" id="emptyMsg" hidden>کوئی کتاب نہیں ملی</div>
+
+  <footer>
+    Darul Ifta Maktaba &middot; Madarsa Naumania &middot; <a href="admin.html">manage</a>
+  </footer>
+</div>
+
+<script>
+let DATA = { books: [] };
+let fStatus = "";
+let fCat = "";
+
+const $ = (id) => document.getElementById(id);
+
+/* normalize Urdu/Arabic for forgiving search:
+   strip diacritics, unify ي/ی ك/ک أإآ/ا ة/ہ */
+function norm(s) {
+  return String(s)
+    .replace(/[ً-ْٰـ]/g, "")
+    .replace(/[يئ]/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ہ")
+    .toLowerCase();
+}
+
+async function load() {
+  const res = await fetch("books.json?t=" + Date.now());
+  DATA = await res.json();
+  if (DATA.updated) $("updatedLine").textContent = "Last updated: " + DATA.updated;
+  buildCatChips();
+  render();
+}
+
+function buildCatChips() {
+  const cats = [...new Set(DATA.books.map(b => b.category).filter(Boolean))];
+  const wrap = $("catChips");
+  wrap.innerHTML = "";
+  if (cats.length < 2) return;
+  const all = document.createElement("button");
+  all.className = "chip active";
+  all.dataset.v = "";
+  all.textContent = "تمام موضوعات";
+  wrap.appendChild(all);
+  for (const c of cats) {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.dataset.v = c;
+    b.textContent = c;
+    wrap.appendChild(b);
+  }
+}
+
+function chipHandler(wrapId, setter) {
+  $(wrapId).addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    setter(chip.dataset.v);
+    $(wrapId).querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c === chip));
+    render();
+  });
+}
+chipHandler("statusChips", v => fStatus = v);
+chipHandler("catChips", v => fCat = v);
+
+function render() {
+  const q = norm($("q").value.trim());
+
+  const rows = DATA.books.filter(b => {
+    if (fCat && b.category !== fCat) return false;
+    if (fStatus === "yes" && !b.present) return false;
+    if (fStatus === "no" && b.present) return false;
+    if (q && !norm(b.title + " " + (b.author || "")).includes(q)) return false;
+    return true;
+  });
+
+  $("statTotal").textContent = DATA.books.length;
+  $("statPresent").textContent = DATA.books.filter(b => b.present).length;
+  $("statMissing").textContent = DATA.books.filter(b => !b.present).length;
+
+  const list = $("list");
+  list.innerHTML = "";
+  $("emptyMsg").hidden = rows.length > 0;
+
+  rows.forEach((b, i) => {
+    const el = document.createElement("article");
+    el.className = "book" + (b.present ? "" : " missing");
+    el.innerHTML = `
+      <div class="idx">${i + 1}</div>
+      <div>
+        <div class="t">${esc(b.title)}</div>
+        ${b.author ? `<div class="a">${esc(b.author)}</div>` : ""}
+        <div class="meta">
+          ${b.category ? `<span class="cat">${esc(b.category)}</span>` : ""}
+          ${b.volumes > 1 ? `<span>${b.volumes} جلدیں</span>` : ""}
+        </div>
+        ${b.notes ? `<div class="note">؍ ${esc(b.notes)}</div>` : ""}
+      </div>
+      <span class="badge ${b.present ? "yes" : "no"}">${b.present ? "موجود" : "غیر موجود"}</span>`;
+    list.appendChild(el);
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+$("q").addEventListener("input", render);
+
+load();
+</script>
+</body>
+</html>

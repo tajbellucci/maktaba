@@ -1,0 +1,18 @@
+{
+  "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
+  "updated": "2026-07-12",
+  "books": [
+    { "id": 1, "title": "فتاویٰ شامی (رد المحتار)", "author": "علامہ ابن عابدین شامی", "category": "فتاویٰ", "volumes": 12, "present": true, "notes": "" },
+    { "id": 2, "title": "فتاویٰ عالمگیری", "author": "جماعتِ علماء", "category": "فتاویٰ", "volumes": 6, "present": true, "notes": "" },
+    { "id": 3, "title": "فتاویٰ رضویہ", "author": "امام احمد رضا خان", "category": "فتاویٰ", "volumes": 30, "present": false, "notes": "جلد 7 اور 12 غائب" },
+    { "id": 4, "title": "بہارِ شریعت", "author": "مفتی امجد علی اعظمی", "category": "فقہ", "volumes": 3, "present": true, "notes": "" },
+    { "id": 5, "title": "صحیح البخاری", "author": "امام محمد بن اسماعیل بخاری", "category": "حدیث", "volumes": 8, "present": true, "notes": "" },
+    { "id": 6, "title": "صحیح مسلم", "author": "امام مسلم بن حجاج", "category": "حدیث", "volumes": 6, "present": true, "notes": "" },
+    { "id": 7, "title": "تفسیر ابنِ کثیر", "author": "حافظ ابنِ کثیر", "category": "تفسیر", "volumes": 4, "present": false, "notes": "مستعار — واپسی متوقع" },
+    { "id": 8, "title": "تفسیرِ نعیمی", "author": "مفتی احمد یار خان نعیمی", "category": "تفسیر", "volumes": 11, "present": true, "notes": "" },
+    { "id": 9, "title": "الہدایہ", "author": "برہان الدین مرغینانی", "category": "فقہ", "volumes": 4, "present": true, "notes": "" },
+    { "id": 10, "title": "نور الایضاح", "author": "علامہ حسن شرنبلالی", "category": "فقہ", "volumes": 1, "present": true, "notes": "" },
+    { "id": 11, "title": "المنجد (عربی لغت)", "author": "لویس معلوف", "category": "لغت", "volumes": 1, "present": false, "notes": "" },
+    { "id": 12, "title": "سیرتِ مصطفیٰ ﷺ", "author": "مولانا عبد المصطفیٰ اعظمی", "category": "سیرت", "volumes": 1, "present": true, "notes": "" }
+  ]
+}
