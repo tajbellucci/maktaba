@@ -37,7 +37,13 @@
   </section>
 
   <section class="controls" aria-label="تلاش">
-    <input type="search" id="q" placeholder="کتاب یا مصنف تلاش کریں…">
+    <input type="search" id="q" placeholder="کتاب یا مصنف تلاش کریں… (اردو / عربی / English)">
+    <button class="mic-btn" id="micBtn" type="button" title="آواز سے تلاش" aria-label="آواز سے تلاش">🎤</button>
+    <select class="voice-lang" id="voiceLang" title="آواز کی زبان">
+      <option value="ur-PK">اردو</option>
+      <option value="ar-SA">عربی</option>
+      <option value="en-US">English</option>
+    </select>
   </section>
   <div class="chips" id="statusChips">
     <button class="chip active" data-v="">سب کتابیں</button>
@@ -155,6 +161,39 @@ function esc(s) {
 }
 
 $("q").addEventListener("input", render);
+
+/* ——— voice search (Web Speech API) ——— */
+
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recog = null, listening = false;
+
+if (!SR) {
+  $("micBtn").style.display = "none";
+  $("voiceLang").style.display = "none";
+} else {
+  const mic = $("micBtn");
+  mic.addEventListener("click", () => {
+    if (listening) { recog && recog.stop(); return; }
+    recog = new SR();
+    recog.lang = $("voiceLang").value;
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.onstart = () => { listening = true; mic.classList.add("listening"); };
+    recog.onend = () => { listening = false; mic.classList.remove("listening"); };
+    recog.onerror = (e) => {
+      listening = false;
+      mic.classList.remove("listening");
+      if (e.error === "not-allowed" || e.error === "service-not-allowed")
+        alert("مائیک کی اجازت درکار ہے — براؤزر کی سیٹنگز سے اجازت دیں۔");
+    };
+    recog.onresult = (e) => {
+      const text = e.results[0][0].transcript;
+      $("q").value = text;
+      render();
+    };
+    try { recog.start(); } catch {}
+  });
+}
 
 load();
 </script>

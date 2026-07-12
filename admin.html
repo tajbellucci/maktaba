@@ -55,11 +55,10 @@
   </details>
 
   <div class="admin-bar">
-    <button class="btn gold" id="btnAdd">＋ نئی کتاب</button>
+    <button class="btn gold" id="btnAddOne">＋ ایک کتاب</button>
+    <button class="btn gold" id="btnAddMany">＋ کئی کتابیں</button>
     <button class="btn" id="btnSave">GitHub پر محفوظ کریں</button>
-    <button class="btn ghost" id="btnDownload">JSON ڈاؤن لوڈ</button>
-    <button class="btn ghost" id="btnImport">JSON درآمد</button>
-    <input type="file" id="fileImport" accept=".json" hidden>
+    <button class="btn ghost" id="btnDownload">بیک اپ (JSON)</button>
     <span class="dirty-flag" id="dirtyFlag" hidden>● غیر محفوظ تبدیلیاں</span>
   </div>
 
@@ -87,6 +86,51 @@
   <datalist id="catList"></datalist>
 
   <footer>Dashboard &middot; Darul Ifta Maktaba &middot; Madarsa Naumania</footer>
+</div>
+
+<!-- add one book -->
+<div class="modal-overlay" id="oneModal">
+  <div class="modal">
+    <h3>＋ ایک کتاب شامل کریں</h3>
+    <p class="hint">نام لازمی ہے۔ باقی خانے اختیاری۔ (اردو / عربی / English)</p>
+    <div class="modal-fields">
+      <label class="wide">کتاب کا نام
+        <input id="oTitle" type="text" autocomplete="off">
+      </label>
+      <label>مصنف <input id="oAuthor" type="text" autocomplete="off"></label>
+      <label>موضوع <input id="oCategory" type="text" list="catList" autocomplete="off"></label>
+      <label>جلدیں <input id="oVolumes" type="number" min="1" value="1"></label>
+      <label>حالت
+        <select id="oPresent">
+          <option value="1">موجود</option>
+          <option value="0">غیر موجود</option>
+        </select>
+      </label>
+      <label class="wide">نوٹ <input id="oNotes" type="text" autocomplete="off"></label>
+    </div>
+    <div class="modal-actions">
+      <button class="btn gold" id="oSave">شامل کریں</button>
+      <button class="btn ghost" data-close>منسوخ</button>
+    </div>
+  </div>
+</div>
+
+<!-- add multiple books -->
+<div class="modal-overlay" id="manyModal">
+  <div class="modal">
+    <h3>＋ کئی کتابیں شامل کریں</h3>
+    <p class="hint">
+      ہر سطر میں ایک کتاب۔ خانوں کو <b>|</b> سے الگ کریں:<br>
+      <span style="direction:ltr; unicode-bidi:embed; font-family:var(--latin)">نام | مصنف | موضوع | جلدیں</span><br>
+      صرف نام لکھنا بھی کافی ہے۔ تمام کتابیں «موجود» شامل ہوں گی (بعد میں بدل سکتے ہیں)۔
+    </p>
+    <textarea id="manyText" placeholder="فتاویٰ شامی | ابن عابدین | فتاویٰ | 12&#10;نور الایضاح | شرنبلالی | فقہ&#10;الہدایہ"></textarea>
+    <div class="modal-preview" id="manyPreview"></div>
+    <div class="modal-actions">
+      <button class="btn gold" id="mSave">شامل کریں</button>
+      <button class="btn ghost" data-close>منسوخ</button>
+    </div>
+  </div>
 </div>
 
 <div id="toast"></div>
@@ -246,14 +290,97 @@ $("tbody").addEventListener("click", (e) => {
   }
 });
 
-$("btnAdd").addEventListener("click", () => {
-  const nextId = DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0) + 1;
-  DATA.books.push({ id: nextId, title: "", author: "", category: "", volumes: 1, present: true, notes: "" });
+function nextId() {
+  return DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0) + 1;
+}
+
+/* ——— modals ——— */
+
+function openModal(id) { $(id).classList.add("open"); }
+function closeModal(id) { $(id).classList.remove("open"); }
+
+document.querySelectorAll(".modal-overlay").forEach(ov => {
+  ov.addEventListener("click", (e) => {
+    if (e.target === ov || e.target.hasAttribute("data-close")) ov.classList.remove("open");
+  });
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") document.querySelectorAll(".modal-overlay.open").forEach(m => m.classList.remove("open"));
+});
+
+/* add one */
+$("btnAddOne").addEventListener("click", () => {
+  buildCatList();
+  ["oTitle", "oAuthor", "oCategory", "oNotes"].forEach(id => $(id).value = "");
+  $("oVolumes").value = 1;
+  $("oPresent").value = "1";
+  openModal("oneModal");
+  setTimeout(() => $("oTitle").focus(), 50);
+});
+
+$("oSave").addEventListener("click", () => {
+  const title = $("oTitle").value.trim();
+  if (!title) { $("oTitle").focus(); toast("کتاب کا نام لازمی ہے", true); return; }
+  DATA.books.push({
+    id: nextId(),
+    title,
+    author: $("oAuthor").value.trim(),
+    category: $("oCategory").value.trim(),
+    volumes: Math.max(1, +$("oVolumes").value || 1),
+    present: $("oPresent").value === "1",
+    notes: $("oNotes").value.trim(),
+  });
   setDirty(true);
   $("adminQ").value = "";
   render();
-  const rows = $("tbody").querySelectorAll("tr");
-  rows[rows.length - 1]?.querySelector('input[data-k="title"]')?.focus();
+  closeModal("oneModal");
+  toast("کتاب شامل ہو گئی — اب محفوظ کریں");
+});
+
+/* add many */
+function parseMany(text) {
+  const out = [];
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+    const parts = line.split("|").map(p => p.trim());
+    if (!parts[0]) continue;
+    out.push({
+      title: parts[0],
+      author: parts[1] || "",
+      category: parts[2] || "",
+      volumes: Math.max(1, parseInt(parts[3], 10) || 1),
+    });
+  }
+  return out;
+}
+
+$("btnAddMany").addEventListener("click", () => {
+  $("manyText").value = "";
+  $("manyPreview").textContent = "";
+  openModal("manyModal");
+  setTimeout(() => $("manyText").focus(), 50);
+});
+
+$("manyText").addEventListener("input", () => {
+  const n = parseMany($("manyText").value).length;
+  const p = $("manyPreview");
+  p.textContent = n ? `${n} کتابیں شامل ہوں گی` : "کوئی درست سطر نہیں";
+  p.classList.toggle("warn", n === 0);
+});
+
+$("mSave").addEventListener("click", () => {
+  const parsed = parseMany($("manyText").value);
+  if (!parsed.length) { toast("کوئی درست سطر نہیں ملی", true); return; }
+  let id = nextId();
+  for (const b of parsed) {
+    DATA.books.push({ id: id++, title: b.title, author: b.author, category: b.category, volumes: b.volumes, present: true, notes: "" });
+  }
+  setDirty(true);
+  $("adminQ").value = "";
+  render();
+  closeModal("manyModal");
+  toast(`${parsed.length} کتابیں شامل ہوئیں — اب محفوظ کریں`);
 });
 
 /* ——— export / import ——— */
@@ -270,23 +397,6 @@ $("btnDownload").addEventListener("click", () => {
   a.download = "books.json";
   a.click();
   URL.revokeObjectURL(a.href);
-});
-
-$("btnImport").addEventListener("click", () => $("fileImport").click());
-$("fileImport").addEventListener("change", async (e) => {
-  const f = e.target.files[0];
-  if (!f) return;
-  try {
-    const parsed = JSON.parse(await f.text());
-    if (!Array.isArray(parsed.books)) throw new Error("no books array");
-    DATA = parsed;
-    setDirty(true);
-    render();
-    toast("JSON درآمد ہو گئی — اب محفوظ کریں");
-  } catch {
-    toast("فائل درست JSON نہیں", true);
-  }
-  e.target.value = "";
 });
 
 /* ——— GitHub save ——— */
