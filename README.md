@@ -2,28 +2,39 @@
 
 Static book-inventory app for the Darul Ifta library. Runs entirely on GitHub Pages — no backend.
 
+- **Owner:** `TajMagsi`
+- **Live catalogue:** https://tajmagsi.github.io/maktaba/
+- **Admin dashboard:** https://tajmagsi.github.io/maktaba/admin.html (password-gated)
+
 ## Files
 
-- `index.html` — public catalogue: totals, present/missing counts, search (Urdu), category + status filters
-- `admin.html` — dashboard: add/edit/delete books, toggle موجود/غیر موجود, save straight to the repo
+- `index.html` — public catalogue: totals, present/missing counts, voice + text search (Urdu / Arabic / English), status + category filter chips
+- `admin.html` — password-gated dashboard: add one book or many, edit, delete, toggle موجود/غیر موجود, save straight to the repo
 - `books.json` — single source of truth for the book list
 - `style.css` — shared styles
 
-## Deploy (GitHub Pages)
+## Using the dashboard
 
-1. Create a repo (e.g. `maktaba`) and push these files to `main`.
-2. Repo Settings → Pages → Source: `main` branch, `/ (root)`.
-3. Site appears at `https://<owner>.github.io/maktaba/`.
+1. Open `admin.html`, enter the password.
+2. **＋ ایک کتاب** — add a single book via a form.
+   **＋ کئی کتابیں** — paste a list, one book per line, fields separated by `|`:
+   `نام | مصنف | موضوع | جلدیں` (only the name is required).
+3. Edit any cell inline; toggle حالت; ✕ deletes a row.
+4. **GitHub پر محفوظ کریں** commits `books.json` to the repo; the site redeploys automatically (~1 min).
 
-## Dashboard setup (one time)
+## Dashboard save setup (one time, per device)
 
 1. Create a **fine-grained personal access token**: GitHub → Settings → Developer settings → Fine-grained tokens.
-   - Repository access: only this repo.
+   - Repository access: only `TajMagsi/maktaba`.
    - Permissions: **Contents → Read and write**. Nothing else.
-2. Open `admin.html` → ⚙ GitHub سیٹنگز → enter owner, repo, branch (`main`), token.
-3. Token is stored in that browser's localStorage only. Saving commits `books.json` to the repo; Pages redeploys automatically (~1 min).
+2. Open `admin.html` → ⚙ GitHub سیٹنگز → owner `TajMagsi`, repo `maktaba`, branch `main`, paste token.
+3. Token is stored in that browser's localStorage only — never sent anywhere except GitHub.
 
-No token? Use **JSON ڈاؤن لوڈ** to download the edited list and commit it manually, or send it to the maintainer.
+No token? Use **بیک اپ (JSON)** to download the edited list and commit it manually.
+
+## Deploy (GitHub Pages)
+
+Repo Settings → Pages → Source: `main` branch, `/ (root)`. Site appears at `https://TajMagsi.github.io/maktaba/`.
 
 ## Data format
 
