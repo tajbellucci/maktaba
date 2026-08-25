@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-25T15:32:54.678Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -40,7 +40,7 @@
       "maktaba": "",
       "department": "",
       "publisher": "",
-      "image": "",
+      "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mt8tra4s.jpg",
       "format": "physical",
       "files": [],
       "status": "available",
@@ -49,7 +49,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-25T15:33:34.793Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -103,7 +103,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-25T15:39:00.493Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -341,7 +341,7 @@
     "تاریخ",
     "تراجم",
     "نحو و صرف",
-    "تراجم و��بقات",
+    "تراجم و����بقات",
     "الادب العربی",
     "درس نظامی",
     "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)",
@@ -352,8 +352,11 @@
   "theme": {
     "accent": "blue",
     "mode": "light",
-    "size": "normal",
-    "font": "nastaliq",
-    "density": "comfortable"
+    "size": "large",
+    "font": "naskh",
+    "density": "compact"
+  },
+  "appSettings": {
+    "lang": "ur"
   }
 }
