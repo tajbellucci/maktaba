@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "2026-08-25T15:32:54.678Z",
+      "viewedAt": "2026-08-25T22:22:12.761Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -43,16 +43,22 @@
       "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mt8tra4s.jpg",
       "format": "physical",
       "files": [],
-      "status": "available",
-      "borrower": "",
-      "issueDate": "",
-      "dueDate": "",
-      "history": [],
+      "status": "issued",
+      "borrower": "a",
+      "issueDate": "2026-08-25",
+      "dueDate": "2026-09-08",
+      "history": [
+        {
+          "date": "2026-08-25",
+          "action": "issued",
+          "detail": ""
+        }
+      ],
       "favorite": false,
-      "viewedAt": "2026-08-25T15:33:34.793Z",
+      "viewedAt": "2026-08-25T22:16:41.660Z",
       "material": "book",
       "almari": "",
-      "borrowerContact": "",
+      "borrowerContact": "a",
       "borrowDays": null,
       "accession": "2"
     },
@@ -616,7 +622,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-25T22:05:47.814Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -759,7 +765,8 @@
     "mode": "light",
     "size": "large",
     "font": "naskh",
-    "density": "compact"
+    "density": "compact",
+    "uiFont": "mylotus"
   },
   "appSettings": {
     "lang": "ur"
