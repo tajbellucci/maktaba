@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": true,
-      "viewedAt": "2026-08-26T15:26:43.658Z",
+      "viewedAt": "2026-08-26T19:43:58.782Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -100,7 +100,7 @@
     },
     {
       "id": 4,
-      "title": "بہارِ شریعت",
+      "title": "ب��ارِ شریعت",
       "author": "مفتی امجد علی اعظمی",
       "category": "فقہ",
       "volumes": 3,
@@ -890,6 +890,6 @@
     }
   },
   "appSettings": {
-    "lang": "ar"
+    "lang": "en"
   }
 }
