@@ -13,7 +13,7 @@
       "maktaba": "نعمانیہ جدید",
       "department": "غرفة عامة للشيخ",
       "publisher": "",
-      "image": "",
+      "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mta89k3p.jpg",
       "format": "physical",
       "files": [],
       "status": "available",
@@ -21,8 +21,8 @@
       "issueDate": "",
       "dueDate": "",
       "history": [],
-      "favorite": false,
-      "viewedAt": "2026-08-26T15:06:10.611Z",
+      "favorite": true,
+      "viewedAt": "2026-08-26T15:26:43.658Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -57,8 +57,8 @@
           "detail": ""
         }
       ],
-      "favorite": false,
-      "viewedAt": "2026-08-25T22:29:02.187Z",
+      "favorite": true,
+      "viewedAt": "2026-08-26T19:13:55.744Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "a",
@@ -139,7 +139,7 @@
       "maktaba": "",
       "department": "",
       "publisher": "",
-      "image": "",
+      "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mta919nh.jpg",
       "format": "physical",
       "files": [],
       "status": "available",
@@ -148,7 +148,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-26T15:28:37.998Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -856,8 +856,8 @@
     "fonts": {
       "ui": {
         "family": "My Lotus",
-        "weight": "700",
-        "size": 19
+        "weight": "400",
+        "size": 16
       },
       "list": {
         "family": "auto",
@@ -890,6 +890,6 @@
     }
   },
   "appSettings": {
-    "lang": "ur"
+    "lang": "ar"
   }
 }
