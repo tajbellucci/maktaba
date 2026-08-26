@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-08-25",
+  "updated": "2026-08-26",
   "books": [
     {
       "id": 1,
@@ -10,8 +10,8 @@
       "volumes": 12,
       "present": true,
       "notes": "",
-      "maktaba": "",
-      "department": "",
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
       "publisher": "",
       "image": "",
       "format": "physical",
@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "2026-08-25T22:22:12.761Z",
+      "viewedAt": "2026-08-25T22:28:00.156Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -55,7 +55,7 @@
         }
       ],
       "favorite": false,
-      "viewedAt": "2026-08-25T22:16:41.660Z",
+      "viewedAt": "2026-08-25T22:29:02.187Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "a",
@@ -766,9 +766,49 @@
     "size": "large",
     "font": "naskh",
     "density": "compact",
-    "uiFont": "mylotus"
+    "uiFont": "mylotus",
+    "toolbarLabels": true,
+    "showAcc": true,
+    "showPub": true,
+    "hoverCard": true,
+    "lineSpacing": "1.0",
+    "fonts": {
+      "ui": {
+        "family": "auto",
+        "weight": "400",
+        "size": 16
+      },
+      "list": {
+        "family": "auto",
+        "weight": "400",
+        "size": 15.5
+      },
+      "card": {
+        "family": "auto",
+        "weight": "400",
+        "size": 15
+      },
+      "head": {
+        "family": "auto",
+        "weight": "500",
+        "size": 22
+      },
+      "detail": {
+        "family": "auto",
+        "weight": "400",
+        "size": 19
+      }
+    },
+    "colors": {
+      "headings": "",
+      "text": "",
+      "muted": "",
+      "searchHit": "#c8531f",
+      "cardBg": "",
+      "rowSel": ""
+    }
   },
   "appSettings": {
-    "lang": "ur"
+    "lang": "ar"
   }
 }
