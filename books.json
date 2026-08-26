@@ -22,12 +22,15 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "2026-08-25T22:28:00.156Z",
+      "viewedAt": "2026-08-26T15:06:10.611Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "1"
+      "accession": "1",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 2,
@@ -60,7 +63,10 @@
       "almari": "",
       "borrowerContact": "a",
       "borrowDays": null,
-      "accession": "2"
+      "accession": "2",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 3,
@@ -87,7 +93,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "3"
+      "accession": "3",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 4,
@@ -114,7 +123,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "4"
+      "accession": "4",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 5,
@@ -141,7 +153,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "5"
+      "accession": "5",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 6,
@@ -168,7 +183,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "6"
+      "accession": "6",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 7,
@@ -195,7 +213,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "7"
+      "accession": "7",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 8,
@@ -222,7 +243,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "8"
+      "accession": "8",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 9,
@@ -249,7 +273,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "9"
+      "accession": "9",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 10,
@@ -276,7 +303,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "10"
+      "accession": "10",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 11,
@@ -303,7 +333,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "11"
+      "accession": "11",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 12,
@@ -330,7 +363,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "12"
+      "accession": "12",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 13,
@@ -357,7 +393,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "13"
+      "accession": "13",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 14,
@@ -384,7 +423,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "14"
+      "accession": "14",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 15,
@@ -411,7 +453,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "15"
+      "accession": "15",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 16,
@@ -438,7 +483,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "16"
+      "accession": "16",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 17,
@@ -465,7 +513,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "17"
+      "accession": "17",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 18,
@@ -492,7 +543,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "18"
+      "accession": "18",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 19,
@@ -519,7 +573,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "19"
+      "accession": "19",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 20,
@@ -546,7 +603,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "20"
+      "accession": "20",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 21,
@@ -573,7 +633,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "21"
+      "accession": "21",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 22,
@@ -600,7 +663,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "22"
+      "accession": "22",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 23,
@@ -627,7 +693,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "23"
+      "accession": "23",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 24,
@@ -654,7 +723,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "24"
+      "accession": "24",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 25,
@@ -681,7 +753,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "25"
+      "accession": "25",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 26,
@@ -708,7 +783,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "26"
+      "accession": "26",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     },
     {
       "id": 27,
@@ -735,7 +813,10 @@
       "almari": "",
       "borrowerContact": "",
       "borrowDays": null,
-      "accession": "27"
+      "accession": "27",
+      "issueType": "person",
+      "toDepartment": "",
+      "toAlmari": ""
     }
   ],
   "categories": [
@@ -774,9 +855,9 @@
     "lineSpacing": "1.0",
     "fonts": {
       "ui": {
-        "family": "auto",
-        "weight": "400",
-        "size": 16
+        "family": "My Lotus",
+        "weight": "700",
+        "size": 19
       },
       "list": {
         "family": "auto",
@@ -809,6 +890,6 @@
     }
   },
   "appSettings": {
-    "lang": "ar"
+    "lang": "ur"
   }
 }
