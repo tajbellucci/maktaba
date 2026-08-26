@@ -47,7 +47,7 @@
       "format": "physical",
       "files": [],
       "status": "issued",
-      "borrower": "a",
+      "borrower": "",
       "issueDate": "2026-08-25",
       "dueDate": "2026-09-08",
       "history": [
@@ -61,7 +61,7 @@
       "viewedAt": "2026-08-26T19:13:55.744Z",
       "material": "book",
       "almari": "",
-      "borrowerContact": "a",
+      "borrowerContact": "",
       "borrowDays": null,
       "accession": "2",
       "issueType": "person",
