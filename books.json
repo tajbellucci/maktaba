@@ -48,11 +48,16 @@
       "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mt8tra4s.jpg",
       "format": "physical",
       "files": [],
-      "status": "issued",
-      "borrower": "مولانا عبد الرحمن",
-      "issueDate": "2026-08-27",
-      "dueDate": "2026-09-10",
+      "status": "available",
+      "borrower": "",
+      "issueDate": "",
+      "dueDate": "",
       "history": [
+        {
+          "date": "2026-08-27",
+          "action": "returned",
+          "detail": ""
+        },
         {
           "date": "2026-08-27",
           "action": "issued",
@@ -68,14 +73,14 @@
       "viewedAt": "2026-08-26T19:13:55.744Z",
       "material": "book",
       "almari": "",
-      "borrowerContact": "لیاری، کراچی",
+      "borrowerContact": "",
       "borrowDays": null,
       "accession": "2",
       "issueType": "person",
       "toDepartment": "",
       "toAlmari": "",
-      "borrowerAddress": "لیاری، کراچی",
-      "borrowerPhone": "0300-1234567"
+      "borrowerAddress": "",
+      "borrowerPhone": ""
     },
     {
       "id": 3,
