@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": true,
-      "viewedAt": "2026-08-27T14:56:09.731Z",
+      "viewedAt": "2026-08-27T22:35:00.517Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -32,7 +32,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 2,
@@ -80,7 +81,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 3,
@@ -112,7 +114,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 4,
@@ -144,7 +147,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 5,
@@ -176,7 +180,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 6,
@@ -208,7 +213,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 7,
@@ -240,7 +246,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 8,
@@ -272,7 +279,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 9,
@@ -304,7 +312,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 10,
@@ -336,7 +345,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 11,
@@ -368,7 +378,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 12,
@@ -400,7 +411,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 13,
@@ -432,7 +444,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 14,
@@ -464,7 +477,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 15,
@@ -496,7 +510,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 16,
@@ -528,7 +543,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 17,
@@ -560,7 +576,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 18,
@@ -592,7 +609,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 19,
@@ -624,7 +642,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 20,
@@ -656,7 +675,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 21,
@@ -688,7 +708,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 22,
@@ -720,7 +741,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 23,
@@ -752,7 +774,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 24,
@@ -784,7 +807,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 25,
@@ -816,7 +840,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 26,
@@ -848,7 +873,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     },
     {
       "id": 27,
@@ -880,7 +906,8 @@
       "toDepartment": "",
       "toAlmari": "",
       "borrowerAddress": "",
-      "borrowerPhone": ""
+      "borrowerPhone": "",
+      "hasPrint": true
     }
   ],
   "categories": [
