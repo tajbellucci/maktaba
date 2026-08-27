@@ -158,10 +158,8 @@
       "department": "",
       "publisher": "",
       "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mta919nh.jpg",
-      "format": "unicode",
-      "files": [
-        "https://github.com/tajbellucci/maktaba/releases/download/library-files/sample2.txt"
-      ],
+      "format": "physical",
+      "files": [],
       "status": "available",
       "borrower": "",
       "issueDate": "",
