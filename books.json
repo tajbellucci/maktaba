@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": true,
-      "viewedAt": "2026-08-26T19:43:58.782Z",
+      "viewedAt": "2026-08-27T14:56:09.731Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -158,8 +158,10 @@
       "department": "",
       "publisher": "",
       "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mta919nh.jpg",
-      "format": "physical",
-      "files": [],
+      "format": "unicode",
+      "files": [
+        "https://github.com/tajbellucci/maktaba/releases/download/library-files/sample2.txt"
+      ],
       "status": "available",
       "borrower": "",
       "issueDate": "",
