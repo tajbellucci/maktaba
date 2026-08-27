@@ -14,10 +14,8 @@
       "department": "غرفة عامة للشيخ",
       "publisher": "",
       "image": "https://raw.githubusercontent.com/tajbellucci/maktaba/main/covers/cover-mta89k3p.jpg",
-      "format": "unicode",
-      "files": [
-        "https://github.com/tajbellucci/maktaba/releases/download/library-files/sample-fatawa.txt"
-      ],
+      "format": "physical",
+      "files": [],
       "status": "available",
       "borrower": "",
       "issueDate": "",
