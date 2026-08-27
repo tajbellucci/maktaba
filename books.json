@@ -22,7 +22,7 @@
       "dueDate": "",
       "history": [],
       "favorite": true,
-      "viewedAt": "2026-08-27T14:56:09.731Z",
+      "viewedAt": "2026-08-27T15:06:10.171Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -102,7 +102,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-27T15:09:06.879Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -116,7 +116,7 @@
     },
     {
       "id": 4,
-      "title": "ب��ارِ شریعت",
+      "title": "بارِ شریعت",
       "author": "مفتی امجد علی اعظمی",
       "category": "فقہ",
       "volumes": 3,
@@ -134,7 +134,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "2026-08-25T15:39:00.493Z",
+      "viewedAt": "2026-08-27T15:09:32.947Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -230,7 +230,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-27T15:05:55.430Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -454,7 +454,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-27T15:08:54.509Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -870,7 +870,7 @@
       "dueDate": "",
       "history": [],
       "favorite": false,
-      "viewedAt": "",
+      "viewedAt": "2026-08-27T15:08:34.324Z",
       "material": "book",
       "almari": "",
       "borrowerContact": "",
@@ -959,6 +959,6 @@
     }
   },
   "appSettings": {
-    "lang": "en"
+    "lang": "ur"
   }
 }
