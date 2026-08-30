@@ -547,9 +547,9 @@
     "accent": "blue",
     "mode": "light",
     "size": "large",
-    "font": "naskh",
+    "font": "nastaliq",
     "density": "compact",
-    "uiFont": "mylotus",
+    "uiFont": "auto",
     "toolbarLabels": true,
     "showAcc": true,
     "showPub": true,
@@ -557,7 +557,7 @@
     "lineSpacing": "1.0",
     "fonts": {
       "ui": {
-        "family": "My Lotus",
+        "family": "auto",
         "weight": "400",
         "size": 16
       },
