@@ -2175,6 +2175,15 @@ async function doPublish() {
       }
       toast(t("published"));
       refreshPublishBadge();
+    } else if (res.diverged) {
+      /* GitHub holds something this machine never saw. Publishing would wipe
+         it, so say what the difference is and point at the one safe action
+         instead of letting them retry into an overwrite. */
+      alert(
+        t("publishDiverged")
+          .replace("{remote}", ud(res.remoteBooks == null ? "?" : res.remoteBooks))
+          .replace("{local}", ud(res.localBooks == null ? "?" : res.localBooks))
+      );
     } else alert(t("publishFail") + res.error);
   };
 }

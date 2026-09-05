@@ -1230,8 +1230,37 @@ async function doPublish(data) {
 
     let sha;
     const head = await fetch(`${url}?ref=${branch}`, { headers });
-    if (head.ok) sha = (await head.json()).sha;
-    else if (head.status !== 404) {
+    if (head.ok) {
+      const meta = await head.json();
+      sha = meta.sha;
+
+      /* Divergence guard.
+         The sha above only proves nobody changed the file in the last few
+         milliseconds. It says nothing about whether GitHub holds work this
+         machine has never seen — and publishing would then overwrite it
+         without a word. That is not hypothetical: a catalogue was once
+         corrected directly on GitHub while this machine still held the older
+         copy, and a publish at that moment would have silently deleted a
+         whole book and reinstated corrupted text.
+         So compare what is actually up there against what WE last published.
+         Different means someone or something else moved it, and the librarian
+         has to look before overwriting. */
+      const stamped = readJson(publishStateFile(), null);
+      if (stamped && stamped.hash && meta.content) {
+        try {
+          const remoteNow = JSON.parse(Buffer.from(meta.content, "base64").toString("utf8"));
+          if (catalogueHash(remoteNow) !== stamped.hash) {
+            return {
+              ok: false,
+              diverged: true,
+              error: "remote-diverged",
+              remoteBooks: Array.isArray(remoteNow.books) ? remoteNow.books.length : null,
+              localBooks: Array.isArray(data.books) ? data.books.length : null
+            };
+          }
+        } catch { /* unparseable remote: fall through and let the write decide */ }
+      }
+    } else if (head.status !== 404) {
       return { ok: false, error: `GitHub ${head.status}: ${await head.text()}` };
     }
 
