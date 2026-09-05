@@ -1,0 +1,44 @@
+{
+  "releases": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-24",
+      "en": [
+        "Book photos: every book can now carry a cover image, shown in the details panel and in the hover tooltip.",
+        "Multiple files per book: attach as many PDF scans or text files as a book needs, one per volume if you like.",
+        "Publisher (الناشر) added as a catalogue field and as a column in the book list.",
+        "Hover tooltip: rest the mouse on any book to see its full record, cover image included, without opening it.",
+        "Theme customization: pick an accent colour and switch between light and dark from Settings.",
+        "Almari number removed for now; books are located by branch and department instead.",
+        "What's New and version information added to the About box, in English and Arabic."
+      ],
+      "ar": [
+        "صور الكتب: يمكن لكل كتاب الآن أن يحمل صورة غلاف، تظهر في لوحة التفاصيل وفي التلميح عند مرور المؤشر.",
+        "ملفات متعددة لكل كتاب: أرفق ما تحتاجه من ملفات PDF أو ملفات نصية، ملفًا لكل جزء إن أردت.",
+        "إضافة الناشر كحقل في الفهرس وكعمود في قائمة الكتب.",
+        "تلميح عند المرور: ضع المؤشر على أي كتاب لعرض بطاقته كاملة مع صورة الغلاف دون فتحه.",
+        "تخصيص المظهر: اختر لون التمييز وبدّل بين الوضع الفاتح والداكن من الإعدادات.",
+        "حُذف رقم الخزانة مؤقتًا؛ تُحدَّد أماكن الكتب بالفرع والقسم بدلاً منه.",
+        "إضافة \"ما الجديد\" ومعلومات الإصدار إلى صندوق \"حول\"، بالإنجليزية والعربية."
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-23",
+      "en": [
+        "First release of Maktaba Naumania.",
+        "Catalogue books by subject, author, status and branch.",
+        "Search in Urdu, Arabic and English with forgiving spelling matching.",
+        "Works fully offline; publishes the catalogue to GitHub for the phone app.",
+        "Interface available in Urdu, Arabic and English."
+      ],
+      "ar": [
+        "الإصدار الأول من مكتبة نعمانية.",
+        "فهرسة الكتب حسب الموضوع والمؤلف والحالة والفرع.",
+        "البحث بالأردية والعربية والإنجليزية مع تسامح في الإملاء.",
+        "يعمل دون اتصال بالكامل، وينشر الفهرس على GitHub لتطبيق الهاتف.",
+        "واجهة بالأردية والعربية والإنجليزية."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2536 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Maktaba Naumania — مکتبہ نعمانیہ
+   Shamela's control panel, rebuilt properly: same cool neutral shell,
+   same blue selection, same dense tabbed anatomy — but with real
+   spacing, real type, and edges that hold up on a modern screen.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Bundled fonts. Loaded from ../fonts/ if present; if the file is missing
+   (font not yet supplied, or licensing not yet cleared) the browser silently
+   moves on and the --nastaliq fallback chain below still works — nothing
+   breaks either way. Drop the licensed files at exactly these paths:
+   maktaba/desktop/fonts/JameelNooriNastaleeq.ttf
+   maktaba/desktop/fonts/MyLotus.ttf (or .otf — see the src line below) */
+@font-face {
+  font-family: "Jameel Noori Nastaleeq";
+  src: url("../fonts/JameelNooriNastaleeq.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "My Lotus";
+  src: url("../fonts/MyLotus.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* Shell — cool neutrals, the Shamela family */
+  --shell:      #eaeef3;
+  --shell-2:    #e2e8ef;
+  --panel:      #ffffff;
+  --strip:      #f5f7fa;
+  --strip-2:    #eef2f7;
+
+  /* Lines */
+  --line:       #d8dfe8;
+  --line-soft:  #eaeff5;
+  --line-hard:  #c3ccd8;
+
+  /* Shamela blue, deepened */
+  --blue:       #125fb0;
+  --blue-2:     #1873cf;
+  --blue-deep:  #0d4a8a;
+  --blue-wash:  #e8f1fc;
+  --blue-ring:  rgba(24, 115, 207, .22);
+
+  /* Semantic */
+  --green:      #14724a;
+  --green-wash: #e4f2ea;
+  --red:        #b23127;
+  --red-wash:   #fbeae8;
+
+  /* Type */
+  --text:       #17222e;
+  /* Secondary tones are deliberately dark. The earlier values were too pale
+     to read comfortably on the light shell, especially the small labels,
+     hints and slot values in the Options dialog. Every one of these now
+     clears 4.5:1 against the panel white. */
+  --text-2:     #37434f;
+  --muted:      #4a5765;
+  --muted-2:    #667486;
+
+  --naskh:    "Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif;
+  --nastaliq: "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", serif;
+  --latin:    "Segoe UI", "Inter", sans-serif;
+
+  /* The face the WHOLE window uses. It points at --nastaliq rather than
+     naming a font, so the language rules below (and the Appearance picker,
+     which overrides --nastaliq inline) move every label, button, row and
+     field at once instead of only the headings. Urdu is the default, so the
+     default here is Jameel Noori Nastaleeq. */
+  --ui: var(--nastaliq);
+
+  --sh-1: 0 1px 2px rgba(23, 34, 46, .05);
+  --sh-2: 0 1px 3px rgba(23, 34, 46, .07), 0 4px 12px rgba(23, 34, 46, .05);
+  --sh-3: 0 16px 44px rgba(13, 30, 48, .22);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--shell);
+  font-family: var(--ui);
+  font-size: 16.5px;
+  color: var(--text);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Form controls do NOT inherit font-family from body — the browser gives them
+   its own default, which is why buttons, dropdowns and checkboxes were still
+   rendering in Arial while everything around them was in Nastaliq. Eighteen
+   controls were affected, including the "واپس موصول ہوئی" button and the
+   maktaba dropdown. This makes every control follow the language font like
+   the rest of the interface; the few genuinely Latin fields (file paths,
+   phone numbers, English mode) set their own face later and still win on
+   specificity. */
+button, input, select, textarea, optgroup, option {
+  font-family: inherit;
+}
+
+/* ── Header band ─────────────────────────────────────────────────────── */
+
+.titlebar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.titlebar .mark {
+  width: 30px; height: 30px;
+  flex: none;
+  border-radius: 6px;
+  background: linear-gradient(140deg, var(--blue-2), var(--blue-deep));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(18, 95, 176, .28);
+}
+.titlebar .mark svg { width: 17px; height: 17px; }
+.titlebar h1 {
+  font-family: var(--nastaliq);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 2;
+  color: var(--text);
+}
+.titlebar .sub {
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted-2);
+  margin-right: auto;
+  direction: ltr;
+  letter-spacing: .3px;
+}
+
+/* ── Menu + toolbar ──────────────────────────────────────────────────── */
+
+.menubar {
+  background: var(--strip);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 0 12px;
+  display: flex;
+  gap: 1px;
+  flex: none;
+}
+.menubar span {
+  padding: 6px 13px;
+  font-size: 14.5px;
+  color: var(--muted);
+  cursor: default;
+  border-radius: 4px 4px 0 0;
+  transition: background .14s, color .14s;
+}
+.menubar span:hover { background: var(--blue-wash); color: var(--blue); }
+
+.toolbar {
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: none;
+}
+
+.tbtn {
+  height: 30px;
+  min-width: 32px;
+  padding: 0 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: var(--ui);
+  font-size: 15.5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background .14s, color .14s, border-color .14s, box-shadow .14s;
+}
+.tbtn svg { width: 16px; height: 16px; }
+.tbtn:hover {
+  background: var(--panel);
+  border-color: var(--line);
+  color: var(--blue);
+  box-shadow: var(--sh-1);
+}
+.tbtn:active { background: var(--blue-wash); }
+.tbtn:disabled { opacity: .35; cursor: default; }
+.tbtn:disabled:hover { background: transparent; border-color: transparent; color: var(--muted); box-shadow: none; }
+.tbtn.danger:hover { color: var(--red); border-color: #eccbc7; background: var(--red-wash); }
+
+.tbtn.publish {
+  margin-right: auto;
+  padding: 0 16px;
+  background: linear-gradient(180deg, var(--blue-2), var(--blue));
+  border-color: var(--blue-deep);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(18, 95, 176, .3);
+}
+.tbtn.publish:hover {
+  background: linear-gradient(180deg, #1d80e0, var(--blue-2));
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(18, 95, 176, .38);
+}
+.tbtn.publish:disabled { opacity: .6; }
+
+.tsep { width: 1px; height: 20px; background: var(--line); margin: 0 6px; }
+
+/* ── Body ────────────────────────────────────────────────────────────── */
+
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 9px;
+  gap: 8px;
+  /* Second safety net below the dialog's own min-width: if the fixed-width
+     panels ever exceed the available space anyway, scroll to them instead
+     of silently clipping one out of view. */
+  overflow-x: auto;
+}
+
+/* Icon rail */
+.rail {
+  width: 74px;
+  flex: none;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 5px;
+  gap: 2px;
+  box-shadow: var(--sh-1);
+}
+.rail button {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 2px 8px;
+  cursor: pointer;
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  transition: background .16s, color .16s;
+}
+.rail button svg { width: 20px; height: 20px; transition: transform .16s; }
+.rail button:hover { background: var(--strip-2); color: var(--text); }
+.rail button:hover svg { transform: translateY(-1px); }
+.rail button.active {
+  background: var(--blue-wash);
+  color: var(--blue);
+  font-weight: 600;
+}
+.rail button.active::before {
+  content: "";
+  position: absolute; right: -5px; top: 50%;
+  width: 3px; height: 20px;
+  border-radius: 2px 0 0 2px;
+  transform: translateY(-50%);
+  background: var(--blue-2);
+}
+
+/* Panels */
+.pane {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+}
+.groups { width: 286px; flex: none; }
+.books  { flex: 1; }
+.detail { width: 330px; flex: none; }
+
+/* Full-text search panel — physical left, like the reference app's. Fixed
+   width so the book list keeps the space, which is the whole point of it. */
+.ftspane { width: 330px; flex: none; }
+.fts-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fts-head > span { flex: 1; min-width: 0; }
+.fts-hide {
+  flex: none;
+  width: 22px; height: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .14s, color .14s;
+}
+.fts-hide svg { width: 12px; height: 12px; }
+.fts-hide:hover { background: var(--red-wash); color: var(--red); }
+.fts-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.fts-terms { display: flex; flex-direction: column; gap: 5px; }
+.fts-term {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.fts-term input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 9px;
+  border: 1px solid var(--line-hard);
+  border-radius: 5px;
+  background: var(--shell);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13.5px;
+}
+.fts-term input:focus { outline: none; border-color: var(--blue); }
+.fts-n {
+  flex: none;
+  width: 22px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.fts-not .fts-n { color: var(--red); font-weight: 700; }
+
+.fts-opts { display: flex; flex-direction: column; gap: 4px; }
+.fts-opts label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.fts-opts input { flex: none; cursor: pointer; }
+
+.fts-actions { display: flex; gap: 7px; }
+.fts-actions button {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid var(--line-hard);
+  border-radius: 5px;
+  background: var(--strip);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.fts-actions button.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.fts-actions button:disabled { opacity: .55; cursor: default; }
+
+.fts-results { display: flex; flex-direction: column; gap: 3px; }
+.fts-hit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .14s;
+}
+.fts-hit:hover { background: var(--blue-wash); }
+.fh-title { flex: 1; min-width: 0; font-size: 13.5px; color: var(--text); }
+.fh-count {
+  flex: none;
+  font-size: 11.5px;
+  color: var(--blue);
+  background: var(--blue-wash);
+  border-radius: 9px;
+  padding: 1px 7px;
+}
+
+/* Panel headers */
+.grouphead, .dhead {
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .4px;
+  flex: none;
+}
+.grouphead { display: flex; }
+.grouphead div { padding: 8px 12px; }
+.grouphead .c-name { flex: 1; }
+.grouphead .c-count { width: 64px; border-right: 1px solid var(--line-soft); text-align: center; }
+.dhead { padding: 8px 13px; }
+
+.grouplist, .booklist { flex: 1; overflow-y: auto; }
+
+/* Scrollbars */
+.grouplist::-webkit-scrollbar, .booklist::-webkit-scrollbar, .dbody::-webkit-scrollbar { width: 11px; }
+.grouplist::-webkit-scrollbar-track, .booklist::-webkit-scrollbar-track, .dbody::-webkit-scrollbar-track { background: transparent; }
+.grouplist::-webkit-scrollbar-thumb, .booklist::-webkit-scrollbar-thumb, .dbody::-webkit-scrollbar-thumb {
+  background: #ccd5e0; border: 3px solid var(--panel); border-radius: 8px;
+}
+.grouplist::-webkit-scrollbar-thumb:hover, .booklist::-webkit-scrollbar-thumb:hover, .dbody::-webkit-scrollbar-thumb:hover { background: #aebcce; }
+
+/* Rows */
+.grouprow, .bookrow {
+  display: flex;
+  align-items: center;
+  cursor: default;
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+  transition: background .12s;
+}
+
+.grouprow .c-name {
+  flex: 1;
+  padding: 8px 12px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: 16.5px;
+  min-width: 0;
+}
+.grouprow .c-name span {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.grouprow .c-count {
+  width: 64px;
+  padding: 8px 0;
+  text-align: center;
+  color: var(--muted-2);
+  font-size: 14px;
+  border-right: 1px solid var(--line-soft);
+}
+.grouprow svg { width: 15px; height: 15px; color: var(--muted-2); flex: none; transition: color .12s; }
+
+.grouprow:hover, .bookrow:hover { background: var(--strip-2); }
+.grouprow:hover svg { color: var(--blue); }
+
+.grouprow.sel, .bookrow.sel { background: var(--blue); color: #fff; }
+.grouprow.sel:hover, .bookrow.sel:hover { background: var(--blue); }
+.grouprow.sel svg { color: #fff; }
+.grouprow.sel .c-count { color: rgba(255,255,255,.82); border-right-color: rgba(255,255,255,.2); }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 7px 8px 0;
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+.tabs button {
+  font-family: var(--ui);
+  font-size: 15.5px;
+  padding: 7px 15px 8px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: background .14s, color .14s;
+}
+.tabs button svg { width: 14px; height: 14px; }
+.tabs button:hover { color: var(--text); background: rgba(255,255,255,.65); }
+.tabs button.active {
+  background: var(--panel);
+  border-color: var(--line);
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: -1px;
+  padding-bottom: 9px;
+  box-shadow: inset 0 2px 0 var(--blue-2);
+}
+
+/* Search */
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 9px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--panel);
+  flex: none;
+}
+.searchbar .wrap {
+  flex: 1;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--strip-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+  transition: border-color .16s, box-shadow .16s, background .16s;
+}
+.searchbar .wrap:focus-within {
+  background: var(--panel);
+  border-color: var(--blue-2);
+  box-shadow: 0 0 0 3px var(--blue-ring);
+}
+.searchbar .wrap svg { width: 14px; height: 14px; color: var(--muted-2); flex: none; }
+.searchbar input {
+  flex: 1;
+  font-family: var(--ui);
+  font-size: 16.5px;
+  padding: 7px 0;
+  border: none; outline: none; background: transparent;
+  color: var(--text);
+  user-select: text;
+}
+.searchbar input::placeholder { color: var(--muted-2); }
+
+/* Book rows */
+.bookrow { padding: 9px 12px; }
+.bookrow .dot {
+  width: 7px; height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--green-wash);
+}
+.bookrow .btitle {
+  flex: 1;
+  font-size: 17px;
+  min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bookrow .bmeta {
+  color: var(--muted-2);
+  font-size: 13.5px;
+  flex: none;
+  max-width: 44%;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bookrow.sel .bmeta { color: rgba(255,255,255,.78); }
+.bookrow.sel .dot { background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.28); }
+.bookrow.missing .dot { background: var(--red); box-shadow: 0 0 0 3px var(--red-wash); }
+.bookrow.missing .btitle { color: var(--red); }
+.bookrow.sel.missing .btitle { color: #ffd8d3; }
+.bookrow.sel.missing .dot { background: #ffb3ab; box-shadow: 0 0 0 3px rgba(255,179,171,.25); }
+
+.panefoot {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 9px;
+  border-top: 1px solid var(--line);
+  background: var(--strip);
+  flex: none;
+}
+.panefoot .hint { margin-right: auto; }
+.hint { font-size: 11.5px; color: var(--muted-2); white-space: pre-line; }
+
+/* Detail pane */
+.dbody { padding: 14px 15px 18px; overflow-y: auto; flex: 1; }
+.dbody label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  color: var(--muted-2);
+  margin: 13px 0 5px;
+}
+.dbody label:first-child { margin-top: 0; }
+.dbody input, .dbody textarea {
+  width: 100%;
+  font-family: var(--ui);
+  font-size: 15px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--strip-2);
+  color: var(--text);
+  user-select: text;
+  transition: border-color .16s, box-shadow .16s, background .16s;
+}
+.dbody input:focus, .dbody textarea:focus {
+  outline: none;
+  background: var(--panel);
+  border-color: var(--blue-2);
+  box-shadow: 0 0 0 3px var(--blue-ring);
+}
+.dbody #dTitle { font-family: var(--nastaliq); font-size: 19px; line-height: 2.1; }
+.dbody textarea { resize: vertical; min-height: 62px; line-height: 1.7; }
+
+.dempty {
+  color: var(--muted-2);
+  text-align: center;
+  padding: 54px 18px;
+  font-size: 12.5px;
+  line-height: 1.9;
+}
+.dempty svg { width: 40px; height: 40px; color: #d3dbe5; display: block; margin: 0 auto 14px; }
+
+.statusrow { display: flex; gap: 8px; margin-top: 18px; }
+.statusrow button {
+  flex: 1;
+  font-family: var(--ui);
+  font-size: 12.5px;
+  padding: 9px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.statusrow button:hover { border-color: var(--line-hard); color: var(--text); }
+.statusrow button.on-present {
+  background: var(--green-wash); border-color: #9dc9b3;
+  color: var(--green); font-weight: 700;
+}
+.statusrow button.on-missing {
+  background: var(--red-wash); border-color: #e6b3ad;
+  color: var(--red); font-weight: 700;
+}
+
+/* ── Status bar ──────────────────────────────────────────────────────── */
+
+.statusbar {
+  height: 27px;
+  flex: none;
+  background: var(--strip);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.statusbar b { color: var(--text); font-weight: 700; }
+.statusbar .sep { width: 1px; height: 13px; background: var(--line); }
+.statusbar .ltr {
+  direction: ltr; margin-right: auto;
+  font-family: var(--latin); font-size: 10.5px;
+  color: var(--muted-2);
+}
+
+/* ── Dialogs ─────────────────────────────────────────────────────────── */
+
+dialog {
+  border: 1px solid var(--line-hard);
+  border-radius: 10px;
+  padding: 0;
+  background: var(--panel);
+  box-shadow: var(--sh-3);
+  animation: pop .18s cubic-bezier(.2,.9,.3,1) both;
+}
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
+dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px); }
+
+.modal-body { min-width: 430px; font-family: var(--ui); }
+.modal-body h2 {
+  font-family: var(--nastaliq);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 2.1;
+  color: var(--text);
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 18px 6px;
+}
+.modal-inner { padding: 16px 20px 18px; }
+.modal-body label {
+  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .6px;
+  color: var(--muted-2); margin: 12px 0 5px;
+}
+.modal-inner > label:first-child { margin-top: 0; }
+.modal-body input, .modal-body textarea {
+  width: 100%; font-family: var(--ui); font-size: 15px;
+  padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--strip-2); color: var(--text); user-select: text;
+  transition: border-color .16s, box-shadow .16s, background .16s;
+}
+.modal-body input:focus, .modal-body textarea:focus {
+  outline: none; background: var(--panel);
+  border-color: var(--blue-2); box-shadow: 0 0 0 3px var(--blue-ring);
+}
+.modal-body textarea { resize: vertical; line-height: 1.8; }
+#oTitle { font-family: var(--nastaliq); line-height: 2.1; }
+
+.modal-actions {
+  display: flex; justify-content: flex-start; gap: 9px;
+  padding: 13px 20px;
+  background: var(--strip);
+  border-top: 1px solid var(--line);
+}
+.modal-actions button {
+  font-family: var(--ui); font-size: 14.5px;
+  padding: 9px 22px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); color: var(--muted); cursor: pointer;
+  transition: all .15s;
+}
+.modal-actions button:hover { color: var(--text); border-color: var(--line-hard); }
+.modal-actions button.primary {
+  background: linear-gradient(180deg, var(--blue-2), var(--blue));
+  border-color: var(--blue-deep);
+  color: #fff; font-weight: 600;
+  box-shadow: 0 1px 3px rgba(18, 95, 176, .3);
+}
+.modal-actions button.primary:hover { background: linear-gradient(180deg, #1d80e0, var(--blue-2)); }
+
+/* ── Toast ───────────────────────────────────────────────────────────── */
+
+#toast {
+  position: fixed; bottom: 46px; left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: #1b2733;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 7px;
+  font-size: 13px;
+  box-shadow: var(--sh-3);
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s, transform .22s;
+  z-index: 60;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Menu bar (real dropdowns) ───────────────────────────────────────── */
+
+.menubar { position: relative; z-index: 40; }
+
+.menu { position: relative; }
+.menu > span {
+  display: block;
+  padding: 6px 13px;
+  font-size: 14.5px;
+  color: var(--muted);
+  cursor: default;
+  border-radius: 4px 4px 0 0;
+  transition: background .14s, color .14s;
+}
+.menu:hover > span, .menu.open > span { background: var(--blue-wash); color: var(--blue); }
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; right: 0;
+  min-width: 240px;
+  background: var(--panel);
+  border: 1px solid var(--line-hard);
+  border-radius: 8px;
+  box-shadow: var(--sh-3);
+  padding: 6px;
+  z-index: 50;
+}
+.menu.open .dropdown { display: block; animation: pop .14s ease-out both; }
+
+.dropdown button {
+  width: 100%;
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--ui);
+  font-size: 13px;
+  text-align: right;
+  cursor: pointer;
+  transition: background .12s;
+}
+.dropdown button:hover { background: var(--blue-wash); color: var(--blue); }
+.dropdown button svg { width: 15px; height: 15px; color: var(--muted-2); flex: none; }
+.dropdown button:hover svg { color: var(--blue); }
+.dsep { height: 1px; background: var(--line-soft); margin: 5px 4px; }
+
+/* ── Language toggle in titlebar ─────────────────────────────────────── */
+
+.titlebar #btnLang {
+  height: 28px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.titlebar #btnLang:hover { color: var(--blue); border-color: var(--blue-2); }
+
+/* ── Settings checkbox row ───────────────────────────────────────────── */
+
+.chk {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 14px !important;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1.6;
+}
+.chk input { width: auto !important; margin-top: 3px; accent-color: var(--blue); flex: none; }
+
+/* ── About dialog ─────────────────────────────────────────────────────── */
+
+.about-body { padding: 30px 24px 8px; text-align: center; }
+.about-body .ring {
+  width: 56px; height: 56px; margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--blue-2), var(--blue-deep));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(18, 95, 176, .3);
+}
+.about-body .ring svg { width: 28px; height: 28px; }
+.about-name { font-family: var(--nastaliq); font-size: 24px; font-weight: 500; line-height: 1.9; }
+.about-ar { font-family: var(--ui); font-size: 15px; color: var(--muted); margin-top: 2px; }
+.about-en { font-size: 11.5px; color: var(--muted-2); margin-top: 4px; direction: ltr; }
+.about-desc { font-size: 12.5px; color: var(--muted); margin-top: 16px; line-height: 1.9; padding: 0 8px; }
+
+/* ── English UI mode: LTR chrome, latin type ─────────────────────────── */
+
+html[dir="ltr"] body { font-family: "Segoe UI", var(--latin); }
+html[dir="ltr"] .titlebar h1 { font-family: Georgia, "EB Garamond", serif; font-size: 21px; letter-spacing: .2px; }
+html[dir="ltr"] .titlebar .sub { direction: ltr; }
+html[dir="ltr"] .menu > span,
+html[dir="ltr"] .dropdown button,
+html[dir="ltr"] .tbtn,
+html[dir="ltr"] .rail button,
+html[dir="ltr"] .tabs button,
+html[dir="ltr"] .searchbar input,
+html[dir="ltr"] .grouprow .c-name,
+html[dir="ltr"] .bookrow .btitle,
+html[dir="ltr"] .bookrow .bmeta,
+html[dir="ltr"] .dbody label,
+html[dir="ltr"] .dbody input,
+html[dir="ltr"] .dbody textarea,
+html[dir="ltr"] .statusbar,
+html[dir="ltr"] .modal-body,
+html[dir="ltr"] .modal-body input,
+html[dir="ltr"] .modal-body textarea,
+html[dir="ltr"] .about-desc {
+  font-family: "Segoe UI", var(--latin);
+}
+html[dir="ltr"] .dbody #dTitle,
+html[dir="ltr"] #oTitle {
+  font-family: "Segoe UI", var(--latin);
+  font-size: 15px;
+}
+html[dir="ltr"] .modal-body h2,
+html[dir="ltr"] .about-name {
+  font-family: Georgia, "EB Garamond", serif;
+}
+
+/* LTR positional flips — dir=ltr keeps English readable without breaking chrome */
+html[dir="ltr"] .dropdown { right: auto; left: 0; }
+html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-radius: 0 2px 2px 0; }
+
+/* ── Format select + file attach row ─────────────────────────────────── */
+
+.dbody select {
+  width: 100%;
+  font-family: var(--ui);
+  font-size: 15px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--strip-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.dbody select:focus {
+  outline: none; background: var(--panel);
+  border-color: var(--blue-2); box-shadow: 0 0 0 3px var(--blue-ring);
+}
+
+.filerow {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+  min-height: 30px;
+}
+.filerow .filename {
+  flex: 1; min-width: 0;
+  font-size: 12px; color: var(--muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  background: var(--strip-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  padding: 6px 9px;
+}
+
+/* Format badge on book rows */
+.bookrow .fmt-badge {
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--blue-wash);
+  color: var(--blue);
+  letter-spacing: .3px;
+}
+.bookrow.sel .fmt-badge { background: rgba(255,255,255,.2); color: #fff; }
+
+/* ── Home / welcome screen ───────────────────────────────────────────── */
+
+.hidden { display: none !important; }
+
+.home {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+}
+.home-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.home-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(238,242,247,.35) 0%, rgba(238,242,247,.75) 70%, var(--shell) 100%);
+}
+.home-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-bottom: 54px;
+  max-width: 640px;
+}
+.home-word {
+  font-family: var(--nastaliq);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #1c2a3a;
+  text-shadow: 0 2px 18px rgba(23,34,46,.18);
+}
+.home-rule {
+  width: 200px; height: 1px; margin: 10px auto 14px;
+  background: linear-gradient(90deg, transparent, var(--blue-2), transparent);
+}
+.home-tag {
+  font-size: 19px;
+  color: var(--muted);
+  letter-spacing: .2px;
+}
+.home-enter { margin-top: 26px; }
+.home-enter button {
+  font-family: var(--ui);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 11px 32px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--blue-2), var(--blue));
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 9px;
+  box-shadow: 0 4px 16px rgba(18, 95, 176, .35);
+  transition: transform .15s, box-shadow .15s;
+}
+.home-enter button svg { width: 17px; height: 17px; }
+.home-enter button:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(18, 95, 176, .42); }
+
+/* ── Rail separator + home button ────────────────────────────────────── */
+
+.rail .tsep-h { height: 1px; background: var(--line); margin: 6px 4px; }
+#railHome { color: var(--muted-2); }
+
+/* ── Three-column book table (المؤلف | الکتاب | الناشر) ──────────────── */
+
+.bookhead {
+  display: flex;
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .4px;
+  flex: none;
+}
+/* Every width here must mirror the matching .br-* cell exactly, or the header
+   drifts away from the columns it labels. */
+.bookhead div { padding: 7px 12px; }
+.bh-star { width: 30px; flex: none; padding: 7px 0 !important; }
+.bh-acc { width: 62px; flex: none; padding: 7px 4px !important; border-left: 1px solid var(--line-soft); text-align: center; }
+.bh-author { width: 24%; flex: none; border-left: 1px solid var(--line-soft); }
+.bh-title { flex: 1; min-width: 0; border-left: 1px solid var(--line-soft); }
+.bh-publisher { width: 20%; flex: none; }
+
+/* Hiding a column in Options must hide its heading too. */
+html[data-show-acc="off"] .bh-acc { display: none; }
+html[data-show-pub="off"] .bh-publisher { display: none; }
+
+/* The list below scrolls and so carries a scrollbar the header never does —
+   without reserving that same width, every column drifted left of its
+   heading by the scrollbar's own width the moment the list grew past one
+   screen. */
+.bookhead { padding-inline-end: var(--scrollbar-w, 0px); box-sizing: content-box; }
+
+.bookrow { padding: 0; }
+.br-acc {
+  width: 62px; flex: none;
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted-2);
+  border-left: 1px solid var(--line-soft);
+  font-variant-numeric: tabular-nums;
+}
+.br-author {
+  width: 24%; flex: none;
+  padding: 8px 12px;
+  color: var(--muted);
+  font-size: 13px;
+  border-left: 1px solid var(--line-soft);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.br-title {
+  flex: 1; min-width: 0;
+  padding: 8px 12px;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--nastaliq);
+  line-height: 1.9;
+  font-size: 15.5px;
+  border-left: 1px solid var(--line-soft);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.br-publisher {
+  width: 20%; flex: none;
+  padding: 8px 12px;
+  color: var(--muted-2);
+  font-size: 12.5px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bookrow.sel .br-acc,
+.bookrow.sel .br-author,
+.bookrow.sel .br-publisher { color: rgba(255,255,255,.78); }
+.bookrow.sel .br-acc,
+.bookrow.sel .br-author,
+.bookrow.sel .br-title { border-left-color: rgba(255,255,255,.18); }
+
+/* ── Detail pane: lead fields (title, author, publisher, branch, dept,
+   Almari No) stand out — these are what a librarian fills first ──────── */
+
+.dbody label.lead {
+  color: var(--blue);
+  font-weight: 800;
+}
+
+/* Status colours: available / issued / missing */
+
+.bookrow.st-available .dot { background: var(--green); box-shadow: 0 0 0 2px var(--green-wash); }
+.bookrow.st-issued    .dot { background: #b8811f; box-shadow: 0 0 0 2px #f6ecd8; }
+.bookrow.st-missing   .dot { background: var(--red);   box-shadow: 0 0 0 2px var(--red-wash); }
+.bookrow.st-missing .br-title { color: var(--red); }
+.bookrow.st-issued  .br-title { color: #8a6316; }
+.bookrow.overdue .br-title { font-weight: 700; }
+.bookrow.sel .dot { background: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.3); }
+.bookrow.sel .br-title { color: #fff; }
+
+.fmt-badge.od { background: var(--red-wash); color: var(--red); }
+.tabs button.tab-warn.active { box-shadow: 0 -2px 0 var(--red) inset; }
+
+.tabs #sortSel {
+  margin-right: auto;
+  align-self: center;
+  font-family: var(--ui);
+  font-size: 13px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.statusbar .warn { color: var(--red); font-weight: 700; }
+
+/* Cover image in the detail pane */
+
+.coverbox { margin-bottom: 14px; position: relative; }
+.cover-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--strip-2);
+  display: block;
+}
+.cover-acts { position: absolute; top: 6px; left: 6px; display: flex; gap: 4px; }
+.cover-acts .tbtn { background: rgba(255,255,255,.92); border-color: var(--line); }
+.cover-empty {
+  width: 100%;
+  padding: 26px 10px;
+  border: 1px dashed var(--line-hard);
+  border-radius: 8px;
+  background: var(--strip-2);
+  color: var(--muted-2);
+  font-family: var(--ui);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+}
+.cover-empty svg { width: 26px; height: 26px; }
+.cover-empty:hover { border-color: var(--blue-2); color: var(--blue); background: var(--blue-wash); }
+
+/* Attached files list */
+
+.filerow { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+.fileitem { display: flex; align-items: center; gap: 5px; }
+.fileitem .filename {
+  flex: 1; min-width: 0;
+  font-size: 12px; color: var(--muted);
+  background: var(--strip-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  padding: 6px 9px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.attach-btn, .wide-btn {
+  width: 100%;
+  justify-content: center;
+  border: 1px solid var(--line) !important;
+  background: var(--strip-2) !important;
+  padding: 8px !important;
+  height: auto !important;
+}
+.wide-btn { margin-top: 10px; color: var(--blue); font-weight: 600; }
+.wide-btn:disabled { opacity: .4; }
+
+/* Tracking panel */
+
+.tracking {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.track-head {
+  font-size: 11.5px; font-weight: 800; letter-spacing: .5px;
+  color: var(--blue); margin-bottom: 10px;
+}
+.statusrow button.on-available { background: var(--green-wash); border-color: var(--green); color: var(--green); font-weight: 700; }
+.statusrow button.on-issued    { background: #f6ecd8; border-color: #b8811f; color: #8a6316; font-weight: 700; }
+.statusrow button.on-missing   { background: var(--red-wash); border-color: var(--red); color: var(--red); font-weight: 700; }
+
+.hist { margin-top: 14px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.hist-row {
+  display: flex; gap: 9px;
+  font-size: 11.5px; color: var(--muted-2);
+  padding: 3px 0;
+}
+.hist-date { font-variant-numeric: tabular-nums; flex: none; opacity: .8; }
+
+/* Hover book card */
+
+/* Image runs the full height of the card on one side, every field stacked
+   as label:value rows on the other — the actual Shamela كتاب card layout,
+   not a stacked photo-then-text block. */
+/* ── Book card ────────────────────────────────────────────────────────────
+   Modelled on Shamela's own card: a plain sheet with a thin hard border and
+   square corners, the title carrying its author in brackets, a rule, then the
+   record as running lines. No panels, no chips, no column grid — it should
+   read like the title page of the book it describes. */
+#bookCard {
+  position: fixed;
+  z-index: 90;
+  width: 470px;
+  max-width: calc(100vw - 24px);
+  background: var(--panel);
+  border: 1px solid var(--line-hard);
+  border-radius: 2px;
+  box-shadow: var(--sh-3);
+  padding: 13px 17px 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s;
+  font-family: var(--card-font, var(--ui));
+  font-size: var(--card-size, 15px);
+  line-height: 1.95;
+  color: var(--text);
+}
+#bookCard.show { opacity: 1; }
+
+/* Floated, so the running text wraps around it exactly like a plate set into
+   a page, instead of being pushed into a second column. */
+.bc-img {
+  float: inline-end;
+  width: 96px;
+  max-height: 150px;
+  object-fit: contain;
+  margin-inline-start: 13px;
+  margin-block-end: 7px;
+  border: 1px solid var(--line);
+  background: var(--strip-2);
+}
+
+.bc-head {
+  font-size: 1.16em;
+  line-height: 2;
+  color: var(--text);
+}
+.bc-paren { color: var(--text-2); }
+.bc-cat { color: var(--text-2); }
+
+.bc-rule {
+  border-top: 1px solid var(--line-hard);
+  margin: 7px 0 8px;
+  clear: none;
+}
+
+.bc-line { padding: 0; }
+.bc-k { color: var(--text-2); }
+.bc-v { color: var(--text); }
+.bc-note { margin-top: 4px; color: var(--red); }
+
+#bookCard::after { content: ""; display: block; clear: both; }
+
+/* Theme controls */
+
+.sec-head {
+  display: flex; align-items: center; gap: 7px;
+  margin: 18px 0 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11.5px; font-weight: 800; letter-spacing: .5px;
+  color: var(--blue);
+}
+.sec-head svg { width: 15px; height: 15px; }
+.swatches { display: flex; gap: 8px; }
+.sw {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 1px var(--line);
+  cursor: pointer;
+}
+.sw.on { border-color: var(--panel); box-shadow: 0 0 0 2px var(--text); }
+.modes { display: flex; gap: 8px; }
+.modes button {
+  flex: 1;
+  font-family: var(--ui); font-size: 13px;
+  padding: 7px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--strip-2); color: var(--muted); cursor: pointer;
+}
+.modes button.on { background: var(--blue-wash); border-color: var(--blue-2); color: var(--blue); font-weight: 700; }
+
+/* Font choices need room to show their own face, so they wrap instead of
+   being squeezed into one row like the two-option toggles above. */
+.modes.fonts { flex-wrap: wrap; }
+.modes.fonts button { flex: 1 1 46%; font-size: 15px; line-height: 1.9; padding: 8px 6px; }
+
+/* Publish button when this machine holds work nobody else can see yet. The
+   dot is deliberately hard to miss — "I forgot to publish" is the failure
+   this is here to prevent. */
+.tbtn.publish.pending { position: relative; }
+.tbtn.publish.pending::after {
+  content: "";
+  position: absolute; top: 3px; inset-inline-end: 5px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #ffcf4a;
+  box-shadow: 0 0 0 2px var(--blue-deep);
+}
+
+/* A digital-only record has no circulation, and says so instead of showing
+   controls that could not do anything. */
+.digital-only {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line-hard); border-radius: 7px;
+  background: var(--strip-2);
+  color: var(--muted);
+  font-size: 13.5px; line-height: 1.85;
+}
+.digital-only svg { width: 18px; height: 18px; flex: none; margin-top: 4px; color: var(--muted-2); }
+.chk.hasprint { margin-top: 8px; }
+
+/* ── Unicode reader ───────────────────────────────────────────────────────
+   A page of a book, not a form: wide measure, generous leading, and the
+   search bar pinned above the text so it stays reachable while scrolling. */
+
+/* Full window, like the reference app's book window — a 750,000-character
+   book read through a 940px letterbox was the complaint. */
+.reader-body {
+  width: calc(100vw - 24px);
+  height: calc(100vh - 24px);
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+#dlgReader { max-width: none; max-height: none; padding: 12px; }
+
+.rd-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 10px;
+}
+.rd-toc {
+  flex: none;
+  width: 232px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  padding: 5px;
+}
+.rd-toc-item {
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rd-toc-item:hover { background: var(--blue-wash); color: var(--text); }
+.rd-toc-item.on { background: var(--blue-wash); color: var(--blue); font-weight: 600; }
+
+/* Page number, printed in the margin the way a printed book carries it. */
+/* Fixed to the bottom-middle of the reading pane itself, not the scrolling
+   text — matches the reference app's placement, and stays put regardless of
+   scroll position within the page rather than travelling with the content. */
+.rd-pageno {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--latin);
+  font-size: 11.5px;
+  border-radius: 4px;
+  padding: 1px 8px;
+  box-shadow: var(--sh-1);
+}
+
+.rd-pager {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 2px 4px;
+  border-top: 1px solid var(--line-soft);
+}
+.rd-pager .tbtn { font-size: 17px; line-height: 1; padding: 0 11px; }
+.rd-pager .tbtn:disabled { opacity: .3; }
+/* Flat groove with a small square handle, like the reference app's page
+   slider — a bare native range renders as an OS-styled pill/blob that looks
+   nothing like it. Electron is always Chromium, so only the -webkit- track
+   and thumb pseudo-elements are needed, no cross-browser fallback. */
+#rdSlider {
+  flex: 1; min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  background: transparent;
+  cursor: pointer;
+}
+/* Blue groove like the reference app's — `--blue` is the live theme accent
+   variable (set from Options → Colors, `applyTheme()` in app.js), so this
+   follows whatever accent the librarian picks, not a hardcoded color. */
+#rdSlider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  /* Filled portion blue, remainder grey — the reference app's progress-bar
+     look. `--rd-pct` is written from JS (syncPager()) since a native range
+     has no two-tone track otherwise. Falls back to solid blue at 0% until
+     the first paint sets it. */
+  background: linear-gradient(to var(--rd-fill-dir, right),
+    var(--blue) var(--rd-pct, 0%), var(--line-hard) var(--rd-pct, 0%));
+}
+html[dir="rtl"] #rdSlider { --rd-fill-dir: left; }
+#rdSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  margin-top: -4.5px;
+  border-radius: 2px;
+  background: var(--panel);
+  border: 1px solid var(--blue);
+  box-shadow: var(--sh-1);
+}
+#rdSlider:hover::-webkit-slider-thumb { border-color: var(--blue-2); }
+.rd-pagelabel { font-size: 12.5px; color: var(--muted); }
+/* `.modal-body input { width: 100% }` outranks a single class on specificity
+   (class+tag beats class alone) and was stretching this to ~484px, starving
+   the slider down to its own tiny intrinsic size. flex:none + !important is
+   blunt, but this box must never grow no matter what generic rule exists
+   upstream in a stylesheet this size. */
+.rd-pager input.rd-pagebox {
+  flex: none;
+  width: 68px !important;
+  text-align: center;
+  padding: 4px 6px;
+  border: 1px solid var(--line-hard);
+  border-radius: 5px;
+  background: var(--shell);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+}
+.rd-pagetotal { font-size: 12.5px; color: var(--muted-2); white-space: nowrap; }
+.rd-head {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line);
+}
+.rd-titles { flex: 1; min-width: 0; }
+.rd-title {
+  font-family: var(--card-font, var(--ui));
+  font-size: 1.15em; line-height: 1.9;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rd-file {
+  font-family: var(--latin); font-size: 11.5px; color: var(--muted-2);
+  direction: ltr; text-align: start;
+}
+
+.rd-search {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line-soft);
+  flex: none;
+}
+/* The reader's search box reused `.wrap` but none of the rules that size it,
+   so its icon fell back to an SVG's default 300x150 and pushed the reading
+   pane down to a sliver. Same treatment as the catalogue's search bar. */
+.rd-search .wrap {
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--strip-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 10px;
+  transition: border-color .16s, box-shadow .16s, background .16s;
+}
+.rd-search .wrap:focus-within {
+  background: var(--panel);
+  border-color: var(--blue-2);
+  box-shadow: 0 0 0 3px var(--blue-ring);
+}
+.rd-search .wrap svg { width: 14px; height: 14px; color: var(--muted-2); flex: none; }
+.rd-search .wrap input {
+  flex: 1; min-width: 0;
+  font-family: var(--ui);
+  font-size: 15px;
+  padding: 7px 0;
+  border: none; outline: none; background: transparent;
+  color: var(--text);
+}
+.rd-count {
+  font-size: 12.5px; color: var(--muted);
+  white-space: nowrap; min-width: 92px; text-align: center;
+}
+.rd-search .tbtn { font-size: 19px; line-height: 1; padding: 0 12px; }
+.rd-search .tbtn:disabled { opacity: .3; }
+
+/* The page itself: a warm paper ground inside a ruled box, the way the
+   reference app presents a book rather than as plain white app chrome. */
+.rd-textwrap { position: relative; flex: 1; min-height: 0; display: flex; }
+.rd-text {
+  flex: 1; min-height: 0;
+  overflow-y: auto;
+  padding: 18px 22px;
+  user-select: text;              /* a reader must be able to copy a passage */
+  background: var(--paper, #fbf9f0);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+html[data-mode="dark"] .rd-text { --paper: #232a33; }
+.rd-para {
+  font-family: var(--card-font, var(--ui));
+  font-size: var(--card-size, 17px);
+  line-height: 2.15;
+  color: var(--text);
+  max-width: 72ch;
+  margin-inline: auto;
+}
+.rd-hit { background: #ffe9a8; color: inherit; border-radius: 2px; padding: 0 1px; }
+.rd-hit.on { background: var(--blue); color: #fff; }
+html[data-mode="dark"] .rd-hit { background: #5a4a1c; color: #f2e6c4; }
+html[data-mode="dark"] .rd-hit.on { background: var(--blue-2); color: #fff; }
+
+/* Book title band above the text, as in the reference app: page arrows at one
+   end, the book's own name centred in a deep red across the middle. */
+.rd-titlebar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.rd-navbtns { flex: none; display: flex; gap: 3px; }
+.rd-navbtns .tbtn { font-size: 16px; line-height: 1; padding: 0 9px; }
+.rd-navbtns .tbtn:disabled { opacity: .3; }
+.rd-titlebar .rd-file {
+  flex: none;
+  font-family: var(--latin); font-size: 11px; color: var(--muted-2);
+  direction: ltr;
+  max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.rd-booktitle {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--card-font, var(--ui));
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #9d2933;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html[data-mode="dark"] .rd-booktitle { color: #e2707a; }
+
+/* Results table — serial, book, matching text, chapter, page. */
+.rd-results {
+  flex: none;
+  max-height: min(28%, 240px);   /* the book is the main event, not the hit list */
+  overflow: auto;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+.rd-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.rd-table th {
+  position: sticky; top: 0;
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line-soft);
+  padding: 5px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: start;
+  white-space: nowrap;
+}
+.rd-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--line-soft);
+  border-inline-start: 1px solid var(--line-soft);
+  color: var(--muted);
+  vertical-align: top;
+}
+.rd-result { cursor: pointer; transition: background .12s; }
+.rd-result:hover { background: var(--blue-wash); }
+.rd-result.on { background: var(--blue); }
+.rd-result.on td { color: #fff; }
+.rd-result.on mark { background: #ffd75e; color: #222; }
+.rc-n { width: 46px; text-align: center; color: var(--muted-2); }
+.rc-book { width: 190px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rc-text { font-family: var(--card-font, var(--ui)); line-height: 1.8; }
+.rc-chap { width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rc-page { width: 62px; text-align: center; }
+.rd-table mark { background: #ffe9a8; color: inherit; border-radius: 2px; padding: 0 1px; }
+html[data-mode="dark"] .rd-table mark { background: #5a4a1c; color: #f2e6c4; }
+
+/* Result count strip under the table, like the reference app's footer. */
+.rd-foot {
+  flex: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--strip);
+  border-top: 1px solid var(--line-soft);
+}
+
+/* ── Empty list state ─────────────────────────────────────────────────────
+   A filter matching nothing must say so; a blank panel reads as a broken
+   button, which is exactly how the client reported it. */
+.list-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 46px 20px; text-align: center; color: var(--muted);
+}
+.list-empty svg { width: 30px; height: 30px; color: var(--muted-2); opacity: .6; }
+.le-title { font-size: 15px; }
+.le-btn {
+  font-family: var(--ui); font-size: 13.5px; line-height: 1.9;
+  padding: 5px 16px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: var(--strip-2); color: var(--blue);
+}
+.le-btn:hover { border-color: var(--blue-2); background: var(--blue-wash); }
+
+.matbar-label {
+  font-size: 12px; color: var(--muted-2);
+  white-space: nowrap; margin-inline-end: 2px;
+}
+
+/* ── Reader mode ──────────────────────────────────────────────────────────
+   A machine that is not the master is a mirror of the library, not a place to
+   edit it. Everything that writes to the catalogue is hidden here; search,
+   browsing, the book card and the issued-books list all stay. The same flag
+   is re-checked in JS before any write runs, so this is presentation, not the
+   only line of defence. */
+
+html[data-role="reader"] #tbAddOne,
+html[data-role="reader"] #tbAddMany,
+html[data-role="reader"] #tbDelete,
+html[data-role="reader"] #tbPublish,
+html[data-role="reader"] #footAdd,
+html[data-role="reader"] #footAddMany,
+html[data-role="reader"] #footDel,
+html[data-role="reader"] [data-act="addOne"],
+html[data-role="reader"] [data-act="addMany"],
+html[data-role="reader"] [data-act="publish"],
+html[data-role="reader"] [data-act="categoriesMan"],
+html[data-role="reader"] .track-acts,
+html[data-role="reader"] .track-more,
+html[data-role="reader"] #btnReturn,
+html[data-role="reader"] .cover-acts,
+html[data-role="reader"] .attach-row,
+html[data-role="reader"] .cover-empty-wrap,
+html[data-role="reader"] .master-only,
+html[data-role="reader"] [data-drop],
+html[data-role="reader"] .file-remove,
+html[data-role="reader"] #dlgIssue { display: none !important; }
+
+/* Locked fields should look consulted, not broken. */
+html[data-role="reader"] .detail input,
+html[data-role="reader"] .detail select,
+html[data-role="reader"] .detail textarea {
+  background: var(--strip-2);
+  color: var(--text-2);
+  cursor: default;
+  border-color: var(--line-soft);
+}
+html[data-role="reader"] .detail input:focus,
+html[data-role="reader"] .detail textarea:focus { box-shadow: none; border-color: var(--line); }
+
+.role-badge {
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--strip-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.role-badge:empty { display: none; }
+
+/* The repo, the login backend, are baked into the app now (shared/repo.js) —
+   nobody fills these in day to day. Kept in the DOM, not the markup, for the
+   day the repo genuinely moves. */
+.adv-hidden { display: none; }
+
+/* About: place and contact, under the description */
+.about-meta {
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+  display: flex; flex-direction: column; gap: 7px; align-items: center;
+}
+.about-row { display: flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--text-2); }
+.about-row svg { width: 14px; height: 14px; color: var(--muted-2); flex: none; }
+.about-row a { color: var(--blue); text-decoration: none; direction: ltr; }
+.about-row a:hover { text-decoration: underline; }
+
+/* ── Circulation ──────────────────────────────────────────────────────────
+   The physical side of the library is the part staff use every day, so the
+   panel says where the copy is before it offers anything to do to it. */
+
+.where {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 9px 11px; margin-bottom: 11px;
+  border: 1px solid var(--line); border-radius: 7px;
+  background: var(--strip-2);
+}
+.where-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex: none; }
+.where.ok  .where-dot { background: var(--green); }
+.where.out .where-dot { background: #b8860b; }
+.where.bad .where-dot { background: var(--red); }
+.where.ok  { border-color: #bcd9c9; background: var(--green-wash); }
+.where.out { border-color: #e3d0a4; background: #faf3e2; }
+.where.bad { border-color: #e8c4bf; background: var(--red-wash); }
+.where-k { font-weight: 700; font-size: 13.5px; }
+.where.ok  .where-k { color: var(--green); }
+.where.out .where-k { color: #8a6316; }
+.where.bad .where-k { color: var(--red); }
+.where-v { font-size: 13.5px; color: var(--text-2); }
+
+.track-acts { display: flex; flex-direction: column; gap: 7px; }
+.wide-btn.ok {
+  background: var(--green-wash);
+  border-color: #bcd9c9;
+  color: var(--green);
+}
+.track-more { margin-top: 9px; text-align: center; }
+.link-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--ui); font-size: 13px; line-height: 1.9;
+  color: var(--muted); text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link-btn:hover { color: var(--blue); }
+.link-btn.danger:hover { color: var(--red); }
+
+.who-kind {
+  display: inline-block; margin-inline-start: 6px;
+  font-size: 10.5px; padding: 1px 7px; border-radius: 20px;
+  background: var(--strip-2); color: var(--muted); border: 1px solid var(--line);
+}
+
+.hint.err { color: var(--red); }
+
+/* Confirmation dialog */
+.ask-body { min-width: 400px; max-width: 480px; }
+.ask-book { font-size: 1.06em; font-weight: 600; margin-bottom: 7px; }
+.ask-who {
+  margin-top: 7px; padding: 7px 11px;
+  border-inline-start: 3px solid var(--blue);
+  background: var(--blue-wash); border-radius: 0 5px 5px 0;
+  font-weight: 600;
+}
+#askGo.danger {
+  background: linear-gradient(180deg, #c8453a, var(--red));
+  border-color: #8f2119;
+}
+
+/* ── Options dialog ───────────────────────────────────────────────────────
+   Shamela's own shape: a titled window, a category rail down the reading
+   side, one panel visible at a time, and Cancel / OK / Apply along the foot.
+   Apply commits without closing, which is the whole reason that third button
+   exists in the original. */
+
+dialog.options { padding: 0; border: 1px solid var(--line-hard); border-radius: 6px; }
+.opt-shell { width: 760px; max-width: calc(100vw - 32px); display: flex; flex-direction: column; }
+
+.opt-title {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 14px;
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px; color: var(--text-2);
+}
+.opt-title svg { width: 18px; height: 18px; }
+
+.opt-main { display: flex; min-height: 430px; }
+
+.opt-rail {
+  width: 168px; flex: none;
+  background: var(--strip-2);
+  border-inline-start: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  padding: 6px 0;
+  order: 2;                       /* rail sits on the reading side */
+}
+.opt-rail button {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px 14px;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--ui); font-size: 15px; line-height: 1.9;
+  color: var(--text-2); text-align: start;
+}
+/* The options icons paint themselves, so the rail must not tint them — not
+   on hover and not on the selected row. Only the label changes colour. */
+.opt-rail button svg { width: 20px; height: 20px; flex: none; }
+.opt-rail button:hover { background: var(--blue-wash); color: var(--blue); }
+.opt-rail button.on { background: var(--blue); color: #fff; }
+
+.opt-panes { flex: 1; min-width: 0; order: 1; padding: 15px 18px; overflow-y: auto; max-height: 62vh; }
+.opt-pane { display: none; }
+.opt-pane.on { display: block; }
+
+.opt-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding-bottom: 9px; margin-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px; color: var(--text);
+}
+.opt-reset {
+  font-family: var(--ui); font-size: 12.5px; line-height: 1.9;
+  padding: 4px 11px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 5px;
+  background: var(--strip-2); color: var(--muted);
+}
+.opt-reset:hover { border-color: var(--blue-2); color: var(--blue); }
+
+.opt-group-label {
+  display: block; margin: 14px 0 6px;
+  font-size: 13px; color: var(--muted);
+}
+.opt-group-label:first-child { margin-top: 0; }
+
+.opt-radios { display: flex; gap: 20px; }
+.opt-radios label,
+.opt-check { display: flex; align-items: center; gap: 7px; font-size: 14.5px; cursor: pointer; }
+.opt-check { margin-top: 11px; }
+.opt-radios input, .opt-check input { accent-color: var(--blue); }
+
+/* Slot lists — the "which thing am I styling" picker in Colors and Fonts */
+.opt-slots {
+  border: 1px solid var(--line); border-radius: 5px;
+  background: var(--panel);
+  max-height: 188px; overflow-y: auto;
+}
+.opt-slots.slim { max-height: 132px; }
+.opt-slot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 6px 11px; cursor: pointer; font-size: 14.5px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.opt-slot:last-child { border-bottom: none; }
+.opt-slot:hover { background: var(--strip-2); }
+.opt-slot.on { background: var(--blue); color: #fff; }
+.opt-slot .sw-box {
+  width: 30px; height: 17px; flex: none;
+  border: 1px solid var(--line-hard); border-radius: 2px;
+}
+.opt-slot .slot-val { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.opt-slot.on .slot-val { color: rgba(255,255,255,.85); }
+
+.opt-palette { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+.opt-palette button {
+  aspect-ratio: 1; border: 1px solid var(--line); border-radius: 2px;
+  cursor: pointer; padding: 0;
+}
+.opt-palette button:hover { outline: 2px solid var(--blue-2); outline-offset: 1px; }
+
+.opt-swatch-row { display: flex; align-items: center; gap: 10px; margin-top: 11px; }
+.opt-swatch-row input[type="color"] {
+  width: 52px; height: 30px; padding: 0; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--panel);
+}
+
+/* Fonts: family / weight / size side by side, as in the original */
+.opt-fontgrid { display: flex; gap: 9px; margin-top: 14px; }
+.opt-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.opt-col.narrow { flex: 0 0 108px; }
+.opt-col label { font-size: 12.5px; color: var(--muted); }
+.opt-col select {
+  font-family: var(--ui); font-size: 14px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: var(--panel); color: var(--text); padding: 3px;
+}
+.opt-col select option { padding: 3px 6px; }
+
+.opt-row { display: flex; align-items: center; gap: 10px; margin-top: 13px; }
+.opt-row label { font-size: 13px; color: var(--muted); }
+.opt-row select {
+  font-family: var(--ui); font-size: 14px; padding: 4px 8px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: var(--panel); color: var(--text);
+}
+
+.opt-sample {
+  border: 1px solid var(--line); border-radius: 5px;
+  background: var(--panel);
+  padding: 13px 15px; min-height: 62px;
+  display: flex; align-items: center;
+}
+
+.opt-notes { margin: 0 0 14px; padding-inline-start: 20px; font-size: 13.5px; color: var(--muted); }
+.opt-notes li { padding: 2px 0; }
+.opt-folder { display: flex; gap: 7px; }
+.opt-folder input {
+  flex: 1; min-width: 0;
+  font-family: var(--latin); font-size: 12.5px; direction: ltr; text-align: left;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: var(--strip-2); color: var(--muted); padding: 6px 9px;
+}
+.opt-folder button {
+  font-family: var(--ui); font-size: 13.5px; padding: 5px 15px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: var(--strip-2); color: var(--text-2);
+}
+.opt-folder button:hover { border-color: var(--blue-2); color: var(--blue); }
+
+.opt-foot {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--strip);
+}
+.opt-foot button {
+  font-family: var(--ui); font-size: 14px; line-height: 1.9;
+  padding: 6px 20px; cursor: pointer;
+  border: 1px solid var(--line-hard); border-radius: 5px;
+  background: var(--panel); color: var(--text-2);
+}
+.opt-foot button:hover { border-color: var(--blue-2); color: var(--blue); }
+.opt-foot button.primary {
+  background: linear-gradient(180deg, var(--blue-2), var(--blue));
+  border-color: var(--blue-deep); color: #fff; font-weight: 600;
+}
+.opt-foot button.primary:hover { color: #fff; }
+.opt-foot-hint { margin-inline-start: auto; font-size: 12px; }
+
+@media (max-width: 800px) {
+  .opt-shell { width: calc(100vw - 32px); }
+  .opt-rail { width: 130px; }
+  .opt-fontgrid { flex-wrap: wrap; }
+}
+
+/* ── Change confirmation (publish / pull) ─────────────────────────────── */
+
+.confirm-body { min-width: 520px; max-width: 620px; }
+.confirm-scroll {
+  max-height: 46vh; overflow-y: auto;
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 12px; background: var(--strip-2);
+  margin-top: 8px;
+}
+
+.diff-count {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 15px; padding-bottom: 9px; margin-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.diff-count .diff-from { color: var(--muted); font-weight: 700; }
+.diff-count .diff-to { color: var(--blue); font-weight: 700; font-size: 17px; }
+.diff-count-label { color: var(--muted-2); font-size: 12.5px; }
+.diff-arrow { color: var(--muted-2); }
+
+.diff-none { color: var(--muted); font-size: 13px; padding: 6px 0; }
+
+.diff-sec { margin-bottom: 11px; }
+.diff-sec-h {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 5px;
+}
+.diff-sign { font-weight: 700; width: 14px; text-align: center; }
+.diff-sec.add .diff-sign, .diff-sign.add { color: var(--green, #14724a); }
+.diff-sec.del .diff-sign, .diff-sign.del { color: var(--red, #94302a); }
+.diff-sec.mod .diff-sign, .diff-sec.cat .diff-sign { color: var(--blue); }
+
+.diff-list { list-style: none; padding: 0; margin: 0; }
+.diff-list > li {
+  padding: 4px 0 4px 0; font-size: 14px; line-height: 1.8;
+  border-bottom: 1px solid var(--line-soft);
+}
+.diff-list > li:last-child { border-bottom: none; }
+.diff-list b { font-family: var(--nastaliq); font-weight: 500; }
+.diff-sub { color: var(--muted-2); font-size: 12px; }
+
+.diff-fields { list-style: none; padding: 2px 14px 0; margin: 0; }
+.diff-fields li {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted); padding: 1px 0;
+}
+.diff-k { color: var(--muted-2); min-width: 62px; }
+.diff-old { text-decoration: line-through; opacity: .75; }
+.diff-new { color: var(--blue); font-weight: 600; }
+
+.diff-note {
+  border: 1px solid var(--blue-2); border-radius: 7px;
+  background: var(--blue-wash); padding: 9px 11px; margin-bottom: 10px;
+}
+.diff-note-h { font-size: 12.5px; font-weight: 700; color: var(--blue); }
+.diff-note-list { margin: 5px 0 0; padding-inline-start: 18px; font-size: 13px; line-height: 1.75; }
+.diff-updated { font-size: 12px; color: var(--muted-2); margin: 0 0 8px; }
+
+/* Duplicates + release notes */
+
+.dupe-group { border: 1px solid var(--line); border-radius: 7px; padding: 10px 12px; margin-bottom: 9px; background: var(--strip-2); }
+.dupe-title { font-family: var(--nastaliq); font-size: 16px; line-height: 1.9; }
+.dupe-row { font-size: 12.5px; color: var(--muted); padding-top: 3px; }
+
+.wn-rel { margin-bottom: 16px; }
+.wn-ver { font-weight: 800; color: var(--blue); font-size: 13.5px; display: flex; gap: 10px; align-items: baseline; }
+.wn-date { font-size: 11.5px; color: var(--muted-2); font-weight: 400; }
+.wn-list { margin: 7px 12px 0; padding-right: 10px; }
+.wn-list li { font-size: 13.5px; line-height: 1.9; color: var(--text-2); margin-bottom: 3px; }
+
+/* Dark mode */
+
+html[data-mode="dark"] {
+  --shell:      #151a21;
+  --shell-2:    #10151b;
+  --panel:      #1c232c;
+  --strip:      #202832;
+  --strip-2:    #1a212a;
+  --line:       #2e3947;
+  --line-soft:  #26303c;
+  --line-hard:  #3a4757;
+  --text:       #eef3f9;
+  --text-2:     #d2dae4;
+  --muted:      #a8b5c3;
+  --muted-2:    #8d9aa8;
+  --green-wash: #17352a;
+  --red-wash:   #3a1f1d;
+  --blue-wash:  #17263a;
+}
+html[data-mode="dark"] .cover-acts .tbtn { background: rgba(28,35,44,.92); }
+html[data-mode="dark"] .bookrow.st-issued .dot { box-shadow: 0 0 0 2px #3a2f18; }
+html[data-mode="dark"] .statusrow button.on-issued { background: #3a2f18; color: #e0bb69; }
+html[data-mode="dark"] .bc-status.st-issued { background: #3a2f18; color: #e0bb69; }
+html[data-mode="dark"] .home-veil {
+  background: linear-gradient(180deg, rgba(21,26,33,.4) 0%, rgba(21,26,33,.8) 70%, var(--shell) 100%);
+}
+html[data-mode="dark"] .home-word { color: #e6ecf3; }
+html[data-mode="dark"] .titlebar .mark { box-shadow: none; }
+html[data-mode="dark"] .grouplist::-webkit-scrollbar-thumb,
+html[data-mode="dark"] .booklist::-webkit-scrollbar-thumb,
+html[data-mode="dark"] .dbody::-webkit-scrollbar-thumb { background: #39485a; }
+
+/* The book card takes its ground and ink from the theme tokens, so it turns
+   dark with the rest of the window and needs no override of its own. It used
+   to be forced black and pinned to the right edge; both fought the Shamela
+   layout it now copies, which is a light sheet sitting beside its own row. */
+
+/* Cover: file picker + from-URL side by side */
+
+.cover-empty-wrap { display: flex; flex-direction: column; gap: 6px; }
+.url-btn {
+  width: 100%;
+  justify-content: center;
+  border: 1px solid var(--line) !important;
+  background: var(--strip-2) !important;
+  padding: 7px !important;
+  height: auto !important;
+  font-size: 12.5px;
+}
+
+/* Loan register */
+
+.iss-table { display: flex; flex-direction: column; }
+.iss-head, .iss-row {
+  display: grid;
+  grid-template-columns: 62px 1fr 150px 140px;
+  gap: 8px;
+  padding: 7px 9px;
+  align-items: center;
+}
+/* Six columns once address and phone are shown; the dialog widens with it. */
+.iss-table.wide .iss-head,
+.iss-table.wide .iss-row { grid-template-columns: 58px minmax(140px,1fr) 130px 150px 120px 110px; }
+#dlgIssued .modal-body { min-width: min(920px, calc(100vw - 40px)); }
+.iss-phone { font-family: var(--latin); font-variant-numeric: tabular-nums; }
+.iss-head {
+  background: var(--strip);
+  border: 1px solid var(--line);
+  border-radius: 6px 6px 0 0;
+  font-size: 11.5px; font-weight: 700; color: var(--muted); letter-spacing: .4px;
+}
+.iss-row {
+  border: 1px solid var(--line);
+  border-top: none;
+  font-size: 13px;
+}
+.iss-row:last-child { border-radius: 0 0 6px 6px; }
+.iss-row.late { background: var(--red-wash); color: var(--red); font-weight: 600; }
+
+.about-update {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* Text size, title font and row density — all driven off root attributes so
+   one setting repaints the whole app and travels with the catalogue. */
+
+html[data-size="small"]  body { font-size: 14.5px; }
+html[data-size="normal"] body { font-size: 16.5px; }
+html[data-size="large"]  body { font-size: 18.5px; }
+
+html[data-size="small"]  .br-title { font-size: 14px; }
+html[data-size="large"]  .br-title { font-size: 17.5px; }
+html[data-size="small"]  .grouprow .c-name { font-size: 14.5px; }
+html[data-size="large"]  .grouprow .c-name { font-size: 18px; }
+html[data-size="small"]  .titlebar h1 { font-size: 19px; }
+html[data-size="large"]  .titlebar h1 { font-size: 25px; }
+html[data-size="small"]  .dbody #dTitle { font-size: 16px; }
+html[data-size="large"]  .dbody #dTitle { font-size: 21px; }
+
+/* Naskh keeps rows shorter, which is the point of offering it */
+html[data-font="naskh"] .br-title,
+html[data-font="naskh"] .bc-title,
+html[data-font="naskh"] .dupe-title,
+html[data-font="naskh"] .dbody #dTitle,
+html[data-font="naskh"] #oTitle,
+html[data-font="naskh"] #mText {
+  font-family: var(--naskh);
+  line-height: 1.6;
+}
+
+html[data-density="compact"] .bookrow .br-acc,
+html[data-density="compact"] .bookrow .br-author,
+html[data-density="compact"] .bookrow .br-title,
+html[data-density="compact"] .bookrow .br-publisher { padding-top: 4px; padding-bottom: 4px; }
+html[data-density="compact"] .br-title { line-height: 1.5; }
+html[data-density="compact"] .grouprow .c-name,
+html[data-density="compact"] .grouprow .c-count { padding-top: 4px; padding-bottom: 4px; }
+
+/* ── Material filter bar — Shamela's printed / non-printed row ────────── */
+
+.matbar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 7px 9px;
+  background: var(--strip-2);
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+.matbar .matgroup {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 12.5px; font-weight: 700; color: var(--muted);
+  cursor: pointer;
+  padding: 0 4px;
+}
+.matbar .matgroup input { accent-color: var(--blue); cursor: pointer; }
+.matbar button {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--ui);
+  font-size: 12.5px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--muted-2);
+  cursor: pointer;
+  transition: all .14s;
+}
+.matbar button svg { width: 14px; height: 14px; }
+.matbar button:hover { border-color: var(--blue-2); color: var(--blue); }
+.matbar button.on {
+  background: var(--blue-wash);
+  border-color: var(--blue-2);
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* ── Favourite star column ────────────────────────────────────────────── */
+
+.bh-star { width: 30px; flex: none; }
+.br-star {
+  width: 30px; flex: none;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--muted-2);
+  cursor: pointer;
+  user-select: none;
+  transition: color .14s, transform .12s;
+}
+.br-star:hover { color: #e0a80f; transform: scale(1.2); }
+.br-star.on { color: #e8b52a; }
+.bookrow.sel .br-star { color: rgba(255,255,255,.5); }
+.bookrow.sel .br-star.on { color: #ffd970; }
+
+/* Flat Shamela tabs (الكتب / المفضلة / مؤخرا) run the list full width */
+.groups.hidden { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Shamela's real shape: the artwork IS the window, and the catalogue is a
+   dialog floating on top of it with its own title bar and close button.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* The home artwork is now a permanent backdrop, never swapped out. */
+.home { cursor: default; }
+
+dialog.picker {
+  width: min(1560px, 96vw);
+  height: min(760px, 88vh);
+  /* Rail (74) + category column (286) + search panel (330) are all fixed
+     width and never shrink — squeezing the window narrower than their sum
+     used to clip whichever one ran out of room, invisibly, because the
+     dialog itself clips overflow. That looked exactly like "the search
+     panel vanished and there's no way to bring it back", when it was really
+     just squeezed past the edge. 860 covers all three plus a usable sliver
+     of the book list; .body's own overflow-x below is a second safety net. */
+  min-width: 860px;
+  min-height: 360px;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--line-hard);
+  border-radius: 9px;
+  background: var(--shell);
+  box-shadow: 0 24px 70px rgba(13, 30, 48, .34);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  resize: both;
+}
+dialog.picker::backdrop { background: rgba(16, 32, 48, .30); }
+dialog.picker:not([open]) { display: none; }
+
+.picker-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  /* Native OS window chrome never mirrors for the app's own text direction —
+     icon/title always sit physical-left, controls physical-right, in every
+     language, exactly like the real Shamela window this bar imitates. Forcing
+     ltr here decides the FLEX ORDER only; the Arabic/Urdu title text inside
+     still renders correctly via the Unicode bidi algorithm regardless. */
+  direction: ltr;
+}
+.picker-ico { width: 18px; height: 18px; color: var(--blue); flex: none; }
+.picker-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+.picker-bar .bv-icon {
+  margin-left: auto;           /* pushes the control group to the physical right */
+}
+.picker-x {
+  width: 30px; height: 28px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .14s, color .14s;
+}
+.picker-x svg { width: 15px; height: 15px; }
+.picker-x:hover { background: var(--red-wash); color: var(--red); }
+
+/* Inside the dialog the catalogue fills the remaining height. */
+dialog.picker .body {
+  flex: 1;
+  min-height: 0;
+  padding: 9px;
+}
+
+/* ── Book view: what the window shows once the picker closes ─────────── */
+
+.bookview {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(600px, 92vw);
+  max-height: 80vh;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: var(--shell);
+  border: 1px solid var(--line-hard);
+  border-radius: 9px;
+  box-shadow: 0 24px 70px rgba(13, 30, 48, .34);
+  overflow: hidden;
+}
+.bookview.hidden { display: none; }
+
+.bv-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.bv-ico { width: 18px; height: 18px; color: var(--blue); flex: none; }
+.bv-title {
+  font-family: var(--nastaliq);
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--text);
+  flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html[data-font="naskh"] .bv-title { font-family: var(--naskh); line-height: 1.6; }
+
+.bv-btn {
+  flex: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--ui);
+  font-size: 12.5px;
+  padding: 6px 12px;
+  border: 1px solid var(--blue-2);
+  border-radius: 6px;
+  background: var(--blue-wash);
+  color: var(--blue);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .14s;
+}
+.bv-btn svg { width: 14px; height: 14px; }
+.bv-btn:hover { background: #d9e9fb; }
+
+.bookview .pane.detail {
+  width: auto;
+  flex: 1;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ── Non-modal picker: sits inside the chrome, toolbar stays live ─────── */
+
+dialog.picker {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  inset-block-end: auto;
+  height: auto;            /* set from JS to fit between toolbar and statusbar */
+}
+dialog.picker::backdrop { background: transparent; }
+
+/* Hover card must beat the dialog in stacking order. A non-modal dialog is a
+   normal element, so a plain z-index is enough. */
+#bookCard { z-index: 9000; }
+.bookview { z-index: 300; }
+dialog.picker { z-index: 200; }
+
+/* ── Fit + overflow discipline inside the picker ──────────────────────── */
+
+dialog.picker .body { overflow: hidden; }
+dialog.picker .pane { min-height: 0; }
+dialog.picker .books { min-width: 0; }
+
+/* Book rows: every column must be allowed to shrink, or long Arabic titles
+   push the publisher column off the edge and text overlaps. */
+.bookrow, .bookhead { min-width: 0; }
+.br-author, .br-publisher, .bh-author, .bh-publisher { min-width: 0; }
+.br-acc, .bh-acc { min-width: 0; }
+
+/* Book card: the record must scroll inside the card, not spill past it. */
+.bookview .dbody { overflow-y: auto; }
+.bv-title { min-width: 0; }
+
+/* ── Picker centring, fixed properly ──────────────────────────────────────
+   The generic `dialog { animation: pop ... both }` rule animates `transform`,
+   which silently clobbered a translateX(-50%) centring trick. Worse, leaving
+   both `left` and `right` set makes the box over-constrained, and CSS
+   resolves that by dropping `left` in RTL but `right` in LTR — so the dialog
+   centred in Urdu and flew off-screen in English. Centre with auto margins
+   instead: direction-neutral, and immune to the transform animation. */
+dialog.picker {
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  /* Same trick on the block axis: the dialog is no longer forced to fill
+     the working height (see fitPicker() in app.js), so without an explicit
+     top/bottom it would fall back to its static position near the top of
+     the window instead of opening centred like a normal window does. */
+  top: 0;
+  bottom: 0;
+  margin-block: auto;
+  width: min(1560px, 96vw);
+  /* An older rule above sets height:auto (shrink-to-content), which used to
+     be masked because JS always forced an explicit height on open. Now that
+     JS only touches height while maximised, the default (non-dragged,
+     non-maximised) box needs its own real height here or the flex panes
+     inside collapse to their content minimum instead of a normal window
+     size. */
+  height: min(760px, 88vh);
+  transform: none;
+  animation: fadein .18s ease-out both;   /* opacity only — never transform */
+}
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+/* The status-filter row and its sort dropdown must not force the books pane
+   wider than the dialog. On a 1024px screen they overflowed; letting the row
+   wrap and the select shrink keeps everything inside the pane. */
+.tabs { flex-wrap: wrap; row-gap: 3px; }
+.tabs #sortSel { max-width: 150px; min-width: 0; }
+.tabs button { flex: 0 1 auto; min-width: 0; }
+.tabs button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.books { min-width: 0; overflow: hidden; }
+
+/* ── Slimmer chrome: menu now rides in the title row ──────────────────── */
+
+.titlebar {
+  padding: 4px 14px;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+.titlebar h1 { font-size: 19px; line-height: 1.6; flex: none; }
+.titlebar .mark { width: 26px; height: 26px; border-radius: 5px; }
+.titlebar .mark svg { width: 15px; height: 15px; }
+.titlebar .sub { font-size: 12px; }
+
+/* The menu bar is the first row of the window, above the title band, which is
+   where a desktop application's menu belongs and where people look for it. */
+#menubar {
+  order: -1;
+  background: var(--strip);
+  border-bottom: 1px solid var(--line);
+  padding: 0 10px;
+}
+#menubar .menu > span { padding: 6px 13px; font-size: 14px; border-radius: 0; }
+
+.toolbar { padding: 4px 12px; }
+.toolbar .tbtn { height: 28px; }
+
+/* ── Book card: draggable and maximisable ─────────────────────────────── */
+
+.bv-bar { cursor: move; user-select: none; }
+.bv-bar button { cursor: pointer; }
+
+/* The picker only ever moves sideways — top/height stay owned by fitPicker()
+   so it is always vertically maximised — hence ew-resize rather than move. */
+.picker-bar { cursor: ew-resize; user-select: none; }
+.picker-bar button { cursor: pointer; }
+
+.bv-icon {
+  flex: none;
+  width: 30px; height: 28px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .14s, color .14s;
+}
+.bv-icon svg { width: 14px; height: 14px; }
+.bv-icon:hover { background: var(--blue-wash); color: var(--blue); }
+
+.bookview.max {
+  transform: none !important;
+  left: 10px !important;
+  width: auto !important;
+  right: 10px;
+  max-height: none;
+}
+
+/* ── Subject list manager ─────────────────────────────────────────────── */
+
+.cat-add { display: flex; gap: 8px; }
+.cat-add input { flex: 1; }
+.cat-add button { flex: none; padding: 8px 18px; border-radius: 6px; cursor: pointer;
+  font-family: var(--ui); font-size: 14px; border: 1px solid var(--blue-deep);
+  background: linear-gradient(180deg, var(--blue-2), var(--blue)); color: #fff; font-weight: 600; }
+
+.cat-list { max-height: 46vh; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; }
+.cat-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.cat-row:last-child { border-bottom: none; }
+.cat-row:hover { background: var(--strip-2); }
+.cat-name { flex: 1; min-width: 0; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cat-count {
+  flex: none; min-width: 34px; text-align: center;
+  font-size: 12px; color: var(--muted-2);
+  background: var(--strip); border: 1px solid var(--line); border-radius: 20px; padding: 1px 8px;
+}
+
+/* ── Language-specific fonts ──────────────────────────────────────────────
+   Both faces ship inside the installer (see the @font-face block at the top),
+   so these apply on every machine, not only ones with the font installed.
+   Because --ui points at --nastaliq, swapping it here moves the ENTIRE
+   window — labels, buttons, rows, fields — not just the headings.
+   Urdu   → Jameel Noori Nastaleeq (the :root default).
+   Arabic → My Lotus, since Nastaliq is a Persian/Urdu convention rather than
+            an Arabic one. */
+html[data-lang="ar"] {
+  --nastaliq: "My Lotus", "Noto Naskh Arabic", serif;
+}
+
+/* English is Latin script — Nastaliq has nothing to render there. */
+html[dir="ltr"] { --ui: var(--latin); }
+
+/* ── Per-element styling from the Options dialog ──────────────────────────
+   Each of these variables is written by the Fonts and Colors panels and is
+   simply absent when that slot is left on "automatic", so the fallback in
+   each var() is the app's own default. */
+
+body { font-family: var(--ui-font, var(--ui)); }
+html[data-size="normal"] body { font-size: var(--ui-size, 16.5px); }
+
+.br-title, .br-author, .br-acc, .br-publisher { font-size: var(--list-size, inherit); }
+.bookrow { font-family: var(--list-font, var(--ui)); }
+
+.titlebar h1 { font-family: var(--head-font, var(--nastaliq)); font-size: var(--head-size, 22px); }
+.dbody #dTitle { font-family: var(--det-font, var(--nastaliq)); font-size: var(--det-size, 19px); }
+
+html[data-lang="ur"]:not([dir="ltr"]) body,
+html[data-lang="ar"] body { line-height: calc(1.2 + var(--line-spacing, 1) * 0.55); }
+
+.titlebar h1, .modal-body h2, .opt-head { color: var(--c-headings, var(--text)); }
+.bookrow .br-author, .bc-k { color: var(--c-muted, var(--text-2)); }
+.bookrow.sel { background: var(--c-rowsel, var(--blue)); }
+#bookCard { background: var(--c-cardbg, var(--panel)); }
+mark, .hit { background: transparent; color: var(--c-hit, #c8531f); font-weight: 700; }
+
+html[data-toolbar-labels="off"] .tbtn span { display: none; }
+html[data-toolbar-labels="off"] .tbtn { min-width: 34px; padding: 0 9px; }
+html[data-show-acc="off"] .br-acc { display: none; }
+html[data-show-pub="off"] .br-publisher { display: none; }
+
+/* Nastaliq sits on a deep diagonal baseline and clips at UI line-heights
+   built for naskh, so the dense chrome gets a little more room. Anything
+   with its own explicit line-height above still wins. */
+html[data-lang="ur"]:not([dir="ltr"]) body { line-height: 1.85; }
+html[data-lang="ur"] .tbtn,
+html[data-lang="ur"] .rail button,
+html[data-lang="ur"] .menubar span,
+html[data-lang="ur"] .modes button { line-height: 1.9; }
+
+/* ── Picker maximise ───────────────────────────────────────────────────── */
+
+dialog.picker.max { width: calc(100vw - 20px) !important; }
+
+/* ── Colored icons ─────────────────────────────────────────────────────
+   Shamela's own toolbar uses a distinct color per icon rather than one flat
+   tone for everything. Same approach here: each button keeps its own resting
+   color instead of only picking up color on hover. */
+
+#tbAddOne     { color: #1e8449; }
+#tbAddMany    { color: #1873cf; }
+#tbDelete     { color: #b23127; }
+#tbExport     { color: #b8860b; }
+#tbPull       { color: #0f9b8e; }
+#tbSettings   { color: #5c6a7a; }
+#tbPicker     { color: #7a4fb5; }
+
+#tbAddOne:hover, #tbAddMany:hover, #tbExport:hover, #tbPull:hover, #tbPicker:hover {
+  filter: brightness(0.85);
+  background: var(--panel);
+  border-color: currentColor;
+}
+#tbSettings:hover { color: var(--blue); }
+
+.rail button[data-mode="books"]     { color: #7a4fb5; }
+.rail button[data-mode="category"]  { color: #b8860b; }
+.rail button[data-mode="author"]    { color: #8a3b6e; }
+.rail button[data-mode="shelf"]     { color: #7a5230; }
+.rail button[data-mode="status"]    { color: #1e8449; }
+.rail button[data-mode="favorites"] { color: #d1971f; }
+.rail button[data-mode="recent"]    { color: #0f9b8e; }
+.rail button.active { color: var(--blue) !important; }   /* selection state still wins */
+
+/* ── URL-attach / search-assist buttons ───────────────────────────────── */
+
+.cover-empty-row, .attach-row { display: flex; gap: 6px; margin-top: 6px; }
+.cover-empty-row .url-btn, .attach-row .attach-btn { flex: 1; }

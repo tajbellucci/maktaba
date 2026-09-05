@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@500;700&family=Amiri:ital@0;1&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(circle at 50% 22%, rgba(207,168,69,.14), transparent 55%),
+      radial-gradient(circle at 50% 32%, #1a4a30 0%, #0e2f1e 45%, #071b11 100%);
+    display: flex; align-items: center; justify-content: center;
+    -webkit-app-region: drag;
+    position: relative;
+  }
+  /* faint geometric star-tiling, the way an ornate binding is tooled */
+  body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(207,168,69,.05) 0 1px, transparent 1px 16px),
+      repeating-linear-gradient(-45deg, rgba(207,168,69,.05) 0 1px, transparent 1px 16px);
+  }
+  /* ornate double frame */
+  .frame {
+    position: absolute; inset: 14px;
+    border: 1px solid rgba(207,168,69,.5);
+  }
+  .frame::before {
+    content: "";
+    position: absolute; inset: 6px;
+    border: 1px solid rgba(207,168,69,.25);
+  }
+  .corner { position: absolute; width: 26px; height: 26px; }
+  .corner svg { width: 100%; height: 100%; color: #cfa845; opacity: .85; }
+  .corner.tl { top: 6px; left: 6px; }
+  .corner.tr { top: 6px; right: 6px; transform: scaleX(-1); }
+  .corner.bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+  .corner.br { bottom: 6px; right: 6px; transform: scale(-1,-1); }
+
+  .card { text-align: center; color: #f4eddc; position: relative; z-index: 2; }
+  .ring {
+    width: 92px; height: 92px; margin: 0 auto 20px;
+    border: 1.5px solid #cfa845;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 7px rgba(207,168,69,.08), 0 0 40px rgba(207,168,69,.2);
+    animation: breathe 2.4s ease-in-out infinite;
+  }
+  @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+  .ring svg { width: 44px; height: 44px; color: #e8cf8d; }
+
+  h1 {
+    font-family: "Noto Nastaliq Urdu", serif;
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 1.85;
+    background: linear-gradient(180deg, #fbf3d8, #dbb455 55%, #a9801f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: .5px;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,.35));
+  }
+  .rule {
+    width: 130px; height: 1px; margin: 4px auto 10px;
+    background: linear-gradient(90deg, transparent, #cfa845, transparent);
+  }
+  .ar {
+    font-family: "Amiri", serif;
+    font-size: 24px;
+    color: #e3d19f;
+  }
+  .en {
+    font-family: "EB Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 1.4px;
+    color: rgba(244,237,220,.65);
+    margin-top: 10px;
+    direction: ltr;
+  }
+  .tag {
+    font-family: "Amiri", serif;
+    font-size: 13px;
+    color: rgba(207,168,69,.75);
+    margin-top: 18px;
+    letter-spacing: .3px;
+  }
+  .bar {
+    width: 190px; height: 2px; margin: 20px auto 0;
+    background: rgba(207,168,69,.18);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar span {
+    display: block; height: 100%; width: 38%;
+    background: linear-gradient(90deg, transparent, #cfa845, transparent);
+    animation: sweep 1.3s ease-in-out infinite;
+  }
+  @keyframes sweep { 0% { transform: translateX(-140%); } 100% { transform: translateX(360%); } }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="corner tl"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 24V6a4 4 0 0 1 4-4h18"/><circle cx="6" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 24V6a4 4 0 0 1 4-4h18"/><circle cx="6" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 24V6a4 4 0 0 1 4-4h18"/><circle cx="6" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 24V6a4 4 0 0 1 4-4h18"/><circle cx="6" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+  </div>
+
+  <div class="card">
+    <div class="ring">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v15H6.5A2.5 2.5 0 0 0 4 19.5z"/>
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v5H6.5A2.5 2.5 0 0 1 4 19.5z"/>
+      </svg>
+    </div>
+    <h1>مکتبہ نعمانیہ</h1>
+    <div class="rule"></div>
+    <div class="ar">مكتبة نعمانية</div>
+    <div class="en">Maktaba Naumania</div>
+    <div class="tag">دار الافتاء — مدرسہ نعمانیہ</div>
+    <div class="bar"><span></span></div>
+  </div>
+</body>
+</html>

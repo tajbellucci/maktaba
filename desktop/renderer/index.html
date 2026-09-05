@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<title>مکتبہ نعمانیہ — لوحہ کنٹرول</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;700&family=Amiri:ital@0;1&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v15H6.5A2.5 2.5 0 0 0 4 19.5z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v5H6.5A2.5 2.5 0 0 1 4 19.5z"/>
+  </symbol>
+  <symbol id="i-shelf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="4" height="16" rx="1"/><rect x="9" y="4" width="4" height="16" rx="1"/><path d="M16.5 5.3l4 1.1-3.6 13.2-4-1.1z"/>
+  </symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 7v6.6c0 .5.2 1 .6 1.4l7.4 7.4c.8.8 2 .8 2.8 0l6.6-6.6c.8-.8.8-2 0-2.8L13 5.6a2 2 0 0 0-1.4-.6H5a2 2 0 0 0-2 2z"/><circle cx="7.5" cy="9.5" r="1.3"/>
+  </symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19l7-7-4-4-7 7-1.5 5.5z"/><path d="M15 8l1.5-1.5a2.1 2.1 0 0 1 3 3L18 11"/><path d="M3 21h7"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M8.5 12.4l2.4 2.4 4.6-5"/>
+  </symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/>
+    <rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h11"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M7 3v6h8V3"/><path d="M7 21v-6h10v6"/>
+  </symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.5 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.6V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z"/>
+  </symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 9l5-5 5 5"/><path d="M12 4v12"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>
+  </symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.5" r=".3" fill="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.5 2"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5-4.5 4.5L9 13l-6 6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 1.6-3.2 2 2 0 0 1 1.6-3.2H19a3 3 0 0 0 3-3A9 9 0 0 0 12 3z"/><circle cx="7.5" cy="12" r="1.1" fill="currentColor"/><circle cx="10" cy="7.8" r="1.1" fill="currentColor"/><circle cx="15" cy="8.2" r="1.1" fill="currentColor"/></symbol>
+  <symbol id="i-searchbook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h11v13H6a2 2 0 0 0-2 2z"/><path d="M4 18a2 2 0 0 1 2-2h11v5H6a2 2 0 0 1-2-2z"/><circle cx="16.5" cy="9.5" r="3.6"/><path d="M19.2 12.2L22 15"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3.2l2.6 5.5 5.9.8-4.3 4.1 1.1 5.9L12 16.7 6.7 19.5l1.1-5.9L3.5 9.5l5.9-.8z"/></symbol>
+  <symbol id="i-scroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6"/><path d="M6 4a2 2 0 0 0-2 2v1.5h4V6a2 2 0 0 0-2-2z"/><path d="M9 9h7M9 13h7"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2.5 8.5 12 13l9.5-4.5z"/><path d="M6.5 10.8V16c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-5.2"/></symbol>
+  <symbol id="i-max" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/></symbol>
+  <symbol id="i-restore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="13" height="13" rx="2"/><path d="M8 8V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+
+  <!-- Options icons. These carry their own fills instead of inheriting
+       currentColor, so they read as real application icons the way Shamela's
+       do, rather than as monochrome line drawings. -->
+
+  <symbol id="i-ic-options" viewBox="0 0 24 24">
+    <g fill="#8a97a6">
+      <rect x="10.6" y="1.6" width="2.8" height="20.8" rx="1.4"/>
+      <rect x="10.6" y="1.6" width="2.8" height="20.8" rx="1.4" transform="rotate(45 12 12)"/>
+      <rect x="10.6" y="1.6" width="2.8" height="20.8" rx="1.4" transform="rotate(90 12 12)"/>
+      <rect x="10.6" y="1.6" width="2.8" height="20.8" rx="1.4" transform="rotate(135 12 12)"/>
+    </g>
+    <circle cx="12" cy="12" r="7.2" fill="#b9c3cd"/>
+    <circle cx="12" cy="12" r="3.3" fill="#fdfefe"/>
+  </symbol>
+
+  <symbol id="i-ic-look" viewBox="0 0 24 24">
+    <path d="M3.4 20.6c1.5-.5 1.9-1.4 2.2-2.5.3-1.2 1.3-2 2.5-2 1.5 0 2.7 1.2 2.7 2.7 0 2.1-2 3.6-4.4 3.6-1.3 0-2.4-.4-3-1.8z" fill="#e8a33d"/>
+    <path d="M9.1 16.1l-1.9-1.9L17.9 3.5l1.9 1.9z" fill="#4a90d9"/>
+    <path d="M11 18l-1.9-1.9L19.8 5.4l1.9 1.9z" fill="#2f6fbf"/>
+    <path d="M17.5 3.1l1.6-1.6a1.5 1.5 0 0 1 2.1 0l1.3 1.3a1.5 1.5 0 0 1 0 2.1l-1.6 1.6z" fill="#c3ccd8"/>
+  </symbol>
+
+  <symbol id="i-ic-colors" viewBox="0 0 24 24">
+    <path d="M12 2.4c-5.4 0-9.7 4-9.7 8.9s4.3 8.9 9.7 8.9c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2a1.7 1.7 0 0 1 1.2-2.9h2c3.2 0 5.8-2.6 5.8-5.7 0-3.9-4.4-6.2-10.3-6.2z" fill="#edd3a3" stroke="#a9803f" stroke-width="1.1"/>
+    <circle cx="6.9" cy="12.6" r="1.6" fill="#d64541"/>
+    <circle cx="8.7" cy="7.9" r="1.6" fill="#f4b942"/>
+    <circle cx="13.1" cy="6.1" r="1.6" fill="#3f9e5a"/>
+    <circle cx="17.4" cy="8.4" r="1.6" fill="#3f7fd0"/>
+  </symbol>
+
+  <symbol id="i-ic-fonts" viewBox="0 0 24 24">
+    <rect x="2.2" y="3.2" width="19.6" height="17.6" rx="2.2" fill="#fdfefe" stroke="#b9c3cd" stroke-width="1.1"/>
+    <text x="4.6" y="17.4" font-family="Georgia, 'Times New Roman', serif" font-size="13.5" font-weight="700" fill="#2f6fbf">A</text>
+    <text x="12.4" y="17.4" font-family="Georgia, 'Times New Roman', serif" font-size="10.5" font-weight="700" fill="#c0392b">a</text>
+    <rect x="4.4" y="18.6" width="15" height="1.2" rx=".6" fill="#3f9e5a"/>
+  </symbol>
+
+  <symbol id="i-ic-list" viewBox="0 0 24 24">
+    <rect x="2.6" y="2.8" width="18.8" height="18.4" rx="2.2" fill="#fdfefe" stroke="#b9c3cd" stroke-width="1.1"/>
+    <rect x="5.6" y="6.6" width="2.6" height="2.6" rx=".6" fill="#3f9e5a"/>
+    <rect x="9.8" y="7.3" width="8.4" height="1.3" rx=".65" fill="#5c6a7a"/>
+    <rect x="5.6" y="10.7" width="2.6" height="2.6" rx=".6" fill="#f4b942"/>
+    <rect x="9.8" y="11.4" width="8.4" height="1.3" rx=".65" fill="#5c6a7a"/>
+    <rect x="5.6" y="14.8" width="2.6" height="2.6" rx=".6" fill="#d64541"/>
+    <rect x="9.8" y="15.5" width="8.4" height="1.3" rx=".65" fill="#5c6a7a"/>
+  </symbol>
+
+  <symbol id="i-ic-folders" viewBox="0 0 24 24">
+    <path d="M2.4 6.1c0-1 .8-1.8 1.8-1.8h4.9l2.2 2.4h10.5c1 0 1.8.8 1.8 1.8v9.6c0 1-.8 1.8-1.8 1.8H4.2c-1 0-1.8-.8-1.8-1.8z" fill="#d8912f"/>
+    <path d="M2.4 9.4h21.2v8.7c0 1-.8 1.8-1.8 1.8H4.2c-1 0-1.8-.8-1.8-1.8z" fill="#f4c56b"/>
+  </symbol>
+</svg>
+
+<div class="menubar" id="menubar">
+  <div class="menu">
+    <span data-t="mFile">فائل</span>
+    <div class="dropdown">
+      <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOne">ایک کتاب شامل کریں</span></button>
+      <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddMany">کئی کتابیں شامل کریں</span></button>
+      <div class="dsep"></div>
+      <button data-act="export"><svg><use href="#i-save"/></svg><span data-t="mExport">بیک اپ محفوظ کریں</span></button>
+      <button data-act="publish"><svg><use href="#i-upload"/></svg><span data-t="mPublish">GitHub پر شائع کریں</span></button>
+      <div class="dsep"></div>
+      <button data-act="quit"><svg><use href="#i-x"/></svg><span data-t="mQuit">باہر نکلیں</span></button>
+    </div>
+  </div>
+  <div class="menu">
+    <span data-t="mSort">ترتیب</span>
+    <div class="dropdown">
+      <button data-mode="category"><svg><use href="#i-tag"/></svg><span data-t="mByCategory">موضوع کے مطابق</span></button>
+      <button data-mode="author"><svg><use href="#i-pen"/></svg><span data-t="mByAuthor">مصنف کے مطابق</span></button>
+      <button data-mode="status"><svg><use href="#i-check"/></svg><span data-t="mByStatus">حالت کے مطابق</span></button>
+      <button data-mode="shelf"><svg><use href="#i-shelf"/></svg><span data-t="mByShelf">شیلف کے مطابق</span></button>
+    </div>
+  </div>
+  <div class="menu">
+    <span data-t="mSearch">تلاش</span>
+    <div class="dropdown">
+      <button data-act="focusSearch"><svg><use href="#i-search"/></svg><span data-t="mFocusSearch">تلاش باکس پر جائیں</span></button>
+      <button data-act="clearSearch"><svg><use href="#i-x"/></svg><span data-t="mClearSearch">تلاش صاف کریں</span></button>
+    </div>
+  </div>
+  <div class="menu">
+    <span data-t="mTools">اوزار</span>
+    <div class="dropdown">
+      <button data-act="settings"><svg><use href="#i-gear"/></svg><span data-t="mSettings">GitHub سیٹنگز</span></button>
+      <button data-act="appearance"><svg><use href="#i-palette"/></svg><span data-t="mAppearance">مظہر</span></button>
+      <button data-act="pull"><svg><use href="#i-download"/></svg><span data-t="mPull">تازہ ترین ڈیٹا حاصل کریں</span></button>
+      <button data-act="categoriesMan"><svg><use href="#i-tag"/></svg><span data-t="mCategories">موضوعات کی فہرست</span></button>
+      <button data-act="issued"><svg><use href="#i-clock"/></svg><span data-t="mIssued">جاری شدہ کتابیں</span></button>
+      <button data-act="duplicates"><svg><use href="#i-copy"/></svg><span data-t="mDuplicates">مکرر کتابیں تلاش کریں</span></button>
+    </div>
+  </div>
+  <div class="menu">
+    <span data-t="mHelp">مدد</span>
+    <div class="dropdown">
+      <button data-act="whatsNew"><svg><use href="#i-info"/></svg><span data-t="mWhatsNew">نیا کیا ہے</span></button>
+      <button data-act="about"><svg><use href="#i-info"/></svg><span data-t="mAbout">مکتبہ نعمانیہ کے بارے میں</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="titlebar">
+  <div class="mark"><svg><use href="#i-book"/></svg></div>
+  <h1 data-t="appName">مکتبہ نعمانیہ</h1>
+  <span class="sub" data-t="appSub">Maktaba Naumania &nbsp;·&nbsp; Darul Ifta Library</span>
+  <span class="role-badge" id="roleBadge"></span>
+  <button class="tbtn" id="btnLang" title="اردو / عربی"><svg><use href="#i-globe"/></svg><span id="langLabel">اردو</span></button>
+</div>
+
+
+<div class="toolbar">
+  <button class="tbtn" id="tbPicker" data-tip="pickerTitle"><svg><use href="#i-searchbook"/></svg></button>
+  <div class="tsep"></div>
+  <button class="tbtn" id="tbAddOne" data-tip="mAddOne"><svg><use href="#i-plus"/></svg></button>
+  <button class="tbtn" id="tbAddMany" data-tip="mAddMany"><svg><use href="#i-list"/></svg></button>
+  <button class="tbtn danger" id="tbDelete" data-tip="mDelete" disabled><svg><use href="#i-x"/></svg></button>
+  <div class="tsep"></div>
+  <button class="tbtn" id="tbExport" data-tip="mExport"><svg><use href="#i-save"/></svg></button>
+  <button class="tbtn" id="tbPull" data-tip="mPull"><svg><use href="#i-download"/></svg></button>
+  <button class="tbtn" id="tbSettings" data-tip="mSettings"><svg><use href="#i-gear"/></svg></button>
+  <button class="tbtn publish" id="tbPublish" data-tip="mPublish">
+    <svg><use href="#i-upload"/></svg><span data-t="publishBtn">شائع کریں</span>
+  </button>
+</div>
+
+<!-- Home / welcome screen — first thing shown, stays until a rail icon is clicked -->
+<div class="home" id="homeView">
+  <svg class="home-scene" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="skyFade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c9d6e3"/>
+        <stop offset="1" stop-color="#eef2f7"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="1000" height="420" fill="url(#skyFade)"/>
+    <!-- mosque silhouette, left -->
+    <g fill="#aebccd" opacity=".55">
+      <rect x="40" y="230" width="230" height="160"/>
+      <circle cx="155" cy="215" r="46"/>
+      <rect x="20" y="120" width="10" height="270"/>
+      <circle cx="25" cy="112" r="9"/>
+      <rect x="270" y="150" width="10" height="240"/>
+      <circle cx="275" cy="142" r="9"/>
+      <path d="M100 230 a55 55 0 0 1 110 0 z" fill="#eef2f7"/>
+    </g>
+    <!-- stacked books, right -->
+    <g opacity=".6">
+      <rect x="760" y="330" width="200" height="26" rx="2" fill="#8a99ac"/>
+      <rect x="775" y="300" width="175" height="26" rx="2" fill="#9aa8ba"/>
+      <rect x="755" y="270" width="195" height="26" rx="2" fill="#8a99ac"/>
+      <rect x="780" y="240" width="150" height="26" rx="2" fill="#9aa8ba"/>
+      <path d="M700 390 q90 -70 220 0 l-10 20 q-100 -55 -200 0z" fill="#c3ccd8"/>
+    </g>
+  </svg>
+  <div class="home-veil"></div>
+  <div class="home-content">
+    <h1 class="home-word" data-t="appName">مکتبہ نعمانیہ</h1>
+    <div class="home-rule"></div>
+    <p class="home-tag" data-t="homeTagline">دار الافتاء، مدرسہ نعمانیہ کی ڈیجیٹل لائبریری</p>
+    <div class="home-enter">
+      <button data-mode="books"><svg><use href="#i-book"/></svg><span data-t="homeEnter">لائبریری کھولیں</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="bookview hidden" id="bookView">
+  <div class="bv-bar" id="bvBar">
+    <svg class="bv-ico"><use href="#i-book"/></svg>
+    <span class="bv-title" id="bvTitle"></span>
+    <button class="bv-btn" id="bvPick"><svg><use href="#i-searchbook"/></svg><span data-t="pickAnother">دوسری کتاب</span></button>
+    <button class="bv-icon" id="bvMax" title="بڑا کریں"><svg><use href="#i-max"/></svg></button>
+    <button class="picker-x" id="bvClose" title="بند کریں"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <section class="pane detail">
+    <div class="dbody" id="detailBody">
+      <div class="dempty"><svg><use href="#i-book"/></svg><span data-t="detailEmpty">فہرست سے کوئی کتاب منتخب کریں</span></div>
+    </div>
+  </section>
+</div>
+
+<dialog class="picker" id="dlgCatalog">
+<div class="picker-bar">
+  <svg class="picker-ico"><use href="#i-book"/></svg>
+  <span class="picker-title" data-t="pickerTitle">اختیارِ کتاب</span>
+  <button class="bv-icon" id="pickerMax" title="بڑا کریں"><svg><use href="#i-max"/></svg></button>
+  <button class="picker-x" id="pickerClose" title="بند کریں"><svg><use href="#i-x"/></svg></button>
+</div>
+
+<div class="body" id="catalogView">
+
+  <nav class="rail" id="rail">
+    <button data-mode="books" class="active"><svg><use href="#i-searchbook"/></svg><span data-t="railBooks">الکتب</span></button>
+    <button data-mode="category"><svg><use href="#i-tag"/></svg><span data-t="railCategory">تصنیف</span></button>
+    <button data-mode="author"><svg><use href="#i-pen"/></svg><span data-t="railAuthor">مصنفین</span></button>
+    <button data-mode="shelf"><svg><use href="#i-shelf"/></svg><span data-t="railShelf">مکتبہ</span></button>
+    <button data-mode="status"><svg><use href="#i-check"/></svg><span data-t="railStatus">حالت</span></button>
+    <button data-mode="favorites"><svg><use href="#i-star"/></svg><span data-t="railFavorites">پسندیدہ</span></button>
+    <button data-mode="recent"><svg><use href="#i-clock"/></svg><span data-t="railRecent">مؤخرا</span></button>
+    <!-- Toggles the search panel, deliberately NOT a data-mode button: the
+         panel is independent of which grouping the list is showing, so
+         browsing by category and searching texts work at the same time. -->
+    <button id="railFts"><svg><use href="#i-search"/></svg><span data-t="railFts">بحث</span></button>
+    <div class="tsep-h"></div>
+    <button id="railHome"><svg><use href="#i-grid"/></svg><span data-t="railHome">مرکزی صفحہ</span></button>
+  </nav>
+
+  <section class="pane groups">
+    <div class="grouphead">
+      <div class="c-name" id="groupColName">موضوع</div>
+      <div class="c-count" data-t="colCount">تعداد</div>
+    </div>
+    <div class="grouplist" id="groupList"></div>
+  </section>
+
+  <section class="pane books">
+    <div class="matbar hidden" id="matbar">
+      <!-- The client could not tell what this row was for. It filters by the
+           KIND of material, so it now says so before the choices. -->
+      <span class="matbar-label" data-t="matBarLabel">کتاب کی قسم:</span>
+      <label class="matgroup"><input type="checkbox" id="matPrinted" checked /><span data-t="matPrinted">مطبوعات</span></label>
+      <button type="button" data-mat="book" class="on"><svg><use href="#i-book"/></svg><span data-t="matBook">کتب</span></button>
+      <button type="button" data-mat="magazine" class="on"><svg><use href="#i-list"/></svg><span data-t="matMagazine">مجلات</span></button>
+      <div class="tsep"></div>
+      <label class="matgroup"><input type="checkbox" id="matUnprinted" checked /><span data-t="matUnprinted">غیر مطبوعات</span></label>
+      <button type="button" data-mat="manuscript" class="on"><svg><use href="#i-scroll"/></svg><span data-t="matManuscript">مخطوطات</span></button>
+      <button type="button" data-mat="thesis" class="on"><svg><use href="#i-cap"/></svg><span data-t="matThesis">رسائل جامعیہ</span></button>
+      <button type="button" data-mat="electronic" class="on"><svg><use href="#i-copy"/></svg><span data-t="matElectronic">الیکٹرانک</span></button>
+    </div>
+    <div class="tabs" id="tabs">
+      <button data-filter="all" class="active"><svg><use href="#i-book"/></svg><span data-t="tabAll">سب کتابیں</span></button>
+      <button data-filter="available"><svg><use href="#i-check"/></svg><span data-t="st_available">موجود</span></button>
+      <button data-filter="issued"><svg><use href="#i-upload"/></svg><span data-t="st_issued">جاری</span></button>
+      <button data-filter="missing"><svg><use href="#i-x"/></svg><span data-t="st_missing">غیر موجود</span></button>
+      <button data-filter="overdue" class="tab-warn"><svg><use href="#i-clock"/></svg><span data-t="overdue">میعاد ختم</span></button>
+      <select id="sortSel" title="ترتیب">
+        <option value="accession" data-t-opt="sortAccession">رجسٹر نمبر</option>
+        <option value="title" data-t-opt="sortTitle">نام</option>
+        <option value="author" data-t-opt="sortAuthor">مصنف</option>
+        <option value="added" data-t-opt="sortAdded">حال ہی میں شامل</option>
+      </select>
+    </div>
+    <div class="searchbar">
+      <div class="wrap">
+        <svg><use href="#i-search"/></svg>
+        <input id="search" data-t-ph="searchPh" placeholder="تلاش کے لیے کم از کم تین حروف لکھیں" />
+      </div>
+      <button class="tbtn" id="btnClearSearch" title="تلاش صاف کریں"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <div class="bookhead">
+      <!-- Matches the favourite-star cell on every row. Without it the whole
+           header sat ~30px off from the columns underneath it. -->
+      <div class="bh-star" aria-hidden="true"></div>
+      <div class="bh-acc" data-t="colAccession">رجسٹر نمبر</div>
+      <div class="bh-author" data-t="colAuthor">المؤلف</div>
+      <div class="bh-title" data-t="colBook">الکتاب</div>
+      <div class="bh-publisher" data-t="colPublisher">الناشر</div>
+    </div>
+    <div class="booklist" id="bookList"></div>
+    <div class="panefoot">
+      <button class="tbtn" id="footAdd" title="ایک کتاب شامل کریں"><svg><use href="#i-plus"/></svg></button>
+      <button class="tbtn" id="footAddMany" title="کئی کتابیں شامل کریں"><svg><use href="#i-list"/></svg></button>
+      <button class="tbtn danger" id="footDel" title="حذف کریں" disabled><svg><use href="#i-x"/></svg></button>
+      <span class="hint" id="listCount"></span>
+    </div>
+  </section>
+
+  <!-- Full-text search over attached Unicode texts. Last child, so RTL puts it
+       on the physical LEFT — the side Shamela's own البحث panel sits on. Only
+       the controls that do something real are here: the reference app's
+       المتن/الحواشي/التعليقات/العناوين switches need a text divided into those
+       parts, and ours is a single flat file, so they are deliberately absent
+       rather than present and dead. -->
+  <aside class="pane ftspane" id="ftsPane">
+    <div class="dhead fts-head">
+      <span data-t="ftsHead">متن میں تلاش</span>
+      <button class="fts-hide" id="ftsHide" data-tip="ftsHideTip"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <div class="fts-body">
+      <div class="fts-terms">
+        <label class="fts-term"><span class="fts-n">١</span><input id="fts1" data-t-ph="ftsTermPh" /></label>
+        <label class="fts-term"><span class="fts-n">٢</span><input id="fts2" /></label>
+        <label class="fts-term"><span class="fts-n">٣</span><input id="fts3" /></label>
+        <label class="fts-term"><span class="fts-n">٤</span><input id="fts4" /></label>
+      </div>
+
+      <div class="fts-opts">
+        <label><input type="radio" name="ftsJoin" id="ftsAll" checked /><span data-t="ftsAll">سب الفاظ (و)</span></label>
+        <label><input type="radio" name="ftsJoin" id="ftsAny" /><span data-t="ftsAny">کوئی ایک (أو)</span></label>
+      </div>
+
+      <label class="fts-term fts-not"><span class="fts-n" data-t="ftsNot">لیس</span><input id="ftsNot" /></label>
+
+      <div class="fts-opts">
+        <label><input type="checkbox" id="ftsHarakat" /><span data-t="ftsHarakat">مراعاة التشكيل</span></label>
+        <label><input type="checkbox" id="ftsHamza" /><span data-t="ftsHamza">مراعاة الهمزات</span></label>
+      </div>
+
+      <div class="fts-actions">
+        <button class="primary" id="ftsRun" data-t="ftsRun">تلاش کریں</button>
+        <button id="ftsClear" data-t="ftsClear">صاف کریں</button>
+      </div>
+
+      <div class="hint" id="ftsStatus"></div>
+      <div class="fts-results" id="ftsResults"></div>
+    </div>
+  </aside>
+
+</div>
+</dialog>
+
+<div class="statusbar">
+  <span id="sbTotal"></span>
+  <span class="sep"></span>
+  <span id="sbPresent"></span>
+  <span class="sep"></span>
+  <span id="sbIssued"></span>
+  <span class="sep"></span>
+  <span id="sbMissing"></span>
+  <span id="sbOverdue"></span>
+  <span class="sep"></span>
+  <span id="sbUpdated"></span>
+  <span class="ltr" id="sbPath"></span>
+</div>
+
+<dialog id="dlgOne">
+  <div class="modal-body">
+    <h2 data-t="dlgOneTitle">ایک کتاب شامل کریں</h2>
+    <div class="modal-inner">
+      <p class="hint" id="oAccHint"></p>
+      <label data-t="fTitle">نام *</label><input id="oTitle" />
+      <label data-t="fAuthor">مصنف</label><input id="oAuthor" />
+      <label data-t="fPublisher">ناشر</label><input id="oPublisher" />
+      <label data-t="fCategory">موضوع</label><input id="oCategory" list="catList" />
+      <label data-t="fVolumes">جلدیں</label><input id="oVolumes" type="number" min="0" value="1" />
+      <label class="chk hasprint" id="oHasPrintRow"><input type="checkbox" id="oHasPrint" checked /><span data-t="hasPrintLabel">طباعتی نسخہ بھی الماری میں موجود ہے</span></label>
+      <div id="oShelfFields">
+        <label data-t="fMaktaba">مکتبہ</label>
+        <select id="oMaktaba"><option value=""></option></select>
+        <label data-t="fDepartment">شعبہ</label><input id="oDepartment" list="deptList" />
+        <label data-t="fShelf">الماری نمبر</label><input id="oShelf" />
+      </div>
+      <label data-t="fNotes">نوٹس</label><input id="oNotes" />
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="oSave" data-t="btnSave">محفوظ کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgMany">
+  <div class="modal-body" style="min-width:510px;">
+    <h2 data-t="dlgManyTitle">کئی کتابیں شامل کریں</h2>
+    <div class="modal-inner">
+      <p class="hint" data-t="dlgManyHint">ہر سطر ایک کتاب — نام | مصنف | موضوع | جلدیں (صرف نام لازمی ہے)</p>
+      <textarea id="mText" rows="11" style="margin-top:8px;"></textarea>
+      <p class="hint" id="mCount" style="margin-top:7px;">۰ کتابیں</p>
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="mSave" data-t="btnAdd">شامل کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Credentials live in their own dialog, deliberately separate from
+     Appearance — a token/password field should never be one click away
+     from a screen someone might show a colleague to demo the color picker. -->
+<!-- Everyone can open this — it is the only door to becoming master, so a
+     reader on a normal madrassa PC must be able to reach the checkbox below.
+     The repo and the login backend are baked into the app (shared/repo.js);
+     these fields stay in the DOM for a future repo migration but are not
+     shown day to day, since nobody should have to fill them in. -->
+<dialog id="dlgSettings">
+  <div class="modal-body">
+    <h2 data-t="dlgSettingsTitle">GitHub سیٹنگز</h2>
+    <div class="modal-inner">
+      <div class="adv-hidden">
+        <label>Owner</label><input id="sOwner" />
+        <label>Repo</label><input id="sRepo" />
+        <label>Branch</label><input id="sBranch" />
+        <label>Supabase URL</label><input id="sSbUrl" placeholder="https://xxxx.supabase.co" />
+        <label>Supabase anon key</label><input id="sSbKey" type="password" />
+      </div>
+
+      <div class="master-only">
+        <label data-t="fToken">Fine-grained Token</label><input id="sToken" type="password" />
+        <p class="hint" data-t="tokenHint" style="margin-top:6px;">ٹوکن صرف اسی کمپیوٹر پر محفوظ ہوتا ہے۔</p>
+      </div>
+
+      <div class="sec-head"><svg><use href="#i-check"/></svg><span data-t="masterHead">ماسٹر لاگ اِن</span></div>
+      <p class="hint" style="margin-top:-4px;margin-bottom:8px;" data-t="masterAvailableHint">ماسٹر بننے کے لیے کچھ سیٹ کرنے کی ضرورت نہیں — نیچے لاگ اِن کریں۔</p>
+      <label class="chk">
+        <input type="checkbox" id="sLibrarian" />
+        <span data-t="librarianLabel">یہ مکتبہ کا مرکزی کمپیوٹر ہے (لائبریرین موڈ) — یہاں کی تبدیلیاں خودکار طور پر اوور رائٹ نہیں ہوں گی</span>
+      </label>
+      <p class="hint" id="librarianFallbackNote" data-t="librarianFallbackNote" style="margin-top:4px;"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="primary master-only" id="sSave" data-t="btnSave">محفوظ کریں</button>
+      <button data-close data-t="btnClose">بند کریں</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Options, in Shamela's own shape: a category rail on the reading side, one
+     panel at a time, and Cancel / OK / Apply along the bottom. -->
+<dialog id="dlgAppearance" class="options">
+  <div class="opt-shell">
+    <div class="opt-title"><svg><use href="#i-ic-options"/></svg><span data-t="optionsTitle">اختیارات</span></div>
+
+    <div class="opt-main">
+      <nav class="opt-rail" id="optRail">
+        <button type="button" data-opt="look"   class="on"><svg><use href="#i-ic-look"/></svg><span data-t="optLook">مظہر</span></button>
+        <button type="button" data-opt="colors"><svg><use href="#i-ic-colors"/></svg><span data-t="optColors">رنگ</span></button>
+        <button type="button" data-opt="fonts"><svg><use href="#i-ic-fonts"/></svg><span data-t="optFonts">خطوط</span></button>
+        <button type="button" data-opt="list"><svg><use href="#i-ic-list"/></svg><span data-t="optList">فہرست</span></button>
+        <button type="button" data-opt="folders"><svg><use href="#i-ic-folders"/></svg><span data-t="optFolders">فولڈر</span></button>
+      </nav>
+
+      <div class="opt-panes">
+
+        <!-- ── مظہر ── -->
+        <section class="opt-pane on" data-pane="look">
+          <div class="opt-head">
+            <span data-t="optLook">مظہر</span>
+            <button type="button" class="opt-reset" data-reset="look" data-t="optRestore">ڈیفالٹ بحال کریں</button>
+          </div>
+          <label class="opt-group-label" data-t="themeMode">موڈ</label>
+          <div class="opt-radios">
+            <label><input type="radio" name="optMode" data-mode-theme="light"><span data-t="themeLight">روشن</span></label>
+            <label><input type="radio" name="optMode" data-mode-theme="dark"><span data-t="themeDark">تاریک</span></label>
+          </div>
+          <label class="opt-group-label" data-t="themeAccent">نمایاں رنگ</label>
+          <div class="swatches" id="swatches"></div>
+          <label class="opt-group-label" data-t="themeSize">متن کا سائز</label>
+          <div class="modes">
+            <button type="button" data-size-theme="small" data-t="sizeSmall">چھوٹا</button>
+            <button type="button" data-size-theme="normal" data-t="sizeNormal">درمیانہ</button>
+            <button type="button" data-size-theme="large" data-t="sizeLarge">بڑا</button>
+          </div>
+          <label class="opt-group-label" data-t="themeDensity">سطروں کی کثافت</label>
+          <div class="modes">
+            <button type="button" data-density-theme="compact" data-t="densityCompact">گنجان</button>
+            <button type="button" data-density-theme="comfortable" data-t="densityComfortable">کشادہ</button>
+          </div>
+          <label class="opt-check"><input type="checkbox" id="optToolbarLabels"><span data-t="optToolbarLabels">مرکزی ٹول بار میں آئیکن کے نیچے متن دکھائیں</span></label>
+        </section>
+
+        <!-- ── رنگ ── -->
+        <section class="opt-pane" data-pane="colors">
+          <div class="opt-head">
+            <span data-t="optColors">رنگ</span>
+            <button type="button" class="opt-reset" data-reset="colors" data-t="optRestoreAllColors">تمام رنگ بحال کریں</button>
+          </div>
+          <div class="opt-slots" id="colorSlots"></div>
+          <label class="opt-group-label" data-t="optBasicColors">بنیادی رنگ</label>
+          <div class="opt-palette" id="colorPalette"></div>
+          <div class="opt-swatch-row">
+            <input type="color" id="colorPick">
+            <span class="hint" data-t="optColorHint">فہرست سے ایک رنگ منتخب کریں، پھر نیا رنگ چنیں۔</span>
+          </div>
+        </section>
+
+        <!-- ── خطوط ── -->
+        <section class="opt-pane" data-pane="fonts">
+          <div class="opt-head">
+            <span data-t="optFonts">خطوط</span>
+            <button type="button" class="opt-reset" data-reset="fonts" data-t="optRestoreAllFonts">تمام خطوط بحال کریں</button>
+          </div>
+          <div class="opt-slots slim" id="fontSlots"></div>
+
+          <div class="opt-fontgrid">
+            <div class="opt-col">
+              <label data-t="optFontFamily">خط</label>
+              <select id="fontFamily" size="6"></select>
+            </div>
+            <div class="opt-col narrow">
+              <label data-t="optFontWeight">نمط</label>
+              <select id="fontWeight" size="6">
+                <option value="700" data-t="optBold">Bold</option>
+                <option value="400" data-t="optRegular">Regular</option>
+              </select>
+            </div>
+            <div class="opt-col narrow">
+              <label data-t="optFontSize">حجم</label>
+              <select id="fontSize" size="6"></select>
+            </div>
+          </div>
+
+          <div class="opt-row">
+            <label data-t="optLineSpacing">سطروں کا فاصلہ</label>
+            <select id="fontLine">
+              <option>1.0</option><option>1.2</option><option>1.4</option>
+              <option>1.6</option><option>1.8</option><option>2.0</option><option>2.2</option>
+            </select>
+          </div>
+
+          <label class="opt-group-label" data-t="optSample">نمونہ</label>
+          <div class="opt-sample" id="fontSample">بسم اللہ الرحمٰن الرحیم</div>
+        </section>
+
+        <!-- ── فہرست ── -->
+        <section class="opt-pane" data-pane="list">
+          <div class="opt-head">
+            <span data-t="optList">فہرست</span>
+            <button type="button" class="opt-reset" data-reset="list" data-t="optRestore">ڈیفالٹ بحال کریں</button>
+          </div>
+          <label class="opt-group-label" data-t="optBookTitleFont">کتاب کے نام کا خط</label>
+          <div class="modes">
+            <button type="button" data-font-theme="nastaliq" data-t="fontNastaliq">نستعلیق</button>
+            <button type="button" data-font-theme="naskh" data-t="fontNaskh">نسخ</button>
+          </div>
+          <label class="opt-check"><input type="checkbox" id="optShowAcc"><span data-t="optShowAcc">فہرست میں رجسٹر نمبر دکھائیں</span></label>
+          <label class="opt-check"><input type="checkbox" id="optShowPub"><span data-t="optShowPub">فہرست میں ناشر دکھائیں</span></label>
+          <label class="opt-check"><input type="checkbox" id="optHoverCard"><span data-t="optHoverCard">ماؤس رکھنے پر کتاب کا کارڈ دکھائیں</span></label>
+        </section>
+
+        <!-- ── فولڈر ── -->
+        <section class="opt-pane" data-pane="folders">
+          <div class="opt-head"><span data-t="optFolders">فولڈر</span></div>
+          <ul class="opt-notes">
+            <li data-t="optFolderNote1">فولڈر تبدیل کرنے سے فائلیں منتقل نہیں ہوتیں۔</li>
+            <li data-t="optFolderNote2">یہ صرف بتاتا ہے کہ سرورق اور فائلیں کہاں محفوظ ہیں۔</li>
+          </ul>
+          <label class="opt-group-label" data-t="optCoversFolder">سرورق فولڈر</label>
+          <div class="opt-folder"><input type="text" id="optCoversPath" readonly><button type="button" id="optOpenCovers" data-t="optOpen">کھولیں</button></div>
+          <label class="opt-group-label" data-t="optFilesFolder">فائلوں کا فولڈر</label>
+          <div class="opt-folder"><input type="text" id="optFilesPath" readonly><button type="button" id="optOpenFiles" data-t="optOpen">کھولیں</button></div>
+          <label class="opt-group-label" data-t="optDataFile">کیٹلاگ فائل</label>
+          <div class="opt-folder"><input type="text" id="optDataPath" readonly></div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="opt-foot">
+      <button type="button" id="optCancel" data-t="btnCancel">منسوخ کریں</button>
+      <button type="button" class="primary" id="optOk" data-t="optOk">موافق</button>
+      <button type="button" id="optApply" data-t="optApply">لاگو کریں</button>
+      <span class="opt-foot-hint hint" data-t="themeSyncHint"></span>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgConfirm">
+  <div class="modal-body confirm-body">
+    <h2 id="confirmTitle"></h2>
+    <p class="hint" id="confirmLead"></p>
+    <div class="confirm-scroll" id="confirmBody"></div>
+    <div class="modal-actions">
+      <button class="primary" id="confirmGo"></button>
+      <button data-close data-t="btnCancel">منسوخ کریں</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgAbout">
+  <div class="modal-body" style="min-width:380px;">
+    <div class="about-body">
+      <div class="ring"><svg><use href="#i-book"/></svg></div>
+      <h2 class="about-name">مکتبہ نعمانیہ</h2>
+      <div class="about-ar">مكتبة نعمانية</div>
+      <div class="about-en" id="aboutVer">Maktaba Naumania</div>
+      <div class="about-update" id="aboutUpdate"></div>
+      <p class="about-desc" data-t="aboutDesc">دار الافتاء، مدرسہ نعمانیہ کی لائبریری کا کیٹلاگ اور انتظامی سافٹ ویئر۔</p>
+
+      <div class="about-meta">
+        <div class="about-row">
+          <svg><use href="#i-globe"/></svg>
+          <span data-t="aboutPlace">لیاری، کراچی</span>
+        </div>
+        <div class="about-row">
+          <svg><use href="#i-info"/></svg>
+          <a href="mailto:maktabanaumania@gmail.com" id="aboutMail">maktabanaumania@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="aboutWhatsNew"><svg><use href="#i-info"/></svg><span data-t="mWhatsNew">نیا کیا ہے</span></button>
+      <button class="primary" data-close data-t="btnClose">بند کریں</button>
+    </div>
+  </div>
+</dialog>
+
+<div id="bookCard"></div>
+
+<dialog id="dlgDupes">
+  <div class="modal-body" style="min-width:540px;">
+    <h2 data-t="mDuplicates">مکرر کتابیں</h2>
+    <div class="modal-inner"><div id="dupeBody"></div></div>
+    <div class="modal-actions"><button class="primary" data-close data-t="btnClose">بند کریں</button></div>
+  </div>
+</dialog>
+
+<dialog id="dlgWhatsNew">
+  <div class="modal-body" style="min-width:520px;">
+    <h2 data-t="mWhatsNew">نیا کیا ہے</h2>
+    <div class="modal-inner"><div id="whatsNewBody"></div></div>
+    <div class="modal-actions"><button class="primary" data-close data-t="btnClose">بند کریں</button></div>
+  </div>
+</dialog>
+
+<dialog id="dlgImgUrl">
+  <div class="modal-body">
+    <h2 data-t="photoFromUrl">انٹرنیٹ سے تصویر</h2>
+    <div class="modal-inner">
+      <label data-t="photoUrlPrompt">تصویر کا لنک (URL) لکھیں:</label>
+      <input id="imgUrlInput" type="text" placeholder="https://..." />
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="imgUrlSave" data-t="btnSave">محفوظ کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgLogin">
+  <div class="modal-body">
+    <h2 data-t="masterLoginTitle">ماسٹر لاگ اِن</h2>
+    <div class="modal-inner">
+      <p class="hint" id="loginHint"></p>
+      <label data-t="loginEmail">ای میل</label><input id="loginEmail" type="email" />
+      <label data-t="loginPassword">پاس ورڈ</label><input id="loginPassword" type="password" />
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="loginSave" data-t="loginBtn">لاگ اِن</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgPin">
+  <div class="modal-body">
+    <h2 id="pinTitle" data-t="librarianPinTitle">لائبریرین موڈ کا پاس ورڈ</h2>
+    <div class="modal-inner">
+      <p class="hint" id="pinHint"></p>
+      <label data-t="librarianPinLabel">پاس ورڈ</label>
+      <input id="pinInput" type="password" />
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="pinSave" data-t="btnSave">محفوظ کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgFileUrl">
+  <div class="modal-body">
+    <h2 data-t="attachFromUrl">لنک سے فائل منسلک کریں</h2>
+    <div class="modal-inner">
+      <label data-t="fileUrlPrompt">فائل کا لنک (URL) لکھیں:</label>
+      <input id="fileUrlInput" type="text" placeholder="https://..." />
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="fileUrlSave" data-t="btnSave">محفوظ کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgIssue">
+  <div class="modal-body">
+    <h2 id="iTitle" data-t="issueTitle">کتاب جاری کریں</h2>
+    <div class="modal-inner">
+      <p class="hint" id="iBook"></p>
+
+      <label data-t="issueToWhom">کس کو دی جا رہی ہے</label>
+      <div class="modes">
+        <button type="button" data-itype="person" class="on" data-t="wherePerson">فرد</button>
+        <button type="button" data-itype="department" data-t="whereDept">شعبہ</button>
+      </div>
+
+      <div id="iPersonFields">
+        <label data-t="fBorrower">مستعیر</label><input id="iBorrower" />
+        <label data-t="fBorrowerAddress">پتہ</label><input id="iAddress" data-t-ph="addressPh" />
+        <label data-t="fBorrowerPhone">فون نمبر</label><input id="iPhone" type="tel" dir="ltr" data-t-ph="phonePh" />
+      </div>
+
+      <div id="iDeptFields" class="hidden">
+        <label data-t="fToDepartment">وصول کنندہ شعبہ</label><input id="iDept" data-t-ph="deptPh" />
+        <label data-t="fToAlmari">اُس شعبے کی الماری</label><input id="iAlmari" data-t-ph="almariPh" />
+      </div>
+
+      <label data-t="fBorrowDays">کتنے دن کے لیے</label><input id="iDays" type="number" min="1" value="14" />
+      <label data-t="fDueDate">واپسی کی تاریخ</label><input id="iDue" type="date" />
+      <p class="hint err" id="iHint"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="primary" id="iSave" data-t="issueBook">کتاب جاری کریں</button>
+      <button data-close data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Unicode book reader. Shamela's second kind of search: not "find a book in
+     the list" but "find a word inside this book". -->
+<dialog id="dlgReader">
+  <div class="modal-body reader-body">
+    <!-- The book's name lives in the title band below, the way the reference
+         app shows it; a second big heading up here was the same text twice
+         and cost the reading pane 67px of height. Kept only as the hidden
+         source the results table reads the book name from. -->
+    <div class="rd-title" id="rdTitle" hidden></div>
+
+    <div class="rd-search">
+      <div class="wrap">
+        <svg><use href="#i-search"/></svg>
+        <input id="rdQuery" data-t-ph="readerSearchPh" placeholder="کتاب کے متن میں تلاش کریں" />
+      </div>
+      <span class="rd-count" id="rdCount"></span>
+      <button class="tbtn" id="rdPrev" title="پچھلا">‹</button>
+      <button class="tbtn" id="rdNext" title="اگلا">›</button>
+    </div>
+
+    <!-- Book title band: page arrows at one end, the book's name centred in
+         the middle, exactly the strip the reference app puts above the text. -->
+    <div class="rd-titlebar">
+      <div class="rd-navbtns">
+        <button class="tbtn" id="rdFirst" data-tip="readerFirstPage">«</button>
+        <button class="tbtn" id="rdPrevPage" data-tip="readerPrevPage">‹</button>
+        <button class="tbtn" id="rdNextPage" data-tip="readerNextPage">›</button>
+        <button class="tbtn" id="rdLast" data-tip="readerLastPage">»</button>
+      </div>
+      <div class="rd-booktitle" id="rdBookTitle"></div>
+      <span class="rd-file" id="rdFile"></span>
+      <button class="tbtn" id="rdClose" data-tip="btnClose"><svg><use href="#i-x"/></svg></button>
+    </div>
+
+    <!-- Chapter tree first in the DOM so RTL puts it on the physical RIGHT,
+         beside the text, where the reference app keeps it. Hidden when the
+         file has no headings to build one from. -->
+    <div class="rd-main">
+      <nav class="rd-toc hidden" id="rdToc"></nav>
+      <!-- Badge sits OUTSIDE the scrolling text as a sibling, so it stays
+           pinned to the pane's bottom-middle regardless of scroll position
+           instead of travelling with the content. -->
+      <div class="rd-textwrap">
+        <div class="rd-text" id="rdText"></div>
+        <span class="rd-pageno" id="rdPageNo"></span>
+      </div>
+    </div>
+
+    <!-- Sweep through the book, or type a page number. -->
+    <div class="rd-pager">
+      <input type="range" id="rdSlider" min="0" max="0" value="0" data-tip="readerSlider" />
+      <span class="rd-pagelabel" data-t="readerPage">صفحہ</span>
+      <input id="rdPageBox" class="rd-pagebox" />
+      <span class="rd-pagetotal" id="rdPageTotal"></span>
+    </div>
+
+    <!-- Results table, docked below the reading pane like the reference app's:
+         serial, book, the matching text, its chapter and its page. -->
+    <div class="rd-results hidden" id="rdResults">
+      <table class="rd-table">
+        <thead>
+          <tr>
+            <th class="rc-n" data-t="colSerial">مسلسل</th>
+            <th class="rc-book" data-t="colBook">الکتاب</th>
+            <th class="rc-text" data-t="colText">النص</th>
+            <th class="rc-chap" data-t="colChapter">الباب</th>
+            <th class="rc-page" data-t="colPage">الصفحہ</th>
+          </tr>
+        </thead>
+        <tbody id="rdRows"></tbody>
+      </table>
+    </div>
+    <div class="rd-foot hidden" id="rdFoot"></div>
+  </div>
+</dialog>
+
+<!-- One confirmation dialog, reused wherever a click changes a physical fact -->
+<dialog id="dlgAsk">
+  <div class="modal-body ask-body">
+    <h2 id="askTitle"></h2>
+    <div class="modal-inner" id="askBody"></div>
+    <div class="modal-actions">
+      <button class="primary" id="askGo"></button>
+      <button id="askCancel" data-t="btnCancel">منسوخ</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgIssued">
+  <div class="modal-body" style="min-width:620px;">
+    <h2 data-t="mIssued">جاری شدہ کتابیں</h2>
+    <div class="modal-inner"><div id="issuedBody"></div></div>
+    <div class="modal-actions"><button class="primary" data-close data-t="btnClose">بند کریں</button></div>
+  </div>
+</dialog>
+
+<datalist id="catList"></datalist>
+<datalist id="deptList"></datalist>
+
+<dialog id="dlgCats">
+  <div class="modal-body" style="min-width:520px;">
+    <h2 data-t="mCategories">موضوعات کی فہرست</h2>
+    <div class="modal-inner">
+      <div class="cat-add">
+        <input id="catNew" data-t-ph="catNewPh" placeholder="نیا موضوع لکھیں" />
+        <button class="primary" id="catAdd" data-t="btnAdd">شامل کریں</button>
+      </div>
+      <p class="hint" data-t="catHint" style="margin:8px 0 4px;">موضوع حذف کرنے سے کتابیں حذف نہیں ہوتیں — صرف فہرست سے نکل جاتا ہے۔</p>
+      <div class="cat-list" id="catManBody"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="primary" data-close data-t="btnClose">بند کریں</button>
+    </div>
+  </div>
+</dialog>
+
+<div id="toast"></div>
+
+<script src="../shared/norm.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
