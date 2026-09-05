@@ -2733,8 +2733,8 @@ function paintReader() {
   }
   html += escapeHtml(readerText.slice(cursor, page.end)).replace(/\n/g, "<br>");
 
-  box.innerHTML = `<div class="rd-para">${html}</div>`;
-  $("rdPageNo").textContent = ud(readerPage + 1);
+  box.innerHTML = `<div class="rd-para">${html}</div>`
+    + `<div class="rd-pageno-wrap"><span class="rd-pageno">${ud(readerPage + 1)}</span></div>`;
   box.scrollTop = 0;
   const cur = box.querySelector(".rd-hit.on");
   if (cur) cur.scrollIntoView({ block: "center" });
