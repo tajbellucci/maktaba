@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-08-28",
+  "updated": "2026-09-05",
   "books": [
     {
       "id": 1,
@@ -96,7 +96,7 @@
     {
       "id": 5,
       "title": "صحیح البخاری",
-      "author": "امام محمد بن اسماعیل بخاری",
+      "author": "امام ��حمد بن اسماعیل بخاری",
       "category": "حدیث",
       "volumes": 8,
       "present": true,
@@ -444,7 +444,7 @@
       "title": "نور الایضاح وقرۃ عین الفلاح",
       "author": "علامہ حسن بن عمار شرنبلالی",
       "category": "درس نظامی",
-      "publisher": "مکتبہ اسلامیہ — لاہور",
+      "publisher": "مکتبہ ا��لامیہ — لاہور",
       "volumes": 1,
       "present": true,
       "notes": "",
@@ -514,6 +514,36 @@
       "borrowerAddress": "",
       "borrowerPhone": "",
       "hasPrint": true
+    },
+    {
+      "id": 28,
+      "title": "Arabic Quran",
+      "author": "-",
+      "publisher": "-",
+      "category": "عقیدہ وعلم الکلام",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "1",
+      "almari": "1",
+      "status": "available",
+      "notes": "a",
+      "format": "unicode",
+      "files": [
+        "https://github.com/tajbellucci/maktaba/releases/download/library-files/ArabicQuran.txt"
+      ],
+      "hasPrint": false,
+      "present": true,
+      "history": [
+        {
+          "date": "2026-09-05",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "28"
     }
   ],
   "categories": [
@@ -547,9 +577,9 @@
     "accent": "blue",
     "mode": "light",
     "size": "large",
-    "font": "nastaliq",
+    "font": "naskh",
     "density": "compact",
-    "uiFont": "auto",
+    "uiFont": "mylotus",
     "toolbarLabels": true,
     "showAcc": true,
     "showPub": true,
@@ -557,7 +587,7 @@
     "lineSpacing": "1.0",
     "fonts": {
       "ui": {
-        "family": "auto",
+        "family": "My Lotus",
         "weight": "400",
         "size": 16
       },
@@ -592,6 +622,6 @@
     }
   },
   "appSettings": {
-    "lang": "ur"
+    "lang": "en"
   }
 }
