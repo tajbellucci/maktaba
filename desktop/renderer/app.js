@@ -273,7 +273,15 @@ let autoSyncTimer = null;
 
 function startAutoSync() {
   if (autoSyncTimer) return;
-  autoSyncTimer = setInterval(() => doPull(true), AUTO_SYNC_MS);
+  /* Readers only. There is exactly one master (enforced by the Supabase
+     master lock), so GitHub can never hold anything the master did not put
+     there — polling it could only ever offer to undo their own work.
+     Checked when the timer FIRES, not here, because whether this machine is
+     master is resolved asynchronously after boot. */
+  autoSyncTimer = setInterval(() => {
+    if (IS_MASTER) return;
+    doPull(true);
+  }, AUTO_SYNC_MS);
 }
 
 /* Publish only means anything if this machine can actually write — a reader
@@ -294,6 +302,11 @@ async function refreshMasterUI() {
   document.documentElement.setAttribute("data-role", IS_MASTER ? "master" : "reader");
   const badge = $("roleBadge");
   if (badge) badge.textContent = IS_MASTER ? "" : t("readerMode");
+  /* Same action, honest name for each role: a reader is fetching the
+     librarian's latest; the master can only be restoring the last thing they
+     published, over their own unpublished edits. */
+  const pullLabel = $("mPullLabel");
+  if (pullLabel) pullLabel.textContent = IS_MASTER ? t("mRestorePublished") : t("mPull");
   applyReadOnly();
 
   /* The MAIN process makes its own sync decisions — whether to silently pull
@@ -1841,8 +1854,11 @@ async function doPull(auto = false) {
   if (d.empty) { if (!auto) toast(t("alreadyLatest")); return; }
   if (auto && document.querySelector("dialog[open]")) return; // re-check: fetching takes time
 
-  $("confirmTitle").textContent = t("pullConfirmTitle");
-  $("confirmLead").textContent = t("pullConfirmLead");
+  /* For the master this is not "here is newer data" — they are the only
+     writer, so it is "throw away my unpublished edits and go back to what I
+     last published". Say that, because it is the destructive reading. */
+  $("confirmTitle").textContent = IS_MASTER ? t("restoreConfirmTitle") : t("pullConfirmTitle");
+  $("confirmLead").textContent = IS_MASTER ? t("restoreConfirmLead") : t("pullConfirmLead");
 
   let html = "";
   // The librarian's own note about this release, when there is one.
@@ -1863,13 +1879,13 @@ async function doPull(auto = false) {
   html += renderDiff(d);
 
   $("confirmBody").innerHTML = html;
-  $("confirmGo").textContent = t("pullGo");
+  $("confirmGo").textContent = IS_MASTER ? t("restoreGo") : t("pullGo");
   $("dlgConfirm").showModal();
 
   $("confirmGo").onclick = async () => {
     $("dlgConfirm").close();
     await adoptData(incoming);
-    toast(t("pulled"));
+    toast(IS_MASTER ? t("restored") : t("pulled"));
   };
 }
 

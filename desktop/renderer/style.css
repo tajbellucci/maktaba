@@ -1617,6 +1617,14 @@ html[data-role="reader"] [data-drop],
 html[data-role="reader"] .file-remove,
 html[data-role="reader"] #dlgIssue { display: none !important; }
 
+/* One master, one direction: the master's local catalogue IS the truth, and
+   Publish is the only sync action they need. Fetching can never bring them
+   anything they did not write themselves — it can only undo their own
+   unpublished work — so it does not belong in the toolbar next to Publish.
+   The recovery path stays, deliberately one level down in the Tools menu,
+   named for what it actually does. */
+html[data-role="master"] #tbPull { display: none !important; }
+
 /* Locked fields should look consulted, not broken. */
 html[data-role="reader"] .detail input,
 html[data-role="reader"] .detail select,
