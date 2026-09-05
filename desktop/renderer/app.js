@@ -1567,8 +1567,12 @@ function setMode(next) {
 $("rail").querySelectorAll("[data-mode]").forEach((btn) => {
   btn.onclick = () => setMode(btn.dataset.mode);
 });
-document.querySelectorAll('[data-mode="category"]').forEach((btn) => {
-  if (!btn.closest("#rail")) btn.onclick = () => setMode("category");
+/* Non-rail buttons with data-mode (currently just the home screen's "Open
+   Library" button) open straight into that mode. Was hardcoded to only ever
+   match data-mode="category", so it silently stopped working the day that
+   button's mode changed to "books" and nothing rebound it. */
+document.querySelectorAll("[data-mode]").forEach((btn) => {
+  if (!btn.closest("#rail")) btn.onclick = () => setMode(btn.dataset.mode);
 });
 $("railHome").onclick = showHome;
 $("pickerClose").onclick = showHome;
