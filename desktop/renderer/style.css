@@ -1984,10 +1984,14 @@ html[data-mode="dark"] {
   --line:       #262c36;
   --line-soft:  #1d222a;
   --line-hard:  #333b47;
-  --text:       #eef3f9;
-  --text-2:     #d2dae4;
-  --muted:      #a8b5c3;
-  --muted-2:    #8d9aa8;
+  /* All text reads as white here, not a tier of greys — column headers,
+     status-bar counts and secondary labels were dim enough to look like a
+     different, lower-priority color instead of white text at lower
+     emphasis, which is what the reference app actually does. */
+  --text:       #ffffff;
+  --text-2:     #f2f5f9;
+  --muted:      #d7dee6;
+  --muted-2:    #c3ccd6;
   --green-wash: #17352a;
   --red-wash:   #3a1f1d;
   --blue-wash:  #17263a;
