@@ -344,6 +344,37 @@ function requireMaster() {
   return false;
 }
 
+/* Every sync-shaped confirmation (pull, restore, sync-conflict, publish)
+   reuses dlgConfirm, and all three used to close it and start the async work
+   with no guard at all: a native <dialog> closes silently on Escape with no
+   event of its own to tell "confirmed" apart from "dismissed", so pressing
+   Escape at the wrong moment looked exactly like nothing happened — the
+   librarian saw the preview, closed it, and had no way to know whether
+   anything had actually been written. It hadn't. This wires confirmGo once,
+   for every caller: a failed write shows a real error instead of vanishing,
+   and any dismissal that is NOT a confirmed click says so out loud instead
+   of leaving the librarian to guess. */
+function runConfirmedSync(action, { onFailToast, cancelToast } = {}) {
+  let confirmed = false;
+  const dlg = $("dlgConfirm");
+
+  const onClose = () => {
+    dlg.removeEventListener("close", onClose);
+    if (!confirmed && cancelToast) toast(cancelToast);
+  };
+  dlg.addEventListener("close", onClose);
+
+  $("confirmGo").onclick = async () => {
+    confirmed = true;
+    dlg.close();
+    try {
+      await action();
+    } catch (err) {
+      alert((onFailToast || t("publishFail")) + String((err && err.message) || err));
+    }
+  };
+}
+
 /* Becoming master is exactly the moment this machine might be behind: someone
    else may have published while it sat as a reader. So it checks the server
    straight away. If this machine has nothing of its own at stake it just takes
@@ -369,11 +400,10 @@ async function syncOnBecomingMaster() {
   $("confirmBody").innerHTML = renderDiff(d);
   $("confirmGo").textContent = t("pullGo");
   $("dlgConfirm").showModal();
-  $("confirmGo").onclick = async () => {
-    $("dlgConfirm").close();
-    await adoptData(peek.data);
-    toast(t("pulled"));
-  };
+  runConfirmedSync(
+    async () => { await adoptData(peek.data); toast(t("pulled")); },
+    { onFailToast: t("pullFail"), cancelToast: t("syncCancelled") }
+  );
 }
 
 /* Replaces the whole in-memory catalogue with one from the server and rebuilds
@@ -1882,11 +1912,10 @@ async function doPull(auto = false) {
   $("confirmGo").textContent = IS_MASTER ? t("restoreGo") : t("pullGo");
   $("dlgConfirm").showModal();
 
-  $("confirmGo").onclick = async () => {
-    $("dlgConfirm").close();
-    await adoptData(incoming);
-    toast(IS_MASTER ? t("restored") : t("pulled"));
-  };
+  runConfirmedSync(
+    async () => { await adoptData(incoming); toast(IS_MASTER ? t("restored") : t("pulled")); },
+    { onFailToast: t("pullFail"), cancelToast: t("syncCancelled") }
+  );
 }
 
 async function openSettings() {
@@ -2158,8 +2187,7 @@ async function doPublish() {
   $("confirmGo").textContent = t("publishGo");
   $("dlgConfirm").showModal();
 
-  $("confirmGo").onclick = async () => {
-    $("dlgConfirm").close();
+  runConfirmedSync(async () => {
     btn.disabled = true;
     btn.innerHTML = `<svg><use href="#i-upload"/></svg><span>${t("publishing")}</span>`;
     const res = await window.maktaba.publish(DATA);
@@ -2185,7 +2213,7 @@ async function doPublish() {
           .replace("{local}", ud(res.localBooks == null ? "?" : res.localBooks))
       );
     } else alert(t("publishFail") + res.error);
-  };
+  }, { cancelToast: t("syncCancelled") });
 }
 
 $("tbExport").onclick = doExport;
