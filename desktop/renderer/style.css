@@ -1973,14 +1973,17 @@ dialog.options { padding: 0; border: 1px solid var(--line-hard); border-radius: 
 /* Dark mode */
 
 html[data-mode="dark"] {
-  --shell:      #151a21;
-  --shell-2:    #10151b;
-  --panel:      #1c232c;
-  --strip:      #202832;
-  --strip-2:    #1a212a;
-  --line:       #2e3947;
-  --line-soft:  #26303c;
-  --line-hard:  #3a4757;
+  /* Near-black, matching the reference app's own dark mode rather than the
+     dark-navy this used to be — panels stay one step lighter than the shell
+     so surfaces still read as distinct, not a flat black-on-black. */
+  --shell:      #0b0e13;
+  --shell-2:    #07090c;
+  --panel:      #12161d;
+  --strip:      #171c24;
+  --strip-2:    #12161d;
+  --line:       #262c36;
+  --line-soft:  #1d222a;
+  --line-hard:  #333b47;
   --text:       #eef3f9;
   --text-2:     #d2dae4;
   --muted:      #a8b5c3;
@@ -2518,6 +2521,20 @@ dialog.picker.max { width: calc(100vw - 20px) !important; }
 #tbPull       { color: #0f9b8e; }
 #tbSettings   { color: #5c6a7a; }
 #tbPicker     { color: #7a4fb5; }
+
+/* Same treatment for the picker's own rail — it had none, so every icon sat
+   in one flat muted tone even at rest, unlike the reference app's rail where
+   each item keeps its own color. Skipped on the active item: the blue
+   selected-state wash is the stronger, more legible signal there, and mixing
+   it with a second hue reads as muddled rather than colorful. */
+.rail button:not(.active)[data-mode="books"] svg      { color: #1873cf; }
+.rail button:not(.active)[data-mode="category"] svg   { color: #0f9b8e; }
+.rail button:not(.active)[data-mode="author"] svg     { color: #7a4fb5; }
+.rail button:not(.active)[data-mode="shelf"] svg      { color: #b8860b; }
+.rail button:not(.active)[data-mode="status"] svg     { color: #1e8449; }
+.rail button:not(.active)[data-mode="favorites"] svg  { color: #c9971f; }
+.rail button:not(.active)[data-mode="recent"] svg     { color: #5c6a7a; }
+.rail button:not(.active)#railFts svg                 { color: #b23127; }
 
 #tbAddOne:hover, #tbAddMany:hover, #tbExport:hover, #tbPull:hover, #tbPicker:hover {
   filter: brightness(0.85);
