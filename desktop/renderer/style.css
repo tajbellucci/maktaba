@@ -394,10 +394,10 @@ button, input, select, textarea, optgroup, option {
 .grouphead, .dhead {
   background: var(--strip);
   border-bottom: 1px solid var(--line);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--muted);
-  letter-spacing: .4px;
+  letter-spacing: .3px;
   flex: none;
 }
 .grouphead { display: flex; }
@@ -675,10 +675,10 @@ dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px)
   border-bottom: 1px solid var(--line);
   padding: 8px 18px 6px;
 }
-.modal-inner { padding: 16px 20px 18px; }
+.modal-inner { padding: 13px 18px 15px; }
 .modal-body label {
-  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .6px;
-  color: var(--muted-2); margin: 12px 0 5px;
+  display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .5px;
+  color: var(--muted-2); margin: 10px 0 4px;
 }
 .modal-inner > label:first-child { margin-top: 0; }
 .modal-body input, .modal-body textarea {
@@ -695,8 +695,8 @@ dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px)
 #oTitle { font-family: var(--nastaliq); line-height: 2.1; }
 
 .modal-actions {
-  display: flex; justify-content: flex-start; gap: 9px;
-  padding: 13px 20px;
+  display: flex; justify-content: flex-start; gap: 8px;
+  padding: 10px 18px;
   background: var(--strip);
   border-top: 1px solid var(--line);
 }
@@ -1008,7 +1008,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   width: 62px; flex: none;
   padding: 8px 4px;
   text-align: center;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--muted-2);
   border-left: 1px solid var(--line-soft);
@@ -1018,7 +1018,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   width: 24%; flex: none;
   padding: 8px 12px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
   border-left: 1px solid var(--line-soft);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -1037,7 +1037,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   width: 20%; flex: none;
   padding: 8px 12px;
   color: var(--muted-2);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
@@ -1176,7 +1176,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   position: fixed;
   z-index: 90;
   width: 470px;
-  max-width: calc(100vw - 24px);
+  max-width: calc(var(--vw) - 24px);
   background: var(--panel);
   border: 1px solid var(--line-hard);
   border-radius: 2px;
@@ -1292,8 +1292,8 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
 /* Full window, like the reference app's book window — a 750,000-character
    book read through a 940px letterbox was the complaint. */
 .reader-body {
-  width: calc(100vw - 24px);
-  height: calc(100vh - 24px);
+  width: calc(var(--vw) - 24px);
+  height: calc(var(--vh) - 24px);
   display: flex; flex-direction: column;
   min-width: 0;
 }
@@ -1741,7 +1741,7 @@ html[data-role="reader"] .detail textarea:focus { box-shadow: none; border-color
    exists in the original. */
 
 dialog.options { padding: 0; border: 1px solid var(--line-hard); border-radius: 6px; }
-.opt-shell { width: 760px; max-width: calc(100vw - 32px); display: flex; flex-direction: column; }
+.opt-shell { width: 760px; max-width: calc(var(--vw) - 32px); display: flex; flex-direction: column; }
 
 .opt-title {
   display: flex; align-items: center; gap: 8px;
@@ -1904,7 +1904,7 @@ dialog.options { padding: 0; border: 1px solid var(--line-hard); border-radius: 
 .opt-foot-hint { margin-inline-start: auto; font-size: 12px; }
 
 @media (max-width: 800px) {
-  .opt-shell { width: calc(100vw - 32px); }
+  .opt-shell { width: calc(var(--vw) - 32px); }
   .opt-rail { width: 130px; }
   .opt-fontgrid { flex-wrap: wrap; }
 }
@@ -1913,7 +1913,7 @@ dialog.options { padding: 0; border: 1px solid var(--line-hard); border-radius: 
 
 .confirm-body { min-width: 520px; max-width: 620px; }
 .confirm-scroll {
-  max-height: 46vh; overflow-y: auto;
+  max-height: calc(var(--vh) * .46); overflow-y: auto;
   border: 1px solid var(--line); border-radius: 8px;
   padding: 10px 12px; background: var(--strip-2);
   margin-top: 8px;
@@ -2049,13 +2049,13 @@ html[data-mode="dark"] .dbody::-webkit-scrollbar-thumb { background: #39485a; }
 /* Six columns once address and phone are shown; the dialog widens with it. */
 .iss-table.wide .iss-head,
 .iss-table.wide .iss-row { grid-template-columns: 58px minmax(140px,1fr) 130px 150px 120px 110px; }
-#dlgIssued .modal-body { min-width: min(920px, calc(100vw - 40px)); }
+#dlgIssued .modal-body { min-width: min(920px, calc(var(--vw) - 40px)); }
 .iss-phone { font-family: var(--latin); font-variant-numeric: tabular-nums; }
 .iss-head {
   background: var(--strip);
   border: 1px solid var(--line);
   border-radius: 6px 6px 0 0;
-  font-size: 11.5px; font-weight: 700; color: var(--muted); letter-spacing: .4px;
+  font-size: 12.5px; font-weight: 700; color: var(--muted); letter-spacing: .3px;
 }
 .iss-row {
   border: 1px solid var(--line);
@@ -2075,19 +2075,26 @@ html[data-mode="dark"] .dbody::-webkit-scrollbar-thumb { background: #39485a; }
 /* Text size, title font and row density — all driven off root attributes so
    one setting repaints the whole app and travels with the catalogue. */
 
-/* The old approach set body's own font-size per data-size, but nearly every
-   piece of text in this app (rows, dialogs, menus, the toolbar) specifies
-   its own explicit px size rather than inheriting body's — so changing
-   body's font-size visibly moved almost nothing. `zoom` (Electron is always
-   Chromium, so this is safe here) scales EVERY pixel measurement — text,
-   padding, icons, the lot — which is what "the setting must work" actually
-   needs, and is one rule instead of hunting down every explicit font-size
-   in the stylesheet. Normal is nudged above 100% as the new baseline —
-   "a little bigger" throughout, not only when Large is chosen. */
-html[data-size="small"]  body { zoom: 0.92; }
-html[data-size="normal"] body { zoom: 1.06; }
-html[data-size="large"]  body { zoom: 1.2; }
-body { zoom: 1.06; }   /* same default if data-size is ever unset */
+/* Text size uses `zoom` (Electron is always Chromium) because nearly every
+   element here sets its own explicit px size rather than inheriting body's,
+   so changing body's font-size alone moved almost nothing.
+
+   The catch, found the hard way: `zoom` does NOT change how vw/vh resolve.
+   A dialog sized calc(100vw - 24px) inside a zoomed body renders at
+   zoom × that width — at 1.06 in a 1280px window that is 1331px, so it
+   overflowed the screen and pushed the reader's own close and maximise
+   buttons out of reach. Every viewport-based size below therefore divides
+   by --z to cancel the zoom back out.
+
+   Normal is 1 — the default must never scale, so the default can never be
+   the broken case. "A little bigger" is done by raising real font sizes
+   instead, which grows the text without also inflating padding and chrome
+   (that inflation is what made the window feel crowded). */
+:root { --z: 1; --vw: calc(100vw / var(--z)); --vh: calc(100vh / var(--z)); }
+html[data-size="small"]  { --z: 0.92; }
+html[data-size="normal"] { --z: 1; }
+html[data-size="large"]  { --z: 1.12; }
+body { zoom: var(--z); }
 
 /* Naskh keeps rows shorter, which is the point of offering it */
 html[data-font="naskh"] .br-title,
@@ -2178,8 +2185,8 @@ html[data-density="compact"] .grouprow .c-count { padding-top: 4px; padding-bott
 .home { cursor: default; }
 
 dialog.picker {
-  width: min(1560px, 96vw);
-  height: min(760px, 88vh);
+  width: min(1560px, calc(var(--vw) * .96));
+  height: min(760px, calc(var(--vh) * .88));
   /* Rail (74) + category column (286) + search panel (330) are all fixed
      width and never shrink — squeezing the window narrower than their sum
      used to clip whichever one ran out of room, invisibly, because the
@@ -2255,8 +2262,8 @@ dialog.picker .body {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: min(600px, 92vw);
-  max-height: 80vh;
+  width: min(600px, calc(var(--vw) * .92));
+  max-height: calc(var(--vh) * .8);
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -2366,14 +2373,14 @@ dialog.picker {
   top: 0;
   bottom: 0;
   margin-block: auto;
-  width: min(1560px, 96vw);
+  width: min(1560px, calc(var(--vw) * .96));
   /* An older rule above sets height:auto (shrink-to-content), which used to
      be masked because JS always forced an explicit height on open. Now that
      JS only touches height while maximised, the default (non-dragged,
      non-maximised) box needs its own real height here or the flex panes
      inside collapse to their content minimum instead of a normal window
      size. */
-  height: min(760px, 88vh);
+  height: min(760px, calc(var(--vh) * .88));
   transform: none;
   animation: fadein .18s ease-out both;   /* opacity only — never transform */
 }
@@ -2452,7 +2459,7 @@ dialog.picker {
   font-family: var(--ui); font-size: 14px; border: 1px solid var(--blue-deep);
   background: linear-gradient(180deg, var(--blue-2), var(--blue)); color: #fff; font-weight: 600; }
 
-.cat-list { max-height: 46vh; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; }
+.cat-list { max-height: calc(var(--vh) * .46); overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; }
 .cat-row {
   display: flex; align-items: center; gap: 8px;
   padding: 6px 10px;
@@ -2521,7 +2528,7 @@ html[data-lang="ur"] .modes button { line-height: 1.9; }
 
 /* ── Picker maximise ───────────────────────────────────────────────────── */
 
-dialog.picker.max { width: calc(100vw - 20px) !important; }
+dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
 
 /* ── Colored icons ─────────────────────────────────────────────────────
    Shamela's own toolbar uses a distinct color per icon rather than one flat
