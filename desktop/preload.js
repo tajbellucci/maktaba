@@ -26,6 +26,8 @@ contextBridge.exposeInMainWorld("maktaba", {
   pickImage: () => ipcRenderer.invoke("file:pickImage"),
   openFile: (filePath) => ipcRenderer.invoke("file:open", filePath),
   readText: (filePath) => ipcRenderer.invoke("file:readText", filePath),
+  cachedStatus: (urls) => ipcRenderer.invoke("file:cachedStatus", urls),
+  downloadAllTexts: (data) => ipcRenderer.invoke("file:downloadAllTexts", data),
   fileExists: (filePath) => ipcRenderer.invoke("file:exists", filePath),
   downloadImage: (url, bookId) => ipcRenderer.invoke("file:downloadImage", url, bookId),
   coversDir: () => ipcRenderer.invoke("file:coversDir"),

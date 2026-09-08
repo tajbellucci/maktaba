@@ -1065,6 +1065,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
 .bookrow.sel .br-title { color: #fff; }
 
 .fmt-badge.od { background: var(--red-wash); color: var(--red); }
+.fmt-badge.offline { background: var(--green-wash); color: #1e8449; }
 .tabs button.tab-warn.active { box-shadow: 0 -2px 0 var(--red) inset; }
 
 .tabs #sortSel {

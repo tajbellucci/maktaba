@@ -219,6 +219,8 @@ if (!window.maktaba) {
       ].join("\n"),
       name: "preview.txt"
     }),
+    cachedStatus: async (urls) => urls.map(() => false),
+    downloadAllTexts: async () => ({ total: 0, downloaded: 0, alreadyCached: 0, failed: 0 }),
     fileExists: async () => true,
     downloadImage: async () => ({ ok: false, error: "preview" }),
     coversDir: async () => "",
@@ -618,9 +620,16 @@ function renderBooks() {
   for (const b of books) {
     const row = document.createElement("div");
     row.className = "bookrow st-" + b.status + (b.id === selectedId ? " sel" : "") + (isOverdue(b) ? " overdue" : "");
+    const unicodeUrl = b.format === "unicode" ? (b.files || []).find((f) => /^https?:\/\//i.test(f)) : null;
     const badges = [
       b.format === "pdf" ? `<span class="fmt-badge">PDF</span>` : "",
       b.format === "unicode" ? `<span class="fmt-badge">TXT</span>` : "",
+      /* Shamela shows which books are already on disk; this used to happen
+         silently in the background with no way to see it had. Starts hidden,
+         revealed by refreshOfflineBadges() once the real answer is known —
+         showing it eagerly would claim "offline ready" for books that
+         haven't actually been checked yet. */
+      unicodeUrl ? `<span class="fmt-badge offline hidden" data-offline-for="${b.id}" title="${t("offlineReady")}">${t("offlineBadge")}</span>` : "",
       (b.files || []).length > 1 ? `<span class="fmt-badge">×${ud(b.files.length)}</span>` : "",
       isOverdue(b) ? `<span class="fmt-badge od">${t("overdue")}</span>` : ""
     ].join("");
@@ -690,6 +699,47 @@ function renderBooks() {
      header lacks — reserve that exact width on the header or every column
      drifts out of line with its heading the moment the list needs to scroll. */
   document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
+  refreshOfflineBadges();
+}
+
+/* Reveals the "already offline" badge on rows whose Unicode text is actually
+   cached to disk — one batched IPC call instead of asking once per row, and
+   starts hidden rather than guessing, so it never claims a book is offline-
+   ready before that has actually been checked. */
+async function refreshOfflineBadges() {
+  const badges = [...document.querySelectorAll(".fmt-badge.offline[data-offline-for]")];
+  if (!badges.length) return;
+  const urlByBook = new Map(DATA.books.map((b) => [
+    b.id, b.format === "unicode" ? (b.files || []).find((f) => /^https?:\/\//i.test(f)) : null
+  ]));
+  const urls = badges.map((el) => urlByBook.get(+el.dataset.offlineFor) || "");
+  const status = await window.maktaba.cachedStatus(urls).catch(() => urls.map(() => false));
+  badges.forEach((el, i) => el.classList.toggle("hidden", !status[i]));
+}
+
+/* The explicit "download everything for offline" action — Shamela's own
+   "download the software with all the books" option. The background
+   pre-cache already does this quietly over time; this is for a librarian who
+   wants a real, waited-for answer before leaving somewhere with no internet,
+   not a promise that it happened at some point. */
+let downloadingAll = false;
+async function doDownloadAllTexts() {
+  if (downloadingAll) return;
+  downloadingAll = true;
+  const btn = document.querySelector('[data-act="downloadAllTexts"]');
+  const label = btn && btn.querySelector("span");
+  const original = label ? label.textContent : "";
+  if (label) label.textContent = t("downloadingAll");
+  try {
+    const res = await window.maktaba.downloadAllTexts(DATA);
+    if (!res || res.total === 0) toast(t("noOfflineTexts"));
+    else if (res.failed) toast(t("downloadAllPartial").replace("{ok}", ud(res.downloaded + res.alreadyCached)).replace("{n}", ud(res.total)));
+    else toast(t("downloadAllDone").replace("{n}", ud(res.total)));
+    refreshOfflineBadges();
+  } finally {
+    if (label) label.textContent = original;
+    downloadingAll = false;
+  }
 }
 
 function renderDetail() {
@@ -2268,6 +2318,7 @@ const MENU_ACTIONS = {
   settings: openSettings,
   appearance: openAppearance,
   pull: doPull,
+  downloadAllTexts: doDownloadAllTexts,
   duplicates: showDuplicates,
   issued: showIssued,
   categoriesMan: showCategoryManager,

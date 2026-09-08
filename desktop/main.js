@@ -733,6 +733,35 @@ function precacheUnicodeTexts(data) {
   }
 }
 
+/* So the catalogue list can show which books are already usable offline —
+   Shamela shows this per book, this app was doing it invisibly. One batched
+   call instead of one IPC round-trip per row. */
+ipcMain.handle("file:cachedStatus", (_e, urls) =>
+  (Array.isArray(urls) ? urls : []).map((u) => typeof u === "string" && fs.existsSync(textCachePath(u)))
+);
+
+/* The explicit "download all books for offline" action — same fetch/cache
+   logic as the background precache, but AWAITED and counted, so the
+   librarian who wants to be sure before leaving for a place with no internet
+   gets a real answer instead of trusting a silent background job. */
+ipcMain.handle("file:downloadAllTexts", async (_e, data) => {
+  const urls = new Set();
+  for (const b of (data && data.books) || []) {
+    if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
+    for (const f of b.files) if (typeof f === "string" && /^https?:\/\//i.test(f)) urls.add(f);
+  }
+  let downloaded = 0, failed = 0, alreadyCached = 0;
+  for (const url of urls) {
+    const cached = textCachePath(url);
+    if (fs.existsSync(cached)) { alreadyCached++; continue; }
+    const text = await fetchTextOverHttps(url);
+    if (text === null) { failed++; continue; }
+    try { fs.writeFileSync(cached, text, "utf8"); downloaded++; }
+    catch { failed++; }
+  }
+  return { total: urls.size, downloaded, alreadyCached, failed };
+});
+
 ipcMain.handle("file:open", (_e, filePath) => {
   const real = resolveStoredPath(filePath);
   if (!real) return;
