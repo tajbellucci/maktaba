@@ -957,7 +957,9 @@ ipcMain.handle("settings:get", () => {
     isLibrarian: Boolean(s.isLibrarian),
     hasLibrarianPin: Boolean(s.librarianPinHash),
     supabaseUrl: s.supabaseUrl || REPO.supabaseUrl,
-    supabaseAnonKey: s.supabaseAnonKey || REPO.supabaseAnonKey
+    supabaseAnonKey: s.supabaseAnonKey || REPO.supabaseAnonKey,
+    // Baked into the build, never a local override — see shared/repo.js.
+    publishFrozen: Boolean(REPO.publishFrozen)
   };
 });
 
@@ -1389,4 +1391,10 @@ async function doPublish(data) {
   }
 }
 
-ipcMain.handle("publish", (_e, data) => doPublish(data));
+ipcMain.handle("publish", (_e, data) => {
+  // Mirrors the UI hiding the button — refused here too, not just hidden,
+  // the same defense-in-depth pattern already used for the reader/master
+  // gate (CSS hides it, JS refuses it again). See shared/repo.js.
+  if (REPO.publishFrozen) return { ok: false, error: "publish-frozen" };
+  return doPublish(data);
+});

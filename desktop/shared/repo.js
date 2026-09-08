@@ -13,6 +13,22 @@ module.exports = {
   repo:   "maktaba",
   branch: "main",
 
+  /* Temporary, deliberate freeze before handover.
+     ────────────────────────────────────────────────────────────────────────
+     The client already holds a real master login (Supabase account), and Taj
+     found the live catalogue had drifted from what he expected — data from
+     testing and real client use got mixed on the same repo. Until handover is
+     actually complete, ONLY Taj should be able to publish, and he does that
+     directly (through Claude Code, with his own token) rather than through
+     the app's own Publish button.
+     This hides Publish for every master, everywhere, including the client's
+     own login — it is a code-level flag, not a per-machine setting, so it
+     cannot be worked around from inside the app and applies the moment this
+     build reaches any machine. Readers are completely unaffected: pulling
+     the latest data still works normally for everyone.
+     Flip back to false (and rebuild) once handover is actually ready. */
+  publishFrozen: true,
+
   /* The master-login backend. This is why a fresh install can offer master
      login without anyone pasting a URL and key into Settings first — the
      Supabase anon key is DESIGNED to be public (it is meant to sit inside a

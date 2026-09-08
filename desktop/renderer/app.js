@@ -309,6 +309,12 @@ async function refreshMasterUI() {
      published, over their own unpublished edits. */
   const pullLabel = $("mPullLabel");
   if (pullLabel) pullLabel.textContent = IS_MASTER ? t("mRestorePublished") : t("mPull");
+
+  /* Deliberate pre-handover freeze (shared/repo.js: publishFrozen) — hides
+     Publish for EVERY master, including the client's own login, not only
+     readers. Reading/pulling is completely unaffected. */
+  document.documentElement.classList.toggle("publish-frozen", Boolean(s.publishFrozen));
+
   applyReadOnly();
 
   /* The MAIN process makes its own sync decisions — whether to silently pull
@@ -2262,6 +2268,8 @@ async function doPublish() {
           .replace("{remote}", ud(res.remoteBooks == null ? "?" : res.remoteBooks))
           .replace("{local}", ud(res.localBooks == null ? "?" : res.localBooks))
       );
+    } else if (res.error === "publish-frozen") {
+      alert(t("publishFrozenMsg"));
     } else alert(t("publishFail") + res.error);
   }, { cancelToast: t("syncCancelled") });
 }

@@ -1621,6 +1621,11 @@ html[data-role="reader"] [data-drop],
 html[data-role="reader"] .file-remove,
 html[data-role="reader"] #dlgIssue { display: none !important; }
 
+/* Pre-handover freeze: hides Publish for EVERY master, client included —
+   not the reader-only rule above, which never touched Publish for master. */
+html.publish-frozen #tbPublish,
+html.publish-frozen [data-act="publish"] { display: none !important; }
+
 /* One master, one direction: the master's local catalogue IS the truth, and
    Publish is the only sync action they need. Fetching can never bring them
    anything they did not write themselves — it can only undo their own
