@@ -2070,18 +2070,19 @@ html[data-mode="dark"] .dbody::-webkit-scrollbar-thumb { background: #39485a; }
 /* Text size, title font and row density — all driven off root attributes so
    one setting repaints the whole app and travels with the catalogue. */
 
-html[data-size="small"]  body { font-size: 14.5px; }
-html[data-size="normal"] body { font-size: 16.5px; }
-html[data-size="large"]  body { font-size: 18.5px; }
-
-html[data-size="small"]  .br-title { font-size: 14px; }
-html[data-size="large"]  .br-title { font-size: 17.5px; }
-html[data-size="small"]  .grouprow .c-name { font-size: 14.5px; }
-html[data-size="large"]  .grouprow .c-name { font-size: 18px; }
-html[data-size="small"]  .titlebar h1 { font-size: 19px; }
-html[data-size="large"]  .titlebar h1 { font-size: 25px; }
-html[data-size="small"]  .dbody #dTitle { font-size: 16px; }
-html[data-size="large"]  .dbody #dTitle { font-size: 21px; }
+/* The old approach set body's own font-size per data-size, but nearly every
+   piece of text in this app (rows, dialogs, menus, the toolbar) specifies
+   its own explicit px size rather than inheriting body's — so changing
+   body's font-size visibly moved almost nothing. `zoom` (Electron is always
+   Chromium, so this is safe here) scales EVERY pixel measurement — text,
+   padding, icons, the lot — which is what "the setting must work" actually
+   needs, and is one rule instead of hunting down every explicit font-size
+   in the stylesheet. Normal is nudged above 100% as the new baseline —
+   "a little bigger" throughout, not only when Large is chosen. */
+html[data-size="small"]  body { zoom: 0.92; }
+html[data-size="normal"] body { zoom: 1.06; }
+html[data-size="large"]  body { zoom: 1.2; }
+body { zoom: 1.06; }   /* same default if data-size is ever unset */
 
 /* Naskh keeps rows shorter, which is the point of offering it */
 html[data-font="naskh"] .br-title,

@@ -2998,6 +2998,45 @@ $("rdNext").onclick = () => stepReader(1);
 $("rdPrev").onclick = () => stepReader(-1);
 $("rdClose").onclick = () => $("dlgReader").close();
 
+/* Pinch-to-zoom in the reading pane, the more you zoom the bigger it gets.
+   Set only on #rdText itself, not :root, so it can never bleed into the
+   shared "card" font-size setting the book detail panel also reads from
+   var(--card-size) — this is a per-session, reader-local override. Two
+   input paths: a trackpad pinch, which Chromium reports as a wheel event
+   with ctrlKey set; and a genuine two-finger touch pinch, for a touchscreen. */
+const READER_ZOOM_MIN = 12, READER_ZOOM_MAX = 40;
+let readerFontPx = 17;
+
+function setReaderFontPx(px) {
+  readerFontPx = Math.max(READER_ZOOM_MIN, Math.min(READER_ZOOM_MAX, px));
+  $("rdText").style.setProperty("--card-size", readerFontPx + "px");
+}
+
+$("rdText").addEventListener("wheel", (e) => {
+  if (!e.ctrlKey) return;             // a plain scroll must keep scrolling the page
+  e.preventDefault();
+  setReaderFontPx(readerFontPx - e.deltaY * 0.05);
+}, { passive: false });
+
+let pinchStartDist = null, pinchStartPx = 17;
+const touchDist = (touches) => {
+  const [a, b] = touches;
+  return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+};
+$("rdText").addEventListener("touchstart", (e) => {
+  if (e.touches.length !== 2) return;
+  pinchStartDist = touchDist(e.touches);
+  pinchStartPx = readerFontPx;
+}, { passive: true });
+$("rdText").addEventListener("touchmove", (e) => {
+  if (e.touches.length !== 2 || pinchStartDist === null) return;
+  e.preventDefault();
+  setReaderFontPx(pinchStartPx * (touchDist(e.touches) / pinchStartDist));
+}, { passive: false });
+$("rdText").addEventListener("touchend", (e) => {
+  if (e.touches.length < 2) pinchStartDist = null;
+});
+
 /* Page controls, the way the reference app drives a book: arrows to the ends,
    a slider to sweep through it, and a box to go straight to a page. */
 $("rdFirst").onclick = () => goToPage(0);
