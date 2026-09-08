@@ -479,7 +479,11 @@ async function loadWithSync() {
   return seed;
 }
 
-ipcMain.handle("books:load", () => loadWithSync());
+ipcMain.handle("books:load", async () => {
+  const data = await loadWithSync();
+  precacheUnicodeTexts(data);   // fire-and-forget: readers should be offline-ready without opening every book first
+  return data;
+});
 
 ipcMain.handle("books:publishState", () => ({
   unpublished: hasUnpublished(),
@@ -521,6 +525,7 @@ ipcMain.handle("books:applyData", (_e, data) => {
   writeCatalogue(dataFile(), data);
   // Data pulled from GitHub is by definition identical to what is published.
   writeJson(publishStateFile(), { hash: catalogueHash(data), at: new Date().toISOString() });
+  precacheUnicodeTexts(data);   // a newly-pulled book should be offline-ready right away, not after someone opens it
   return { ok: true };
 });
 
@@ -635,35 +640,66 @@ function resolveStoredPath(p) {
    book texts are a fraction of it. */
 const MAX_TEXT_BYTES = 12 * 1024 * 1024;
 
+/* A hosted Unicode attachment (every reader's normal case, once published to
+   Releases) used to be re-downloaded over the network on EVERY open and
+   every full-text search — which meant it simply could not work offline at
+   all, ever, not even for a book already read a minute earlier. Caching it
+   to disk on first successful fetch, keyed by a hash of the URL so repeat
+   reads never re-download, fixes both: offline reading of anything already
+   opened once, and it stops re-fetching a multi-megabyte book on every
+   keystroke of a search. */
+const textCacheDir = () => {
+  const dir = path.join(app.getPath("userData"), "text-cache");
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  return dir;
+};
+const textCachePath = (url) =>
+  path.join(textCacheDir(), crypto.createHash("sha1").update(url).digest("hex") + ".txt");
+
+/* The actual network fetch, shared by the on-open read and the background
+   pre-cache pass below — one implementation, so they can't drift apart. */
+function fetchTextOverHttps(url) {
+  return new Promise((resolve) => {
+    const get = (u, hops) => {
+      if (hops <= 0) return resolve(null);
+      https.get(u, { timeout: 15000, headers: { "User-Agent": "maktaba-desktop" } }, (res) => {
+        if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
+          res.resume(); return get(res.headers.location, hops - 1);
+        }
+        if (res.statusCode !== 200) { res.resume(); return resolve(null); }
+        let body = "", size = 0;
+        res.setEncoding("utf8");
+        res.on("data", (c) => {
+          size += Buffer.byteLength(c);
+          if (size > MAX_TEXT_BYTES) { res.destroy(); return resolve(null); }
+          body += c;
+        });
+        res.on("end", () => resolve(body));
+      }).on("error", () => resolve(null));
+    };
+    get(url, 5);
+  });
+}
+
 ipcMain.handle("file:readText", async (_e, filePath) => {
   try {
     const real = resolveStoredPath(filePath);
 
     // Attachments published to Releases are URLs by the time a reader sees them.
     if (/^https?:\/\//i.test(real)) {
-      const text = await new Promise((resolve) => {
-        const get = (url, hops) => {
-          if (hops <= 0) return resolve(null);
-          https.get(url, { timeout: 15000, headers: { "User-Agent": "maktaba-desktop" } }, (res) => {
-            if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
-              res.resume(); return get(res.headers.location, hops - 1);
-            }
-            if (res.statusCode !== 200) { res.resume(); return resolve(null); }
-            let body = "", size = 0;
-            res.setEncoding("utf8");
-            res.on("data", (c) => {
-              size += Buffer.byteLength(c);
-              if (size > MAX_TEXT_BYTES) { res.destroy(); return resolve(null); }
-              body += c;
-            });
-            res.on("end", () => resolve(body));
-          }).on("error", () => resolve(null));
-        };
-        get(real, 5);
-      });
-      return text === null
-        ? { ok: false, error: "فائل حاصل نہیں ہو سکی" }
-        : { ok: true, text, name: real.split("/").pop() };
+      const cached = textCachePath(real);
+      if (fs.existsSync(cached)) {
+        return { ok: true, text: fs.readFileSync(cached, "utf8"), name: real.split("/").pop() };
+      }
+
+      const text = await fetchTextOverHttps(real);
+      if (text === null) {
+        // Offline (or a real fetch failure) on a book never opened before —
+        // the one case that genuinely cannot be served from a local cache.
+        return { ok: false, error: "فائل حاصل نہیں ہو سکی — انٹرنیٹ کنکشن چیک کریں" };
+      }
+      try { fs.writeFileSync(cached, text, "utf8"); } catch { /* cache is best-effort, not required to succeed */ }
+      return { ok: true, text, name: real.split("/").pop() };
     }
 
     if (!real || !fs.existsSync(real)) return { ok: false, error: "فائل نہیں ملی" };
@@ -673,6 +709,29 @@ ipcMain.handle("file:readText", async (_e, filePath) => {
     return { ok: false, error: String(err.message || err) };
   }
 });
+
+/* Downloads every hosted Unicode attachment that isn't cached yet, quietly,
+   in the background. Without this, "works offline" only became true for a
+   book AFTER someone happened to open it once while online — a librarian who
+   syncs a new upload and then loses their connection before ever opening it
+   would still hit the network-failure path. Fire-and-forget: never awaited
+   by a caller, never blocks a sync, and one failed download just leaves that
+   one book to retry (or to be read live) next time someone is online. */
+function precacheUnicodeTexts(data) {
+  if (!data || !Array.isArray(data.books)) return;
+  for (const b of data.books) {
+    if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
+    for (const f of b.files) {
+      if (typeof f !== "string" || !/^https?:\/\//i.test(f)) continue;
+      const cached = textCachePath(f);
+      if (fs.existsSync(cached)) continue;
+      fetchTextOverHttps(f).then((text) => {
+        if (text === null) return;
+        try { fs.writeFileSync(cached, text, "utf8"); } catch { /* best-effort */ }
+      });
+    }
+  }
+}
 
 ipcMain.handle("file:open", (_e, filePath) => {
   const real = resolveStoredPath(filePath);
