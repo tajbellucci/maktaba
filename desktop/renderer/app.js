@@ -515,7 +515,13 @@ function setFtsOpen(open) {
 }
 
 function applyFtsOpen() {
-  $("ftsPane").classList.toggle("hidden", !ftsOpen);
+  /* Searching book TEXT only makes sense against the flat "all books" list —
+     inside a category/author/shelf/status tree it would be searching the
+     text of whatever happens to be in the currently open group, which is not
+     what "search books" means. So the panel only ever shows on that one tab,
+     even if the librarian left it open the last time they were on it. */
+  const visible = ftsOpen && mode === "books";
+  $("ftsPane").classList.toggle("hidden", !visible);
   $("railFts").classList.toggle("active", ftsOpen);
 }
 
@@ -3157,8 +3163,12 @@ function renderFtsResults(found) {
   }
 }
 
-$("railFts").onclick = () => setFtsOpen(!ftsOpen);
-$("ftsHide").onclick = () => setFtsOpen(false);
+$("railFts").onclick = () => {
+  // Opening it from any other tab must actually show it, not silently do
+  // nothing because the panel only ever appears on "books".
+  if (!ftsOpen && mode !== "books") { setMode("books"); }
+  setFtsOpen(!ftsOpen);
+};
 $("ftsRun").onclick = runFullTextSearch;
 $("ftsClear").onclick = () => {
   for (const id of ["fts1", "fts2", "fts3", "fts4", "ftsNot"]) $(id).value = "";

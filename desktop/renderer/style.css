@@ -293,19 +293,6 @@ button, input, select, textarea, optgroup, option {
   gap: 8px;
 }
 .fts-head > span { flex: 1; min-width: 0; }
-.fts-hide {
-  flex: none;
-  width: 22px; height: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: background .14s, color .14s;
-}
-.fts-hide svg { width: 12px; height: 12px; }
-.fts-hide:hover { background: var(--red-wash); color: var(--red); }
 .fts-body {
   flex: 1;
   min-height: 0;
