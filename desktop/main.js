@@ -573,7 +573,7 @@ async function loadWithSync() {
   if (local) return local;
 
   const seed = readJson(path.join(__dirname, "seed", "books.json"), {
-    library: "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
+    library: "مکتبہ — مدرسہ نعمانیہ",
     updated: today(),
     books: []
   });

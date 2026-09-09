@@ -86,6 +86,17 @@
 
 html, body { height: 100%; overflow: hidden; }
 
+/* Every <dialog> — the picker and all 17 modals — carries its own default
+   text color from the browser's UA stylesheet (color: CanvasText, i.e.
+   black), which does NOT inherit from body and is not overridden by theme
+   tokens on its own. In dark mode this meant every dialog's default text
+   silently fell back to black-on-near-black: individually-colored labels
+   (var(--muted) etc.) still showed correctly, so only the plain text —
+   book titles, form values, everything relying on inherited color — went
+   dark and looked broken while nearby labels looked fine. One rule fixes
+   every dialog at once, light and dark, since --text is already themed. */
+dialog { color: var(--text); }
+
 body {
   display: flex;
   flex-direction: column;
@@ -246,6 +257,14 @@ button, input, select, textarea, optgroup, option {
   padding: 6px 5px;
   gap: 2px;
   box-shadow: var(--sh-1);
+  /* Nine buttons plus the separator can outgrow a shorter window. Without a
+     height limit and its own scroll, the rail just kept growing past the
+     dialog's own box, and the dialog's overflow:hidden silently clipped
+     whatever fell outside — the last one or two icons (بحث, مؤخرا) vanishing
+     with no way to reach them, not even a scrollbar to say more was there. */
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 .rail button {
   position: relative;
@@ -2008,7 +2027,16 @@ html[data-mode="dark"] {
   --blue-wash:  #17263a;
 }
 html[data-mode="dark"] .cover-acts .tbtn { background: rgba(28,35,44,.92); }
-html[data-mode="dark"] .bookrow.st-issued .dot { box-shadow: 0 0 0 2px #3a2f18; }
+/* --green and --red are tuned for a white background (dark, low-saturation
+   shades that need a light shell to be legible). Dark mode never redefined
+   them, so the available/issued/missing status dots — the highlight a
+   librarian actually scans for — kept that light-mode dullness against a
+   near-black shell and read as barely there instead of as a clear signal. */
+html[data-mode="dark"] .bookrow.st-available .dot { background: #3ddc97; box-shadow: 0 0 0 2px var(--green-wash); }
+html[data-mode="dark"] .bookrow.st-issued    .dot { background: #e0bb69; box-shadow: 0 0 0 2px #3a2f18; }
+html[data-mode="dark"] .bookrow.st-missing   .dot { background: #e2707a; box-shadow: 0 0 0 2px var(--red-wash); }
+html[data-mode="dark"] .bookrow.st-missing .br-title { color: #e2707a; }
+html[data-mode="dark"] .bookrow.st-issued  .br-title { color: #e0bb69; }
 html[data-mode="dark"] .statusrow button.on-issued { background: #3a2f18; color: #e0bb69; }
 html[data-mode="dark"] .bc-status.st-issued { background: #3a2f18; color: #e0bb69; }
 html[data-mode="dark"] .home-veil {
@@ -2574,6 +2602,23 @@ dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
 .rail button[data-mode="favorites"] { color: #d1971f; }
 .rail button[data-mode="recent"]    { color: #0f9b8e; }
 .rail button.active { color: var(--blue) !important; }   /* selection state still wins */
+
+/* Dark mode: every icon goes white instead of keeping its light-mode brand
+   hue. Those per-icon colors (above) were tuned against a white shell — most
+   still read fine on near-black, but several (slate #5c6a7a, olive #7a5230,
+   dark gold #b8860b) sit too close to the shell's own darkness and looked
+   dim or absent rather than colorful. Uniform white removes the guesswork
+   and matches the reference app's own dark mode. The selected rail item
+   keeps its blue (the !important above already wins over this). */
+html[data-mode="dark"] #tbAddOne,
+html[data-mode="dark"] #tbAddMany,
+html[data-mode="dark"] #tbDelete,
+html[data-mode="dark"] #tbExport,
+html[data-mode="dark"] #tbPull,
+html[data-mode="dark"] #tbSettings,
+html[data-mode="dark"] #tbPicker,
+html[data-mode="dark"] .rail button:not(.active),
+html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 
 /* ── URL-attach / search-assist buttons ───────────────────────────────── */
 
