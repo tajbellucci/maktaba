@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "electron .",
-    "test": "node test-norm.js",
+    "test": "node test-norm.js && node test-detect.js",
     "dist": "electron-builder --win nsis"
   },
   "devDependencies": {

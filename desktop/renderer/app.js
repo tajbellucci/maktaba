@@ -14,11 +14,21 @@ const MAKTABA_OPTIONS = ["قباء مسجد", "نعمانیہ قدیم", "نعم
 const DEPARTMENTS_BY_MAKTABA = {
   "نعمانیہ جدید": ["دار الافتاء", "دار التصنیف", "لائبریری", "غرفة عامة للشيخ", "غرفة خاصة للشيخ"]
 };
+/* Catalogue text is written by librarians and arrives from a shared file, so
+   it is never safe to drop straight into markup: a title containing "<" would
+   silently break the row it sits in. Everything derived from book, category
+   or release data goes through esc() on its way into innerHTML — quotes
+   included, because several of these land inside attributes. */
+const esc = (s) => String(s == null ? "" : s)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const escapeHtml = esc;
+
 function departmentsFor(maktaba) { return DEPARTMENTS_BY_MAKTABA[maktaba] || []; }
 function updateDeptList(maktaba) {
   const dl = $("deptList");
   if (!dl) return;
-  dl.innerHTML = departmentsFor(maktaba).map((d) => `<option value="${d}"></option>`).join("");
+  dl.innerHTML = departmentsFor(maktaba).map((d) => `<option value="${esc(d)}"></option>`).join("");
 }
 /* Every record passes through here on load, on pull, and on create, so a
    book written by an older version never renders as undefined.
@@ -68,7 +78,7 @@ function categoryChoices() {
 
 function refreshCategoryList() {
   const dl = $("catList");
-  if (dl) dl.innerHTML = categoryChoices().map((c) => `<option value="${c}"></option>`).join("");
+  if (dl) dl.innerHTML = categoryChoices().map((c) => `<option value="${esc(c)}"></option>`).join("");
 }
 
 const MATERIALS = ["book", "magazine", "manuscript", "thesis", "electronic"];
@@ -617,7 +627,7 @@ function renderGroups() {
   for (const [name, count] of groups()) {
     const row = document.createElement("div");
     row.className = "grouprow" + (group === name ? " sel" : "");
-    row.innerHTML = `<div class="c-name"><svg><use href="#${icon}"/></svg><span>${name}</span></div>
+    row.innerHTML = `<div class="c-name"><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
     row.onclick = () => { group = name; selectedId = null; renderAll(); };
     list.appendChild(row);
@@ -647,9 +657,9 @@ function renderBooks() {
     ].join("");
     row.innerHTML = `<span class="br-star${b.favorite ? " on" : ""}" data-star="${b.id}" title="${t("favorite")}">${b.favorite ? "★" : "☆"}</span>
                      <span class="br-acc">${ud(b.accession || "—")}</span>
-                     <span class="br-author">${b.author || t("noAuthor")}</span>
-                     <span class="br-title"><span class="dot" title="${t("st_" + b.status)}"></span>${b.title}${badges}</span>
-                     <span class="br-publisher">${b.publisher || ""}</span>`;
+                     <span class="br-author">${esc(b.author) || t("noAuthor")}</span>
+                     <span class="br-title"><span class="dot" title="${t("st_" + b.status)}"></span>${esc(b.title)}${badges}</span>
+                     <span class="br-publisher">${esc(b.publisher)}</span>`;
     row.onclick = () => {
       selectedId = b.id;
       b.viewedAt = new Date().toISOString();
@@ -886,7 +896,7 @@ function renderTracking(b) {
 
   const hist = b.history.length
     ? `<div class="hist">${b.history.slice(0, 6).map((h) =>
-        `<div class="hist-row"><span class="hist-date">${h.date}</span><span>${t("ev_" + h.action) || h.action}${h.detail ? " — " + h.detail : ""}</span></div>`
+        `<div class="hist-row"><span class="hist-date">${esc(h.date)}</span><span>${t("ev_" + h.action) || esc(h.action)}${h.detail ? " — " + esc(h.detail) : ""}</span></div>`
       ).join("")}</div>`
     : "";
 
@@ -896,10 +906,10 @@ function renderTracking(b) {
   const isDept = b.issueType === "department";
   const whereClass = b.status === "available" ? "ok" : b.status === "missing" ? "bad" : "out";
   const whereText = b.status === "available"
-    ? `${t("whereShelf")}${b.almari ? ` · ${t("fShelf")} ${b.almari}` : ""}`
+    ? `${t("whereShelf")}${b.almari ? ` · ${t("fShelf")} ${esc(b.almari)}` : ""}`
     : b.status === "missing"
       ? t("whereMissing")
-      : `${isDept ? t("whereDept") : t("wherePerson")} · ${heldByLine(b)}`;
+      : `${isDept ? t("whereDept") : t("wherePerson")} · ${esc(heldByLine(b))}`;
 
   box.innerHTML = `
     <div class="track-head">${t("trackingHead")}</div>
@@ -976,10 +986,10 @@ function renderTracking(b) {
     $("btnReturn").onclick = async () => {
       const ok = await askConfirm({
         title: isDept ? t("confirmBackTitle") : t("confirmReturnTitle"),
-        body: `<p class="ask-book">${b.title}</p>
+        body: `<p class="ask-book">${esc(b.title)}</p>
                <p>${isDept ? t("confirmBackBody") : t("confirmReturnBody")}</p>
-               <p class="ask-who">${heldByLine(b)}</p>
-               ${b.almari ? `<p class="hint">${t("backToAlmari")} ${b.almari}</p>` : ""}`,
+               <p class="ask-who">${esc(heldByLine(b))}</p>
+               ${b.almari ? `<p class="hint">${t("backToAlmari")} ${esc(b.almari)}</p>` : ""}`,
         go: isDept ? t("markBack") : t("markReturned")
       });
       if (ok) setStatus(b, "available");
@@ -995,7 +1005,7 @@ function renderTracking(b) {
   if (miss) miss.onclick = async () => {
     const ok = await askConfirm({
       title: t("confirmMissingTitle"),
-      body: `<p class="ask-book">${b.title}</p><p>${t("confirmMissingBody")}</p>`,
+      body: `<p class="ask-book">${esc(b.title)}</p><p>${t("confirmMissingBody")}</p>`,
       go: t("markMissing"),
       danger: true
     });
@@ -1115,10 +1125,10 @@ function openIssueDialog(b, kind) {
 
     const ok = await askConfirm({
       title: mode === "department" ? t("confirmTransferTitle") : t("confirmIssueTitle"),
-      body: `<p class="ask-book">${b.title}</p>
+      body: `<p class="ask-book">${esc(b.title)}</p>
              <p>${mode === "department" ? t("confirmTransferBody") : t("confirmIssueBody")}</p>
-             <p class="ask-who">${who}${mode === "department" && almari ? ` · ${t("fShelf")} ${almari}` : ""}</p>
-             <p class="hint">${t("fDueDate")}: ${$("iDue").value}</p>`,
+             <p class="ask-who">${esc(who)}${mode === "department" && almari ? ` · ${t("fShelf")} ${esc(almari)}` : ""}</p>
+             <p class="hint">${t("fDueDate")}: ${esc($("iDue").value)}</p>`,
       go: mode === "department" ? t("transferBook") : t("issueBook")
     });
     if (!ok) return;
@@ -1164,7 +1174,7 @@ function renderCategoryManager() {
 
   box.innerHTML = categories().map((c, i) => `
     <div class="cat-row">
-      <span class="cat-name">${c}</span>
+      <span class="cat-name">${esc(c)}</span>
       <span class="cat-count">${ud(counts.get(c) || 0)}</span>
       <button class="tbtn danger" data-delcat="${i}" title="${t("mDelete")}"><svg><use href="#i-x"/></svg></button>
     </div>`).join("") || `<div class="hint">${t("noCategories")}</div>`;
@@ -1223,11 +1233,11 @@ function showIssued() {
         ${issued.map((b) => `
           <div class="iss-row${isOverdue(b) ? " late" : ""}">
             <span>${ud(b.accession || "")}</span>
-            <span>${b.title}</span>
-            <span>${heldByLine(b) || "—"}<span class="who-kind">${b.issueType === "department" ? t("whereDept") : t("wherePerson")}</span></span>
-            <span>${b.issueType === "person" ? (b.borrowerAddress || b.borrowerContact || "—") : "—"}</span>
-            <span dir="ltr" class="iss-phone">${b.issueType === "person" ? (b.borrowerPhone || "—") : "—"}</span>
-            <span>${b.dueDate || "—"}${isOverdue(b) ? ` · ${t("overdue")}` : ""}</span>
+            <span>${esc(b.title)}</span>
+            <span>${esc(heldByLine(b)) || "—"}<span class="who-kind">${b.issueType === "department" ? t("whereDept") : t("wherePerson")}</span></span>
+            <span>${b.issueType === "person" ? esc(b.borrowerAddress || b.borrowerContact || "—") : "—"}</span>
+            <span dir="ltr" class="iss-phone">${b.issueType === "person" ? esc(b.borrowerPhone || "—") : "—"}</span>
+            <span>${esc(b.dueDate) || "—"}${isOverdue(b) ? ` · ${t("overdue")}` : ""}</span>
           </div>`).join("")}
       </div>`
     : `<div class="hint">${t("noneIssued")}</div>`;
@@ -1283,7 +1293,7 @@ function showCard(b, row) {
        two aligned columns — that is what makes its card read like a title
        page rather than a form. */
     const line = (label, value) => value
-      ? `<div class="bc-line"><span class="bc-k">${label}:</span> <span class="bc-v">${value}</span></div>`
+      ? `<div class="bc-line"><span class="bc-k">${label}:</span> <span class="bc-v">${esc(value)}</span></div>`
       : "";
 
     /* Laid out like Shamela's own book card: the title carrying its author in
@@ -1292,9 +1302,9 @@ function showCard(b, row) {
        the inline-end so it never breaks that column of text, and drawn only
        when the book actually has one. */
     card.innerHTML = `
-      ${src ? `<img class="bc-img" src="${src}" alt="" />` : ""}
-      <div class="bc-head">${b.title}${b.author ? `  <span class="bc-paren">(${b.author})</span>` : ""}</div>
-      ${b.category ? `<div class="bc-cat">${t("fCategory")}: ${b.category}</div>` : ""}
+      ${src ? `<img class="bc-img" src="${esc(src)}" alt="" />` : ""}
+      <div class="bc-head">${esc(b.title)}${b.author ? `  <span class="bc-paren">(${esc(b.author)})</span>` : ""}</div>
+      ${b.category ? `<div class="bc-cat">${t("fCategory")}: ${esc(b.category)}</div>` : ""}
       <div class="bc-rule"></div>
       <div class="bc-body">
         ${line(t("fTitle").replace(" *", ""), b.title)}
@@ -1371,7 +1381,7 @@ function renderCover(b) {
   if (!box) return;
   const src = imageSrc(b.image);
   box.innerHTML = src
-    ? `<img class="cover-img" src="${src}" alt="" />
+    ? `<img class="cover-img" src="${esc(src)}" alt="" />
        <div class="cover-acts">
          <button class="tbtn" id="btnPickImg" title="${t("changePhoto")}"><svg><use href="#i-image"/></svg></button>
          <button class="tbtn" id="btnSearchImg" title="${t("searchCover")}"><svg><use href="#i-search"/></svg></button>
@@ -1957,7 +1967,6 @@ async function doPull(auto = false) {
   const wn = await window.maktaba.whatsNew().catch(() => null);
   const latest = wn && wn.data && Array.isArray(wn.data.releases) && wn.data.releases[0];
   if (latest) {
-    const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
     html += `<div class="diff-note">
         <div class="diff-note-h">${esc(latest.version ? "v" + latest.version : "")} ${esc(latest.date || "")}</div>
         ${Array.isArray(latest.items)
@@ -2165,8 +2174,6 @@ function diffCatalogues(from, to) {
 }
 
 function renderDiff(d) {
-  const esc = (s) => String(s == null ? "" : s)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const shorten = (s) => {
     s = String(s == null ? "" : s);
     return s.length > 60 ? s.slice(0, 60) + "…" : (s || "—");
@@ -2802,6 +2809,47 @@ function pageOfOffset(offset, pages = readerPages) {
   return Math.max(0, pages.length - 1);
 }
 
+/* Urdu and Arabic share the same Arabic script, so "which font" cannot be
+   decided by which alphabet is used — it has to be decided by which LETTERS
+   are used. These codepoints are the standard Urdu-specific forms that
+   essentially never appear in Arabic-language text: ی ہ ک (Farsi/Urdu yeh,
+   goal heh, keheh — Arabic uses ي ة/ه ك instead) plus the retroflex and
+   extra consonants Arabic has no letter for at all (ٹ ڈ ڑ ں ھ ے پ چ گ ژ).
+   A ratio, not a raw count, so a short snippet with one stray character
+   doesn't get misclassified against a much longer sample. */
+const URDU_MARKERS = /[ٹپچڈڑژکگںھہیےﭖ-ﭙﭦ-ﭩﭺ-ﭽﮈﮉﮊﮋﮌﮍﮎ-ﮕﮞﮟﮦ-ﮯﯼ-ﯿ]/g;
+const ARABIC_SCRIPT = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/g;
+
+/* Sampled from three places, not just the opening. A madrassa Urdu book
+   almost always begins with an Arabic bismillah, ayat or hadith before the
+   Urdu commentary starts, so judging by the first few thousand characters
+   alone declared those books Arabic and set them in the wrong face. */
+const SCRIPT_WINDOW = 4000;
+
+function scriptSample(text) {
+  const s = String(text || "");
+  if (s.length <= SCRIPT_WINDOW * 3) return s;
+  const mid = Math.floor((s.length - SCRIPT_WINDOW) / 2);
+  return s.slice(0, SCRIPT_WINDOW)
+       + s.slice(mid, mid + SCRIPT_WINDOW)
+       + s.slice(s.length - SCRIPT_WINDOW);
+}
+
+function detectScript(text) {
+  const sample = scriptSample(text);
+  const arabicChars = (sample.match(ARABIC_SCRIPT) || []).length;
+  if (arabicChars < 20) return null;                  // not really Arabic-script text at all
+  const urduChars = (sample.match(URDU_MARKERS) || []).length;
+  return (urduChars / arabicChars) > 0.01 ? "ur" : "ar";
+}
+
+function applyReaderScript(text) {
+  const el = $("rdText");
+  el.classList.remove("script-ur", "script-ar");
+  const script = detectScript(text);
+  if (script) el.classList.add("script-" + script);
+}
+
 async function openReader(book, filePath, preset) {
   $("rdTitle").textContent = book.title || "";
   $("rdFile").textContent = baseName(filePath);
@@ -2821,6 +2869,7 @@ async function openReader(book, filePath, preset) {
     return;
   }
   readerText = res.text;
+  applyReaderScript(readerText);
   readerHits = [];
   readerAt = 0;
   readerPage = 0;
@@ -2832,8 +2881,6 @@ async function openReader(book, filePath, preset) {
   setTimeout(() => $("rdQuery").focus(), 60);
 }
 
-const escapeHtml = (s) => String(s)
-  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /* Renders ONE page, with any hits that fall inside it wrapped, and the
    current one marked. Built by slicing between hits rather than by replacing
@@ -3081,21 +3128,36 @@ document.addEventListener("keydown", (e) => {
    catalogue box above the list already does names. Only books marked
    format="unicode" with an attachment have text to search at all, so the
    scan is over those and says plainly when there are none. */
-const ftsCache = new Map();     // path -> text, for this session only
+/* path -> { text, idx }, for this session only. The prepared search index
+   lives beside the text it was built from, so clearing or dropping a path
+   discards both together and a stale index can never outlive its book. */
+const ftsCache = new Map();
 let ftsBusy = false;
 
 const ftsTerms = () =>
   ["fts1", "fts2", "fts3", "fts4"].map((id) => $(id).value.trim()).filter(Boolean);
 
-async function ftsTextOf(path) {
+async function ftsEntryOf(path) {
   if (ftsCache.has(path)) return ftsCache.get(path);
   let text = "";
   try {
     const res = await window.maktaba.readText(path);
     if (res && res.ok) text = res.text || "";
   } catch { /* an unreadable attachment must not abort the whole search */ }
-  ftsCache.set(path, text);
-  return text;
+  const entry = { text, idx: new Map() };
+  ftsCache.set(path, entry);
+  return entry;
+}
+
+/* Normalizing the Qur'an-sized file costs ~330 ms. Without this, running a
+   second search over the same books paid that again for every book, so
+   changing one word in the query felt like starting from nothing. Keyed by
+   the two options that change what the index contains. */
+function ftsIndexOf(entry, opts) {
+  const key = (opts.diacritics ? "1" : "0") + (opts.hamza ? "1" : "0");
+  let idx = entry.idx.get(key);
+  if (!idx) { idx = prepareIndex(entry.text, opts); entry.idx.set(key, idx); }
+  return idx;
 }
 
 async function runFullTextSearch() {
@@ -3118,12 +3180,17 @@ async function runFullTextSearch() {
   for (const b of targets) {
     $("ftsStatus").textContent = t("ftsScanning")
       .replace("{i}", ud(++done)).replace("{n}", ud(targets.length));
+    /* Hand the window back before the heavy work, or the counter above never
+       repaints: once a book's text is cached, nothing in this loop actually
+       waits on anything, and the whole scan runs in one frozen frame. */
+    await new Promise((r) => setTimeout(r, 0));
     for (const path of b.files) {
-      const text = await ftsTextOf(path);
+      const entry = await ftsEntryOf(path);
+      const text = entry.text;
       if (!text) continue;
       /* Normalize the book ONCE and reuse it for every term: on the 754k-character
          Qur'an that is ~330 ms instead of ~330 ms per term. */
-      const idx = prepareIndex(text, opts);
+      const idx = ftsIndexOf(entry, opts);
       // ليس — a book containing the excluded word drops out whatever else matched
       if (exclude && findInTextOpts(text, exclude, opts, idx).length) continue;
       const perTerm = terms.map((q) => findInTextOpts(text, q, opts, idx));
@@ -3153,7 +3220,7 @@ function renderFtsResults(found) {
   for (const r of found) {
     const row = document.createElement("div");
     row.className = "fts-hit";
-    row.innerHTML = `<span class="fh-title">${r.book.title || ""}</span>
+    row.innerHTML = `<span class="fh-title">${esc(r.book.title)}</span>
                      <span class="fh-count">${ud(r.total)}</span>`;
     row.title = baseName(r.path);
     // Opening straight at the word is the point — a result you still have to
@@ -3190,8 +3257,8 @@ function showDuplicates() {
   body.innerHTML = groups.length
     ? groups.map((g) => `
         <div class="dupe-group">
-          <div class="dupe-title">${g[0].title} — ${g[0].author || t("noAuthor")}</div>
-          ${g.map((b) => `<div class="dupe-row">${t("fAccession")} <b>${ud(b.accession || "—")}</b> · ${t("st_" + b.status)}${b.maktaba ? " · " + b.maktaba : ""}</div>`).join("")}
+          <div class="dupe-title">${esc(g[0].title)} — ${esc(g[0].author) || t("noAuthor")}</div>
+          ${g.map((b) => `<div class="dupe-row">${t("fAccession")} <b>${ud(b.accession || "—")}</b> · ${t("st_" + b.status)}${b.maktaba ? " · " + esc(b.maktaba) : ""}</div>`).join("")}
         </div>`).join("")
     : `<div class="hint">${t("noDuplicates")}</div>`;
   $("dlgDupes").showModal();
@@ -3207,8 +3274,8 @@ async function showWhatsNew() {
   body.innerHTML = rel && rel.length
     ? rel.map((r) => `
         <div class="wn-rel">
-          <div class="wn-ver">v${r.version}<span class="wn-date">${r.date || ""}</span></div>
-          <ul class="wn-list">${(r[lang] || r.en || []).map((li) => `<li>${li}</li>`).join("")}</ul>
+          <div class="wn-ver">v${esc(r.version)}<span class="wn-date">${esc(r.date)}</span></div>
+          <ul class="wn-list">${(r[lang] || r.en || []).map((li) => `<li>${esc(li)}</li>`).join("")}</ul>
         </div>`).join("")
     : `<div class="hint">${t("noWhatsNew")}</div>`;
   $("dlgWhatsNew").showModal();

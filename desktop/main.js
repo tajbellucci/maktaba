@@ -717,20 +717,49 @@ ipcMain.handle("file:readText", async (_e, filePath) => {
    would still hit the network-failure path. Fire-and-forget: never awaited
    by a caller, never blocks a sync, and one failed download just leaves that
    one book to retry (or to be read live) next time someone is online. */
+const PRECACHE_PARALLEL = 4;
+const PRECACHE_REVALIDATE_MS = 7 * 24 * 60 * 60 * 1000;
+const precacheSeen = new Set();      // in flight or done this run, so repeated loads don't refetch
+
 function precacheUnicodeTexts(data) {
   if (!data || !Array.isArray(data.books)) return;
+
+  const queue = [];
   for (const b of data.books) {
     if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
     for (const f of b.files) {
       if (typeof f !== "string" || !/^https?:\/\//i.test(f)) continue;
+      if (precacheSeen.has(f)) continue;
       const cached = textCachePath(f);
-      if (fs.existsSync(cached)) continue;
-      fetchTextOverHttps(f).then((text) => {
-        if (text === null) return;
-        try { fs.writeFileSync(cached, text, "utf8"); } catch { /* best-effort */ }
-      });
+      /* A hosted file can be replaced behind the same URL, and the cache is
+         keyed only by that URL — without a refresh a reader would keep the
+         first copy it ever saw for good. Reading stays offline-first; this
+         only quietly renews an old copy for next time. */
+      let stale = true;
+      try {
+        stale = Date.now() - fs.statSync(cached).mtimeMs > PRECACHE_REVALIDATE_MS;
+      } catch { stale = true; }            // not cached at all
+      if (!stale) continue;
+      precacheSeen.add(f);
+      queue.push([f, cached]);
     }
   }
+  if (!queue.length) return;
+
+  /* A few at a time, not all at once. Firing one request per attachment was
+     fine for a sample catalogue and stops working on a real one: a few
+     hundred simultaneous connections exhaust sockets and GitHub starts
+     refusing them, and every one of those failures is silent. */
+  let at = 0;
+  const worker = async () => {
+    while (at < queue.length) {
+      const [url, cached] = queue[at++];
+      const text = await fetchTextOverHttps(url);
+      if (text === null) { precacheSeen.delete(url); continue; }   // retry on a later load
+      try { fs.writeFileSync(cached, text, "utf8"); } catch { /* best-effort */ }
+    }
+  };
+  for (let i = 0; i < Math.min(PRECACHE_PARALLEL, queue.length); i++) worker();
 }
 
 /* So the catalogue list can show which books are already usable offline —

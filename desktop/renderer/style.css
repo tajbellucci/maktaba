@@ -62,6 +62,14 @@
   --nastaliq: "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", serif;
   --latin:    "Segoe UI", "Inter", sans-serif;
 
+  /* Fixed, NEVER redefined per UI language — unlike --nastaliq below, which
+     data-lang="ar" quietly repoints at My Lotus. The reader needs the
+     opposite behaviour: a book's own script decides its font, not whatever
+     language the interface happens to be showing. See detectScript() in
+     app.js and .rd-text.script-ur / .script-ar below. */
+  --font-urdu:   "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", serif;
+  --font-arabic: "My Lotus", "Noto Naskh Arabic", serif;
+
   /* The face the WHOLE window uses. It points at --nastaliq rather than
      naming a font, so the language rules below (and the Appearance picker,
      which overrides --nastaliq inline) move every label, button, row and
@@ -1470,6 +1478,13 @@ html[data-mode="dark"] .rd-text { --paper: #232a33; }
   max-width: 72ch;
   margin-inline: auto;
 }
+/* The book's own script wins over whichever UI language is currently
+   selected — set by detectScript() in app.js when the reader opens a book,
+   never by the language toggle. Both Urdu and Arabic use Arabic script, so
+   this can't be "which alphabet" — it goes by which letters actually appear
+   (see the function for the real distinguishing set). */
+.rd-text.script-ur .rd-para { font-family: var(--font-urdu); }
+.rd-text.script-ar .rd-para { font-family: var(--font-arabic); }
 .rd-hit { background: #ffe9a8; color: inherit; border-radius: 2px; padding: 0 1px; }
 .rd-hit.on { background: var(--blue); color: #fff; }
 html[data-mode="dark"] .rd-hit { background: #5a4a1c; color: #f2e6c4; }
