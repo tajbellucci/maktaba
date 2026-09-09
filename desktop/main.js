@@ -47,19 +47,69 @@ const backupsDir = () => {
 };
 
 const KEEP_BACKUPS = 15;
+const KEEP_DAYS = 30;
+
+function backupFiles() {
+  return fs.readdirSync(backupsDir())
+    .filter((f) => f.startsWith("books-") && f.endsWith(".json"))
+    .sort();                                  // ISO stamps sort chronologically
+}
+
+/* Retention keeps two different things, because they answer two different
+   questions. The 15 most recent answer "undo what just happened". One per day
+   for a month answers "the book was still there last week, where did it go" —
+   which the recent-only rule could not, since a busy day of launches evicted
+   an entire week. */
+function pruneBackups() {
+  const all = backupFiles();
+  const keep = new Set(all.slice(-KEEP_BACKUPS));
+  const oldestDay = new Date(Date.now() - KEEP_DAYS * 86400000)
+    .toISOString().slice(0, 10);
+  const firstOfDay = new Map();
+  for (const f of all) {
+    const day = f.slice(6, 16);               // books-YYYY-MM-DD…
+    if (day >= oldestDay && !firstOfDay.has(day)) firstOfDay.set(day, f);
+  }
+  for (const f of firstOfDay.values()) keep.add(f);
+  for (const f of all) {
+    if (keep.has(f)) continue;
+    try { fs.unlinkSync(path.join(backupsDir(), f)); } catch { /* already gone */ }
+  }
+}
 
 function snapshotCatalogue(tag) {
   try {
     if (!fs.existsSync(dataFile())) return;
     const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
     fs.copyFileSync(dataFile(), path.join(backupsDir(), `books-${stamp}-${tag}.json`));
-    const old = fs.readdirSync(backupsDir())
-      .filter((f) => f.startsWith("books-") && f.endsWith(".json"))
-      .sort();
-    for (const f of old.slice(0, Math.max(0, old.length - KEEP_BACKUPS))) {
-      try { fs.unlinkSync(path.join(backupsDir(), f)); } catch { /* already gone */ }
-    }
+    pruneBackups();
   } catch { /* a snapshot failing must never stop the app working */ }
+}
+
+/* A catalogue that will not parse is the one case where "there is no local
+   data" is the wrong conclusion: treating it that way hands the machine
+   straight to the server copy (or to the seed) and throws the real catalogue
+   away, with the backups that could have saved it sitting untouched. Keep the
+   damaged file for inspection, then fall back through the snapshots. */
+function readCatalogueSafely() {
+  if (!fs.existsSync(dataFile())) return null;
+  const direct = readJson(dataFile(), null);
+  if (direct && Array.isArray(direct.books)) return direct;
+
+  try {
+    const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+    fs.copyFileSync(dataFile(), path.join(backupsDir(), `books-${stamp}-corrupt.json.bad`));
+  } catch { /* keeping the evidence is best-effort */ }
+
+  for (const f of backupFiles().reverse()) {
+    const back = readJson(path.join(backupsDir(), f), null);
+    if (back && Array.isArray(back.books)) {
+      writeCatalogue(dataFile(), back);
+      console.warn(`[maktaba] catalogue unreadable — recovered from ${f}`);
+      return back;
+    }
+  }
+  return null;
 }
 
 /* What "unpublished" means: the fingerprint of the catalogue as it was when
@@ -287,7 +337,17 @@ function getJson(url, headers) {
   return new Promise((resolve) => {
     const req = https.get(url, { timeout: 6000, headers }, (res) => {
       if (res.statusCode !== 200) { res.resume(); resolve(null); return; }
+      /* setEncoding, NOT `body += chunk`. Adding a Buffer to a string
+         decodes that chunk on its own, so a UTF-8 character split across a
+         chunk boundary — routine in a file of Arabic and Urdu — decodes as
+         two U+FFFD replacement characters at each break. This is the real
+         source of the "corrupted text" that kept appearing in the catalogue
+         and was blamed on the CDN cache: the damage happened here, on read,
+         and was then saved and republished as if it were the data. Setting
+         the encoding puts a StringDecoder in the path, which holds a partial
+         character back until the rest of its bytes arrive. */
       let body = "";
+      res.setEncoding("utf8");
       res.on("data", (c) => (body += c));
       res.on("end", () => {
         try { resolve(JSON.parse(body)); } catch { resolve(null); }
@@ -327,6 +387,24 @@ function getJson(url, headers) {
 async function fetchRemoteJson(owner, repo, branch, file, token) {
   const headers = { "Accept": "application/vnd.github.raw", "User-Agent": "maktaba-desktop" };
   if (token) headers.Authorization = `Bearer ${token}`;
+
+  /* Ask which commit the branch is on, then read the file pinned to THAT
+     commit. A raw URL carrying a commit sha names a version of the file that
+     can never change, so the public cache in front of it is finally telling
+     the truth — unlike the branch-name raw URL below, which is what produced
+     this project's recurring "corrupted text that isn't really there" scares.
+     It also sidesteps a limit that was about to bite: the contents endpoint
+     stops returning a file's content once it passes 1 MB, which this
+     catalogue reaches at roughly 2,900 books; a sha-pinned raw read has no
+     such ceiling. */
+  const commitHeaders = { Accept: "application/vnd.github+json", "User-Agent": "maktaba-desktop" };
+  if (token) commitHeaders.Authorization = `Bearer ${token}`;
+  const head = await getJson(`https://api.github.com/repos/${owner}/${repo}/commits/${branch}`, commitHeaders);
+  if (head && head.sha) {
+    const pinned = await getJson(`https://raw.githubusercontent.com/${owner}/${repo}/${head.sha}/${file}`, {});
+    if (pinned) return pinned;
+  }
+
   const viaApi = await getJson(`https://api.github.com/repos/${owner}/${repo}/contents/${file}?ref=${branch}`, headers);
   if (viaApi) return viaApi;
   return await getJson(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`, {});
@@ -417,7 +495,25 @@ function createWindow() {
   });
 }
 
+/* Two copies of the app open on one PC both hold the whole catalogue in
+   memory and both autosave all of it, so whichever saves last silently
+   discards the other's work — and nothing anywhere would say so. Only one
+   copy runs; a second launch raises the window that already exists. */
+const gotLock = app.requestSingleInstanceLock();
+if (!gotLock) {
+  app.quit();
+} else {
+  app.on("second-instance", () => {
+    const [existing] = BrowserWindow.getAllWindows();
+    if (existing) {
+      if (existing.isMinimized()) existing.restore();
+      existing.focus();
+    }
+  });
+}
+
 app.whenReady().then(() => {
+  if (!gotLock) return;
   snapshotCatalogue("launch");
   createSplash();
   // small floor so the mark is actually seen, not just flashed
@@ -448,11 +544,16 @@ async function loadWithSync() {
   const branch = settings.branch || REPO.branch;
   const isLibrarian = Boolean(settings.isLibrarian);
 
-  const local = fs.existsSync(dataFile())
-    ? readJson(dataFile(), null)
-    : null;
+  const local = readCatalogueSafely();
 
   if (isLibrarian && local) return local;
+
+  /* `isLibrarian` is a flag in a settings file, not a live check — a lapsed
+     login writes it false, and this path then adopts the server copy without
+     asking. If this machine is holding work that never reached GitHub, that
+     adopt is a silent deletion, so it does not happen: keep the local copy
+     and let the window offer the pull with its own diff and confirmation. */
+  if (local && hasUnpublished()) return local;
 
   const remote = await fetchRemoteJson(owner, repo, branch, "books.json", settings.token);
 
@@ -463,6 +564,7 @@ async function loadWithSync() {
        disk, and the machine silently reverted to the morning's copy the next
        time it opened offline. */
     if (!local || catalogueHash(remote) !== catalogueHash(local)) {
+      if (local) snapshotCatalogue("before-auto-pull");
       writeCatalogue(dataFile(), remote);
     }
     return remote;
@@ -489,17 +591,6 @@ ipcMain.handle("books:publishState", () => ({
   unpublished: hasUnpublished(),
   at: (readJson(publishStateFile(), {}) || {}).at || ""
 }));
-
-ipcMain.handle("books:pullLatest", async () => {
-  const settings = readJson(settingsFile(), {});
-  const owner = settings.owner || REPO.owner;
-  const repo = settings.repo || REPO.repo;
-  const branch = settings.branch || REPO.branch;
-  const remote = await fetchRemoteJson(owner, repo, branch, "books.json", settings.token);
-  if (!remote) return { ok: false, error: "انٹرنیٹ سے رابطہ نہیں ہو سکا" };
-  writeCatalogue(dataFile(), remote);
-  return { ok: true, data: remote };
-});
 
 /* Fetches what is currently on GitHub WITHOUT writing it to disk, so the
    window can show "here is exactly what will change" and let the user decide.
@@ -681,6 +772,67 @@ function fetchTextOverHttps(url) {
   });
 }
 
+/* The same idea for the files that are NOT text — scanned PDFs, and the cover
+   images a reader receives as repository URLs. Both were fetched over the
+   network every single time: a PDF opened in the browser (so nothing happened
+   at all without a connection, and the whole scan came down again on every
+   open), and a cover re-requested on every render. The madrassa's collection
+   is mostly scanned PDFs, so this is the difference between "works offline"
+   and "works offline except for the books". */
+const binCacheDir = () => {
+  const dir = path.join(app.getPath("userData"), "file-cache");
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  return dir;
+};
+function binCachePath(url) {
+  const ext = (/\.([a-z0-9]{1,5})(?:[?#]|$)/i.exec(url) || [, "bin"])[1].toLowerCase();
+  return path.join(binCacheDir(), crypto.createHash("sha1").update(url).digest("hex") + "." + ext);
+}
+
+/* Streams to a temporary file and renames only on a complete download, so an
+   interrupted transfer can never leave a half-file that looks cached. */
+function fetchBinaryToCache(url, maxBytes) {
+  return new Promise((resolve) => {
+    const dest = binCachePath(url);
+    const tmp = dest + ".part";
+    const get = (u, hops) => {
+      if (hops <= 0) return resolve(null);
+      https.get(u, { timeout: 30000, headers: { "User-Agent": "maktaba-desktop" } }, (res) => {
+        if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
+          res.resume(); return get(res.headers.location, hops - 1);
+        }
+        if (res.statusCode !== 200) { res.resume(); return resolve(null); }
+        let size = 0;
+        const out = fs.createWriteStream(tmp);
+        const fail = () => {
+          res.destroy(); out.destroy();
+          try { fs.unlinkSync(tmp); } catch { /* nothing to clean */ }
+          resolve(null);
+        };
+        res.on("data", (c) => { size += c.length; if (size > maxBytes) fail(); });
+        res.on("error", fail);
+        out.on("error", fail);
+        res.pipe(out);
+        out.on("finish", () => {
+          try { fs.renameSync(tmp, dest); resolve(dest); }
+          catch { fail(); }
+        });
+      }).on("error", () => resolve(null));
+    };
+    get(url, 5);
+  });
+}
+
+/* Answers "is this hosted file already on this machine", for both kinds of
+   attachment, so the caller never has to know which cache it lives in. */
+function cachedPathFor(url) {
+  const t = textCachePath(url);
+  if (fs.existsSync(t)) return t;
+  const b = binCachePath(url);
+  if (fs.existsSync(b)) return b;
+  return null;
+}
+
 ipcMain.handle("file:readText", async (_e, filePath) => {
   try {
     const real = resolveStoredPath(filePath);
@@ -724,6 +876,20 @@ const precacheSeen = new Set();      // in flight or done this run, so repeated 
 function precacheUnicodeTexts(data) {
   if (!data || !Array.isArray(data.books)) return;
 
+  const covers = [];
+  for (const b of data.books) {
+    if (typeof b.image === "string" && /^https?:\/\//i.test(b.image)
+        && !precacheSeen.has(b.image) && !fs.existsSync(binCachePath(b.image))) {
+      precacheSeen.add(b.image);
+      covers.push(b.image);
+    }
+  }
+  /* Covers are tens of kilobytes, so unlike scans they are worth fetching
+     without being asked: a reader that has synced once then shows its shelf
+     with pictures, offline. Scanned PDFs are not precached — they are
+     hundreds of megabytes and stay on "download when asked". */
+  for (const url of covers) fetchBinaryToCache(url, 8 * 1024 * 1024);
+
   const queue = [];
   for (const b of data.books) {
     if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
@@ -766,41 +932,75 @@ function precacheUnicodeTexts(data) {
    Shamela shows this per book, this app was doing it invisibly. One batched
    call instead of one IPC round-trip per row. */
 ipcMain.handle("file:cachedStatus", (_e, urls) =>
-  (Array.isArray(urls) ? urls : []).map((u) => typeof u === "string" && fs.existsSync(textCachePath(u)))
+  (Array.isArray(urls) ? urls : []).map((u) => typeof u === "string" && Boolean(cachedPathFor(u)))
 );
+
+/* Local paths for hosted covers already on disk, so the window can point its
+   <img> tags at the file instead of re-requesting each one over the network
+   on every render (and showing nothing at all offline). One batched call. */
+ipcMain.handle("file:cachedImages", (_e, urls) => {
+  const out = {};
+  for (const u of (Array.isArray(urls) ? urls : [])) {
+    if (typeof u !== "string") continue;
+    const hit = binCachePath(u);
+    if (fs.existsSync(hit)) out[u] = hit;
+  }
+  return out;
+});
 
 /* The explicit "download all books for offline" action — same fetch/cache
    logic as the background precache, but AWAITED and counted, so the
    librarian who wants to be sure before leaving for a place with no internet
    gets a real answer instead of trusting a silent background job. */
 ipcMain.handle("file:downloadAllTexts", async (_e, data) => {
-  const urls = new Set();
+  const texts = new Set(), docs = new Set();
   for (const b of (data && data.books) || []) {
-    if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
-    for (const f of b.files) if (typeof f === "string" && /^https?:\/\//i.test(f)) urls.add(f);
+    if (!Array.isArray(b.files)) continue;
+    for (const f of b.files) {
+      if (typeof f !== "string" || !/^https?:\/\//i.test(f)) continue;
+      (b.format === "unicode" ? texts : docs).add(f);
+    }
   }
+
   let downloaded = 0, failed = 0, alreadyCached = 0;
-  for (const url of urls) {
-    const cached = textCachePath(url);
-    if (fs.existsSync(cached)) { alreadyCached++; continue; }
+
+  for (const url of texts) {
+    if (cachedPathFor(url)) { alreadyCached++; continue; }
     const text = await fetchTextOverHttps(url);
     if (text === null) { failed++; continue; }
-    try { fs.writeFileSync(cached, text, "utf8"); downloaded++; }
+    try { fs.writeFileSync(textCachePath(url), text, "utf8"); downloaded++; }
     catch { failed++; }
   }
-  return { total: urls.size, downloaded, alreadyCached, failed };
+
+  for (const url of docs) {
+    if (cachedPathFor(url)) { alreadyCached++; continue; }
+    if (await fetchBinaryToCache(url, MAX_DOC_BYTES)) downloaded++; else failed++;
+  }
+
+  return { total: texts.size + docs.size, downloaded, alreadyCached, failed };
 });
 
-ipcMain.handle("file:open", (_e, filePath) => {
+ipcMain.handle("file:open", async (_e, filePath) => {
   const real = resolveStoredPath(filePath);
-  if (!real) return;
+  if (!real) return { ok: false, error: "missing" };
+
   /* A PDF published to Releases is an https:// URL by the time a reader sees
-     it — fs.existsSync() on a URL is always false, so this silently did
-     nothing. Hand it to the OS instead, which downloads/opens/views it with
-     whatever the reader's PC already has for PDFs; no code here needs to know
-     what that is. */
-  if (/^https?:\/\//i.test(real)) { shell.openExternal(real); return; }
-  if (fs.existsSync(real)) shell.openPath(real);
+     it. Handing that URL to the browser meant the scan came down again on
+     every single open and nothing at all happened without a connection.
+     Download it once into the file cache, then open the local copy — the same
+     bargain Unicode texts already had. */
+  if (/^https?:\/\//i.test(real)) {
+    const hit = cachedPathFor(real);
+    if (hit) { shell.openPath(hit); return { ok: true, cached: true }; }
+    const got = await fetchBinaryToCache(real, MAX_DOC_BYTES);
+    if (!got) return { ok: false, error: "offline" };
+    shell.openPath(got);
+    return { ok: true, cached: false };
+  }
+
+  if (!fs.existsSync(real)) return { ok: false, error: "missing" };
+  shell.openPath(real);
+  return { ok: true, cached: true };
 });
 
 ipcMain.handle("file:exists", (_e, filePath) => {
@@ -1311,42 +1511,12 @@ async function doPublish(data) {
   };
 
   try {
-    /* Locally-downloaded covers only exist on this machine's disk. Push
-       each one to the repo first, then rewrite the JSON to point at the
-       hosted URL, so other machines can actually see it after they sync. */
-    for (const book of data.books) {
-      if (typeof book.image === "string" && book.image.startsWith("userdata:covers/")) {
-        const localPath = resolveStoredPath(book.image);
-        if (fs.existsSync(localPath)) {
-          book.image = await publishCover(owner, repo, branch, headers, localPath);
-        }
-      }
-    }
-
-    /* Attached PDFs and text files go up as release assets, and only if some
-       book actually has one — no point creating a release for a catalogue
-       that has no files attached yet. */
-    const needsRelease = data.books.some((b) =>
-      (b.files || []).some((f) => typeof f === "string" && f.startsWith("userdata:files/")));
-
-    if (needsRelease) {
-      const release = await ensureRelease(owner, repo, headers);
-      for (const book of data.books) {
-        if (!Array.isArray(book.files) || !book.files.length) continue;
-        book.files = await Promise.all(book.files.map(async (f) => {
-          if (typeof f !== "string" || !f.startsWith("userdata:files/")) return f;
-          const localPath = resolveStoredPath(f);
-          if (!fs.existsSync(localPath)) return f;
-          return await publishAttachment(owner, repo, headers, release, localPath);
-        }));
-      }
-    }
-
-    // What actually leaves this machine — borrower name/contact stripped from
-    // any personal loan. The full record, borrower included, stays in the
-    // local file written at the end of this function.
-    const forRemote = redactForPublish(data);
-
+    /* The divergence check runs BEFORE anything is uploaded. It used to run
+       after, which meant an aborted publish had already pushed covers and
+       release assets: the server ended up holding a file that no catalogue
+       entry referenced, and "the file uploaded" stopped being evidence that
+       the book published. Nothing leaves this machine until the write is
+       known to be safe. */
     let sha;
     const head = await fetch(`${url}?ref=${branch}`, { headers });
     if (head.ok) {
@@ -1382,6 +1552,42 @@ async function doPublish(data) {
     } else if (head.status !== 404) {
       return { ok: false, error: `GitHub ${head.status}: ${await head.text()}` };
     }
+
+    /* Locally-downloaded covers only exist on this machine's disk. Push
+       each one to the repo first, then rewrite the JSON to point at the
+       hosted URL, so other machines can actually see it after they sync. */
+    for (const book of data.books) {
+      if (typeof book.image === "string" && book.image.startsWith("userdata:covers/")) {
+        const localPath = resolveStoredPath(book.image);
+        if (fs.existsSync(localPath)) {
+          book.image = await publishCover(owner, repo, branch, headers, localPath);
+        }
+      }
+    }
+
+    /* Attached PDFs and text files go up as release assets, and only if some
+       book actually has one — no point creating a release for a catalogue
+       that has no files attached yet. */
+    const needsRelease = data.books.some((b) =>
+      (b.files || []).some((f) => typeof f === "string" && f.startsWith("userdata:files/")));
+
+    if (needsRelease) {
+      const release = await ensureRelease(owner, repo, headers);
+      for (const book of data.books) {
+        if (!Array.isArray(book.files) || !book.files.length) continue;
+        book.files = await Promise.all(book.files.map(async (f) => {
+          if (typeof f !== "string" || !f.startsWith("userdata:files/")) return f;
+          const localPath = resolveStoredPath(f);
+          if (!fs.existsSync(localPath)) return f;
+          return await publishAttachment(owner, repo, headers, release, localPath);
+        }));
+      }
+    }
+
+    // What actually leaves this machine — borrower name/contact stripped from
+    // any personal loan. The full record, borrower included, stays in the
+    // local file written at the end of this function.
+    const forRemote = redactForPublish(data);
 
     /* Lean (no default-valued fields) but still INDENTED, unlike the local
        copy. Indentation is what lets git diff this line-by-line: a one-word

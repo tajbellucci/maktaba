@@ -160,8 +160,25 @@ function isOverdue(b) {
    on their own machine and needs a file:// URL. */
 let COVERS_DIR = "";
 
+/* url -> local file path, for covers already downloaded. Filled once after
+   load; until then a hosted cover simply loads from the network as before. */
+const coverCache = new Map();
+
+async function refreshCoverCache() {
+  const urls = DATA.books.map((b) => b.image).filter((i) => typeof i === "string" && /^https?:\/\//i.test(i));
+  if (!urls.length) return;
+  const map = await window.maktaba.cachedImages(urls).catch(() => ({}));
+  let added = false;
+  for (const [url, local] of Object.entries(map)) {
+    if (!coverCache.has(url)) { coverCache.set(url, local); added = true; }
+  }
+  if (added) renderAll();
+}
+
 function imageSrc(image) {
   if (!image) return "";
+  const local = coverCache.get(image);
+  if (local) return "file:///" + local.split("\\").join("/");
   if (image.startsWith("userdata:covers/")) {
     if (!COVERS_DIR) return "";
     return "file:///" + (COVERS_DIR + "/" + image.slice("userdata:covers/".length)).split("\\").join("/");
@@ -197,7 +214,6 @@ if (!window.maktaba) {
     saveSync: (d) => d.updated,
     export: async () => null,
     dataPath: async () => "(browser preview)",
-    pullLatest: async () => ({ ok: false, error: "preview" }),
     getSettings: async () => ({ owner: "", repo: "", branch: "main", hasToken: false, isLibrarian: false, hasLibrarianPin: false }),
     setSettings: async () => ({ ok: true }),
     setLibrarianPin: async () => ({ ok: true }),
@@ -218,7 +234,7 @@ if (!window.maktaba) {
     publish: async () => ({ ok: false, error: "preview" }),
     pickFile: async () => [],
     pickImage: async () => null,
-    openFile: async () => {},
+    openFile: async () => ({ ok: true }),
     readText: async () => ({
       ok: true,
       text: [
@@ -230,6 +246,7 @@ if (!window.maktaba) {
       name: "preview.txt"
     }),
     cachedStatus: async (urls) => urls.map(() => false),
+    cachedImages: async () => ({}),
     downloadAllTexts: async () => ({ total: 0, downloaded: 0, alreadyCached: 0, failed: 0 }),
     fileExists: async () => true,
     downloadImage: async () => ({ ok: false, error: "preview" }),
@@ -260,6 +277,7 @@ async function boot() {
   const el = $("aboutVer");
   if (el) el.textContent = "Maktaba Naumania — v" + v;
   renderAll();
+  refreshCoverCache();    // swap hosted covers for local copies once we know which exist
   showCatalog();          // opens on the picker, like Shamela does
   checkForUpdate();
   /* Sign the librarian back in from the saved session before deciding what
@@ -432,7 +450,7 @@ async function adoptData(next) {
   /* Attachments may have been replaced by whatever we just pulled, and the
      search cache is keyed by path — same path, new contents would otherwise
      keep answering from the old text for the rest of the session. */
-  ftsCache.clear();
+  ftsCacheClear();
   DATA = next;
   DATA.books.forEach(normalizeBook);
   nextId = 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0);
@@ -440,6 +458,7 @@ async function adoptData(next) {
   refreshCategoryList();
   applyTheme();
   renderAll();
+  refreshCoverCache();
   refreshPublishBadge();
 }
 
@@ -642,7 +661,7 @@ function renderBooks() {
   for (const b of books) {
     const row = document.createElement("div");
     row.className = "bookrow st-" + b.status + (b.id === selectedId ? " sel" : "") + (isOverdue(b) ? " overdue" : "");
-    const unicodeUrl = b.format === "unicode" ? (b.files || []).find((f) => /^https?:\/\//i.test(f)) : null;
+    const hostedUrl = (b.files || []).find((f) => /^https?:\/\//i.test(f));
     const badges = [
       b.format === "pdf" ? `<span class="fmt-badge">PDF</span>` : "",
       b.format === "unicode" ? `<span class="fmt-badge">TXT</span>` : "",
@@ -651,7 +670,7 @@ function renderBooks() {
          revealed by refreshOfflineBadges() once the real answer is known —
          showing it eagerly would claim "offline ready" for books that
          haven't actually been checked yet. */
-      unicodeUrl ? `<span class="fmt-badge offline hidden" data-offline-for="${b.id}" title="${t("offlineReady")}">${t("offlineBadge")}</span>` : "",
+      hostedUrl ? `<span class="fmt-badge offline hidden" data-offline-for="${b.id}" title="${t("offlineReady")}">${t("offlineBadge")}</span>` : "",
       (b.files || []).length > 1 ? `<span class="fmt-badge">×${ud(b.files.length)}</span>` : "",
       isOverdue(b) ? `<span class="fmt-badge od">${t("overdue")}</span>` : ""
     ].join("");
@@ -732,7 +751,7 @@ async function refreshOfflineBadges() {
   const badges = [...document.querySelectorAll(".fmt-badge.offline[data-offline-for]")];
   if (!badges.length) return;
   const urlByBook = new Map(DATA.books.map((b) => [
-    b.id, b.format === "unicode" ? (b.files || []).find((f) => /^https?:\/\//i.test(f)) : null
+    b.id, (b.files || []).find((f) => /^https?:\/\//i.test(f))
   ]));
   const urls = badges.map((el) => urlByBook.get(+el.dataset.offlineFor) || "");
   const status = await window.maktaba.cachedStatus(urls).catch(() => urls.map(() => false));
@@ -1513,7 +1532,14 @@ function renderFileRow(b) {
     };
   };
   row.querySelectorAll("[data-open]").forEach((btn) => {
-    btn.onclick = () => window.maktaba.openFile(b.files[+btn.dataset.open]);
+    btn.onclick = async () => {
+      const res = await window.maktaba.openFile(b.files[+btn.dataset.open]);
+      /* A hosted scan is downloaded on first open. Offline, that is the one
+         thing that cannot be done, and saying nothing looked like a dead
+         button. */
+      if (res && !res.ok) toast(t(res.error === "offline" ? "fileOffline" : "fileMissing"));
+      else refreshOfflineBadges();
+    };
   });
   row.querySelectorAll("[data-read]").forEach((btn) => {
     btn.onclick = () => openReader(b, b.files[+btn.dataset.read]);
@@ -1521,7 +1547,7 @@ function renderFileRow(b) {
   row.querySelectorAll("[data-drop]").forEach((btn) => {
     btn.onclick = () => {
       if (!requireMaster()) return;
-      ftsCache.delete(b.files[+btn.dataset.drop]);   // dropped text must leave the search cache too
+      ftsCacheDrop(b.files[+btn.dataset.drop]);   // dropped text must leave the search cache too
       b.files.splice(+btn.dataset.drop, 1);
       persist();
       renderFileRow(b);
@@ -3130,22 +3156,58 @@ document.addEventListener("keydown", (e) => {
    scan is over those and says plainly when there are none. */
 /* path -> { text, idx }, for this session only. The prepared search index
    lives beside the text it was built from, so clearing or dropping a path
-   discards both together and a stale index can never outlive its book. */
+   discards both together and a stale index can never outlive its book.
+
+   Bounded, because it used to keep every book it had ever searched for the
+   life of the window: the Qur'an alone is 754,000 characters, and a library
+   of a thousand Unicode books would have put gigabytes in one renderer and
+   killed it. A Map iterates in insertion order, so the oldest entry is simply
+   the first key — re-inserting on use is all least-recently-used needs. */
+const FTS_CACHE_MAX_CHARS = 40 * 1000 * 1000;
 const ftsCache = new Map();
+let ftsCacheChars = 0;
 let ftsBusy = false;
+
+function ftsCacheSet(path, entry) {
+  ftsCache.set(path, entry);
+  ftsCacheChars += entry.text.length;
+  while (ftsCacheChars > FTS_CACHE_MAX_CHARS && ftsCache.size > 1) {
+    const [oldest, dropped] = ftsCache.entries().next().value;
+    if (oldest === path) break;               // never evict what was just asked for
+    ftsCache.delete(oldest);
+    ftsCacheChars -= dropped.text.length;
+  }
+}
+
+function ftsCacheClear() {
+  ftsCache.clear();
+  ftsCacheChars = 0;
+}
+
+function ftsCacheDrop(path) {
+  const entry = ftsCache.get(path);
+  if (!entry) return;
+  ftsCache.delete(path);
+  ftsCacheChars -= entry.text.length;
+}
 
 const ftsTerms = () =>
   ["fts1", "fts2", "fts3", "fts4"].map((id) => $(id).value.trim()).filter(Boolean);
 
 async function ftsEntryOf(path) {
-  if (ftsCache.has(path)) return ftsCache.get(path);
+  const hit = ftsCache.get(path);
+  if (hit) {
+    ftsCache.delete(path);                    // re-insert, so it counts as recently used
+    ftsCache.set(path, hit);
+    return hit;
+  }
   let text = "";
   try {
     const res = await window.maktaba.readText(path);
     if (res && res.ok) text = res.text || "";
   } catch { /* an unreadable attachment must not abort the whole search */ }
   const entry = { text, idx: new Map() };
-  ftsCache.set(path, entry);
+  ftsCacheSet(path, entry);
   return entry;
 }
 

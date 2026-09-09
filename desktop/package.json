@@ -9,7 +9,8 @@
   "scripts": {
     "start": "electron .",
     "test": "node test-norm.js && node test-detect.js",
-    "dist": "electron-builder --win nsis"
+    "dist": "electron-builder --win nsis",
+    "test:data": "node test-datasafety.js"
   },
   "devDependencies": {
     "electron": "^32.3.3",
