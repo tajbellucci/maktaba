@@ -26,6 +26,9 @@
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="9"/><path d="M8.5 12.4l2.4 2.4 4.6-5"/>
   </symbol>
+  <symbol id="i-more" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+  </symbol>
   <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/>
     <rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/>
@@ -112,56 +115,43 @@
   </symbol>
 </svg>
 
-<div class="menubar" id="menubar">
-  <div class="menu">
-    <span data-t="mFile">فائل</span>
+<!-- Faithful to the reference app's own bar: one row of direct icon+label
+     buttons, no dropdown-within-a-menu for the actions a librarian reaches
+     for every day. Sort (category/author/status/shelf) is dropped entirely —
+     the picker's own rail already does exactly that grouping, so keeping it
+     here too was a second, hidden way to do the same thing. Everything used
+     less than daily (offline downloads, categories manager, issued-books
+     list, duplicate finder, the two search shortcuts, What's New, About,
+     Quit) moves under one "مزید" overflow, styled the same way, so nothing
+     that existed before is actually gone — only what most people never
+     opened stops taking up a permanent slot. -->
+<div class="iconbar" id="iconbar">
+  <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOneShort">شامل کریں</span></button>
+  <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddManyShort">کئی شامل</span></button>
+  <button data-act="delete"><svg><use href="#i-x"/></svg><span data-t="mDelete">حذف کریں</span></button>
+  <div class="ibsep"></div>
+  <button data-act="export"><svg><use href="#i-save"/></svg><span data-t="mExportShort">بیک اپ</span></button>
+  <button data-act="pull"><svg><use href="#i-download"/></svg><span id="ibPullLabel" data-t="mPullShort">اپڈیٹ</span></button>
+  <button data-act="publish" id="ibPublish"><svg><use href="#i-upload"/></svg><span data-t="publishBtn">شائع کریں</span></button>
+  <div class="ibsep"></div>
+  <button data-act="settings"><svg><use href="#i-gear"/></svg><span data-t="mSettingsShort">ترتیبات</span></button>
+  <button data-act="appearance"><svg><use href="#i-palette"/></svg><span data-t="mAppearance">مظہر</span></button>
+
+  <div class="menu" id="menuMore">
+    <span><svg><use href="#i-more"/></svg><span data-t="mMore">مزید</span></span>
     <div class="dropdown">
-      <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOne">ایک کتاب شامل کریں</span></button>
-      <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddMany">کئی کتابیں شامل کریں</span></button>
-      <div class="dsep"></div>
-      <button data-act="export"><svg><use href="#i-save"/></svg><span data-t="mExport">بیک اپ محفوظ کریں</span></button>
-      <button data-act="publish"><svg><use href="#i-upload"/></svg><span data-t="mPublish">GitHub پر شائع کریں</span></button>
-      <div class="dsep"></div>
-      <button data-act="quit"><svg><use href="#i-x"/></svg><span data-t="mQuit">باہر نکلیں</span></button>
-    </div>
-  </div>
-  <div class="menu">
-    <span data-t="mSort">ترتیب</span>
-    <div class="dropdown">
-      <button data-mode="category"><svg><use href="#i-tag"/></svg><span data-t="mByCategory">موضوع کے مطابق</span></button>
-      <button data-mode="author"><svg><use href="#i-pen"/></svg><span data-t="mByAuthor">مصنف کے مطابق</span></button>
-      <button data-mode="status"><svg><use href="#i-check"/></svg><span data-t="mByStatus">حالت کے مطابق</span></button>
-      <button data-mode="shelf"><svg><use href="#i-shelf"/></svg><span data-t="mByShelf">شیلف کے مطابق</span></button>
-    </div>
-  </div>
-  <div class="menu">
-    <span data-t="mSearch">تلاش</span>
-    <div class="dropdown">
-      <button data-act="focusSearch"><svg><use href="#i-search"/></svg><span data-t="mFocusSearch">تلاش باکس پر جائیں</span></button>
-      <button data-act="clearSearch"><svg><use href="#i-x"/></svg><span data-t="mClearSearch">تلاش صاف کریں</span></button>
-    </div>
-  </div>
-  <div class="menu">
-    <span data-t="mTools">اوزار</span>
-    <div class="dropdown">
-      <button data-act="settings"><svg><use href="#i-gear"/></svg><span data-t="mSettings">GitHub سیٹنگز</span></button>
-      <button data-act="appearance"><svg><use href="#i-palette"/></svg><span data-t="mAppearance">مظہر</span></button>
-      <!-- Label depends on role, set in refreshMasterUI(): a reader is
-           fetching the librarian's latest data; the master — the only writer
-           there is — can only ever be undoing their own unpublished work, so
-           for them this reads as "restore last published version". -->
-      <button data-act="pull"><svg><use href="#i-download"/></svg><span id="mPullLabel" data-t="mPull">تازہ ترین ڈیٹا حاصل کریں</span></button>
       <button data-act="downloadAllTexts"><svg><use href="#i-download"/></svg><span data-t="mDownloadAll">تمام کتابیں آف لائن کے لیے ڈاؤن لوڈ کریں</span></button>
       <button data-act="categoriesMan"><svg><use href="#i-tag"/></svg><span data-t="mCategories">موضوعات کی فہرست</span></button>
       <button data-act="issued"><svg><use href="#i-clock"/></svg><span data-t="mIssued">جاری شدہ کتابیں</span></button>
       <button data-act="duplicates"><svg><use href="#i-copy"/></svg><span data-t="mDuplicates">مکرر کتابیں تلاش کریں</span></button>
-    </div>
-  </div>
-  <div class="menu">
-    <span data-t="mHelp">مدد</span>
-    <div class="dropdown">
+      <div class="dsep"></div>
+      <button data-act="focusSearch"><svg><use href="#i-search"/></svg><span data-t="mFocusSearch">تلاش باکس پر جائیں</span></button>
+      <button data-act="clearSearch"><svg><use href="#i-x"/></svg><span data-t="mClearSearch">تلاش صاف کریں</span></button>
+      <div class="dsep"></div>
       <button data-act="whatsNew"><svg><use href="#i-info"/></svg><span data-t="mWhatsNew">نیا کیا ہے</span></button>
       <button data-act="about"><svg><use href="#i-info"/></svg><span data-t="mAbout">مکتبہ نعمانیہ کے بارے میں</span></button>
+      <div class="dsep"></div>
+      <button data-act="quit"><svg><use href="#i-x"/></svg><span data-t="mQuit">باہر نکلیں</span></button>
     </div>
   </div>
 </div>
@@ -175,50 +165,11 @@
 </div>
 
 
-<div class="toolbar">
-  <button class="tbtn" id="tbPicker" data-tip="pickerTitle"><svg><use href="#i-searchbook"/></svg></button>
-  <div class="tsep"></div>
-  <button class="tbtn" id="tbAddOne" data-tip="mAddOne"><svg><use href="#i-plus"/></svg></button>
-  <button class="tbtn" id="tbAddMany" data-tip="mAddMany"><svg><use href="#i-list"/></svg></button>
-  <button class="tbtn danger" id="tbDelete" data-tip="mDelete" disabled><svg><use href="#i-x"/></svg></button>
-  <div class="tsep"></div>
-  <button class="tbtn" id="tbExport" data-tip="mExport"><svg><use href="#i-save"/></svg></button>
-  <button class="tbtn" id="tbPull" data-tip="mPull"><svg><use href="#i-download"/></svg></button>
-  <button class="tbtn" id="tbSettings" data-tip="mSettings"><svg><use href="#i-gear"/></svg></button>
-  <button class="tbtn publish" id="tbPublish" data-tip="mPublish">
-    <svg><use href="#i-upload"/></svg><span data-t="publishBtn">شائع کریں</span>
-  </button>
-</div>
-
 <!-- Home / welcome screen — first thing shown, stays until a rail icon is clicked -->
 <div class="home" id="homeView">
-  <svg class="home-scene" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax slice">
-    <defs>
-      <linearGradient id="skyFade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#c9d6e3"/>
-        <stop offset="1" stop-color="#eef2f7"/>
-      </linearGradient>
-    </defs>
-    <rect x="0" y="0" width="1000" height="420" fill="url(#skyFade)"/>
-    <!-- mosque silhouette, left -->
-    <g fill="#aebccd" opacity=".55">
-      <rect x="40" y="230" width="230" height="160"/>
-      <circle cx="155" cy="215" r="46"/>
-      <rect x="20" y="120" width="10" height="270"/>
-      <circle cx="25" cy="112" r="9"/>
-      <rect x="270" y="150" width="10" height="240"/>
-      <circle cx="275" cy="142" r="9"/>
-      <path d="M100 230 a55 55 0 0 1 110 0 z" fill="#eef2f7"/>
-    </g>
-    <!-- stacked books, right -->
-    <g opacity=".6">
-      <rect x="760" y="330" width="200" height="26" rx="2" fill="#8a99ac"/>
-      <rect x="775" y="300" width="175" height="26" rx="2" fill="#9aa8ba"/>
-      <rect x="755" y="270" width="195" height="26" rx="2" fill="#8a99ac"/>
-      <rect x="780" y="240" width="150" height="26" rx="2" fill="#9aa8ba"/>
-      <path d="M700 390 q90 -70 220 0 l-10 20 q-100 -55 -200 0z" fill="#c3ccd8"/>
-    </g>
-  </svg>
+  <div class="home-scene">
+    <img class="home-logo" src="img/logo.png" alt="" />
+  </div>
   <div class="home-veil"></div>
   <div class="home-content">
     <h1 class="home-word" data-t="appName">مکتبہ نعمانیہ</h1>

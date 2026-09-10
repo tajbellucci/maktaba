@@ -335,8 +335,24 @@ async function refreshMasterUI() {
   /* Same action, honest name for each role: a reader is fetching the
      librarian's latest; the master can only be restoring the last thing they
      published, over their own unpublished edits. */
-  const pullLabel = $("mPullLabel");
-  if (pullLabel) pullLabel.textContent = IS_MASTER ? t("mRestorePublished") : t("mPull");
+  /* Short forms: this label sits under a rail icon, and the full sentence
+     ("restore the last published version") wrapped onto two lines and made
+     the whole row ragged. The full wording still lives on the tooltip. */
+  const pullLabel = $("ibPullLabel");
+  if (pullLabel) {
+    pullLabel.textContent = IS_MASTER ? t("mRestoreShort") : t("mPullShort");
+    const host = pullLabel.closest("button");
+    if (host) host.title = IS_MASTER ? t("mRestorePublished") : t("mPull");
+  }
+
+  /* Add/Delete/Publish stay visible on the rail for a reader (they only look
+     inactive, via CSS) rather than disappearing — the tooltip is what
+     explains why nothing happens when clicked, since requireMaster() blocks
+     the actual write silently otherwise. */
+  for (const act of ["addOne", "addMany", "delete", "publish"]) {
+    const btn = document.querySelector(`#iconbar [data-act="${act}"]`);
+    if (btn) btn.title = IS_MASTER ? "" : t("readerBlocked");
+  }
 
   /* Deliberate pre-handover freeze (shared/repo.js: publishFrozen) — hides
      Publish for EVERY master, including the client's own login, not only
@@ -465,12 +481,12 @@ async function adoptData(next) {
 /* Shows the librarian, without being asked, that this machine is holding work
    the rest of the madrassa cannot see yet. */
 async function refreshPublishBadge() {
-  const btn = $("tbPublish");
+  const btn = $("ibPublish");
   if (!btn) return;
   if (!IS_MASTER) { btn.classList.remove("pending"); return; }
   const state = await window.maktaba.publishState();
   btn.classList.toggle("pending", Boolean(state.unpublished));
-  btn.title = state.unpublished ? t("unpublishedTip") : t("publishBtn");
+  btn.title = state.unpublished ? t("unpublishedTip") : "";
 }
 
 /* Quiet by design: a reader install should never be nagged, so this only
@@ -693,7 +709,12 @@ function renderBooks() {
       openBook();          // picker closes, the book takes the window
     };
     if (theme().hoverCard) {
-      row.onmouseenter = () => showCard(b, row);
+      row.onmouseenter = (e) => showCard(b, e);
+      /* Follows the pointer, like the reference app, rather than staying
+         pinned to wherever the row happened to be when it opened — a long
+         row scanned end to end should see the card track the cursor across
+         it, not sit stuck at the point of entry. */
+      row.onmousemove = (e) => moveCard(e);
       row.onmouseleave = scheduleHideCard;
     }
     list.appendChild(row);
@@ -733,7 +754,6 @@ function renderBooks() {
 
   $("listCount").textContent = `${ud(books.length)} / ${ud(DATA.books.length)} ${t("tabAll")}`;
   const none = selectedId === null;
-  $("tbDelete").disabled = none;
   $("footDel").disabled = none;
 
   /* The header never scrolls but the list does, so it carries a scrollbar the
@@ -1303,7 +1323,7 @@ const baseName = (p) => String(p || "").split(/[\\/]/).pop();
    the cover image when the record has one. */
 let cardTimer = null;
 
-function showCard(b, row) {
+function showCard(b, e) {
   clearTimeout(cardTimer);
   cardTimer = setTimeout(() => {
     const card = $("bookCard");
@@ -1351,31 +1371,45 @@ function showCard(b, row) {
       </div>`;
 
     card.classList.add("show");
-
-    /* Sits beside the row it describes, on the side the script reads from:
-       right for Urdu and Arabic, left for English. Clamped on both axes so
-       it stays fully on screen and never covers the row's own text. */
-    const r = row.getBoundingClientRect();
-    const w = card.offsetWidth;
-    const h = card.offsetHeight;
-    const GAP = 10;
-    const rtl = document.documentElement.dir !== "ltr";
-
-    let left = rtl ? r.right - w : r.left;
-    // if that side has no room, fall back to the opposite edge of the row
-    if (rtl && left < GAP) left = Math.min(r.left, window.innerWidth - w - GAP);
-    if (!rtl && left + w > window.innerWidth - GAP) left = Math.max(GAP, r.right - w);
-    left = Math.max(GAP, Math.min(left, window.innerWidth - w - GAP));
-
-    // hang just under the row so the hovered line stays readable
-    let top = r.bottom + 6;
-    if (top + h > window.innerHeight - GAP) top = Math.max(GAP, r.top - h - 6);
-    top = Math.max(GAP, Math.min(top, window.innerHeight - h - GAP));
-
-    card.style.left = left + "px";
-    card.style.top = top + "px";
-    card.style.right = "auto";
+    positionCard(e.clientX, e.clientY);
   }, 320);
+}
+
+/* Anchored to the cursor, not the row: which corner the card grows from
+   flips on both axes so it always stays fully on screen, the way the
+   reference app's own preview does — near the bottom-right of the window it
+   opens up-and-left, near the top-left it opens down-and-right, and so on.
+   The direction the script reads from only decides the DEFAULT side before
+   any clamping is needed. */
+function positionCard(x, y) {
+  const card = $("bookCard");
+  const w = card.offsetWidth;
+  const h = card.offsetHeight;
+  const GAP = 10;
+  const OFFSET = 16;              // clear of the cursor itself
+  const rtl = document.documentElement.dir !== "ltr";
+
+  let left = rtl ? x - OFFSET - w : x + OFFSET;
+  if (rtl && left < GAP) left = x + OFFSET;                 // no room to the left: flip right
+  if (!rtl && left + w > window.innerWidth - GAP) left = x - OFFSET - w;  // no room right: flip left
+  left = Math.max(GAP, Math.min(left, window.innerWidth - w - GAP));
+
+  let top = y + OFFSET;
+  if (top + h > window.innerHeight - GAP) top = y - OFFSET - h;   // no room below: flip above
+  top = Math.max(GAP, Math.min(top, window.innerHeight - h - GAP));
+
+  card.style.left = left + "px";
+  card.style.top = top + "px";
+  card.style.right = "auto";
+}
+
+/* Re-anchors the already-open card to the new pointer position — the follow
+   behaviour itself. Only while it is actually visible: no point tracking the
+   mouse during the 320ms delay before the card has even appeared. */
+function moveCard(e) {
+  const card = $("bookCard");
+  if (!card.classList.contains("show")) return;
+  positionCard(e.clientX, e.clientY);
 }
 
 /* A short grace period before hiding, and cancelling that hide if the mouse
@@ -1589,9 +1623,16 @@ function fitPicker() {
   const dlg = $("dlgCatalog");
   if (!dlg.open) return;
   if (dlg.classList.contains("max")) {
-    const bar = document.querySelector(".toolbar");
+    /* Used to measure from the icon toolbar's bottom edge; that toolbar is
+       gone (its actions moved into the File/Tools menus), so this queried a
+       selector that no longer exists and silently fell back to a hardcoded
+       120px — taller than the chrome actually left above it now, which is
+       exactly what made a maximised picker feel wrong: too much dead space
+       at the top, height math off by the difference. The titlebar is the
+       last fixed strip before the content area now. */
+    const bar = document.querySelector(".titlebar");
     const status = document.querySelector(".statusbar");
-    const top = bar ? bar.getBoundingClientRect().bottom + 10 : 120;
+    const top = bar ? bar.getBoundingClientRect().bottom + 10 : 76;
     const bottom = status ? status.getBoundingClientRect().height + 10 : 34;
     dlg.style.top = top + "px";
     dlg.style.height = Math.max(320, window.innerHeight - top - bottom) + "px";
@@ -1780,7 +1821,6 @@ function toggleMaxBook() {
 }
 $("bvMax").onclick = toggleMaxBook;
 $("bvPick").onclick = showCatalog;
-$("tbPicker").onclick = showCatalog;
 // Esc closes the dialog natively; keep our state in step with that.
 $("dlgCatalog").addEventListener("close", () => {});
 
@@ -1940,11 +1980,8 @@ function deleteSelected() {
   renderAll();
 }
 
-$("tbAddOne").onclick = openAddOne;
 $("footAdd").onclick = openAddOne;
-$("tbAddMany").onclick = openAddMany;
 $("footAddMany").onclick = openAddMany;
-$("tbDelete").onclick = deleteSelected;
 $("footDel").onclick = deleteSelected;
 
 /* ── Export / pull / settings / publish ───────────────────────────────── */
@@ -2161,8 +2198,16 @@ const DIFF_FIELDS = [
 ];
 
 function diffCatalogues(from, to) {
-  const fromBooks = (from && from.books) || [];
-  const toBooks = (to && to.books) || [];
+  /* The remote/incoming copy is written LEAN — default-valued fields
+     stripped to keep the published file small — while the in-memory local
+     copy has already been through normalizeBook() and carries every default
+     explicitly. Comparing those two shapes directly reported "format:
+     physical → —" on every single book that still had the default format,
+     a false diff with nothing actually different, on every pull and publish.
+     Normalizing a throwaway clone of both sides first makes the comparison
+     shape-independent, the same fix catalogueHash() already needed. */
+  const fromBooks = ((from && from.books) || []).map((b) => normalizeBook({ ...b }));
+  const toBooks = ((to && to.books) || []).map((b) => normalizeBook({ ...b }));
   const byId = (arr) => new Map(arr.map((b) => [b.id, b]));
   const fm = byId(fromBooks), tm = byId(toBooks);
 
@@ -2263,14 +2308,16 @@ function renderDiff(d) {
 /* Publishing overwrites the copy every other machine reads, so it asks first
    and shows exactly what is about to change on GitHub. */
 async function doPublish() {
-  const btn = $("tbPublish");
+  const btn = $("ibPublish");
+  const label = btn.querySelector("span");
+  const original = label.textContent;
   btn.disabled = true;
-  btn.innerHTML = `<svg><use href="#i-upload"/></svg><span>${t("checking")}</span>`;
+  label.textContent = t("checking");
 
   await flushSave();          // never publish a stale copy
   const peek = await window.maktaba.peekRemote();
   btn.disabled = false;
-  btn.innerHTML = `<svg><use href="#i-upload"/></svg><span>${t("publishBtn")}</span>`;
+  label.textContent = original;
 
   // No remote yet (first ever publish) diffs against an empty catalogue.
   const remote = peek.ok ? peek.data : { books: [], categories: [] };
@@ -2284,10 +2331,10 @@ async function doPublish() {
 
   runConfirmedSync(async () => {
     btn.disabled = true;
-    btn.innerHTML = `<svg><use href="#i-upload"/></svg><span>${t("publishing")}</span>`;
+    label.textContent = t("publishing");
     const res = await window.maktaba.publish(DATA);
     btn.disabled = false;
-    btn.innerHTML = `<svg><use href="#i-upload"/></svg><span>${t("publishBtn")}</span>`;
+    label.textContent = original;
     if (res.ok) {
       /* Adopt the rewritten records (covers and files are hosted URLs now),
          or the next autosave would put the local paths back on disk. */
@@ -2313,13 +2360,9 @@ async function doPublish() {
   }, { cancelToast: t("syncCancelled") });
 }
 
-$("tbExport").onclick = doExport;
 /* Not `= doPull` — that would pass the click event through as `auto`, and a
    MouseEvent is truthy, silently turning every manual click into a background
    check no dialog is allowed to appear from. */
-$("tbPull").onclick = () => doPull(false);
-$("tbSettings").onclick = openSettings;
-$("tbPublish").onclick = doPublish;
 
 $("sSave").onclick = async () => {
   await window.maktaba.setSettings({
@@ -2341,26 +2384,87 @@ document.querySelectorAll("dialog [data-close]").forEach((b) => {
 
 /* ── Menu bar ─────────────────────────────────────────────────────────── */
 
+/* An open <dialog> — even a non-modal one via .show(), which this app
+   only ever uses — still paints above ordinary content no matter how high
+   a z-index the dropdown is given; proved by forcing z-index: 999999 on it
+   live and watching the picker's own content still win every hit-test.
+   Moving the dropdown to be a direct child of <body> while it is open (a
+   DOM "portal", positioned in fixed coordinates computed from the button
+   that opened it) sidesteps that entirely — it is no longer nested inside
+   anything the dialog could out-rank, it is a sibling of the dialog itself.
+   Moved back into the menu on close, so the DOM stays tidy and the CSS
+   layout rules apply again next time it opens in its normal position. */
 document.querySelectorAll(".menu > span").forEach((label) => {
+  const menu = label.parentElement;
+  const dropdown = menu.querySelector(".dropdown");
+  if (!dropdown) return;
+  const homeParent = menu;
+
   label.onclick = (e) => {
     e.stopPropagation();
-    const menu = label.parentElement;
-    const wasOpen = menu.classList.contains("open");
-    document.querySelectorAll(".menu.open").forEach((m) => m.classList.remove("open"));
-    if (!wasOpen) menu.classList.add("open");
+    const wasOpen = dropdown.classList.contains("show");
+    closeAllMenus();
+    if (wasOpen) return;
+
+    menu.classList.add("open");
+    const r = label.getBoundingClientRect();
+    document.body.appendChild(dropdown);
+    dropdown.classList.add("show", "portaled");
+    dropdown.style.top = (r.bottom + 6) + "px";
+    /* Anchored from whichever edge the trigger is actually closest to —
+       #menuMore sits at the layout's near edge (physical left in this RTL
+       app), so opening from its right edge pushed most of the panel off
+       the visible screen; anchoring from the trigger's own left edge keeps
+       it inside the window regardless of where the menu sits. */
+    if (r.left < window.innerWidth - r.right) {
+      dropdown.style.left = r.left + "px";
+      dropdown.style.right = "auto";
+    } else {
+      dropdown.style.right = (window.innerWidth - r.right) + "px";
+      dropdown.style.left = "auto";
+    }
   };
+
+  function closeThis() {
+    if (!dropdown.classList.contains("show")) return;
+    menu.classList.remove("open");
+    dropdown.classList.remove("show", "portaled");
+    dropdown.style.top = dropdown.style.left = dropdown.style.right = "";
+    homeParent.appendChild(dropdown);
+  }
+  dropdown._closePortal = closeThis;
 });
-document.addEventListener("click", () => {
-  document.querySelectorAll(".menu.open").forEach((m) => m.classList.remove("open"));
-});
+function closeAllMenus() {
+  document.querySelectorAll(".menu").forEach((m) => {
+    const dd = m.querySelector(".dropdown") || document.querySelector(".dropdown.portaled");
+    if (dd && dd._closePortal) dd._closePortal();
+  });
+  /* A portaled dropdown is no longer inside its .menu, so the query above
+     can miss it once moved — catch any leftover portaled node directly. */
+  document.querySelectorAll(".dropdown.portaled").forEach((dd) => {
+    if (dd._closePortal) dd._closePortal();
+  });
+}
+document.addEventListener("click", closeAllMenus);
 
 const MENU_ACTIONS = {
   addOne: openAddOne,
   addMany: openAddMany,
+  delete: deleteSelected,
   export: doExport,
   publish: doPublish,
   quit: () => window.close(),
-  focusSearch: () => $("search").focus(),
+  /* The search box lives inside the picker's book-list pane, so calling
+     this from the welcome screen (picker closed) or from a non-book tab
+     (category/author/shelf, where that pane is hidden) focused an input
+     nobody could see — a no-op that looked exactly like "not working".
+     Open the picker onto the books list first, then focus once it has
+     actually painted. */
+  focusSearch: () => {
+    showCatalog();
+    setMode("books");
+    setTimeout(() => $("search").focus(), 30);
+  },
   clearSearch: () => { $("search").value = ""; renderBooks(); },
   settings: openSettings,
   appearance: openAppearance,
@@ -2373,7 +2477,10 @@ const MENU_ACTIONS = {
   about: () => $("dlgAbout").showModal()
 };
 
-document.querySelectorAll(".dropdown [data-act]").forEach((btn) => {
+/* Covers both the icon row's own direct buttons and the items inside the
+   "More" overflow dropdown — one dispatcher for both, since they share the
+   same data-act vocabulary. */
+document.querySelectorAll("#iconbar [data-act]").forEach((btn) => {
   btn.onclick = () => {
     document.querySelectorAll(".menu.open").forEach((m) => m.classList.remove("open"));
     const fn = MENU_ACTIONS[btn.dataset.act];

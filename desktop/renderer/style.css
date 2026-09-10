@@ -157,34 +157,101 @@ button, input, select, textarea, optgroup, option {
   letter-spacing: .3px;
 }
 
-/* ── Menu + toolbar ──────────────────────────────────────────────────── */
+/* ── Icon rail (modelled on the reference app's own top rail) ─────────
+   One horizontal row of direct buttons: a sizeable icon with its label
+   underneath, each icon carrying its own colour rather than one flat tone.
+   No dropdown for anything a librarian reaches for daily. It stays visible
+   on every screen, welcome screen included — the reference app's rail is
+   there from the moment it opens, which is exactly what makes it findable. */
 
-.menubar {
-  background: var(--strip);
-  border-bottom: 1px solid var(--line-soft);
-  padding: 0 12px;
-  display: flex;
-  gap: 1px;
-  flex: none;
-}
-.menubar span {
-  padding: 6px 13px;
-  font-size: 14.5px;
-  color: var(--muted);
-  cursor: default;
-  border-radius: 4px 4px 0 0;
-  transition: background .14s, color .14s;
-}
-.menubar span:hover { background: var(--blue-wash); color: var(--blue); }
-
-.toolbar {
+.iconbar {
   background: var(--strip);
   border-bottom: 1px solid var(--line);
-  padding: 7px 12px;
+  padding: 6px 12px 4px;
   display: flex;
-  align-items: center;
-  gap: 3px;
+  align-items: stretch;
+  gap: 2px;
   flex: none;
+  /* A narrow window must not silently cut the last icons off the end — the
+     same failure the vertical rail had. Scroll instead, so every action
+     stays reachable at any width. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+.iconbar > button,
+.iconbar .menu > span {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 9px 3px;
+  min-width: 52px;
+  cursor: pointer;
+  font-family: var(--ui);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 3px;
+  transition: background .14s;
+  flex: none;
+  white-space: nowrap;   /* a label never wraps and never drags the row taller */
+}
+/* 26px read as oversized against the reference rail’s own proportions —
+   18px matches its actual icon-to-label ratio. */
+.iconbar > button svg,
+.iconbar .menu > span svg { width: 18px; height: 18px; flex: none; }
+.iconbar > button:hover,
+.iconbar .menu:hover > span,
+.iconbar .menu.open > span { background: var(--blue-wash); }
+.ibsep { width: 1px; align-self: center; height: 26px; background: var(--line); margin: 0 5px; }
+/* "More" sits FIRST in the row's markup, which in this RTL layout renders it
+   at the physical LEFT edge of the screen — the opposite corner from the old
+   text File menu this replaced, which sat first-and-physically-right. The
+   base .dropdown rule anchors right:0, correct for that old position; here
+   it pushed most of the panel off-screen to the left. Anchor from the left
+   edge instead, so it opens into the room that is actually there. */
+.iconbar .menu .dropdown { top: 100%; right: auto; left: 0; }
+
+/* A colour per icon, the way the reference rail does it — the label stays
+   in the normal text tone so the row still reads as text, not as confetti.
+   Only the glyph is coloured. */
+#iconbar [data-act="addOne"]    svg { color: #1e8449; }
+#iconbar [data-act="addMany"]   svg { color: #1873cf; }
+#iconbar [data-act="delete"]    svg { color: #b23127; }
+#iconbar [data-act="export"]    svg { color: #b8860b; }
+#iconbar [data-act="pull"]      svg { color: #0f9b8e; }
+#iconbar [data-act="publish"]   svg { color: #7a4fb5; }
+#iconbar [data-act="settings"]  svg { color: #4a6fa5; }
+#iconbar [data-act="appearance"] svg { color: #8a3b6e; }
+
+/* A reader still sees Add/Delete/Publish on the rail — Shamela's own reading
+   copy does not hide its toolbar depending on who is looking at it — but the
+   icon reads as inactive rather than a live coloured action, and the click
+   itself is still blocked in JS (requireMaster()), which is what actually
+   stops the write, not this styling. */
+html[data-role="reader"] #iconbar [data-act="addOne"] svg,
+html[data-role="reader"] #iconbar [data-act="addMany"] svg,
+html[data-role="reader"] #iconbar [data-act="delete"] svg,
+html[data-role="reader"] #iconbar [data-act="publish"] svg { color: var(--muted-2); }
+html[data-role="reader"] #iconbar [data-act="addOne"],
+html[data-role="reader"] #iconbar [data-act="addMany"],
+html[data-role="reader"] #iconbar [data-act="delete"],
+html[data-role="reader"] #iconbar [data-act="publish"] { cursor: default; opacity: .55; }
+html[data-role="reader"] #iconbar [data-act="addOne"]:hover,
+html[data-role="reader"] #iconbar [data-act="addMany"]:hover,
+html[data-role="reader"] #iconbar [data-act="delete"]:hover,
+html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: transparent; }
+#menuMore > span svg { color: #5c6a7a; }
+
+/* Publish, unpublished-work dot — on the button itself now that Publish is a
+   direct icon again rather than a menu row. */
+.iconbar #ibPublish.pending { position: relative; }
+.iconbar #ibPublish.pending::after {
+  content: "";
+  position: absolute; top: 3px; inset-inline-end: 8px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #ffcf4a;
+  box-shadow: 0 0 0 2px var(--strip);
 }
 
 .tbtn {
@@ -212,22 +279,6 @@ button, input, select, textarea, optgroup, option {
 .tbtn:disabled { opacity: .35; cursor: default; }
 .tbtn:disabled:hover { background: transparent; border-color: transparent; color: var(--muted); box-shadow: none; }
 .tbtn.danger:hover { color: var(--red); border-color: #eccbc7; background: var(--red-wash); }
-
-.tbtn.publish {
-  margin-right: auto;
-  padding: 0 16px;
-  background: linear-gradient(180deg, var(--blue-2), var(--blue));
-  border-color: var(--blue-deep);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 1px 3px rgba(18, 95, 176, .3);
-}
-.tbtn.publish:hover {
-  background: linear-gradient(180deg, #1d80e0, var(--blue-2));
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(18, 95, 176, .38);
-}
-.tbtn.publish:disabled { opacity: .6; }
 
 .tsep { width: 1px; height: 20px; background: var(--line); margin: 0 6px; }
 
@@ -772,9 +823,19 @@ dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px)
   border-radius: 8px;
   box-shadow: var(--sh-3);
   padding: 6px;
-  z-index: 50;
+  z-index: 260;
 }
-.menu.open .dropdown { display: block; animation: pop .14s ease-out both; }
+/* A raised z-index alone never beat an open <dialog> — proved live: even
+   z-index: 999999 still lost every hit-test to the picker's own content,
+   because an open <dialog> paints above ordinary DOM regardless of the
+   number. The dropdown is moved to a direct child of <body> while open (see
+   app.js) and switched to fixed positioning there, which makes it a sibling
+   of the dialog rather than something nested for the dialog to out-rank.
+   Visibility now follows a class on the dropdown itself instead of the
+   .menu.open ancestor selector, since portaling moves it out of that
+   ancestor entirely. */
+.dropdown.show { display: block; animation: pop .14s ease-out both; }
+.dropdown.portaled { position: fixed; }
 
 .dropdown button {
   width: 100%;
@@ -934,10 +995,28 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
   justify-content: center;
   cursor: pointer;
 }
-.home-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* The real institution logo, centered and large behind the title the way the
+   reference app's own home screen sits its banner art behind its wordmark —
+   faint enough to read every word of text over it, present enough to still
+   be recognisably the logo rather than a texture. */
+.home-scene {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  /* Reference uses a warm sepia wash behind its art; asked for a mild GREEN
+     one instead — this radial sits under the logo and fades to the shell at
+     the edges, exactly where the reference's own vignette lands. */
+  background: radial-gradient(ellipse at center, #dcefdf 0%, #e9f4ea 42%, var(--shell) 78%);
+}
+.home-logo {
+  width: min(88vh, 880px);
+  height: min(88vh, 880px);
+  object-fit: contain;
+  opacity: .22;
+  filter: saturate(1.15);
+}
 .home-veil {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(238,242,247,.35) 0%, rgba(238,242,247,.75) 70%, var(--shell) 100%);
+  background: linear-gradient(180deg, rgba(233,244,234,.25) 0%, rgba(233,244,234,.7) 68%, var(--shell) 100%);
 }
 .home-content {
   position: relative;
@@ -1274,18 +1353,6 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
 .modes.fonts { flex-wrap: wrap; }
 .modes.fonts button { flex: 1 1 46%; font-size: 15px; line-height: 1.9; padding: 8px 6px; }
 
-/* Publish button when this machine holds work nobody else can see yet. The
-   dot is deliberately hard to miss — "I forgot to publish" is the failure
-   this is here to prevent. */
-.tbtn.publish.pending { position: relative; }
-.tbtn.publish.pending::after {
-  content: "";
-  position: absolute; top: 3px; inset-inline-end: 5px;
-  width: 9px; height: 9px; border-radius: 50%;
-  background: #ffcf4a;
-  box-shadow: 0 0 0 2px var(--blue-deep);
-}
-
 /* A digital-only record has no circulation, and says so instead of showing
    controls that could not do anything. */
 .digital-only {
@@ -1620,16 +1687,9 @@ html[data-mode="dark"] .rd-table mark { background: #5a4a1c; color: #f2e6c4; }
    is re-checked in JS before any write runs, so this is presentation, not the
    only line of defence. */
 
-html[data-role="reader"] #tbAddOne,
-html[data-role="reader"] #tbAddMany,
-html[data-role="reader"] #tbDelete,
-html[data-role="reader"] #tbPublish,
 html[data-role="reader"] #footAdd,
 html[data-role="reader"] #footAddMany,
 html[data-role="reader"] #footDel,
-html[data-role="reader"] [data-act="addOne"],
-html[data-role="reader"] [data-act="addMany"],
-html[data-role="reader"] [data-act="publish"],
 html[data-role="reader"] [data-act="categoriesMan"],
 html[data-role="reader"] .track-acts,
 html[data-role="reader"] .track-more,
@@ -1644,7 +1704,6 @@ html[data-role="reader"] #dlgIssue { display: none !important; }
 
 /* Pre-handover freeze: hides Publish for EVERY master, client included —
    not the reader-only rule above, which never touched Publish for master. */
-html.publish-frozen #tbPublish,
 html.publish-frozen [data-act="publish"] { display: none !important; }
 
 /* One master, one direction: the master's local catalogue IS the truth, and
@@ -2039,8 +2098,12 @@ html[data-mode="dark"] .bookrow.st-missing .br-title { color: #e2707a; }
 html[data-mode="dark"] .bookrow.st-issued  .br-title { color: #e0bb69; }
 html[data-mode="dark"] .statusrow button.on-issued { background: #3a2f18; color: #e0bb69; }
 html[data-mode="dark"] .bc-status.st-issued { background: #3a2f18; color: #e0bb69; }
+html[data-mode="dark"] .home-scene {
+  background: radial-gradient(ellipse at center, #10251a 0%, #0d1a13 42%, var(--shell) 78%);
+}
+html[data-mode="dark"] .home-logo { opacity: .28; }
 html[data-mode="dark"] .home-veil {
-  background: linear-gradient(180deg, rgba(21,26,33,.4) 0%, rgba(21,26,33,.8) 70%, var(--shell) 100%);
+  background: linear-gradient(180deg, rgba(16,37,26,.35) 0%, rgba(13,20,15,.78) 70%, var(--shell) 100%);
 }
 html[data-mode="dark"] .home-word { color: #e6ecf3; }
 html[data-mode="dark"] .titlebar .mark { box-shadow: none; }
@@ -2447,9 +2510,6 @@ dialog.picker {
 }
 #menubar .menu > span { padding: 6px 13px; font-size: 14px; border-radius: 0; }
 
-.toolbar { padding: 4px 12px; }
-.toolbar .tbtn { height: 28px; }
-
 /* ── Book card: draggable and maximisable ─────────────────────────────── */
 
 .bv-bar { cursor: move; user-select: none; }
@@ -2565,14 +2625,6 @@ dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
    tone for everything. Same approach here: each button keeps its own resting
    color instead of only picking up color on hover. */
 
-#tbAddOne     { color: #1e8449; }
-#tbAddMany    { color: #1873cf; }
-#tbDelete     { color: #b23127; }
-#tbExport     { color: #b8860b; }
-#tbPull       { color: #0f9b8e; }
-#tbSettings   { color: #5c6a7a; }
-#tbPicker     { color: #7a4fb5; }
-
 /* Same treatment for the picker's own rail — it had none, so every icon sat
    in one flat muted tone even at rest, unlike the reference app's rail where
    each item keeps its own color. Skipped on the active item: the blue
@@ -2586,13 +2638,6 @@ dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
 .rail button:not(.active)[data-mode="favorites"] svg  { color: #c9971f; }
 .rail button:not(.active)[data-mode="recent"] svg     { color: #5c6a7a; }
 .rail button:not(.active)#railFts svg                 { color: #b23127; }
-
-#tbAddOne:hover, #tbAddMany:hover, #tbExport:hover, #tbPull:hover, #tbPicker:hover {
-  filter: brightness(0.85);
-  background: var(--panel);
-  border-color: currentColor;
-}
-#tbSettings:hover { color: var(--blue); }
 
 .rail button[data-mode="books"]     { color: #7a4fb5; }
 .rail button[data-mode="category"]  { color: #b8860b; }
@@ -2610,13 +2655,10 @@ dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
    dim or absent rather than colorful. Uniform white removes the guesswork
    and matches the reference app's own dark mode. The selected rail item
    keeps its blue (the !important above already wins over this). */
-html[data-mode="dark"] #tbAddOne,
-html[data-mode="dark"] #tbAddMany,
-html[data-mode="dark"] #tbDelete,
-html[data-mode="dark"] #tbExport,
-html[data-mode="dark"] #tbPull,
-html[data-mode="dark"] #tbSettings,
-html[data-mode="dark"] #tbPicker,
+html[data-mode="dark"] #iconbar > button,
+html[data-mode="dark"] #iconbar > button svg,
+html[data-mode="dark"] #iconbar .menu > span,
+html[data-mode="dark"] #iconbar .menu > span svg,
 html[data-mode="dark"] .rail button:not(.active),
 html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 
