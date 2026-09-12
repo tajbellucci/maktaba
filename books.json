@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-09-05",
+  "updated": "2026-09-12",
   "books": [
     {
       "id": 1,
@@ -65,16 +65,23 @@
       "author": "امام احمد رضا خان",
       "category": "فتاویٰ",
       "volumes": 30,
-      "present": false,
+      "present": true,
       "notes": "جلد 7 اور 12 غائب",
       "files": [],
-      "status": "missing",
+      "status": "available",
       "almari": "",
       "accession": "3",
       "issueType": "person",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "hasPrint": true
+      "hasPrint": true,
+      "history": [
+        {
+          "date": "2026-09-12",
+          "action": "available",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": 4,
@@ -544,6 +551,36 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "28"
+    },
+    {
+      "id": 29,
+      "title": "معارف القرآن",
+      "author": "شفيع",
+      "publisher": "المعارف",
+      "category": "تفسیر",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "1",
+      "hasPrint": false,
+      "status": "available",
+      "notes": "-",
+      "format": "unicode",
+      "files": [
+        "https://github.com/tajbellucci/maktaba/releases/download/library-files/test-8d30dd4d.txt"
+      ],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-09-07",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "29"
     }
   ],
   "categories": [
