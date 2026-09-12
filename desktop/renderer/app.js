@@ -440,7 +440,6 @@ async function boot() {
   categories();
   refreshCategoryList();
   applyTheme();
-  applySyncedLang();
   COVERS_DIR = await window.maktaba.coversDir();
   $("sbPath").textContent = await window.maktaba.dataPath();
   const v = await window.maktaba.version();
@@ -2315,8 +2314,20 @@ $("sLibrarian").addEventListener("change", async (e) => {
 
   if (!box.checked) {
     stopHeartbeat();
-    window.maktaba.authLogout();
-    refreshMasterUI();
+    /* Giving up master rights must take effect NOW, not when the network
+       agrees. auth:logout releases the Supabase lock before it clears the
+       session, so until that round-trip returns, auth:status still answers
+       "logged in" — and refreshing the UI off it left Add and Delete live on
+       a machine whose librarian had just switched to reader. Worse, if the
+       connection is down that call can hang or fail outright, and the UI
+       would stay master indefinitely.
+       So drop the role locally first and confirm afterwards: revoking access
+       never waits, granting it still goes through the authoritative check. */
+    IS_MASTER = false;
+    document.documentElement.setAttribute("data-role", "reader");
+    applyReadOnly();
+    await window.maktaba.authLogout();
+    await refreshMasterUI();
     return;
   }
 
@@ -2708,12 +2719,17 @@ document.querySelectorAll(".dropdown [data-mode]").forEach((btn) => {
   };
 });
 
-/* The catalogue carries the library's chosen UI language, so a new install
-   opens in the language the librarian set rather than defaulting to Urdu. */
-function applySyncedLang() {
-  const want = DATA.appSettings && DATA.appSettings.lang;
-  if (want && want !== LANG) setLang(want);
-}
+/* Language is per-machine and deliberately does NOT travel with the
+   catalogue. It used to: the librarian's choice was published and every
+   reader adopted it on the next sync. In practice that meant one person
+   switching to Urdu at the desk silently flipped the language on machines
+   across the madrassa, and it made language something you had to think
+   about before publishing. setLang() already stores the choice in
+   localStorage, so each machine simply keeps its own.
+   The old appSettings.lang value is left alone in the catalogue rather than
+   stripped: nobody reads it now, and removing a field would change
+   catalogueHash() on every machine at once — which is exactly what makes the
+   divergence guard fire and block publishing everywhere. */
 
 /* ── Theme ────────────────────────────────────────────────────────────────
    Theme lives inside the catalogue rather than in local settings, so the
@@ -3763,11 +3779,9 @@ async function showWhatsNew() {
 const LANG_CYCLE = ["ur", "ar", "en"];
 $("btnLang").onclick = () => {
   const next = LANG_CYCLE[(LANG_CYCLE.indexOf(LANG) + 1) % LANG_CYCLE.length];
+  // Stays on this machine — setLang persists it locally. See applySyncedLang's
+  // removal above for why it no longer travels with the catalogue.
   setLang(next);
-  // The librarian's choice becomes the library default and travels with the sync.
-  if (!DATA.appSettings) DATA.appSettings = {};
-  DATA.appSettings.lang = next;
-  persist();
 };
 
 /* One delegated listener covers every .pwd-toggle button, including
