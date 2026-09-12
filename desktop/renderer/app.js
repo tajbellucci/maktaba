@@ -3376,10 +3376,22 @@ function stepReader(delta) {
    book's hit list stays scannable. */
 const RD_CONTEXT = 28;
 /* A common word in a big book hits thousands of times — "الله" finds 2,557 in
-   the uploaded Qur'an. Building a row for every one costs both the build and
-   every later scroll, so the list shows the first slice and says so; the
-   count beside the search box still reports the true total. */
-const RD_MAX_ROWS = 300;
+   the uploaded Qur'an — so there is a ceiling here. It used to be 300, which
+   cut off ordinary searches: قال alone finds 928, and a librarian looking for
+   the 400th one simply could not reach it, with only a small line of footer
+   text to say why.
+   The old limit was really guarding against the row build being quadratic:
+   every row rescanned the whole table of contents and the whole page list
+   from the start to label itself. Hits come back in ascending offset order,
+   so renderRdResults now walks both structures once for the entire list
+   instead, and the build cost is proportional to the number of hits rather
+   than hits × book structure. That makes a realistic search cheap enough to
+   render in full.
+   The ceiling stays only for the pathological case — searching a single very
+   common letter can match tens of thousands of times, and no one scrolls
+   30,000 rows. The count beside the search box always reports the true
+   total. */
+const RD_MAX_ROWS = 5000;
 
 /* Which chapter a position falls in — the last heading at or before it.
    Real structure from the file's own headings, not a guess: this is what
@@ -3403,7 +3415,17 @@ function renderRdResults() {
   if (!show) { body.innerHTML = ""; return; }
 
   const bookName = escapeHtml($("rdTitle").textContent || "");
+  /* One forward walk for the whole list, not a fresh scan per row. Hits are
+     in ascending offset order, so neither cursor ever needs to go back —
+     which is what makes rendering every hit affordable. Deliberately not
+     chapterOfOffset/pageOfOffset here: those still exist for one-off lookups
+     elsewhere, where a single scan is the cheaper thing. */
+  let tocAt = 0;
+  let pageAt = 0;
+  let chapter = "";
   body.innerHTML = readerHits.slice(0, RD_MAX_ROWS).map((h, i) => {
+    while (tocAt < readerToc.length && readerToc[tocAt].start <= h.start) chapter = readerToc[tocAt++].title;
+    while (pageAt < readerPages.length - 1 && h.start >= readerPages[pageAt].end) pageAt++;
     const before = escapeHtml(readerText.slice(Math.max(0, h.start - RD_CONTEXT), h.start));
     const word = escapeHtml(readerText.slice(h.start, h.end));
     const after = escapeHtml(readerText.slice(h.end, h.end + RD_CONTEXT));
@@ -3411,8 +3433,8 @@ function renderRdResults() {
               <td class="rc-n">${ud(i + 1)}</td>
               <td class="rc-book">${bookName}</td>
               <td class="rc-text">…${before}<mark>${word}</mark>${after}…</td>
-              <td class="rc-chap">${escapeHtml(chapterOfOffset(h.start))}</td>
-              <td class="rc-page">${ud(pageOfOffset(h.start) + 1)}</td>
+              <td class="rc-chap">${escapeHtml(chapter)}</td>
+              <td class="rc-page">${ud(pageAt + 1)}</td>
             </tr>`;
   }).join("");
 
