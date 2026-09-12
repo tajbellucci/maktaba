@@ -5,6 +5,29 @@ const REPO = require("./shared/repo");
 const https = require("https");
 const crypto = require("crypto");
 
+/* Development runs must never touch the library the madrassa actually reads.
+   ────────────────────────────────────────────────────────────────────────
+   All the work happens on the same machine that holds the real master
+   catalogue, and the client reads that same catalogue on two other
+   computers. Before this, running from source used the real data folder and
+   published to the real branch, so testing and the live library were one and
+   the same — which is how test records reached the client's shelves, and why
+   publishing had to be frozen wholesale to stop it.
+   A run from source now gets:
+     • its own data folder, so local test edits cannot touch the real one
+     • no ability to publish at all, so nothing from a test run can reach
+       GitHub even by accident
+   Pulling still works, so a dev run opens on realistic data to test against.
+   To test publishing end-to-end later, create a branch (e.g. "dev-data") on
+   the repo and set REPO.branch to it here instead of blocking publish — the
+   isolation then holds in both directions.
+   app.isPackaged is false only when running from source; the installed build
+   the client uses is completely unaffected by any of this. */
+const IS_DEV_RUN = !app.isPackaged;
+if (IS_DEV_RUN) {
+  app.setPath("userData", app.getPath("userData") + " (dev)");
+}
+
 const dataFile = () => path.join(app.getPath("userData"), "books.json");
 const settingsFile = () => path.join(app.getPath("userData"), "settings.json");
 const deviceFile = () => path.join(app.getPath("userData"), "device.json");
@@ -1481,6 +1504,12 @@ async function publishAttachment(owner, repo, headers, release, localPath) {
 
 /* Extracted so the close guard can publish too, not only the button. */
 async function doPublish(data) {
+  /* Guarded here rather than in the "publish" IPC handler, because the
+     window-close prompt calls doPublish() directly and would otherwise slip
+     straight past a handler-level check — the same gap that already lets a
+     close-prompt publish bypass REPO.publishFrozen. One guard, every caller. */
+  if (IS_DEV_RUN) return { ok: false, error: "dev-run-no-publish" };
+
   const s = readJson(settingsFile(), {});
   if (!s.token) return { ok: false, error: "GitHub ٹوکن سیٹ نہیں ہے" };
 

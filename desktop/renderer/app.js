@@ -2568,6 +2568,8 @@ async function doPublish() {
       );
     } else if (res.error === "publish-frozen") {
       alert(t("publishFrozenMsg"));
+    } else if (res.error === "dev-run-no-publish") {
+      alert(t("publishDevRunMsg"));
     } else alert(t("publishFail") + res.error);
   }, { cancelToast: t("syncCancelled") });
 }
