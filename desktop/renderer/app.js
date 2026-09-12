@@ -6,6 +6,11 @@ let filter = "all";        // tab: all | available | issued | missing | overdue
 let sortMode = "accession"; // accession | title | author | added
 let selectedId = null;
 
+/* Books checked for full-text search, independent of which one is
+   currently open/highlighted (selectedId). Empty means "search every
+   Unicode book", the old default behaviour. */
+const ftsScopedIds = new Set();
+
 const $ = (id) => document.getElementById(id);
 
 /* Physical layout: مکتبہ (building/branch) → شعبہ (department, only نعمانیہ جدید
@@ -79,6 +84,171 @@ function categoryChoices() {
 function refreshCategoryList() {
   const dl = $("catList");
   if (dl) dl.innerHTML = categoryChoices().map((c) => `<option value="${esc(c)}"></option>`).join("");
+}
+
+/* A real, keyboard-driven suggestion list for موضوع/شعبہ — the browser's own
+   <input list> + <datalist> combo LOOKS like it should do this, but Chromium's
+   native datalist popup does not open or move on ArrowDown/ArrowUp at all; the
+   client reported exactly that ("arrow does not work to pull in/hide the
+   data"). This replaces it with a small combobox: typing filters, ↓/↑ moves a
+   highlight, Enter or a click picks it, Escape closes without changing
+   anything. Free text is still accepted — these are suggestions, not a fixed
+   list — so nothing here blocks a genuinely new category or department.
+
+   The suggestion panel is a permanent, single body-level element per input,
+   shown/hidden and repositioned in fixed coordinates rather than nested near
+   the field. A field inside the Add Book <dialog> needs that regardless of
+   z-index — proven earlier in this codebase that no z-index beats an open
+   <dialog> from underneath it; portaled here from the start rather than only
+   when the stacking breaks. */
+/* Keyed by input id, not by the input element itself — dCategory/dDepartment
+   are rebuilt from scratch on every renderDetail() call (one per row click),
+   as a brand new element each time, so an element-keyed record would never
+   find the PREVIOUS dropdown to remove. A fresh body-appended dropdown on
+   every rebuild with nothing ever cleaned up would leak one orphaned element
+   per click, forever; the id stays the same across rebuilds even though the
+   node does not. */
+const comboLists = new Map();
+
+function attachCombobox(input, getOptions) {
+  const existing = comboLists.get(input.id);
+  if (existing) existing.remove();
+
+  const list = document.createElement("div");
+  list.className = "combo-list hidden";
+  /* A plain document.body child never renders above an open <dialog>, no
+     matter the z-index — a dialog paints in the browser's top layer, which
+     only top-layer content can beat. oCategory/oDepartment live inside
+     dlgOne, so the dropdown must be parented INSIDE that dialog (making it
+     part of the same top-layer subtree) rather than as a body sibling.
+     dCategory/dDepartment sit in the plain detail panel with no enclosing
+     dialog, so body is correct there. */
+  (input.closest("dialog") || document.body).appendChild(list);
+  comboLists.set(input.id, list);
+  /* A mousedown that lands on the list's own scrollbar (not a .combo-item)
+     was never prevented, so it blurred the input like any other outside
+     click — the close-on-blur timer then killed the dropdown mid-scroll,
+     fighting the very drag the user was making. */
+  list.addEventListener("mousedown", (e) => e.preventDefault());
+
+  let items = [];
+  let highlight = -1;
+
+  function position() {
+    /* The app's UI-scale setting applies CSS `zoom` on <body> (currently
+       1.12 for the default scale). getBoundingClientRect()/innerHeight
+       report RENDERED (post-zoom) pixels, but element.style.left/top and
+       offsetHeight are LAYOUT (pre-zoom) pixels — the two don't mix. Every
+       calculation below happens in rendered-pixel space (matching
+       getBoundingClientRect and innerHeight), and only the final numbers
+       assigned to list.style.* are divided back down to layout pixels via
+       currentCSSZoom. Skipping this step is what silently misplaced the
+       dropdown further from the input the further the input sat from the
+       page's top-left corner — a small drift near the origin, a field's
+       height buried under it lower down. */
+    const zoom = list.currentCSSZoom || 1;
+    const r = input.getBoundingClientRect();
+    const h = list.offsetHeight * zoom;
+    const GAP = 2;
+    let top = r.bottom + GAP;
+    if (top + h > window.innerHeight - GAP) top = Math.max(GAP, r.top - GAP - h);
+    /* dlgOne's open/close animation leaves its computed transform at the
+       identity matrix rather than "none" once finished — and ANY non-"none"
+       transform on an ancestor, identity included, makes that ancestor the
+       containing block for a position:fixed descendant (CSS spec). The
+       dropdown is parented inside the dialog (see above), so its fixed
+       coordinates land relative to the dialog's box, not the viewport,
+       while getBoundingClientRect() above is always viewport-relative —
+       subtracting the dropdown's own containing block's origin converts
+       back to the frame position:fixed is actually using. For the body
+       parent case (dCategory/dDepartment) this origin is 0,0, a no-op. */
+    const hostRect = list.parentElement.getBoundingClientRect();
+    /* Matching the input's full width made a 440px-wide panel that buried
+       four fields at once. A category name needs far less, so the list is
+       capped and hangs from the edge the text starts at — right in Urdu and
+       Arabic, left in English. */
+    const w = Math.min(r.width, 260 * zoom);
+    const rtl = getComputedStyle(document.documentElement).direction === "rtl";
+    const left = rtl ? r.right - w : r.left;
+    list.style.left = ((left - hostRect.left) / zoom) + "px";
+    list.style.top = ((top - hostRect.top) / zoom) + "px";
+    list.style.width = (w / zoom) + "px";
+  }
+
+  function render() {
+    const q = input.value.trim();
+    const all = (getOptions() || []).filter((v, i, arr) => v && arr.indexOf(v) === i);
+    items = q ? all.filter((v) => v.includes(q)) : all;
+    if (!items.length) { close(); return; }
+    highlight = Math.min(highlight, items.length - 1);
+    list.innerHTML = items
+      .map((v, i) => `<div class="combo-item${i === highlight ? " on" : ""}" data-i="${i}">${esc(v)}</div>`)
+      .join("");
+    list.classList.remove("hidden");
+    position();
+    list.querySelectorAll(".combo-item").forEach((el) => {
+      // mousedown, not click — fires before the input's own blur, so a
+      // selection is never lost to the close-on-blur handler racing it.
+      el.onmousedown = (e) => {
+        e.preventDefault();
+        select(items[+el.dataset.i]);
+      };
+    });
+  }
+
+  let suppressNextInput = false;
+  function select(value) {
+    input.value = value;
+    close();
+    /* dispatchEvent runs listeners synchronously, including this combobox's
+       OWN "input" listener below — without the flag, selecting an item
+       reopens the very dropdown select() just closed. */
+    suppressNextInput = true;
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function open() { highlight = -1; render(); }
+  function close() { list.classList.add("hidden"); highlight = -1; }
+  function isOpen() { return !list.classList.contains("hidden"); }
+
+  function setHighlight(i) {
+    highlight = Math.max(0, Math.min(i, items.length - 1));
+    list.querySelectorAll(".combo-item").forEach((el, idx) => el.classList.toggle("on", idx === highlight));
+    const el = list.children[highlight];
+    if (el) el.scrollIntoView({ block: "nearest" });
+  }
+
+  input.addEventListener("focus", open);
+  input.addEventListener("input", () => {
+    if (suppressNextInput) { suppressNextInput = false; return; }
+    highlight = -1;
+    render();
+  });
+  input.addEventListener("blur", () => setTimeout(close, 120));
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (!isOpen()) { open(); return; }
+      setHighlight(highlight + 1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!isOpen()) { open(); return; }
+      setHighlight(highlight - 1);
+    } else if (e.key === "Enter") {
+      if (isOpen() && highlight >= 0) { e.preventDefault(); select(items[highlight]); }
+    } else if (e.key === "Escape") {
+      if (isOpen()) { close(); }
+    }
+  });
+  window.addEventListener("resize", () => { if (isOpen()) position(); });
+  /* Focusing oCategory/oDepartment near the bottom of a taller-than-viewport
+     dlgOne triggers the browser's own "scroll focused element into view",
+     which lands a frame or two AFTER this module's synchronous position()
+     call — leaving the dropdown drawn at the input's pre-scroll location.
+     Scroll events don't bubble, so catching the dialog's internal scroll
+     (or a body scroll for the detail-panel case) needs the capture phase. */
+  document.addEventListener("scroll", () => { if (isOpen()) position(); }, true);
 }
 
 const MATERIALS = ["book", "magazine", "manuscript", "thesis", "electronic"];
@@ -470,6 +640,10 @@ async function adoptData(next) {
   DATA = next;
   DATA.books.forEach(normalizeBook);
   nextId = 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0);
+  // Drop any checked-for-search id a sync just removed the book behind.
+  const liveIds = new Set(DATA.books.map((b) => b.id));
+  for (const id of [...ftsScopedIds]) if (!liveIds.has(id)) ftsScopedIds.delete(id);
+  if ($("ftsScope")) updateFtsScope();
   categories();
   refreshCategoryList();
   applyTheme();
@@ -690,7 +864,9 @@ function renderBooks() {
       (b.files || []).length > 1 ? `<span class="fmt-badge">×${ud(b.files.length)}</span>` : "",
       isOverdue(b) ? `<span class="fmt-badge od">${t("overdue")}</span>` : ""
     ].join("");
-    row.innerHTML = `<span class="br-star${b.favorite ? " on" : ""}" data-star="${b.id}" title="${t("favorite")}">${b.favorite ? "★" : "☆"}</span>
+    row.innerHTML = `<span class="br-check${ftsScopedIds.has(b.id) ? " on" : ""}" data-check="${b.id}" title="${t("ftsCheckTip")}"><svg><use href="#i-tick"/></svg></span>
+                     <span class="br-bookicon"><svg><use href="#i-book"/></svg></span>
+                     <span class="br-star${b.favorite ? " on" : ""}" data-star="${b.id}" title="${t("favorite")}">${b.favorite ? "★" : "☆"}</span>
                      <span class="br-acc">${ud(b.accession || "—")}</span>
                      <span class="br-author">${esc(b.author) || t("noAuthor")}</span>
                      <span class="br-title"><span class="dot" title="${t("st_" + b.status)}"></span>${esc(b.title)}${badges}</span>
@@ -709,17 +885,21 @@ function renderBooks() {
       openBook();          // picker closes, the book takes the window
     };
     if (theme().hoverCard) {
-      row.onmouseenter = (e) => showCard(b, e);
-      /* Follows the pointer, like the reference app, rather than staying
-         pinned to wherever the row happened to be when it opened — a long
-         row scanned end to end should see the card track the cursor across
-         it, not sit stuck at the point of entry. */
-      row.onmousemove = (e) => moveCard(e);
+      row.onmouseenter = (e) => showCard(b, row, e.clientX);
       row.onmouseleave = scheduleHideCard;
     }
     list.appendChild(row);
   }
 
+  list.querySelectorAll("[data-check]").forEach((el) => {
+    el.onclick = (ev) => {
+      ev.stopPropagation();   // checking must not also open the row
+      const id = +el.dataset.check;
+      if (ftsScopedIds.has(id)) ftsScopedIds.delete(id); else ftsScopedIds.add(id);
+      el.classList.toggle("on", ftsScopedIds.has(id));
+      updateFtsScope();
+    };
+  });
   list.querySelectorAll("[data-star]").forEach((el) => {
     el.onclick = (ev) => {
       ev.stopPropagation();   // starring must not also select the row
@@ -822,11 +1002,11 @@ function _renderDetail() {
     <label class="lead">${t("fTitle").replace(" *", "")}</label><input id="dTitle" />
     <label class="lead">${t("fAuthor")}</label><input id="dAuthor" />
     <label class="lead">${t("fPublisher")}</label><input id="dPublisher" />
-    <label>${t("fCategory")}</label><input id="dCategory" list="catList" />
+    <label>${t("fCategory")}</label><input id="dCategory" autocomplete="off" />
     <label>${t("fVolumes")}</label><input id="dVolumes" type="number" min="0" />
     <label class="lead">${t("fMaktaba")}</label>
     <select id="dMaktaba"></select>
-    <label class="lead">${t("fDepartment")}</label><input id="dDepartment" list="deptList" />
+    <label class="lead">${t("fDepartment")}</label><input id="dDepartment" autocomplete="off" />
     <label class="lead">${t("fShelf")}</label><input id="dAlmari" />
     <label>${t("fNotes")}</label><textarea id="dNotes"></textarea>
     <label>${t("fFormat")}</label>
@@ -851,6 +1031,9 @@ function _renderDetail() {
   $("dAlmari").value = b.almari || "";
   $("dNotes").value = b.notes || "";
   $("dFormat").value = b.format || "physical";
+  // Rebuilt from scratch on every renderDetail() call — re-attach each time.
+  attachCombobox($("dCategory"), () => categoryChoices());
+  attachCombobox($("dDepartment"), () => departmentsFor($("dMaktaba").value));
   renderCover(b);
   renderFileRow(b);
 
@@ -1323,7 +1506,9 @@ const baseName = (p) => String(p || "").split(/[\\/]/).pop();
    the cover image when the record has one. */
 let cardTimer = null;
 
-function showCard(b, e) {
+const CARD_HOVER_DELAY_MS = 350;
+
+function showCard(b, row, cursorX) {
   clearTimeout(cardTimer);
   cardTimer = setTimeout(() => {
     const card = $("bookCard");
@@ -1371,45 +1556,51 @@ function showCard(b, e) {
       </div>`;
 
     card.classList.add("show");
-    positionCard(e.clientX, e.clientY);
-  }, 320);
+    positionCard(row, cursorX);
+  }, CARD_HOVER_DELAY_MS);
 }
 
-/* Anchored to the cursor, not the row: which corner the card grows from
-   flips on both axes so it always stays fully on screen, the way the
-   reference app's own preview does — near the bottom-right of the window it
-   opens up-and-left, near the top-left it opens down-and-right, and so on.
-   The direction the script reads from only decides the DEFAULT side before
-   any clamping is needed. */
-function positionCard(x, y) {
+/* Which SIDE the card opens on follows the pointer: hovering on the left
+   half of the window opens it to the right, hovering on the right half
+   opens it to the left — so the card lands in the space you are not
+   looking at, never on top of it.
+   It is offset clear of the pointer rather than placed under it. A card
+   that sits under the cursor takes the hover for itself: its own
+   mouseenter keeps cancelling the hide timer, the row beneath stops
+   getting the mouseleave it needs, and it stays stuck on screen covering
+   whatever was there. Vertically it stays level with its own row. */
+function positionCard(row, cursorX) {
   const card = $("bookCard");
+  const r = row.getBoundingClientRect();
   const w = card.offsetWidth;
   const h = card.offsetHeight;
   const GAP = 10;
-  const OFFSET = 16;              // clear of the cursor itself
-  const rtl = document.documentElement.dir !== "ltr";
+  const OFFSET = 18;
+  const x = typeof cursorX === "number" ? cursorX : r.left + r.width / 2;
 
-  let left = rtl ? x - OFFSET - w : x + OFFSET;
-  if (rtl && left < GAP) left = x + OFFSET;                 // no room to the left: flip right
-  if (!rtl && left + w > window.innerWidth - GAP) left = x - OFFSET - w;  // no room right: flip left
+  /* "Left half" / "right half" of what, exactly, matters here. The picker
+     dialog rarely fills the whole application window — on a wide monitor it
+     can sit well over to one side — so comparing the cursor against
+     window.innerWidth/2 answered "which half of the MONITOR", not "which
+     half of the LIST the librarian is actually looking at". A row on the
+     dialog's own right edge could still measure as being in the window's
+     left half, and the card kept opening on the side the cursor was
+     already on. Compare against the picker (or the nearest dialog, for
+     the book-view panel's own row uses) instead. */
+  const host = row.closest("dialog") || document.body;
+  const hostRect = host.getBoundingClientRect();
+  const mid = hostRect.left + hostRect.width / 2;
+
+  let left = x < mid ? x + OFFSET : x - OFFSET - w;
   left = Math.max(GAP, Math.min(left, window.innerWidth - w - GAP));
 
-  let top = y + OFFSET;
-  if (top + h > window.innerHeight - GAP) top = y - OFFSET - h;   // no room below: flip above
-  top = Math.max(GAP, Math.min(top, window.innerHeight - h - GAP));
+  let top = r.top;
+  if (top + h > window.innerHeight - GAP) top = window.innerHeight - GAP - h;
+  top = Math.max(GAP, top);
 
   card.style.left = left + "px";
   card.style.top = top + "px";
   card.style.right = "auto";
-}
-
-/* Re-anchors the already-open card to the new pointer position — the follow
-   behaviour itself. Only while it is actually visible: no point tracking the
-   mouse during the 320ms delay before the card has even appeared. */
-function moveCard(e) {
-  const card = $("bookCard");
-  if (!card.classList.contains("show")) return;
-  positionCard(e.clientX, e.clientY);
 }
 
 /* A short grace period before hiding, and cancelling that hide if the mouse
@@ -1877,6 +2068,7 @@ function openAddOne() {
   if (!requireMaster()) return;
   for (const id of ["oTitle", "oAuthor", "oPublisher", "oCategory", "oDepartment", "oShelf", "oNotes"]) $(id).value = "";
   $("oVolumes").value = 1;
+  $("oFormat").value = "physical";
   $("oHasPrint").checked = true;      // most books added are physical; unchecking is the exception
   syncAddOneHasPrint();
   fillMaktabaSelect($("oMaktaba"), mode === "shelf" && group ? group : "");
@@ -1892,13 +2084,24 @@ ${t("accessionExplain")}`;
 }
 $("oMaktaba").onchange = () => updateDeptList($("oMaktaba").value);
 $("oHasPrint").onchange = syncAddOneHasPrint;
+// Static fields on a dialog that never gets rebuilt — attach once.
+attachCombobox($("oCategory"), () => categoryChoices());
+attachCombobox($("oDepartment"), () => departmentsFor($("oMaktaba").value));
+/* The type chosen up top sets a sensible starting point for "is there also
+   a physical copy on the shelf" — checked for a physical book, unchecked
+   for a PDF/Unicode text, since most of those are digital-only additions —
+   but stays a real checkbox the librarian can still override either way. */
+$("oFormat").onchange = () => {
+  $("oHasPrint").checked = $("oFormat").value === "physical";
+  syncAddOneHasPrint();
+};
 
 $("oSave").onclick = () => {
   const hasPrint = $("oHasPrint").checked;
   /* A book with no physical copy has nowhere to sit — a branch, department or
      almari would be a fiction. Only real fields for the shelf it's on are
      required, and only when there is a shelf. */
-  const required = ["oTitle", "oAuthor", "oPublisher", "oCategory", "oVolumes", "oNotes"]
+  const required = ["oTitle", "oAuthor", "oPublisher", "oCategory", "oVolumes"]
     .concat(hasPrint ? ["oMaktaba", "oDepartment", "oShelf"] : []);
   for (const id of required) {
     const el = $(id);
@@ -1912,6 +2115,7 @@ $("oSave").onclick = () => {
     publisher: $("oPublisher").value.trim(),
     category: $("oCategory").value.trim(),
     volumes: parseInt($("oVolumes").value, 10) || 0,
+    format: $("oFormat").value,
     maktaba: hasPrint ? $("oMaktaba").value : "",
     department: hasPrint ? $("oDepartment").value.trim() : "",
     almari: hasPrint ? $("oShelf").value.trim() : "",
@@ -1974,6 +2178,7 @@ function deleteSelected() {
   if (!b) return;
   if (!confirm(`"${b.title}" — ${t("confirmDelete")}`)) return;
   DATA.books = DATA.books.filter((x) => x.id !== selectedId);
+  ftsScopedIds.delete(selectedId);
   selectedId = null;
   $("bookView").classList.add("hidden");
   persist();
@@ -2924,6 +3129,28 @@ function paginate(text) {
    "1. الفاتحة" style numbered headings are what the uploaded Qur'an uses;
    when a text has none the tree simply stays hidden rather than inventing
    structure that is not in the file. */
+/* Same numbered-line pattern buildToc() uses for the reader's own table of
+   contents, reused here as the honest definition of "a heading" for
+   full-text search scoping. Returns whole-line spans (not just the match)
+   so a hit anywhere on that line counts. There is no equivalent for
+   footnotes or editor's comments — the attached texts are plain files with
+   no markup telling those apart from ordinary body text, so scoping to
+   either of those would just be guessing, not a real filter. */
+function headingLineSpans(text) {
+  const spans = [];
+  const re = /^[ \t]*(\d+)[.．)][ \t]+(\S.*)$/gm;
+  let m;
+  while ((m = re.exec(text)) !== null && spans.length < 4000) {
+    if (m[2].trim().length > 80) continue;
+    spans.push([m.index, m.index + m[0].length]);
+  }
+  return spans;
+}
+function offsetInSpans(offset, spans) {
+  for (const [start, end] of spans) if (offset >= start && offset < end) return true;
+  return false;
+}
+
 function buildToc(text, pages) {
   const toc = [];
   const re = /^[ \t]*(\d+)[.．)][ \t]+(\S.*)$/gm;
@@ -2983,7 +3210,7 @@ function applyReaderScript(text) {
   if (script) el.classList.add("script-" + script);
 }
 
-async function openReader(book, filePath, preset) {
+async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly) {
   $("rdTitle").textContent = book.title || "";
   $("rdFile").textContent = baseName(filePath);
   $("rdQuery").value = preset || "";   // a search result opens already on its word
@@ -3010,7 +3237,7 @@ async function openReader(book, filePath, preset) {
   readerPages = paginate(readerText);
   readerToc = buildToc(readerText, readerPages);
   renderRdToc();
-  if (preset) runReaderSearch(); else { paintReader(); renderRdResults(); }
+  if (preset) runReaderSearch(presetOpts, presetHeadingsOnly); else { paintReader(); renderRdResults(); }
   setTimeout(() => $("rdQuery").focus(), 60);
 }
 
@@ -3078,12 +3305,20 @@ function renderRdToc() {
   });
 }
 
-function runReaderSearch() {
+function runReaderSearch(scopeOpts, headingsOnly) {
   const q = $("rdQuery").value;
   if (q.trim()) {
-    // one index per open book, reused by every search in it
-    if (!readerIndex) readerIndex = prepareIndex(readerText, null);
-    readerHits = findInTextOpts(readerText, q, null, readerIndex);
+    /* Only the jump straight from an FTS result carries scopeOpts/
+       headingsOnly — typing a fresh query into the reader's own search box
+       calls this with neither, which is the reader's ordinary unscoped
+       in-book search and always has been. Re-using readerIndex across the
+       two would be wrong when the diacritics/hamza options differ, so a
+       scoped call gets its own index instead of touching the cached one. */
+    const opts = scopeOpts || null;
+    const idx = scopeOpts ? prepareIndex(readerText, opts) : (readerIndex || (readerIndex = prepareIndex(readerText, null)));
+    let hits = findInTextOpts(readerText, q, opts, idx);
+    if (headingsOnly) hits = hits.filter((h) => offsetInSpans(h.start, headingLineSpans(readerText)));
+    readerHits = hits;
   } else {
     readerHits = [];
   }
@@ -3338,9 +3573,27 @@ async function runFullTextSearch() {
   const anyOf = $("ftsAny").checked;
   const exclude = $("ftsNot").value.trim();
 
-  const targets = DATA.books.filter((b) => b.format === "unicode" && (b.files || []).length);
+  /* Headings-only is a real narrowing filter (see headingLineSpans); body
+     alone stays the original unrestricted search, since a heading line's
+     own text is still real body content in a plain file — there is no
+     reliable way to say a line is "only" a heading and nothing else. */
+  const headingsOnly = $("ftsInHeadings").checked && !$("ftsInBody").checked;
+  if (!$("ftsInBody").checked && !$("ftsInHeadings").checked) {
+    $("ftsStatus").textContent = t("ftsNeedScope");
+    return;
+  }
+
+  /* Checked books (see [data-check] in renderBooks) narrow the scan to just
+     those; an empty set means every Unicode book, the original behaviour. */
+  const scoped = ftsScopedIds.size
+    ? DATA.books.filter((b) => ftsScopedIds.has(b.id))
+    : DATA.books;
+  const targets = scoped.filter((b) => b.format === "unicode" && (b.files || []).length);
   $("ftsResults").innerHTML = "";
-  if (!targets.length) { $("ftsStatus").textContent = t("ftsNoTexts"); return; }
+  if (!targets.length) {
+    $("ftsStatus").textContent = ftsScopedIds.size ? t("ftsNoTextsScoped") : t("ftsNoTexts");
+    return;
+  }
 
   ftsBusy = true;
   $("ftsRun").disabled = true;
@@ -3362,7 +3615,9 @@ async function runFullTextSearch() {
       const idx = ftsIndexOf(entry, opts);
       // ليس — a book containing the excluded word drops out whatever else matched
       if (exclude && findInTextOpts(text, exclude, opts, idx).length) continue;
-      const perTerm = terms.map((q) => findInTextOpts(text, q, opts, idx));
+      const spans = headingsOnly ? headingLineSpans(text) : null;
+      let perTerm = terms.map((q) => findInTextOpts(text, q, opts, idx));
+      if (spans) perTerm = perTerm.map((hits) => hits.filter((h) => offsetInSpans(h.start, spans)));
       const ok = anyOf ? perTerm.some((h) => h.length) : perTerm.every((h) => h.length);
       if (!ok) continue;
       const hitIndex = perTerm.findIndex((h) => h.length);
@@ -3376,10 +3631,10 @@ async function runFullTextSearch() {
   }
   ftsBusy = false;
   $("ftsRun").disabled = false;
-  renderFtsResults(found);
+  renderFtsResults(found, opts, headingsOnly);
 }
 
-function renderFtsResults(found) {
+function renderFtsResults(found, opts, headingsOnly) {
   const box = $("ftsResults");
   box.innerHTML = "";
   $("ftsStatus").textContent = found.length
@@ -3393,8 +3648,11 @@ function renderFtsResults(found) {
                      <span class="fh-count">${ud(r.total)}</span>`;
     row.title = baseName(r.path);
     // Opening straight at the word is the point — a result you still have to
-    // go hunting for inside a long book is not a search result.
-    row.onclick = () => openReader(r.book, r.path, r.term);
+    // go hunting for inside a long book is not a search result. The same
+    // options that produced this count travel with it, so the reader shows
+    // the same hits the panel just promised, not a bigger unscoped count
+    // for the whole book (diacritics/hamza reset, headings-only dropped).
+    row.onclick = () => openReader(r.book, r.path, r.term, opts, headingsOnly);
     box.appendChild(row);
   }
 }
@@ -3411,6 +3669,47 @@ $("ftsClear").onclick = () => {
   $("ftsResults").innerHTML = "";
   $("ftsStatus").textContent = "";
   $("fts1").focus();
+};
+
+/* The checked-books chip above the search fields, shown only once at least
+   one book is checked in the list — count only, not a list of titles, so it
+   stays one line regardless of how many are checked. */
+function updateFtsScope() {
+  const n = ftsScopedIds.size;
+  $("ftsScope").classList.toggle("hidden", n === 0);
+  if (!n) { $("ftsScopeList").innerHTML = ""; return; }
+  $("ftsScopeTitle").textContent = t("ftsScopeCount").replace("{n}", ud(n));
+
+  /* One line per checked book, full title with its author — the same
+     "Title (Author)" pattern the hover card and reader use elsewhere —
+     not just a bare count, so it is obvious at a glance which books are
+     actually in scope, matching the reference app's own checked-books
+     list. Each carries its own remove control, so a book can be dropped
+     from here without hunting for its row back in the list. */
+  const list = $("ftsScopeList");
+  list.innerHTML = [...ftsScopedIds].map((id) => {
+    const b = DATA.books.find((x) => x.id === id);
+    if (!b) return "";
+    return `<div class="fts-scope-item">
+        <svg><use href="#i-book"/></svg>
+        <span>${esc(b.title)}${b.author ? ` <span class="fso-author">(${esc(b.author)})</span>` : ""}</span>
+        <button type="button" data-unscope="${id}"><svg><use href="#i-x"/></svg></button>
+      </div>`;
+  }).join("");
+  list.querySelectorAll("[data-unscope]").forEach((btn) => {
+    btn.onclick = () => {
+      const id = +btn.dataset.unscope;
+      ftsScopedIds.delete(id);
+      const rowCheck = document.querySelector(`.bookrow [data-check="${id}"]`);
+      if (rowCheck) rowCheck.classList.remove("on");
+      updateFtsScope();
+    };
+  });
+}
+$("ftsScopeClear").onclick = () => {
+  ftsScopedIds.clear();
+  renderBooks();     // drops every row's checked state
+  updateFtsScope();
 };
 for (const id of ["fts1", "fts2", "fts3", "fts4", "ftsNot"]) {
   $(id).addEventListener("keydown", (e) => {
@@ -3461,6 +3760,19 @@ $("btnLang").onclick = () => {
   DATA.appSettings.lang = next;
   persist();
 };
+
+/* One delegated listener covers every .pwd-toggle button, including
+   sSbKey/sToken in settings that only exist once that dialog's markup is
+   in the DOM at load — no per-field wiring needed. */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".pwd-toggle");
+  if (!btn) return;
+  const input = $(btn.dataset.for);
+  if (!input) return;
+  const show = input.type === "password";
+  input.type = show ? "text" : "password";
+  btn.querySelector("use").setAttribute("href", show ? "#i-eye-off" : "#i-eye");
+});
 
 $("catAdd").onclick = addCategory;
 $("catNew").addEventListener("keydown", (e) => { if (e.key === "Enter") addCategory(); });

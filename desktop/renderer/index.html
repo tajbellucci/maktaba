@@ -26,6 +26,11 @@
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="9"/><path d="M8.5 12.4l2.4 2.4 4.6-5"/>
   </symbol>
+  <!-- Plain tick, no enclosing circle — i-check's circled version reads as
+       heavy inside a small checkbox. -->
+  <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12.5l4.5 4.5L19 7"/>
+  </symbol>
   <symbol id="i-more" viewBox="0 0 24 24" fill="currentColor">
     <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
   </symbol>
@@ -61,6 +66,8 @@
   <symbol id="i-max" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/></symbol>
   <symbol id="i-restore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="13" height="13" rx="2"/><path d="M8 8V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-3"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.2A10.9 10.9 0 0 1 12 5c6.4 0 10 7 10 7a15.6 15.6 0 0 1-3.2 4.1M6.5 6.8C4 8.5 2 12 2 12s3.6 7 10 7c1.3 0 2.5-.2 3.6-.7"/><path d="M9.5 9.8a3 3 0 0 0 4.2 4.2"/></symbol>
 
   <!-- Options icons. These carry their own fills instead of inheriting
        currentColor, so they read as real application icons the way Shamela's
@@ -265,8 +272,12 @@
       <button class="tbtn" id="btnClearSearch" title="تلاش صاف کریں"><svg><use href="#i-x"/></svg></button>
     </div>
     <div class="bookhead">
-      <!-- Matches the favourite-star cell on every row. Without it the whole
-           header sat ~30px off from the columns underneath it. -->
+      <!-- Matches the checkbox / book-icon / favourite-star cells on every
+           row. Without these the whole header sits off from the columns
+           underneath it — exactly what happened when the checkbox and book
+           icon columns were added to the row but never mirrored here. -->
+      <div class="bh-check" aria-hidden="true"></div>
+      <div class="bh-bookicon" aria-hidden="true"></div>
       <div class="bh-star" aria-hidden="true"></div>
       <div class="bh-acc" data-t="colAccession">رجسٹر نمبر</div>
       <div class="bh-author" data-t="colAuthor">المؤلف</div>
@@ -296,6 +307,18 @@
       <span data-t="ftsHead">متن میں تلاش</span>
     </div>
     <div class="fts-body">
+      <!-- Real, working scope — text vs. headings — not a full match for the
+           reference app's own footnote/comment filters: this app's attached
+           texts are plain files with no markup distinguishing a footnote or
+           an editor's comment from body text, so there is nothing honest to
+           filter by for those two. Headings ARE real: they are the same
+           numbered lines the in-book reader already turns into its table of
+           contents (buildToc), reused here as the definition of a heading. -->
+      <div class="fts-scopekind">
+        <span class="fts-sk-label" data-t="ftsSearchIn">البحث فی:</span>
+        <label><input type="checkbox" id="ftsInBody" checked /><span data-t="ftsInBody">المتن</span></label>
+        <label><input type="checkbox" id="ftsInHeadings" /><span data-t="ftsInHeadings">العناوین</span></label>
+      </div>
       <div class="fts-terms">
         <label class="fts-term"><span class="fts-n">١</span><input id="fts1" data-t-ph="ftsTermPh" /></label>
         <label class="fts-term"><span class="fts-n">٢</span><input id="fts2" /></label>
@@ -322,6 +345,20 @@
 
       <div class="hint" id="ftsStatus"></div>
       <div class="fts-results" id="ftsResults"></div>
+
+      <!-- Checked books sit at the BOTTOM of the panel, where the reference
+           app keeps its own list of them — below the fields and the search
+           button, not above them. Hidden entirely until something is
+           checked. Unchecking a row in the book list removes it from here,
+           and removing it here unchecks that row: one selection, shown in
+           two places. -->
+      <div class="fts-scope hidden" id="ftsScope">
+        <div class="fts-scope-head">
+          <span id="ftsScopeTitle"></span>
+          <button type="button" id="ftsScopeClear" data-tip="ftsScopeClear"><svg><use href="#i-x"/></svg></button>
+        </div>
+        <div class="fts-scope-list" id="ftsScopeList"></div>
+      </div>
     </div>
   </aside>
 
@@ -346,17 +383,29 @@
   <div class="modal-body">
     <h2 data-t="dlgOneTitle">ایک کتاب شامل کریں</h2>
     <div class="modal-inner">
+      <!-- Asked first, not last — everything below it (whether the shelf
+           fields make sense, whether a physical copy is even on the
+           premises) follows from what kind of book this is. Format used to
+           have no home in this dialog at all: every new book silently
+           defaulted to "physical" and had to be corrected afterward, in a
+           different screen, which is what made it feel backwards. -->
+      <label data-t="fFormat">شکل</label>
+      <select id="oFormat">
+        <option value="physical" data-t-opt="fmtPhysical">طباعتی کتاب</option>
+        <option value="pdf" data-t-opt="fmtPdf">PDF فائل</option>
+        <option value="unicode" data-t-opt="fmtUnicode">یونیکوڈ متن</option>
+      </select>
       <p class="hint" id="oAccHint"></p>
       <label data-t="fTitle">نام *</label><input id="oTitle" />
       <label data-t="fAuthor">مصنف</label><input id="oAuthor" />
       <label data-t="fPublisher">ناشر</label><input id="oPublisher" />
-      <label data-t="fCategory">موضوع</label><input id="oCategory" list="catList" />
+      <label data-t="fCategory">موضوع</label><input id="oCategory" autocomplete="off" />
       <label data-t="fVolumes">جلدیں</label><input id="oVolumes" type="number" min="0" value="1" />
       <label class="chk hasprint" id="oHasPrintRow"><input type="checkbox" id="oHasPrint" checked /><span data-t="hasPrintLabel">طباعتی نسخہ بھی الماری میں موجود ہے</span></label>
       <div id="oShelfFields">
         <label data-t="fMaktaba">مکتبہ</label>
         <select id="oMaktaba"><option value=""></option></select>
-        <label data-t="fDepartment">شعبہ</label><input id="oDepartment" list="deptList" />
+        <label data-t="fDepartment">شعبہ</label><input id="oDepartment" autocomplete="off" />
         <label data-t="fShelf">الماری نمبر</label><input id="oShelf" />
       </div>
       <label data-t="fNotes">نوٹس</label><input id="oNotes" />
@@ -400,11 +449,13 @@
         <label>Repo</label><input id="sRepo" />
         <label>Branch</label><input id="sBranch" />
         <label>Supabase URL</label><input id="sSbUrl" placeholder="https://xxxx.supabase.co" />
-        <label>Supabase anon key</label><input id="sSbKey" type="password" />
+        <label>Supabase anon key</label>
+        <div class="pwd-wrap"><input id="sSbKey" type="password" /><button type="button" class="pwd-toggle" data-for="sSbKey"><svg><use href="#i-eye"/></svg></button></div>
       </div>
 
       <div class="master-only">
-        <label data-t="fToken">Fine-grained Token</label><input id="sToken" type="password" />
+        <label data-t="fToken">Fine-grained Token</label>
+        <div class="pwd-wrap"><input id="sToken" type="password" /><button type="button" class="pwd-toggle" data-for="sToken"><svg><use href="#i-eye"/></svg></button></div>
         <p class="hint" data-t="tokenHint" style="margin-top:6px;">ٹوکن صرف اسی کمپیوٹر پر محفوظ ہوتا ہے۔</p>
       </div>
 
@@ -641,7 +692,8 @@
     <div class="modal-inner">
       <p class="hint" id="loginHint"></p>
       <label data-t="loginEmail">ای میل</label><input id="loginEmail" type="email" />
-      <label data-t="loginPassword">پاس ورڈ</label><input id="loginPassword" type="password" />
+      <label data-t="loginPassword">پاس ورڈ</label>
+      <div class="pwd-wrap"><input id="loginPassword" type="password" /><button type="button" class="pwd-toggle" data-for="loginPassword"><svg><use href="#i-eye"/></svg></button></div>
     </div>
     <div class="modal-actions">
       <button class="primary" id="loginSave" data-t="loginBtn">لاگ اِن</button>
@@ -656,7 +708,7 @@
     <div class="modal-inner">
       <p class="hint" id="pinHint"></p>
       <label data-t="librarianPinLabel">پاس ورڈ</label>
-      <input id="pinInput" type="password" />
+      <div class="pwd-wrap"><input id="pinInput" type="password" /><button type="button" class="pwd-toggle" data-for="pinInput"><svg><use href="#i-eye"/></svg></button></div>
     </div>
     <div class="modal-actions">
       <button class="primary" id="pinSave" data-t="btnSave">محفوظ کریں</button>

@@ -374,54 +374,116 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
 .fts-body {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-  padding: 10px;
+  overflow-y: auto;   /* stays as a safety net; the panel is sized to not need it */
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 6px;
 }
-.fts-terms { display: flex; flex-direction: column; gap: 5px; }
+/* Search-in checkboxes, laid out as a compact row like the reference app's
+   own "البحث في:" line — one row instead of the tall one-per-line stack
+   .fts-opts still uses below, which is most of why this panel used to need
+   a scrollbar to see everything at once. */
+.fts-scopekind {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: 12px;
+}
+.fts-sk-label { color: var(--muted); font-weight: 600; flex: none; }
+.fts-scopekind label { display: flex; align-items: center; gap: 5px; cursor: pointer; color: var(--text-2); }
+.fts-scopekind input { flex: none; cursor: pointer; }
+.fts-scope {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 6px 8px;
+  background: var(--blue-wash);
+  border: 1px solid var(--blue-2);
+  border-radius: 6px;
+}
+.fts-scope-head {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--blue-deep);
+}
+.fts-scope-head span { flex: 1; min-width: 0; }
+.fts-scope-head button {
+  background: transparent; border: none; cursor: pointer;
+  color: var(--blue-deep); display: flex; padding: 2px;
+}
+.fts-scope-head button svg { width: 13px; height: 13px; }
+.fts-scope-head button:hover { color: var(--red); }
+
+/* One row per checked book, full title — this is the part that actually
+   answers "which books, exactly", not just a number. Scrolls on its own
+   once several are checked, so it never pushes the search fields below it
+   out of view. */
+.fts-scope-list {
+  display: flex; flex-direction: column; gap: 2px;
+  max-height: 84px;
+  overflow-y: auto;
+}
+.fts-scope-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-2);
+  background: var(--panel);
+}
+.fts-scope-item:hover { background: var(--strip); }
+.fts-scope-item svg { width: 13px; height: 13px; flex: none; color: var(--green); }
+.fts-scope-item span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fts-scope-item .fso-author { color: var(--muted-2); font-weight: 400; }
+.fts-scope-item button {
+  background: transparent; border: none; cursor: pointer;
+  color: var(--muted-2); display: flex; padding: 2px; flex: none;
+}
+.fts-scope-item button svg { width: 12px; height: 12px; }
+.fts-scope-item button:hover { color: var(--red); }
+
+.fts-terms { display: flex; flex-direction: column; gap: 3px; }
 .fts-term {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
 }
 .fts-term input {
   flex: 1;
   min-width: 0;
-  padding: 6px 9px;
+  padding: 4px 8px;
   border: 1px solid var(--line-hard);
   border-radius: 5px;
   background: var(--shell);
   color: var(--text);
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: 13px;
 }
 .fts-term input:focus { outline: none; border-color: var(--blue); }
 .fts-n {
   flex: none;
-  width: 22px;
+  width: 20px;
   text-align: center;
   font-size: 12px;
   color: var(--muted-2);
 }
 .fts-not .fts-n { color: var(--red); font-weight: 700; }
 
-.fts-opts { display: flex; flex-direction: column; gap: 4px; }
+/* Two columns, like the reference app's own مراعاة row — this pair used to
+   stack one-per-line and was most of the panel's excess height. */
+.fts-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 8px; }
 .fts-opts label {
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 12.5px;
+  gap: 6px;
+  font-size: 12px;
   color: var(--muted);
   cursor: pointer;
 }
 .fts-opts input { flex: none; cursor: pointer; }
 
-.fts-actions { display: flex; gap: 7px; }
+.fts-actions { display: flex; gap: 6px; }
 .fts-actions button {
   flex: 1;
-  padding: 7px 10px;
+  padding: 6px 10px;
   border: 1px solid var(--line-hard);
   border-radius: 5px;
   background: var(--strip);
@@ -486,16 +548,15 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
   display: flex;
   align-items: center;
   cursor: default;
-  border-bottom: 1px solid var(--line-soft);
   position: relative;
   transition: background .12s;
 }
 
 .grouprow .c-name {
   flex: 1;
-  padding: 8px 12px;
-  display: flex; align-items: center; gap: 9px;
-  font-size: 16.5px;
+  padding: 3px 12px;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px;
   min-width: 0;
 }
 .grouprow .c-name span {
@@ -503,10 +564,10 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
 }
 .grouprow .c-count {
   width: 64px;
-  padding: 8px 0;
+  padding: 3px 0;
   text-align: center;
   color: var(--muted-2);
-  font-size: 14px;
+  font-size: 12px;
   border-right: 1px solid var(--line-soft);
 }
 .grouprow svg { width: 15px; height: 15px; color: var(--muted-2); flex: none; transition: color .12s; }
@@ -729,26 +790,26 @@ dialog {
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
 dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px); }
 
-.modal-body { min-width: 430px; font-family: var(--ui); }
+.modal-body { min-width: 380px; font-family: var(--ui); }
 .modal-body h2 {
   font-family: var(--nastaliq);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 2.1;
+  line-height: 1.9;
   color: var(--text);
   background: var(--strip);
   border-bottom: 1px solid var(--line);
-  padding: 8px 18px 6px;
+  padding: 7px 16px 5px;
 }
-.modal-inner { padding: 13px 18px 15px; }
+.modal-inner { padding: 11px 16px 12px; }
 .modal-body label {
-  display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .5px;
-  color: var(--muted-2); margin: 10px 0 4px;
+  display: block; font-size: 11px; font-weight: 700; letter-spacing: .5px;
+  color: var(--muted-2); margin: 7px 0 3px;
 }
 .modal-inner > label:first-child { margin-top: 0; }
 .modal-body input, .modal-body textarea {
-  width: 100%; font-family: var(--ui); font-size: 15px;
-  padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px;
+  width: 100%; font-family: var(--ui); font-size: 14px;
+  padding: 6px 9px; border: 1px solid var(--line); border-radius: 6px;
   background: var(--strip-2); color: var(--text); user-select: text;
   transition: border-color .16s, box-shadow .16s, background .16s;
 }
@@ -853,6 +914,54 @@ dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px)
 }
 .dropdown button:hover { background: var(--blue-wash); color: var(--blue); }
 .dropdown button svg { width: 15px; height: 15px; color: var(--muted-2); flex: none; }
+
+/* Body-portaled, fixed-position combobox dropdown for oCategory/oDepartment
+   and dCategory/dDepartment — same reason as .dropdown above: nothing beats
+   an open <dialog> except being a sibling of it. */
+.combo-list {
+  position: fixed;
+  background: var(--panel);
+  border: 1px solid var(--line-hard);
+  border-radius: 7px;
+  box-shadow: var(--sh-2);
+  padding: 3px;
+  z-index: 260;
+  max-height: 168px;          /* ~6 rows — a picker, not a second page */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  animation: pop .12s ease-out both;
+}
+.combo-item {
+  padding: 4px 9px;
+  border-radius: 5px;
+  font-family: var(--ui);
+  font-size: 12.5px;
+  line-height: 1.55;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background .1s;
+}
+.combo-item:hover, .combo-item.on { background: var(--blue-wash); color: var(--blue); }
+
+.pwd-wrap { position: relative; display: flex; }
+.pwd-wrap input { flex: 1; padding-inline-end: 34px; }
+.pwd-toggle {
+  position: absolute;
+  inset-inline-end: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--muted-2);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.pwd-toggle svg { width: 17px; height: 17px; }
+.pwd-toggle:hover { color: var(--text); }
 .dropdown button:hover svg { color: var(--blue); }
 .dsep { height: 1px; background: var(--line-soft); margin: 5px 4px; }
 
@@ -1007,12 +1116,27 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
      the edges, exactly where the reference's own vignette lands. */
   background: radial-gradient(ellipse at center, #dcefdf 0%, #e9f4ea 42%, var(--shell) 78%);
 }
+@keyframes homeLogoIn { from { opacity: 0; transform: scale(.94); } to { opacity: .22; transform: scale(1); } }
+/* A slow, near-imperceptible breathe once settled — dignified for an
+   institution's own crest, not a loading spinner. 7s so it never syncs
+   with the eye's blink rate and starts reading as "flashing". */
+@keyframes homeBreathe { 0%, 100% { transform: scale(1); opacity: .22; } 50% { transform: scale(1.014); opacity: .26; } }
+@keyframes homeRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .home-logo {
   width: min(88vh, 880px);
   height: min(88vh, 880px);
   object-fit: contain;
   opacity: .22;
   filter: saturate(1.15);
+  animation: homeLogoIn .9s cubic-bezier(.2,.8,.2,1) both,
+             homeBreathe 7s ease-in-out .9s infinite;
+}
+.home-word  { animation: homeRise .6s ease-out .15s both; }
+.home-rule  { animation: homeRise .6s ease-out .3s  both; }
+.home-tag   { animation: homeRise .6s ease-out .42s both; }
+.home-enter { margin-top: 26px; animation: homeRise .6s ease-out .54s both; }
+@media (prefers-reduced-motion: reduce) {
+  .home-logo, .home-word, .home-rule, .home-tag, .home-enter { animation: none; }
 }
 .home-veil {
   position: absolute; inset: 0;
@@ -1079,12 +1203,18 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
 }
 /* Every width here must mirror the matching .br-* cell exactly, or the header
    drifts away from the columns it labels. */
-.bookhead div { padding: 7px 12px; }
-.bh-star { width: 30px; flex: none; padding: 7px 0 !important; }
-.bh-acc { width: 62px; flex: none; padding: 7px 4px !important; border-left: 1px solid var(--line-soft); text-align: center; }
-.bh-author { width: 24%; flex: none; border-left: 1px solid var(--line-soft); }
+.bookhead div { padding: 3px 8px; }
+/* padding: 0, not inherited from ".bookhead div" — that 9px each side does
+   not fit inside a 13px/18px box, and border-box flex sizing then quietly
+   grows the box to fit the padding instead of the declared width, which is
+   exactly what put these two spacer cells out of step with the row below. */
+.bh-check { width: 13px; flex: none; padding: 0 !important; }
+.bh-bookicon { width: 18px; flex: none; padding: 0 !important; }
+.bh-star { width: 30px; flex: none; padding: 4px 0 !important; }
+.bh-acc { width: 44px; flex: none; padding: 3px 4px !important; border-left: 1px solid var(--line-soft); text-align: center; }
+.bh-author { width: 17%; flex: none; border-left: 1px solid var(--line-soft); }
 .bh-title { flex: 1; min-width: 0; border-left: 1px solid var(--line-soft); }
-.bh-publisher { width: 20%; flex: none; }
+.bh-publisher { width: 14%; flex: none; }
 
 /* Hiding a column in Options must hide its heading too. */
 html[data-show-acc="off"] .bh-acc { display: none; }
@@ -1098,39 +1228,39 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
 
 .bookrow { padding: 0; }
 .br-acc {
-  width: 62px; flex: none;
-  padding: 8px 4px;
+  width: 44px; flex: none;
+  padding: 2px 4px;
   text-align: center;
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--muted-2);
   border-left: 1px solid var(--line-soft);
   font-variant-numeric: tabular-nums;
 }
 .br-author {
-  width: 24%; flex: none;
-  padding: 8px 12px;
+  width: 17%; flex: none;
+  padding: 2px 8px;
   color: var(--muted);
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 600;
   border-left: 1px solid var(--line-soft);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .br-title {
   flex: 1; min-width: 0;
-  padding: 8px 12px;
-  display: flex; align-items: center; gap: 8px;
+  padding: 2px 8px;
+  display: flex; align-items: center; gap: 6px;
   font-family: var(--nastaliq);
-  line-height: 1.9;
-  font-size: 15.5px;
+  line-height: 1.3;
+  font-size: 13px;
   border-left: 1px solid var(--line-soft);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .br-publisher {
-  width: 20%; flex: none;
-  padding: 8px 12px;
+  width: 14%; flex: none;
+  padding: 2px 8px;
   color: var(--muted-2);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
@@ -2251,6 +2381,34 @@ html[data-density="compact"] .grouprow .c-count { padding-top: 4px; padding-bott
 /* ── Favourite star column ────────────────────────────────────────────── */
 
 .bh-star { width: 30px; flex: none; }
+/* Checked here narrows full-text search to just these books instead of
+   scanning the whole library — the reference app's own checkbox column. */
+.br-check {
+  width: 13px; height: 13px; flex: none;
+  align-self: center;   /* .bookrow stretches children by default, which is what
+                            made a 22px-wide box render tall and rectangular
+                            instead of a real square checkbox */
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  color: transparent;
+  border: 1px solid var(--line-hard);
+  transition: background .14s, border-color .14s;
+}
+.br-check svg { width: 9px; height: 9px; }
+.br-check:hover { border-color: var(--blue); }
+.br-check.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.bookrow.sel .br-check { border-color: rgba(255,255,255,.4); }
+.bookrow.sel .br-check.on { background: #fff; color: var(--blue); }
+
+.br-bookicon {
+  width: 18px; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green);
+}
+.br-bookicon svg { width: 14px; height: 14px; }
+.bookrow.sel .br-bookicon { color: rgba(255,255,255,.75); }
+
 .br-star {
   width: 30px; flex: none;
   text-align: center;
