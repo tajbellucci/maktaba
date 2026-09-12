@@ -644,8 +644,16 @@ ipcMain.handle("books:applyData", (_e, data) => {
 });
 
 /* Autosave. Real edits land immediately; incidental state (last-viewed, the
-   favourite star) is coalesced in the renderer and flushed through here. */
+   favourite star) is coalesced in the renderer and flushed through here.
+   Refused for a non-master: the UI already hides every write action for a
+   reader and requireMaster() blocks the ones that survive that, but neither
+   is the main process itself agreeing — this is that check, on the one path
+   that actually touches disk. A refusal returns the CURRENT on-disk
+   `updated` value rather than null, so the caller's `DATA.updated = await
+   save(...)` cannot get overwritten with something falsy; the local
+   catalogue is simply left exactly as it was. */
 ipcMain.handle("books:save", (_e, data) => {
+  if (!isMasterNow()) return readJson(dataFile(), {}).updated || null;
   data.updated = today();
   writeCatalogue(dataFile(), data);
   return data.updated;
@@ -654,8 +662,13 @@ ipcMain.handle("books:save", (_e, data) => {
 /* Synchronous flush, used only on window close. The renderer may be holding a
    coalesced write when the window goes away, and an async round trip is not
    guaranteed to finish during teardown — a sync one is, and it cannot leave
-   the close path waiting on a reply that never comes. */
+   the close path waiting on a reply that never comes. Same master check as
+   books:save, same reasoning: nothing to catch here, so just decline. */
 ipcMain.on("books:saveSync", (e, data) => {
+  if (!isMasterNow()) {
+    e.returnValue = readJson(dataFile(), {}).updated || null;
+    return;
+  }
   try {
     data.updated = today();
     writeCatalogue(dataFile(), data);
@@ -1269,6 +1282,20 @@ const sessionFile = () => path.join(app.getPath("userData"), "session.json");
 function supabaseCfg() {
   const s = readJson(settingsFile(), {});
   return { url: s.supabaseUrl || REPO.supabaseUrl, anonKey: s.supabaseAnonKey || REPO.supabaseAnonKey };
+}
+
+/* Mirrors the renderer's own refreshMasterUI() gate exactly, so the main
+   process agrees with the UI about who is master without trusting the UI to
+   say so. Reachable only through requireMaster() being bypassed somehow —
+   IS_MASTER wrong in a stale renderer, dev tools, a future caller that
+   forgets to gate itself — but the local catalogue is the one thing on this
+   machine a reader must never be able to rewrite, so it gets its own check
+   here rather than relying on the renderer alone. */
+function isMasterNow() {
+  const cfg = supabaseCfg();
+  if (cfg.url && cfg.anonKey) return Boolean(masterSession);
+  const s = readJson(settingsFile(), {});
+  return Boolean(s.isLibrarian);
 }
 
 ipcMain.handle("auth:configured", () => {
