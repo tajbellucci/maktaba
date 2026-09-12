@@ -196,7 +196,7 @@ const STRINGS = {
     wrongPassword: "غلط پاس ورڈ",
     masterHead: "ماسٹر لاگ اِن", masterHint: "جب یہ سیٹ ہو، ماسٹر موڈ لاگ اِن سے کھلتا ہے — ایک وقت میں صرف ایک کمپیوٹر ماسٹر ہو سکتا ہے۔",
     librarianFallbackNote: "Supabase سیٹ نہیں ہے — یہ صرف اسی کمپیوٹر کی حفاظت کرے گا، دوسرے کمپیوٹر کو نہیں روک سکے گا۔",
-    masterLoginTitle: "ماسٹر لاگ اِن", loginEmail: "ای میل", loginPassword: "پاس ورڈ", loginBtn: "لاگ اِن",
+    masterLoginTitle: "ماسٹر لاگ اِن", loginEmail: "ای میل", loginPassword: "پاس ورڈ", loginBtn: "لاگ اِن", rememberEmail: "ای میل یاد رکھیں",
     masterLoggedIn: "ماسٹر موڈ فعال ہو گیا", masterLockLost: "ماسٹر موڈ ختم ہو گیا — دوبارہ لاگ اِن کریں",
     masterHeldBy: "ابھی {who} ماسٹر ہے — پہلے وہاں لاگ آؤٹ کریں",
 
@@ -395,7 +395,7 @@ const STRINGS = {
     wrongPassword: "كلمة مرور خاطئة",
     masterHead: "تسجيل دخول المدير", masterHint: "عند ضبط هذا، يُفتح وضع المدير بتسجيل الدخول — جهاز واحد فقط يمكن أن يكون مديرًا في وقت واحد.",
     librarianFallbackNote: "لم يتم إعداد Supabase — هذا سيحمي هذا الجهاز فقط، ولن يمنع جهازًا آخر.",
-    masterLoginTitle: "تسجيل دخول المدير", loginEmail: "البريد الإلكتروني", loginPassword: "كلمة المرور", loginBtn: "تسجيل الدخول",
+    masterLoginTitle: "تسجيل دخول المدير", loginEmail: "البريد الإلكتروني", loginPassword: "كلمة المرور", loginBtn: "تسجيل الدخول", rememberEmail: "تذكر البريد الإلكتروني",
     masterLoggedIn: "تم تفعيل وضع المدير", masterLockLost: "انتهى وضع المدير — سجّل الدخول مرة أخرى",
     masterHeldBy: "{who} هو المدير حاليًا — سجّل الخروج هناك أولاً",
 
@@ -593,7 +593,7 @@ const STRINGS = {
     wrongPassword: "Wrong password",
     masterHead: "Master login", masterHint: "Once set, master mode opens with login — only one computer may be master at a time.",
     librarianFallbackNote: "Supabase is not set up — this only protects this computer, it cannot stop another one.",
-    masterLoginTitle: "Master login", loginEmail: "Email", loginPassword: "Password", loginBtn: "Log in",
+    masterLoginTitle: "Master login", loginEmail: "Email", loginPassword: "Password", loginBtn: "Log in", rememberEmail: "Remember email",
     masterLoggedIn: "Master mode is on", masterLockLost: "Master mode ended — log in again",
     masterHeldBy: "{who} is currently master — log out there first",
 

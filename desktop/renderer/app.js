@@ -2324,11 +2324,16 @@ $("sLibrarian").addEventListener("change", async (e) => {
   const configured = await window.maktaba.authConfigured();
 
   if (configured) {
-    $("loginEmail").value = "";
+    /* Just the email, in plain localStorage — never the password. A
+       librarian re-entering master mode every session shouldn't have to
+       retype an address that never changes; the password still gates it. */
+    const rememberedEmail = localStorage.getItem("maktaba_rememberedEmail") || "";
+    $("loginEmail").value = rememberedEmail;
+    $("loginRememberEmail").checked = Boolean(rememberedEmail);
     $("loginPassword").value = "";
     $("loginHint").textContent = "";
     $("dlgLogin").showModal();
-    setTimeout(() => $("loginEmail").focus(), 50);
+    setTimeout(() => (rememberedEmail ? $("loginPassword") : $("loginEmail")).focus(), 50);
 
     $("loginSave").onclick = async () => {
       const email = $("loginEmail").value.trim();
@@ -2338,6 +2343,8 @@ $("sLibrarian").addEventListener("change", async (e) => {
       const res = await window.maktaba.authLogin(email, pw, navigator.userAgent.slice(0, 40));
       $("loginSave").disabled = false;
       if (res.ok) {
+        if ($("loginRememberEmail").checked) localStorage.setItem("maktaba_rememberedEmail", email);
+        else localStorage.removeItem("maktaba_rememberedEmail");
         $("dlgLogin").close();
         box.checked = true;
         startHeartbeat();
