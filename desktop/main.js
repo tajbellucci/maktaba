@@ -1481,8 +1481,26 @@ async function ensureRelease(owner, repo, headers) {
   return await made.json();
 }
 
+/* GitHub rejects a release-asset name containing anything outside a narrow
+   ASCII set — "422 Validation Failed", field "name". Here that is not an edge
+   case: a scanned book is normally named in the language it is written in, so
+   "معارف القرآن test.txt" is the ordinary case and the upload failed outright.
+   Build a name GitHub accepts while keeping it recognisable: hold on to any
+   ASCII already in the name, and always append a short hash of the original
+   so two different Urdu filenames can never collapse onto one asset. The
+   result is stable for the same source name, so re-publishing keeps replacing
+   the same asset instead of piling up copies. */
+function safeAssetName(fileName) {
+  const rawExt = path.extname(fileName);
+  const ext = /^\.[A-Za-z0-9]+$/.test(rawExt) ? rawExt.toLowerCase() : ".bin";
+  const stem = path.basename(fileName, rawExt);
+  const ascii = stem.replace(/[^A-Za-z0-9._-]+/g, "-").replace(/^[-.]+|[-.]+$/g, "").slice(0, 40);
+  const tag = crypto.createHash("sha1").update(stem).digest("hex").slice(0, 8);
+  return `${ascii ? ascii + "-" : "file-"}${tag}${ext}`;
+}
+
 async function publishAttachment(owner, repo, headers, release, localPath) {
-  const fileName = path.basename(localPath);
+  const fileName = safeAssetName(path.basename(localPath));
   const bytes = fs.readFileSync(localPath);
 
   // An asset of the same name already there is replaced, not duplicated.
