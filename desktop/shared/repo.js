@@ -13,21 +13,21 @@ module.exports = {
   repo:   "maktaba",
   branch: "main",
 
-  /* Temporary, deliberate freeze before handover.
+  /* Publish freeze — currently OFF, by explicit instruction.
      ────────────────────────────────────────────────────────────────────────
-     The client already holds a real master login (Supabase account), and Taj
-     found the live catalogue had drifted from what he expected — data from
-     testing and real client use got mixed on the same repo. Until handover is
-     actually complete, ONLY Taj should be able to publish, and he does that
-     directly (through Claude Code, with his own token) rather than through
-     the app's own Publish button.
-     This hides Publish for every master, everywhere, including the client's
-     own login — it is a code-level flag, not a per-machine setting, so it
-     cannot be worked around from inside the app and applies the moment this
-     build reaches any machine. Readers are completely unaffected: pulling
-     the latest data still works normally for everyone.
-     Flip back to false (and rebuild) once handover is actually ready. */
-  publishFrozen: true,
+     This was frozen before handover so only Taj could publish (through
+     Claude Code, with his own token) while the live catalogue had drifted
+     from testing data. That freeze caused its own real problem: a book
+     added on the client's machine (معارف القرآن) had nowhere to go, and the
+     reader-side background sync kept surfacing an unresolvable "Latest
+     data" prompt every ~6 minutes because of it.
+     Taj chose, explicitly (2026-09-12), to leave this unfrozen going
+     forward: he publishes from the app's own master login like any other
+     librarian, and reader machines pick it up normally on their next pull.
+     This is a code-level flag, not a per-machine setting — it applies the
+     moment this build reaches any machine, master or reader alike. Reader
+     behaviour (pulling the latest data) is unaffected either way. */
+  publishFrozen: false,
 
   /* The master-login backend. This is why a fresh install can offer master
      login without anyone pasting a URL and key into Settings first — the
