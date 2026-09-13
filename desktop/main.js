@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, Menu, shell, nativeImage } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, Menu, shell, nativeImage, safeStorage } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const REPO = require("./shared/repo");
@@ -57,6 +57,69 @@ function writeJson(file, data) {
     fs.closeSync(fd);
   }
   fs.renameSync(tmp, file);   // atomic within the same volume
+}
+
+/* Two real secrets live on this machine in plain settings.json / session.json
+   today: the GitHub token (repo write access) and the Supabase refresh token
+   (a live master login, no password needed to use it). Anyone who can read
+   either file — a stolen laptop, a careless backup, malware, someone
+   poking around in AppData — gets full write access to the library with no
+   further step. safeStorage wraps Windows' own per-user encryption (DPAPI):
+   the ciphertext is USELESS off this machine, and useless to a different
+   Windows account on the same machine, since the OS itself holds the key,
+   not this app. Wrapping readJson/writeJson themselves would be the wrong
+   layer — other files (books.json, backups, snapshots) have no secrets in
+   them and gain nothing from this, only cost. So this wraps exactly the two
+   files that hold something worth protecting, and only the one field in
+   each that is actually a secret. */
+function encryptField(value) {
+  if (!value || !safeStorage.isEncryptionAvailable()) return null;
+  return safeStorage.encryptString(value).toString("base64");
+}
+function decryptField(encoded) {
+  if (!encoded) return undefined;
+  try { return safeStorage.decryptString(Buffer.from(encoded, "base64")); }
+  catch { return undefined; }   // encrypted under a different machine/account — treat as gone, not corrupt
+}
+
+function readSettings() {
+  const s = readJson(settingsFile(), {});
+  if (s.tokenEnc) {
+    s.token = decryptField(s.tokenEnc);
+    delete s.tokenEnc;
+  } else if (s.token && safeStorage.isEncryptionAvailable()) {
+    // One-time migration: a plaintext token written before this existed.
+    // Encrypt it on disk right now; the in-memory value handed back to the
+    // caller is unchanged.
+    writeSettings(s);
+  }
+  return s;
+}
+function writeSettings(s) {
+  const out = { ...s };
+  delete out.tokenEnc;
+  const enc = encryptField(out.token);
+  if (enc) { out.tokenEnc = enc; delete out.token; }
+  writeJson(settingsFile(), out);
+}
+
+function readSession() {
+  const s = readJson(sessionFile(), null);
+  if (!s) return s;
+  if (s.refreshTokenEnc) {
+    s.refreshToken = decryptField(s.refreshTokenEnc);
+    delete s.refreshTokenEnc;
+  } else if (s.refreshToken && safeStorage.isEncryptionAvailable()) {
+    writeSession(s);
+  }
+  return s;
+}
+function writeSession(s) {
+  const out = { ...s };
+  delete out.refreshTokenEnc;
+  const enc = encryptField(out.refreshToken);
+  if (enc) { out.refreshTokenEnc = enc; delete out.refreshToken; }
+  writeJson(sessionFile(), out);
 }
 
 /* Rolling local snapshots of the catalogue. These protect against the kind of
@@ -488,7 +551,7 @@ function createWindow() {
   let closing = false;
   win.on("close", (e) => {
     if (closing) return;
-    const s = readJson(settingsFile(), {});
+    const s = readSettings();
     if (!s.isLibrarian || !s.token || !hasUnpublished()) return;
 
     e.preventDefault();
@@ -570,7 +633,7 @@ app.on("window-all-closed", () => {
    already has on disk. That is what makes it work fully offline. */
 
 async function loadWithSync() {
-  const settings = readJson(settingsFile(), {});
+  const settings = readSettings();
   const owner = settings.owner || REPO.owner;
   const repo = settings.repo || REPO.repo;
   const branch = settings.branch || REPO.branch;
@@ -628,7 +691,7 @@ ipcMain.handle("books:publishState", () => ({
    window can show "here is exactly what will change" and let the user decide.
    Nothing about the local catalogue moves until they say yes. */
 ipcMain.handle("books:peekRemote", async () => {
-  const settings = readJson(settingsFile(), {});
+  const settings = readSettings();
   const remote = await fetchRemoteJson(
     settings.owner || REPO.owner,
     settings.repo || REPO.repo,
@@ -1182,7 +1245,7 @@ ipcMain.handle("file:searchCoverOnline", (_e, query) => {
    Nothing auto-installs — the app only tells the librarian a newer build
    exists, which is the honest behaviour for a hand-delivered installer. */
 ipcMain.handle("app:checkUpdate", async () => {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   const remote = await fetchRemoteJson(s.owner || REPO.owner, s.repo || REPO.repo, s.branch || REPO.branch, "version.json");
   if (!remote || !remote.version) return { ok: false };
   const cmp = (a, b) => {
@@ -1208,7 +1271,7 @@ ipcMain.handle("app:version", () => app.getVersion());
 
 ipcMain.handle("app:whatsNew", async () => {
   const local = readJson(path.join(__dirname, "seed", "whatsnew.json"), null);
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   const owner = s.owner || REPO.owner;
   const repo = s.repo || REPO.repo;
   const branch = s.branch || REPO.branch;
@@ -1222,7 +1285,7 @@ ipcMain.handle("app:whatsNew", async () => {
    The window only ever learns whether one exists. */
 
 ipcMain.handle("settings:get", () => {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   return {
     owner: s.owner || REPO.owner,
     repo: s.repo || REPO.repo,
@@ -1238,7 +1301,7 @@ ipcMain.handle("settings:get", () => {
 });
 
 ipcMain.handle("settings:set", (_e, next) => {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   s.owner = next.owner || s.owner;
   s.repo = next.repo || s.repo;
   s.branch = next.branch || s.branch;
@@ -1246,7 +1309,7 @@ ipcMain.handle("settings:set", (_e, next) => {
   if (typeof next.isLibrarian === "boolean") s.isLibrarian = next.isLibrarian;
   if (typeof next.supabaseUrl === "string") s.supabaseUrl = next.supabaseUrl;
   if (typeof next.supabaseAnonKey === "string") s.supabaseAnonKey = next.supabaseAnonKey;
-  writeJson(settingsFile(), s);
+  writeSettings(s);
   return { ok: true };
 });
 
@@ -1258,16 +1321,16 @@ ipcMain.handle("settings:set", (_e, next) => {
 const hashPin = (pin, salt) => crypto.scryptSync(pin, salt, 32).toString("hex");
 
 ipcMain.handle("settings:setLibrarianPin", (_e, pin) => {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   const salt = crypto.randomBytes(16).toString("hex");
   s.librarianPinSalt = salt;
   s.librarianPinHash = hashPin(pin, salt);
-  writeJson(settingsFile(), s);
+  writeSettings(s);
   return { ok: true };
 });
 
 ipcMain.handle("settings:checkLibrarianPin", (_e, pin) => {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   if (!s.librarianPinHash || !s.librarianPinSalt) return { ok: false, error: "no-pin-set" };
   const match = hashPin(pin, s.librarianPinSalt) === s.librarianPinHash;
   return { ok: match, error: match ? null : "wrong-pin" };
@@ -1289,7 +1352,7 @@ let masterSession = null; // { accessToken } — the access token stays in memor
 const sessionFile = () => path.join(app.getPath("userData"), "session.json");
 
 function supabaseCfg() {
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   return { url: s.supabaseUrl || REPO.supabaseUrl, anonKey: s.supabaseAnonKey || REPO.supabaseAnonKey };
 }
 
@@ -1303,7 +1366,7 @@ function supabaseCfg() {
 function isMasterNow() {
   const cfg = supabaseCfg();
   if (cfg.url && cfg.anonKey) return Boolean(masterSession);
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   return Boolean(s.isLibrarian);
 }
 
@@ -1341,7 +1404,7 @@ ipcMain.handle("auth:login", async (_e, email, password, label) => {
 
   masterSession = { accessToken };
   const refreshToken = authRes.data && authRes.data.refresh_token;
-  if (refreshToken) writeJson(sessionFile(), { refreshToken, email, label: label || "" });
+  if (refreshToken) writeSession({ refreshToken, email, label: label || "" });
   return { ok: true };
 });
 
@@ -1350,7 +1413,7 @@ ipcMain.handle("auth:login", async (_e, email, password, label) => {
    machine, nobody else took over — needs no password at all. Any failure is
    silent and simply leaves the app in reader mode. */
 ipcMain.handle("auth:restore", async () => {
-  const saved = readJson(sessionFile(), null);
+  const saved = readSession();
   if (!saved || !saved.refreshToken) return { ok: false };
 
   const cfg = supabaseCfg();
@@ -1381,7 +1444,7 @@ ipcMain.handle("auth:restore", async () => {
   // Supabase rotates refresh tokens, so persist the new one or the next
   // launch would try to reuse a spent token and fail.
   if (res.data.refresh_token) {
-    writeJson(sessionFile(), { ...saved, refreshToken: res.data.refresh_token });
+    writeSession({ ...saved, refreshToken: res.data.refresh_token });
   }
   return { ok: true };
 });
@@ -1570,7 +1633,7 @@ async function doPublish(data) {
      close-prompt publish bypass REPO.publishFrozen. One guard, every caller. */
   if (IS_DEV_RUN) return { ok: false, error: "dev-run-no-publish" };
 
-  const s = readJson(settingsFile(), {});
+  const s = readSettings();
   if (!s.token) return { ok: false, error: "GitHub ٹوکن سیٹ نہیں ہے" };
 
   /* Publishing overwrites the copy every machine reads, so it must confirm
