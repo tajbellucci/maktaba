@@ -1689,6 +1689,21 @@ async function doPublish(data) {
     // so hash the object as it now stands.
     writeJson(publishStateFile(), { hash: catalogueHash(forRemote), at: new Date().toISOString() });
     writeCatalogue(dataFile(), data);
+
+    /* Nudge readers awake. This is the ONLY thing that makes a publish reach
+       readers within a second or two instead of on their next 6-minute poll
+       — deliberately fire-and-forget. The catalogue is already safely on
+       GitHub by this point; if Supabase is down, misconfigured, or this
+       machine has no master session for some reason, the publish already
+       succeeded regardless and readers still get it on the next poll. A
+       nudge failing here must never look like the publish itself failed. */
+    if (masterSession) {
+      const rtCfg = supabaseCfg();
+      supabaseRequest(
+        rtCfg, "/rest/v1/rpc/bump_catalogue_version", "POST",
+        { p_label: require("os").hostname() }, { accessToken: masterSession.accessToken }
+      ).catch(() => {});
+    }
     /* Hand the rewritten records back. Publishing turns local cover and file
        paths into hosted URLs, and the window is holding its own copy of the
        catalogue — without this it keeps the old local paths, its next autosave

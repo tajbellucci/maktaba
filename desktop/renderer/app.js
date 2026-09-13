@@ -483,6 +483,84 @@ function startAutoSync() {
   }, AUTO_SYNC_MS);
 }
 
+/* Realtime nudge: the moment master publishes, a reader with this open finds
+   out within a second or two instead of waiting for the 6-minute poll above.
+   The poll is NOT replaced — it stays the real safety net. This only makes
+   the common case fast.
+   Supabase Realtime speaks the Phoenix channel wire protocol over a plain
+   WebSocket; no client library needed, just join a channel and answer its
+   heartbeat. Requires a one-time setup in the Supabase project (a
+   catalogue_version table with Realtime enabled on it, done once via the SQL
+   editor) — if that hasn't been run, or Supabase is unreachable, this simply
+   never connects and the poll above covers everything exactly as before.
+   Readers only: master already knows the instant their own publish
+   finishes, and doPull(true) is a harmless no-op even if this fired for
+   them, since their own DATA already matches what they just published. */
+let rtSocket = null;
+let rtHeartbeatTimer = null;
+let rtReconnectTimer = null;
+let rtWanted = false;   // should a connection exist right now, per current role
+let rtRef = 0;
+
+function stopRealtime() {
+  if (rtHeartbeatTimer) clearInterval(rtHeartbeatTimer);
+  if (rtReconnectTimer) clearTimeout(rtReconnectTimer);
+  rtHeartbeatTimer = null;
+  rtReconnectTimer = null;
+  if (rtSocket) { try { rtSocket.close(); } catch { /* already closing */ } }
+  rtSocket = null;
+}
+
+function scheduleRealtimeReconnect() {
+  if (!rtWanted || rtReconnectTimer) return;
+  rtReconnectTimer = setTimeout(() => { rtReconnectTimer = null; startRealtime(); }, 5000);
+}
+
+async function startRealtime() {
+  if (rtSocket || !rtWanted) return;
+  const s = await window.maktaba.getSettings();
+  if (!s.supabaseUrl || !s.supabaseAnonKey) return;   // no setup done yet, poll covers it
+  if (!rtWanted) return;   // role may have flipped during the await above
+
+  let ws;
+  try {
+    const wsUrl = s.supabaseUrl.replace(/^http/, "ws").replace(/\/$/, "") +
+      "/realtime/v1/websocket?apikey=" + encodeURIComponent(s.supabaseAnonKey) + "&vsn=1.0.0";
+    ws = new WebSocket(wsUrl);
+  } catch {
+    scheduleRealtimeReconnect();
+    return;
+  }
+  rtSocket = ws;
+
+  ws.onopen = () => {
+    rtRef = 0;
+    ws.send(JSON.stringify({
+      topic: "realtime:public:catalogue_version",
+      event: "phx_join",
+      payload: { config: { postgres_changes: [{ event: "UPDATE", schema: "public", table: "catalogue_version" }] } },
+      ref: String(++rtRef)
+    }));
+    // Supabase drops a silent connection after ~30s with no client activity.
+    rtHeartbeatTimer = setInterval(() => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ topic: "phoenix", event: "heartbeat", payload: {}, ref: String(++rtRef) }));
+      }
+    }, 25000);
+  };
+
+  ws.onmessage = (ev) => {
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch { return; }
+    if (msg.topic === "realtime:public:catalogue_version" && msg.event === "postgres_changes" && !IS_MASTER) {
+      doPull(true);
+    }
+  };
+
+  ws.onclose = () => { stopRealtime(); scheduleRealtimeReconnect(); };
+  ws.onerror = () => { try { ws.close(); } catch { /* onclose runs the actual cleanup */ } };
+}
+
 /* Publish only means anything if this machine can actually write — a reader
    install with no token/login just gets an error from clicking it. Hide it
    for anyone who isn't currently master, on whichever gate applies. */
@@ -529,6 +607,14 @@ async function refreshMasterUI() {
   document.documentElement.classList.toggle("publish-frozen", Boolean(s.publishFrozen));
 
   applyReadOnly();
+
+  if (IS_MASTER) {
+    rtWanted = false;
+    stopRealtime();
+  } else if (!rtWanted) {
+    rtWanted = true;
+    startRealtime();
+  }
 
   /* The MAIN process makes its own sync decisions — whether to silently pull
      on launch, whether the close guard applies — entirely from
