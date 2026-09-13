@@ -341,7 +341,16 @@ function supabaseRequest(cfg, methodPath, method, body, extraHeaders) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve({ ok: true, data: parsed });
         } else {
-          resolve({ ok: false, error: (parsed && (parsed.error_description || parsed.message || parsed.error)) || `HTTP ${res.statusCode}` });
+          /* Supabase's auth endpoint answers a wrong password with
+             {"code":400,"error_code":"invalid_credentials","msg":"..."} —
+             none of error_description/message/error, which is why a wrong
+             login used to fall all the way through to the bare "HTTP 400"
+             below. msg is the field Supabase Auth actually uses. */
+          resolve({
+            ok: false,
+            error: (parsed && (parsed.error_description || parsed.msg || parsed.message || parsed.error)) || `HTTP ${res.statusCode}`,
+            errorCode: parsed && parsed.error_code
+          });
         }
       });
     });
@@ -1310,7 +1319,13 @@ ipcMain.handle("auth:login", async (_e, email, password, label) => {
   if (!cfg.url || !cfg.anonKey) return { ok: false, error: "Supabase is not set up yet — see Settings" };
 
   const authRes = await supabaseRequest(cfg, "/auth/v1/token?grant_type=password", "POST", { email, password });
-  if (!authRes.ok) return { ok: false, error: authRes.error };
+  if (!authRes.ok) {
+    // Normalised so the renderer can show its own translated message rather
+    // than Supabase's raw wording (or the bare status code that fell
+    // through before errorCode existed) for the single most common case.
+    if (authRes.errorCode === "invalid_credentials") return { ok: false, error: "invalid-credentials" };
+    return { ok: false, error: authRes.error };
+  }
   const accessToken = authRes.data && authRes.data.access_token;
   if (!accessToken) return { ok: false, error: "No session returned" };
 

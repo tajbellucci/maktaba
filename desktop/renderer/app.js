@@ -2450,6 +2450,12 @@ $("sLibrarian").addEventListener("change", async (e) => {
         await syncOnBecomingMaster();
       } else if (res.error === "held") {
         $("loginHint").textContent = t("masterHeldBy").replace("{who}", res.heldBy || "?");
+      } else if (res.error === "invalid-credentials") {
+        // Supabase gives the same generic error for an unknown email as for
+        // a wrong password (deliberately, so a failed login can't be used to
+        // discover which emails are registered) — "wrong password" alone
+        // would mislead someone who actually mistyped the email.
+        $("loginHint").textContent = t("wrongCredentials");
       } else {
         $("loginHint").textContent = res.error || t("wrongPassword");
       }
