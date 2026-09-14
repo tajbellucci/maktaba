@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-09-12",
+  "updated": "2026-09-14",
   "books": [
     {
       "id": 1,
@@ -581,6 +581,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "29"
+    },
+    {
+      "id": 30,
+      "title": "تحافت الملاحدة",
+      "author": "مفتي ياسر نديم واجدي",
+      "publisher": "دار الكتاب ديوبند",
+      "category": "رد إلحاد",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "غرقة داخلية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-09-14",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "30"
     }
   ],
   "categories": [
