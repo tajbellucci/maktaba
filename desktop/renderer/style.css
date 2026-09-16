@@ -374,6 +374,24 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
    are already flex:1/min-width:0 (see .fts-term input), so they shrink
    cleanly with the panel instead of anything breaking. */
 .ftspane { width: 260px; flex: none; }
+
+/* Drag handles between the picker's columns — narrowed defaults above are a
+   starting point, not a ceiling; a librarian who wants a specific panel
+   bigger can just pull it, without touching Settings. Sits inside the
+   existing 8px flex gap (negative margin) rather than adding its own width,
+   so the layout doesn't shift for everyone just because the feature exists. */
+.col-resizer {
+  width: 6px;
+  margin: 0 -7px;
+  flex: none;
+  cursor: col-resize;
+  border-radius: 3px;
+  z-index: 5;
+  background: transparent;
+  transition: background .12s;
+}
+.col-resizer:hover, .col-resizer.active { background: var(--blue-wash); }
+.col-resizer.hidden { display: none; }
 .fts-head {
   display: flex;
   align-items: center;

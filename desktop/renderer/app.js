@@ -894,6 +894,8 @@ function applyFtsOpen() {
      librarian means by it. Visible on every rail tab. */
   $("ftsPane").classList.toggle("hidden", !ftsOpen);
   $("railFts").classList.toggle("active", ftsOpen);
+  // A lone drag handle with nothing beside it to resize looks broken.
+  $("ftsResizer").classList.toggle("hidden", !ftsOpen);
 }
 
 function groupLabel() {
@@ -963,6 +965,7 @@ function sortBooks(list) {
 
 function renderAll() {
   document.querySelector(".groups").classList.toggle("hidden", isFlat());
+  $("groupsResizer").classList.toggle("hidden", isFlat());
   document.querySelector(".matbar").classList.toggle("hidden", mode !== "category");
   applyFtsOpen();
   renderGroups();
@@ -1829,11 +1832,28 @@ function scheduleHideCard() {
   clearTimeout(cardTimer);
   cardTimer = setTimeout(hideCard, 180);
 }
-{
+/* The card is pointer-events:none (deliberately — it must never steal a
+   click from whatever it happens to be floating over), which means it can
+   never receive its own mouseenter/mouseleave: every mouse event over it
+   passes straight through to the row or panel underneath. The card's own
+   enter/leave listeners that used to sit here never fired at all — dead
+   code, not a working "stay open while reading it" feature.
+   What was actually happening: the card is real content sitting fully
+   opaque on top of the list, so as the cursor kept moving — down toward
+   the next row, say — it would end up geometrically UNDER the card, which
+   kept right on showing whatever it last showed while the row and its
+   title text the cursor was now sitting over stayed hidden behind it.
+   Tracked here instead: whenever the cursor's real position falls inside
+   the card's own box while it's visible, drop the card immediately, so
+   the cursor is never sitting on top of something it can't see under. */
+document.addEventListener("mousemove", (e) => {
   const card = $("bookCard");
-  card.addEventListener("mouseenter", () => clearTimeout(cardTimer));
-  card.addEventListener("mouseleave", scheduleHideCard);
-}
+  if (!card.classList.contains("show")) return;
+  const r = card.getBoundingClientRect();
+  if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+    hideCard();
+  }
+});
 
 function renderCover(b) {
   const box = $("coverBox");
@@ -2095,6 +2115,62 @@ let pickerTopPx = null;
 
   window.addEventListener("mouseup", () => { dragging = false; });
 })();
+
+/* Drag-to-resize for the picker's own columns (category list, search panel).
+   Narrowed defaults are a starting point, not a ceiling — this is how a
+   librarian who wants one wider just pulls it, no Settings dialog.
+   Geometric rather than sign-hardcoded: works out which of the panel's two
+   edges the handle sits on and keeps THAT edge fixed while dragging, so it
+   behaves correctly regardless of which side of the panel it happens to be
+   on under this app's RTL layout — no separate "reversed" variant needed. */
+function makeColumnResizable(handle, panel, { min = 160, max = 480, storageKey } = {}) {
+  if (!handle || !panel) return;
+  let dragging = false;
+  let fixedEdgeX = 0;
+  let anchorRight = false;
+
+  const zoom = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--z")) || 1;
+
+  if (storageKey) {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) panel.style.width = saved;
+  }
+
+  handle.addEventListener("mousedown", (e) => {
+    const r = panel.getBoundingClientRect();
+    const hr = handle.getBoundingClientRect();
+    anchorRight = hr.left < r.left + r.width / 2;   // handle on panel's left -> right edge stays put
+    fixedEdgeX = anchorRight ? r.right : r.left;
+    dragging = true;
+    handle.classList.add("active");
+    document.body.style.cursor = "col-resize";
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    const realWidth = anchorRight ? fixedEdgeX - e.clientX : e.clientX - fixedEdgeX;
+    /* realWidth is measured in actual on-screen pixels (getBoundingClientRect/
+       clientX space); style.width is a CSS length that the app's zoom text
+       setting scales again on render — the exact unit mismatch fixed in
+       positionCard() above. Divide back to CSS pixels here, once, same as
+       there, or the panel wanders as this session's own text-size setting
+       changes rather than resizing to where the cursor actually is. */
+    const cssWidth = Math.max(min, Math.min(max, realWidth / zoom()));
+    panel.style.width = cssWidth + "px";
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove("active");
+    document.body.style.cursor = "";
+    if (storageKey) { try { localStorage.setItem(storageKey, panel.style.width); } catch { /* private mode */ } }
+  });
+}
+makeColumnResizable($("groupsResizer"), document.querySelector(".groups"), { min: 160, max: 420, storageKey: "maktaba-w-groups" });
+makeColumnResizable($("ftsResizer"), document.querySelector(".ftspane"), { min: 200, max: 480, storageKey: "maktaba-w-fts" });
+
 function showHome() {
   const dlg = $("dlgCatalog");
   if (dlg.open) dlg.close();
