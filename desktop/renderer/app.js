@@ -718,6 +718,9 @@ async function syncOnBecomingMaster() {
 async function adoptData(next) {
   await flushSave();          // don't let a queued write land after the swap
   await window.maktaba.applyData(next);
+  // Whatever local now matches server, any divergence auto-publish paused
+  // on is resolved by definition.
+  clearAutoPublishPause();
   /* Attachments may have been replaced by whatever we just pulled, and the
      search cache is keyed by path — same path, new contents would otherwise
      keep answering from the old text for the rest of the session. */
@@ -765,6 +768,60 @@ async function persist() {
   DATA.updated = await window.maktaba.save(DATA);
   renderStatus();
   refreshPublishBadge();
+  scheduleAutoPublish();
+}
+
+/* Auto-publish: a few seconds after a real edit (add/edit/issue/return/
+   delete — anything that calls persist(), not the coalesced favourite/
+   last-viewed writes), publish it, no button click. Debounced so five
+   quick edits in a row become one publish, not five commits.
+   Every real safety check still runs — this is the exact same IPC call the
+   manual Publish button makes, so isMasterNow(), publishFrozen and the
+   divergence guard all still apply server-side. What changes is only that
+   nothing here shows a confirmation dialog, since the whole point is not
+   to interrupt.
+   Divergence is the one outcome that must NOT just retry silently and
+   loop forever failing — it pauses further auto-publishing and says so,
+   until a manual Pull/Publish resolves it (see clearAutoPublishPause()
+   below, called wherever that resolution already happens). */
+let autoPublishTimer = null;
+const AUTO_PUBLISH_DELAY_MS = 5000;
+let autoPublishInFlight = false;
+let autoPublishPaused = false;
+
+function scheduleAutoPublish() {
+  if (!IS_MASTER || autoPublishPaused) return;
+  clearTimeout(autoPublishTimer);
+  autoPublishTimer = setTimeout(runAutoPublish, AUTO_PUBLISH_DELAY_MS);
+}
+
+function clearAutoPublishPause() {
+  autoPublishPaused = false;
+}
+
+async function runAutoPublish() {
+  if (!IS_MASTER || autoPublishInFlight) return;
+  autoPublishInFlight = true;
+  try {
+    const res = await window.maktaba.publish(DATA);
+    if (res.ok) {
+      if (res.data) {
+        DATA = res.data;
+        DATA.books.forEach(normalizeBook);
+        renderAll();
+      }
+      refreshPublishBadge();
+      toast(t("autoPublished"));
+    } else if (res.diverged) {
+      autoPublishPaused = true;
+      toast(t("autoPublishPaused"));
+    }
+    // publish-frozen / dev-run-no-publish / a transient network error: not
+    // worth a toast on every single edit — the manual Publish button (and
+    // its own error messages) is still there for whenever they check.
+  } finally {
+    autoPublishInFlight = false;
+  }
 }
 
 /* Some state is worth saving but not worth stopping for: which book was last
@@ -2660,6 +2717,7 @@ async function doPublish() {
       }
       toast(t("published"));
       refreshPublishBadge();
+      clearAutoPublishPause();
     } else if (res.diverged) {
       /* GitHub holds something this machine never saw. Publishing would wipe
          it, so say what the difference is and point at the one safe action
