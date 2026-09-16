@@ -2774,10 +2774,6 @@ html[data-lang="ur"] .rail button,
 html[data-lang="ur"] .menubar span,
 html[data-lang="ur"] .modes button { line-height: 1.9; }
 
-/* ── Picker maximise ───────────────────────────────────────────────────── */
-
-dialog.picker.max { width: calc(var(--vw) - 20px) !important; }
-
 /* ── Colored icons ─────────────────────────────────────────────────────
    Shamela's own toolbar uses a distinct color per icon rather than one flat
    tone for everything. Same approach here: each button keeps its own resting

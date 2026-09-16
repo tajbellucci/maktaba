@@ -1985,27 +1985,8 @@ function showCatalog() {
 function fitPicker() {
   const dlg = $("dlgCatalog");
   if (!dlg.open) return;
-  if (dlg.classList.contains("max")) {
-    /* Used to measure from the icon toolbar's bottom edge; that toolbar is
-       gone (its actions moved into the File/Tools menus), so this queried a
-       selector that no longer exists and silently fell back to a hardcoded
-       120px — taller than the chrome actually left above it now, which is
-       exactly what made a maximised picker feel wrong: too much dead space
-       at the top, height math off by the difference. The titlebar is the
-       last fixed strip before the content area now. */
-    const bar = document.querySelector(".titlebar");
-    const status = document.querySelector(".statusbar");
-    const top = bar ? bar.getBoundingClientRect().bottom + 10 : 76;
-    const bottom = status ? status.getBoundingClientRect().height + 10 : 34;
-    dlg.style.top = top + "px";
-    dlg.style.height = Math.max(320, window.innerHeight - top - bottom) + "px";
-    dlg.style.width = "calc(100vw - 20px)";
-    dlg.style.left = "";                  // hand position back to the centring rule
-    dlg.style.right = "";
-    return;
-  }
-  // Not maximised: leave size/position exactly as opened or dragged, only
-  // re-clamp so it can't end up off-screen after the window shrinks.
+  // Leave size/position exactly as opened or dragged, only re-clamp so it
+  // can't end up off-screen after the window shrinks.
   if (pickerLeftPx !== null || pickerTopPx !== null) {
     const w = dlg.offsetWidth || Math.min(1560, window.innerWidth * 0.96);
     const h = dlg.offsetHeight || Math.min(760, window.innerHeight * 0.88);
@@ -2021,22 +2002,6 @@ function fitPicker() {
 }
 window.addEventListener("resize", fitPicker);
 
-function togglePickerMax() {
-  const dlg = $("dlgCatalog");
-  const now = dlg.classList.toggle("max");
-  if (!now && pickerLeftPx === null && pickerTopPx === null) {
-    // Never dragged before maximising: hand every inset back to the CSS
-    // centring rule so leftover inline right:auto/bottom:auto (set only on
-    // drag) can't linger and block it.
-    dlg.style.top = dlg.style.right = dlg.style.bottom = dlg.style.height = dlg.style.width = "";
-  } else if (!now) {
-    dlg.style.height = dlg.style.width = "";   // dragged position stays; only size hands back
-  }
-  fitPicker();
-  $("pickerMax").querySelector("use").setAttribute("href", now ? "#i-restore" : "#i-max");
-}
-$("pickerMax").onclick = togglePickerMax;
-
 /* The picker can be dragged freely in both directions, the way a normal
    window moves — same pattern as the book-view panel's makeDraggable(). */
 let pickerLeftPx = null;
@@ -2048,7 +2013,6 @@ let pickerTopPx = null;
 
   bar.addEventListener("mousedown", (e) => {
     if (e.target.closest("button")) return;              // buttons stay clickable
-    if (dlg.classList.contains("max")) return;            // nothing to drag when maximised
     const r = dlg.getBoundingClientRect();
     // The centring rule pins left:0/right:0/margin-inline:auto horizontally
     // and top:0/bottom:0/margin-block:auto vertically — all four sides have
