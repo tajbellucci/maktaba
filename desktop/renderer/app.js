@@ -2343,6 +2343,10 @@ function deleteSelected() {
 $("footAdd").onclick = openAddOne;
 $("footAddMany").onclick = openAddMany;
 $("footDel").onclick = deleteSelected;
+// Same action, reachable from the book-detail panel's own titlebar too, not
+// just the picker's footer — deleteSelected() already reads selectedId and
+// gates on requireMaster() itself, so no new logic needed here.
+$("bvDelete").onclick = deleteSelected;
 
 /* ── Export / pull / settings / publish ───────────────────────────────── */
 

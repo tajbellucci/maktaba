@@ -2693,6 +2693,7 @@ dialog.picker {
 }
 .bv-icon svg { width: 14px; height: 14px; }
 .bv-icon:hover { background: var(--blue-wash); color: var(--blue); }
+.bv-icon.danger:hover { background: var(--red-wash); color: var(--red); }
 
 .bookview.max {
   transform: none !important;
