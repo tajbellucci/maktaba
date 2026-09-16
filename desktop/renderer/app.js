@@ -815,6 +815,15 @@ async function runAutoPublish() {
     } else if (res.diverged) {
       autoPublishPaused = true;
       toast(t("autoPublishPaused"));
+    } else if (res.errorCode === "no-token") {
+      /* A new master machine with no GitHub token in Settings would
+         otherwise fail silently on every single edit, forever, with the
+         librarian believing their changes were reaching GitHub when
+         nothing had gone anywhere. Same pause-and-say-so treatment as
+         divergence, not the usual silence, because this one never
+         resolves on its own. */
+      autoPublishPaused = true;
+      toast(t("autoPublishNoToken"));
     }
     // publish-frozen / dev-run-no-publish / a transient network error: not
     // worth a toast on every single edit — the manual Publish button (and
@@ -2731,6 +2740,10 @@ async function doPublish() {
       alert(t("publishFrozenMsg"));
     } else if (res.error === "dev-run-no-publish") {
       alert(t("publishDevRunMsg"));
+    } else if (res.errorCode === "no-token") {
+      // Was res.error — main.js's message for this is hardcoded Urdu, so
+      // it used to show in Urdu no matter what language the UI was in.
+      alert(t("noTokenMsg"));
     } else alert(t("publishFail") + res.error);
   }, { cancelToast: t("syncCancelled") });
 }
@@ -2740,15 +2753,20 @@ async function doPublish() {
    check no dialog is allowed to appear from. */
 
 $("sSave").onclick = async () => {
+  const token = $("sToken").value.trim();
   await window.maktaba.setSettings({
     owner: $("sOwner").value.trim(),
     repo: $("sRepo").value.trim(),
     branch: $("sBranch").value.trim(),
-    token: $("sToken").value.trim(),
+    token,
     isLibrarian: $("sLibrarian").checked,
     supabaseUrl: $("sSbUrl").value.trim(),
     supabaseAnonKey: $("sSbKey").value.trim()
   });
+  // Auto-publish may have paused itself here specifically because no token
+  // was set — pasting one in is exactly what resolves that, so let the
+  // next edit auto-publish again instead of staying paused forever.
+  if (token) clearAutoPublishPause();
   $("dlgSettings").close();
   toast(t("settingsSaved"));
 };

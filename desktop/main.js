@@ -1634,7 +1634,13 @@ async function doPublish(data) {
   if (IS_DEV_RUN) return { ok: false, error: "dev-run-no-publish" };
 
   const s = readSettings();
-  if (!s.token) return { ok: false, error: "GitHub ٹوکن سیٹ نہیں ہے" };
+  /* errorCode alongside the legacy Urdu error text: the text stays for any
+     caller still just displaying res.error directly, but a stable code
+     is what lets the renderer show ITS OWN translated message (matching
+     whatever language the UI is actually in) instead of this always
+     appearing in Urdu regardless of the selected language — the same gap
+     already fixed once for auth:login's "invalid-credentials". */
+  if (!s.token) return { ok: false, error: "GitHub ٹوکن سیٹ نہیں ہے", errorCode: "no-token" };
 
   /* Publishing overwrites the copy every machine reads, so it must confirm
      this machine still holds the write lock — not merely that it held it at
