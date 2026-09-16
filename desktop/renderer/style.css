@@ -358,13 +358,22 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
   box-shadow: var(--sh-1);
   overflow: hidden;
 }
-.groups { width: 286px; flex: none; }
+/* Narrowed on request — this and .ftspane below both being wide fixed
+   columns left .books (flex:1, the actual list with the book's own
+   details in it) squeezed into whatever was left over, truncating its
+   columns before either side panel gave up an inch. Category names
+   already truncate safely with an ellipsis (.grouprow .c-name span), so
+   there was room to give back without losing anything real. */
+.groups { width: 220px; flex: none; }
 .books  { flex: 1; }
 .detail { width: 330px; flex: none; }
 
 /* Full-text search panel — physical left, like the reference app's. Fixed
-   width so the book list keeps the space, which is the whole point of it. */
-.ftspane { width: 330px; flex: none; }
+   width so the book list keeps the space, which is the whole point of it.
+   Narrowed on request, same reasoning as .groups above — its term inputs
+   are already flex:1/min-width:0 (see .fts-term input), so they shrink
+   cleanly with the panel instead of anything breaking. */
+.ftspane { width: 260px; flex: none; }
 .fts-head {
   display: flex;
   align-items: center;
