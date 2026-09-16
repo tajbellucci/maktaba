@@ -2534,6 +2534,22 @@ dialog.picker .body {
   padding: 9px 12px;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
+  /* Same reasoning and fix as .picker-bar: native window chrome never
+     mirrors for the app's own text direction, so without this the close
+     button rendered at the physical-LEFT edge instead of the expected
+     physical-right corner every other titlebar in this app already uses —
+     inconsistent with .picker-bar right above, which already got this
+     exact fix. .bv-title's flex:1 does the equivalent of .picker-bar's
+     margin-left:auto trick here, pushing the whole button group to the
+     forced-right side on its own. */
+  direction: ltr;
+}
+.bv-sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 2px;
+  background: var(--line);
+  flex: none;
 }
 .bv-ico { width: 18px; height: 18px; color: var(--blue); flex: none; }
 .bv-title {
