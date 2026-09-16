@@ -885,13 +885,14 @@ function setFtsOpen(open) {
 }
 
 function applyFtsOpen() {
-  /* Searching book TEXT only makes sense against the flat "all books" list —
-     inside a category/author/shelf/status tree it would be searching the
-     text of whatever happens to be in the currently open group, which is not
-     what "search books" means. So the panel only ever shows on that one tab,
-     even if the librarian left it open the last time they were on it. */
-  const visible = ftsOpen && mode === "books";
-  $("ftsPane").classList.toggle("hidden", !visible);
+  /* Used to be restricted to the flat "books" tab only, on the reasoning
+     that searching text inside a category/author/shelf/status tree would
+     search whatever happened to be in the open group, not "all books". That
+     reasoning no longer holds now that the checkbox scope below exists —
+     selecting a category scopes the search to exactly that category's
+     books, so searching from inside that tab is now exactly what a
+     librarian means by it. Visible on every rail tab. */
+  $("ftsPane").classList.toggle("hidden", !ftsOpen);
   $("railFts").classList.toggle("active", ftsOpen);
 }
 
@@ -980,7 +981,12 @@ function renderGroups() {
   all.className = "grouprow" + (group === null ? " sel" : "");
   all.innerHTML = `<div class="c-name"><svg><use href="#i-grid"/></svg><span>${t("tabAll")}</span></div>
                    <div class="c-count">${ud(DATA.books.length)}</div>`;
-  all.onclick = () => { group = null; selectedId = null; renderAll(); };
+  all.onclick = () => {
+    group = null;
+    selectedId = null;
+    if (mode === "category") { ftsScopedIds.clear(); updateFtsScope(); }
+    renderAll();
+  };
   list.appendChild(all);
 
   const icon = { category: "i-tag", author: "i-pen", status: "i-check", shelf: "i-shelf" }[mode];
@@ -989,7 +995,22 @@ function renderGroups() {
     row.className = "grouprow" + (group === name ? " sel" : "");
     row.innerHTML = `<div class="c-name"><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
-    row.onclick = () => { group = name; selectedId = null; renderAll(); };
+    row.onclick = () => {
+      group = name;
+      selectedId = null;
+      /* Picking a category is now also "scope the search to this category":
+         every book it holds gets checked into the FTS scope automatically,
+         replacing whatever was scoped before — clicking a category is a
+         fresh, deliberate choice of what to search, not an addition to a
+         stale earlier selection. Category only, per how this was asked for;
+         author/shelf/status grouping don't get this. */
+      if (mode === "category") {
+        ftsScopedIds.clear();
+        for (const b of DATA.books) if (groupKey(b) === name) ftsScopedIds.add(b.id);
+        updateFtsScope();
+      }
+      renderAll();
+    };
     list.appendChild(row);
   }
 }
