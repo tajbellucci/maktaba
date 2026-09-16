@@ -2484,8 +2484,13 @@ dialog.picker:not([open]) { display: none; }
   color: var(--text);
   letter-spacing: .2px;
 }
-.picker-bar .bv-icon {
-  margin-left: auto;           /* pushes the control group to the physical right */
+.picker-bar .picker-x {
+  /* Used to be .picker-bar .bv-icon — that matched the maximise button,
+     which carried this push. Removing that button (picker no longer
+     maximises) left nothing to push the close button to the physical
+     right, so it silently collapsed back next to the title instead —
+     moved the same push directly onto the one control left. */
+  margin-left: auto;
 }
 .picker-x {
   width: 30px; height: 28px;
