@@ -1575,6 +1575,14 @@ function renderCategoryManager() {
 
   box.querySelectorAll("[data-delcat]").forEach((btn) => {
     btn.onclick = () => {
+      /* showCategoryManager() already gates opening this dialog to master
+         only, but that check runs once at open time — if master status is
+         lost while the dialog is still sitting open (heartbeat loss,
+         another device claiming the lock), this button would otherwise
+         still fire and the UI would show the category gone while the
+         write silently never reaches disk. Same reasoning as the cover-
+         removal fix right above. */
+      if (!requireMaster()) return;
       const idx = +btn.dataset.delcat;
       const name = categories()[idx];
       const inUse = counts.get(name) || 0;
@@ -1860,7 +1868,18 @@ function renderCover(b) {
   };
 
   const drop = $("btnDropImg");
-  if (drop) drop.onclick = () => { b.image = ""; persist(); renderCover(b); renderBooks(); };
+  if (drop) drop.onclick = () => {
+    // Every other delete action (file, category, book) re-checks this —
+    // cover removal didn't, so a reader could see the cover vanish from
+    // their own screen while the write silently never reached disk, since
+    // the main process refuses it anyway. Consistent now, and it means the
+    // UI never shows a change that didn't actually happen.
+    if (!requireMaster()) return;
+    b.image = "";
+    persist();
+    renderCover(b);
+    renderBooks();
+  };
 }
 
 /* One book can hold many scans — a PDF per volume is the normal case for a
