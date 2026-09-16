@@ -1752,34 +1752,69 @@ function showCard(b, row, cursorX) {
 function positionCard(row, cursorX) {
   const card = $("bookCard");
   const r = row.getBoundingClientRect();
-  const w = card.offsetWidth;
-  const h = card.offsetHeight;
+  /* getBoundingClientRect, not offsetWidth/offsetHeight — the app's text-size
+     setting is CSS `zoom` on body (see style.css's --z comment), and under
+     zoom those two disagree: offsetWidth/offsetHeight report the UNZOOMED
+     value the CSS declares, while getBoundingClientRect (and the mouse's own
+     cursorX, and window.innerWidth/innerHeight, and every row's own rect)
+     report the real ON-SCREEN pixel the cursor actually sits at. Mixing them
+     — as this used to — computes correct-looking math in the wrong unit
+     system: at the "large" text size (zoom 1.12) offsetWidth said 470 while
+     the card's real rendered width was 526, so every position came out
+     scaled by that same 1.12 and landed in the wrong place entirely. Do the
+     comparisons in real pixels throughout, then divide back by the zoom
+     factor once, at the very end, only when actually assigning to
+     style.left/top (a CSS length, which zoom scales up again on render). */
+  const cardRect = card.getBoundingClientRect();
+  const w = cardRect.width;
+  const h = cardRect.height;
   const GAP = 10;
+  const VGAP = 4;
   const OFFSET = 18;
   const x = typeof cursorX === "number" ? cursorX : r.left + r.width / 2;
 
-  /* "Left half" / "right half" of what, exactly, matters here. The picker
-     dialog rarely fills the whole application window — on a wide monitor it
-     can sit well over to one side — so comparing the cursor against
-     window.innerWidth/2 answered "which half of the MONITOR", not "which
-     half of the LIST the librarian is actually looking at". A row on the
-     dialog's own right edge could still measure as being in the window's
-     left half, and the card kept opening on the side the cursor was
-     already on. Compare against the picker (or the nearest dialog, for
-     the book-view panel's own row uses) instead. */
+  /* Compare against the picker (or the nearest dialog, for the book-view
+     panel's own row uses), not window.innerWidth — the dialog rarely fills
+     the whole application window. */
   const host = row.closest("dialog") || document.body;
   const hostRect = host.getBoundingClientRect();
-  const mid = hostRect.left + hostRect.width / 2;
 
-  let left = x < mid ? x + OFFSET : x - OFFSET - w;
+  /* Which side actually has room, not just "which half of the dialog" —
+     a row near the dialog's own edge could measure as being in the "wrong"
+     half while still having plenty of space on its real near side. Prefer
+     whichever side the card fits on outright; if neither fits cleanly,
+     take whichever offers more room rather than always defaulting to one
+     side and letting the clamp below squash it. */
+  const spaceRight = hostRect.right - x - OFFSET;
+  const spaceLeft = x - hostRect.left - OFFSET;
+  const openRight = spaceRight >= w || spaceRight >= spaceLeft;
+  let left = openRight ? x + OFFSET : x - OFFSET - w;
   left = Math.max(GAP, Math.min(left, window.innerWidth - w - GAP));
 
-  let top = r.top;
-  if (top + h > window.innerHeight - GAP) top = window.innerHeight - GAP - h;
-  top = Math.max(GAP, top);
+  /* Vertical: never let the clamp drag the card back over the row that
+     triggered it. Opening downward from the row is the normal case — most
+     rows have room below. When they don't (the last few rows of a scrolled
+     list), the old code just clamped to the window's bottom edge, which
+     could pull the card's top back up ABOVE the row and cover the very
+     name/details the librarian was hovering to read. Open upward instead —
+     the card's bottom lands just above the row, never touching it — and
+     only fall back to a plain clamp if the window is too short for either
+     direction to fit cleanly. */
+  let top;
+  if (r.top + h <= window.innerHeight - GAP) {
+    top = r.top;
+  } else if (r.top - h - VGAP >= GAP) {
+    top = r.top - h - VGAP;
+  } else {
+    top = Math.max(GAP, window.innerHeight - GAP - h);
+  }
 
-  card.style.left = left + "px";
-  card.style.top = top + "px";
+  // Convert back from real screen pixels to the unzoomed CSS length that
+  // zoom will scale up again on render — see the comment at the top of
+  // this function for why this has to happen exactly once, right here.
+  const z = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--z")) || 1;
+  card.style.left = (left / z) + "px";
+  card.style.top = (top / z) + "px";
   card.style.right = "auto";
 }
 

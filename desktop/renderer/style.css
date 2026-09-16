@@ -1420,7 +1420,14 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
 .bc-img {
   float: inline-end;
   width: 96px;
-  max-height: 150px;
+  /* height, not max-height: an <img> with only width set has no known
+     height until the image bytes actually finish loading, so the card
+     measured shorter than it would end up — positionCard() only measures
+     once, at card-creation time, so once the image loaded and the card
+     grew afterward the position went stale and could drift the card back
+     over the row it was meant to clear. A fixed height reserves the same
+     footprint immediately, before the image has loaded at all. */
+  height: 150px;
   object-fit: contain;
   margin-inline-start: 13px;
   margin-block-end: 7px;
