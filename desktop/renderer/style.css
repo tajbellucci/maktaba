@@ -2673,9 +2673,12 @@ dialog.picker {
 .bv-bar { cursor: move; user-select: none; }
 .bv-bar button { cursor: pointer; }
 
-/* The picker only ever moves sideways — top/height stay owned by fitPicker()
-   so it is always vertically maximised — hence ew-resize rather than move. */
-.picker-bar { cursor: ew-resize; user-select: none; }
+/* Stale comment removed: the picker used to only move sideways (top/height
+   were owned by fitPicker(), which kept it vertically maximised), which is
+   why this was ew-resize instead of move. That constraint is gone — the
+   picker drags freely on both axes now, same as .bv-bar above — so this was
+   showing the wrong cursor (a horizontal resize arrow) for a move gesture. */
+.picker-bar { cursor: move; user-select: none; }
 .picker-bar button { cursor: pointer; }
 
 .bv-icon {
