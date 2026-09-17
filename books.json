@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-09-14",
+  "updated": "2026-09-17",
   "books": [
     {
       "id": 1,
@@ -130,23 +130,6 @@
       "status": "available",
       "almari": "",
       "accession": "6",
-      "issueType": "person",
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "hasPrint": true
-    },
-    {
-      "id": 7,
-      "title": "تفسیر ابنِ کثیر",
-      "author": "حافظ ابنِ کثیر",
-      "category": "تفسیر",
-      "volumes": 4,
-      "present": false,
-      "notes": "مستعار — واپسی متوقع",
-      "files": [],
-      "status": "missing",
-      "almari": "",
-      "accession": "7",
       "issueType": "person",
       "borrowerAddress": "",
       "borrowerPhone": "",
