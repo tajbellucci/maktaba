@@ -368,11 +368,20 @@ function fillMaktabaSelect(sel, value) {
 const AR_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
 const ud = (n) => (LANG === "ur" ? String(n).replace(/[0-9]/g, (d) => AR_DIGITS[+d]) : String(n)); // ar and en both use plain digits
 
+let toastHideTimer = null;
 function toast(msg) {
   const el = $("toast");
   el.textContent = msg;
   el.classList.add("show");
-  setTimeout(() => el.classList.remove("show"), 2200);
+  /* A plain z-index can't beat an open <dialog>'s top layer, so toasts were
+     invisible whenever a dialog was open (the app's normal state). A popover
+     enters the same top layer and stacks above dialogs shown before it. */
+  try { el.showPopover(); } catch (e) {}
+  clearTimeout(toastHideTimer);
+  toastHideTimer = setTimeout(() => {
+    el.classList.remove("show");
+    try { el.hidePopover(); } catch (e) {}
+  }, 2200);
 }
 
 /* Browser-preview fallback: without Electron's preload there is no window.maktaba,
@@ -2890,10 +2899,17 @@ $("sSave").onclick = async () => {
     supabaseUrl: $("sSbUrl").value.trim(),
     supabaseAnonKey: $("sSbKey").value.trim()
   });
-  // Auto-publish may have paused itself here specifically because no token
-  // was set — pasting one in is exactly what resolves that, so let the
-  // next edit auto-publish again instead of staying paused forever.
-  if (token) clearAutoPublishPause();
+  /* Auto-publish may be sitting paused (no token, or a divergence). Used to
+     only clear this when the token field itself was just retyped — but the
+     field is deliberately left BLANK even when a real token is already
+     saved (the placeholder says so: "•••• type new to change"), so saving
+     Settings for any OTHER reason without retyping it never cleared a
+     pause that a perfectly good token had already resolved. Clear it
+     unconditionally on every settings save instead: worst case, nothing
+     was actually fixed and the next edit just re-pauses with the same
+     toast, which is harmless; the alternative was auto-publish staying
+     silently stuck long after the real problem was gone. */
+  clearAutoPublishPause();
   $("dlgSettings").close();
   toast(t("settingsSaved"));
 };
