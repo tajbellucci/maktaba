@@ -1450,13 +1450,20 @@ ipcMain.handle("auth:restore", async () => {
 });
 
 ipcMain.handle("auth:heartbeat", async () => {
-  if (!masterSession) return { ok: false };
+  if (!masterSession) return { ok: false, lost: true };
   const cfg = supabaseCfg();
   const res = await supabaseRequest(
     cfg, "/rest/v1/rpc/heartbeat_master_lock", "POST",
     { p_device_id: deviceId() }, { accessToken: masterSession.accessToken }
   );
-  return { ok: res.ok && res.data === true };
+  /* Two very different failures used to collapse into one `ok: false`:
+     Supabase answered and said this device no longer holds the lock (really
+     lost it), versus Supabase could not be reached at all (a blip, or a
+     laptop briefly offline). The caller treated both as a permanent loss and
+     stopped beating for good, so one dropped packet retired the heartbeat
+     for the rest of the session and let the lock go stale while the app
+     still believed it was master. */
+  return { ok: res.ok && res.data === true, lost: res.ok && res.data !== true };
 });
 
 ipcMain.handle("auth:logout", async () => {
@@ -1654,7 +1661,18 @@ async function doPublish(data) {
       { p_device_id: deviceId() }, { accessToken: masterSession.accessToken }
     );
     if (!(beat.ok && beat.data === true)) {
-      return { ok: false, error: "اس کمپیوٹر کے پاس اب ماسٹر رائٹس نہیں ہیں — دوبارہ لاگ اِن کریں" };
+      /* errorCode so the renderer can actually SAY this. Auto-publish used to
+         drop this into its "transient error, not worth a toast" branch, which
+         meant a machine that had lost the lock deleted and edited books
+         locally for as long as it stayed open while nothing reached GitHub
+         and nothing ever said so — the librarian's own screen showed the
+         change, so it looked done. Same pause-and-say-so treatment as a
+         missing token, since this one does not resolve on its own either. */
+      return {
+        ok: false,
+        errorCode: "not-master",
+        error: "اس کمپیوٹر کے پاس اب ماسٹر رائٹس نہیں ہیں — دوبارہ لاگ اِن کریں"
+      };
     }
   }
 

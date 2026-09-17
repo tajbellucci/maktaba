@@ -833,6 +833,14 @@ async function runAutoPublish() {
          resolves on its own. */
       autoPublishPaused = true;
       toast(t("autoPublishNoToken"));
+    } else if (res.errorCode === "not-master") {
+      /* The lock is gone (another desk claimed it, or this machine slept
+         through its heartbeat). Local edits still save to this disk, but
+         nothing can reach GitHub until they log in again — and until this
+         said so out loud, every delete and edit looked successful on screen
+         while readers kept seeing the old catalogue. */
+      autoPublishPaused = true;
+      toast(t("masterLockLost"));
     }
     // publish-frozen / dev-run-no-publish / a transient network error: not
     // worth a toast on every single edit — the manual Publish button (and
@@ -2582,9 +2590,14 @@ function startHeartbeat() {
   stopHeartbeat();
   heartbeatTimer = setInterval(async () => {
     const res = await window.maktaba.authHeartbeat();
-    if (!res.ok) {
-      // Lost the lock (went stale, or another device forced a claim) —
-      // drop back to reader mode rather than pretend we still hold it.
+    /* Only a definite answer from Supabase that this device no longer holds
+       the lock ends master mode. A request that simply failed to get through
+       leaves the timer running so the next beat can try again: this used to
+       stop the heartbeat on any failure at all, so a single blip or a short
+       sleep retired it for the whole session, the lock then went stale, and
+       every publish from then on was refused — silently, since auto-publish
+       had no message for that case either. */
+    if (res.lost) {
       stopHeartbeat();
       $("sLibrarian").checked = false;
       toast(t("masterLockLost"));
