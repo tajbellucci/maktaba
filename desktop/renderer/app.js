@@ -2458,14 +2458,32 @@ $("mSave").onclick = () => {
 function deleteSelected() {
   if (!requireMaster()) return;
 
-  /* Ticking several rows and pressing Delete used to remove only the one
-     highlighted book and leave every ticked one sitting there, which read as
-     "delete does not work". The tick boxes are the only multi-selection this
-     list has, so they are what a multi-delete acts on. Two or more ticked is
-     treated as a deliberate bulk delete and warns with the exact count,
-     since this can also be reached by picking a category (which ticks every
-     book in it) — the count is what makes that impossible to do by accident. */
+  /* Ticking rows and pressing Delete used to remove only whichever book was
+     last opened (selectedId, set by clicking INTO a row) and ignore the tick
+     boxes entirely -- so ticking exactly one box and pressing Delete deleted
+     nothing and just said "select a book from the list", which reads as
+     broken since ticking a box is the obvious way to "select" one. Screen
+     recording confirmed this exact sequence live. The tick boxes are this
+     list's only real multi-selection, so any number of them ticked (one or
+     many) is now what Delete acts on; selectedId is only the fallback for
+     when nothing is ticked at all (deleting from the open detail panel). */
   const checked = DATA.books.filter((x) => ftsScopedIds.has(x.id));
+
+  if (checked.length === 1) {
+    const b = checked[0];
+    if (!confirm(`"${b.title}" — ${t("confirmDelete")}`)) return;
+    DATA.books = DATA.books.filter((x) => x.id !== b.id);
+    ftsScopedIds.delete(b.id);
+    if (selectedId === b.id) {
+      selectedId = null;
+      $("bookView").classList.add("hidden");
+    }
+    persist();
+    renderAll();
+    toast(t("bookDeleted"));
+    return;
+  }
+
   if (checked.length > 1) {
     if (!confirm(t("confirmDeleteMany").replace("{n}", ud(checked.length)))) return;
     const doomed = new Set(checked.map((x) => x.id));
@@ -2482,11 +2500,9 @@ function deleteSelected() {
   }
 
   const b = DATA.books.find((x) => x.id === selectedId);
-  /* Used to just return here with nothing shown at all -- from the toolbar's
-     own Delete button (not the picker footer's, which is disabled until a
-     row is clicked, or the detail panel's, which only exists while a book
-     is already open) there was never any guarantee something was selected,
-     and clicking it then looked exactly like a broken button: no error, no
+  /* Nothing ticked and nothing open either -- from the toolbar's own Delete
+     button there was never any guarantee something was selected, and
+     clicking it then looked exactly like a broken button: no error, no
      toast, genuinely nothing happened. Confirmed live -- reused
      detailEmpty, which already says exactly this for the same empty state
      elsewhere in the app. */
