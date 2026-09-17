@@ -2477,6 +2477,7 @@ function deleteSelected() {
     }
     persist();
     renderAll();
+    toast(t("booksDeleted").replace("{n}", ud(checked.length)));
     return;
   }
 
@@ -2497,6 +2498,11 @@ function deleteSelected() {
   $("bookView").classList.add("hidden");
   persist();
   renderAll();
+  /* Deleting used to succeed in complete silence: the row vanished and
+     nothing confirmed it, so when anything else looked off (a stale list, a
+     publish that never went out) there was no way to tell whether the delete
+     itself had run. Say it plainly. */
+  toast(t("bookDeleted"));
 }
 
 $("footAdd").onclick = openAddOne;
@@ -2901,13 +2907,16 @@ async function doPublish() {
       clearAutoPublishPause();
     } else if (res.diverged) {
       /* GitHub holds something this machine never saw. Publishing would wipe
-         it, so say what the difference is and point at the one safe action
-         instead of letting them retry into an overwrite. */
-      alert(
-        t("publishDiverged")
-          .replace("{remote}", ud(res.remoteBooks == null ? "?" : res.remoteBooks))
-          .replace("{local}", ud(res.localBooks == null ? "?" : res.localBooks))
-      );
+         it, so the one safe way out is to fetch that copy first and look at
+         it. This used to be an OK-only alert naming a menu path, which left
+         the librarian stuck in a loop: publish, read the message, press OK,
+         nothing changes, publish again. Offer to run the restore right here
+         — it still shows the full diff and still asks before replacing
+         anything, so nothing is lost by saying yes. */
+      const ask = t("divergedOfferRestore")
+        .replace("{remote}", ud(res.remoteBooks == null ? "?" : res.remoteBooks))
+        .replace("{local}", ud(res.localBooks == null ? "?" : res.localBooks));
+      if (confirm(ask)) doPull();
     } else if (res.error === "publish-frozen") {
       alert(t("publishFrozenMsg"));
     } else if (res.error === "dev-run-no-publish") {
