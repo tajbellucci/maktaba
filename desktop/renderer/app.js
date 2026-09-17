@@ -2441,7 +2441,15 @@ $("mSave").onclick = () => {
 function deleteSelected() {
   if (!requireMaster()) return;
   const b = DATA.books.find((x) => x.id === selectedId);
-  if (!b) return;
+  /* Used to just return here with nothing shown at all -- from the toolbar's
+     own Delete button (not the picker footer's, which is disabled until a
+     row is clicked, or the detail panel's, which only exists while a book
+     is already open) there was never any guarantee something was selected,
+     and clicking it then looked exactly like a broken button: no error, no
+     toast, genuinely nothing happened. Confirmed live -- reused
+     detailEmpty, which already says exactly this for the same empty state
+     elsewhere in the app. */
+  if (!b) { toast(t("detailEmpty")); return; }
   if (!confirm(`"${b.title}" — ${t("confirmDelete")}`)) return;
   DATA.books = DATA.books.filter((x) => x.id !== selectedId);
   ftsScopedIds.delete(selectedId);
