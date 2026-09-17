@@ -2457,6 +2457,29 @@ $("mSave").onclick = () => {
 
 function deleteSelected() {
   if (!requireMaster()) return;
+
+  /* Ticking several rows and pressing Delete used to remove only the one
+     highlighted book and leave every ticked one sitting there, which read as
+     "delete does not work". The tick boxes are the only multi-selection this
+     list has, so they are what a multi-delete acts on. Two or more ticked is
+     treated as a deliberate bulk delete and warns with the exact count,
+     since this can also be reached by picking a category (which ticks every
+     book in it) — the count is what makes that impossible to do by accident. */
+  const checked = DATA.books.filter((x) => ftsScopedIds.has(x.id));
+  if (checked.length > 1) {
+    if (!confirm(t("confirmDeleteMany").replace("{n}", ud(checked.length)))) return;
+    const doomed = new Set(checked.map((x) => x.id));
+    DATA.books = DATA.books.filter((x) => !doomed.has(x.id));
+    doomed.forEach((id) => ftsScopedIds.delete(id));
+    if (doomed.has(selectedId)) {
+      selectedId = null;
+      $("bookView").classList.add("hidden");
+    }
+    persist();
+    renderAll();
+    return;
+  }
+
   const b = DATA.books.find((x) => x.id === selectedId);
   /* Used to just return here with nothing shown at all -- from the toolbar's
      own Delete button (not the picker footer's, which is disabled until a

@@ -817,7 +817,21 @@ dialog {
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
 dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px); }
 
-.modal-body { min-width: 380px; font-family: var(--ui); }
+/* A tall dialog (Add Book is the worst case) used to overflow into the
+   dialog's own scroll area, which pushed the Save/Cancel bar below the fold
+   with no visible scrollbar to suggest it was there — measured live: Save
+   sat at y=808 in a 635px-tall window. It read as "this dialog has no save
+   button". Only the field area scrolls now; the action bar is pinned to the
+   bottom of the dialog and is always on screen. */
+.modal-body {
+  min-width: 380px;
+  font-family: var(--ui);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(var(--vh) - 42px);
+}
+.modal-body > .modal-inner { overflow-y: auto; flex: 1 1 auto; }
+.modal-body > .modal-actions { flex: 0 0 auto; }
 .modal-body h2 {
   font-family: var(--nastaliq);
   font-size: 17px;
