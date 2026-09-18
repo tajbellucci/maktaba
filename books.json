@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-09-17",
+  "updated": "2026-09-18",
   "books": [
     {
       "id": 1,
@@ -130,23 +130,6 @@
       "status": "available",
       "almari": "",
       "accession": "6",
-      "issueType": "person",
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "hasPrint": true
-    },
-    {
-      "id": 8,
-      "title": "تفسیرِ نعیمی",
-      "author": "مفتی احمد یار خان نعیمی",
-      "category": "تفسیر",
-      "volumes": 11,
-      "present": true,
-      "notes": "",
-      "files": [],
-      "status": "available",
-      "almari": "",
-      "accession": "8",
       "issueType": "person",
       "borrowerAddress": "",
       "borrowerPhone": "",
