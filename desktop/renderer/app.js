@@ -1060,8 +1060,8 @@ function renderBooks() {
                      <span class="br-bookicon"><svg><use href="#i-book"/></svg></span>
                      <span class="br-star${b.favorite ? " on" : ""}" data-star="${b.id}" title="${t("favorite")}">${b.favorite ? "★" : "☆"}</span>
                      <span class="br-acc">${ud(b.accession || "—")}</span>
-                     <span class="br-author">${esc(b.author) || t("noAuthor")}</span>
                      <span class="br-title"><span class="dot" title="${t("st_" + b.status)}"></span>${esc(b.title)}${badges}</span>
+                     <span class="br-author">${esc(b.author) || t("noAuthor")}</span>
                      <span class="br-publisher">${esc(b.publisher)}</span>`;
     row.onclick = () => {
       selectedId = b.id;
@@ -2501,13 +2501,29 @@ $("mSave").onclick = () => {
     return;
   }
 
-  let added = 0;
+  let added = 0, merged = 0;
   let nextAcc = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
   lines.forEach((line, i) => {
     const c = line.split("|").map((x) => x.trim());
     const [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = ""] = c;
     if (!title) { skipped.push(`${i + 1}: ${t("manyNoTitle")}`); return; }
     if (maktaba && !MAKTABA_OPTIONS.includes(maktaba)) { skipped.push(`${i + 1}: ${t("manyBadBranch")} (${maktaba})`); return; }
+    /* The same book pasted again is the same book: the app already treats an
+       identical normalized title + author as a duplicate, so adding it twice
+       would just create the cataloguing error the duplicates screen exists to
+       find. An existing match gets this line's non-empty cells instead (a blank
+       author on either side still counts as the same book). */
+    const same = DATA.books.find((x) => norm(x.title) === norm(title) && (!author || !x.author || norm(x.author) === norm(author)));
+    if (same) {
+      const fill = (v, field) => { if (v) same[field] = v; };
+      fill(author, "author"); fill(category, "category"); fill(publisher, "publisher");
+      fill(maktaba, "maktaba"); fill(department, "department"); fill(almari, "almari");
+      const vol = parseInt(toLatinDigits(volumes), 10);
+      if (vol) same.volumes = vol;
+      logHistory(same, "updated");
+      merged++;
+      return;
+    }
     const b = {
       id: nextId++,
       title,
@@ -2530,7 +2546,7 @@ $("mSave").onclick = () => {
   $("dlgMany").close();
   persist();
   renderAll();
-  toast(`${ud(added)}${t("added")}`);
+  toast(`${ud(added)}${t("added")}` + (merged ? ` · ${ud(merged)}${t("manyUpdated")}` : ""));
   if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n"));
 };
 

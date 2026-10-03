@@ -1869,6 +1869,8 @@ html[data-mode="dark"] .rd-table mark { background: #5a4a1c; color: #f2e6c4; }
 html[data-role="reader"] #footAdd,
 html[data-role="reader"] #footAddMany,
 html[data-role="reader"] #footDel,
+html[data-role="reader"] #bvDelete,
+html[data-role="reader"] #iconbar [data-act="delete"],
 html[data-role="reader"] [data-act="categoriesMan"],
 html[data-role="reader"] .track-acts,
 html[data-role="reader"] .track-more,
