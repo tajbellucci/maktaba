@@ -2416,43 +2416,122 @@ $("oSave").onclick = () => {
   renderAll();
 };
 
+/* Bulk add and bulk update share one dialog and one column order, so the
+   text a librarian pastes in looks the same either way. Add: Title | Author |
+   Category | Volumes | Publisher | Branch | Department | Almari. Update puts the
+   register number first (the only identity that never changes) and then the
+   same columns; an empty cell leaves that field alone and "-" clears it, since
+   an empty cell has to mean "no change" for a half-filled sheet to be safe. */
+let manyMode = "add";
+
+const toLatinDigits = (str) => String(str).replace(/[٠-٩]/g, (d) => d.charCodeAt(0) - 1632).replace(/[۰-۹]/g, (d) => d.charCodeAt(0) - 1776);
+
+function paintManyMode() {
+  document.querySelectorAll("#mModes [data-mmode]").forEach((b) => b.classList.toggle("on", b.dataset.mmode === manyMode));
+  $("mHint").textContent = t(manyMode === "update" ? "manyHintUpdate" : "manyHintAdd");
+  $("mFill").classList.toggle("hidden", manyMode !== "update");
+  $("mSave").textContent = manyMode === "update" ? t("manyUpdateBtn") : t("btnAdd");
+  refreshManyCount();
+}
+
+function refreshManyCount() {
+  const n = $("mText").value.split("\n").filter((l) => l.trim()).length;
+  $("mCount").textContent = `${ud(n)} ${t("tabAll")}`;
+}
+
 function openAddMany() {
   if (!requireMaster()) return;
+  manyMode = "add";
   $("mText").value = "";
-  $("mCount").textContent = `${ud(0)} ${t("tabAll")}`;
+  paintManyMode();
   $("dlgMany").showModal();
 }
 
-$("mText").addEventListener("input", () => {
-  const n = $("mText").value.split("\n").filter((l) => l.trim()).length;
-  $("mCount").textContent = `${ud(n)} ${t("tabAll")}`;
+document.querySelectorAll("#mModes [data-mmode]").forEach((btn) => {
+  btn.onclick = () => { manyMode = btn.dataset.mmode; paintManyMode(); };
 });
+
+$("mFill").onclick = () => {
+  $("mText").value = DATA.books
+    .slice()
+    .sort((a, b) => (parseInt(a.accession, 10) || 0) - (parseInt(b.accession, 10) || 0))
+    .map((b) => [b.accession, b.title, b.author, b.category, b.volumes || "", b.publisher, b.maktaba, b.department, b.almari]
+      .map((v) => String(v == null ? "" : v).replace(/\|/g, "/")).join(" | "))
+    .join("\n");
+  refreshManyCount();
+};
+
+$("mText").addEventListener("input", refreshManyCount);
 
 $("mSave").onclick = () => {
   const lines = $("mText").value.split("\n").map((l) => l.trim()).filter(Boolean);
+  const skipped = [];
+  const cell = (v) => (v === undefined ? "" : v.trim());
+
+  if (manyMode === "update") {
+    const jobs = [];
+    lines.forEach((line, i) => {
+      const c = line.split("|").map((x) => x.trim());
+      const reg = toLatinDigits(cell(c[0]));
+      const b = DATA.books.find((x) => String(x.accession) === reg);
+      if (!b) { skipped.push(`${i + 1}: ${t("manyNoReg")}`); return; }
+      const branch = cell(c[5]);
+      if (branch && branch !== "-" && !MAKTABA_OPTIONS.includes(branch)) { skipped.push(`${i + 1}: ${t("manyBadBranch")} (${branch})`); return; }
+      jobs.push({ b, c });
+    });
+    if (!jobs.length) { if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n")); return; }
+    if (!confirm(t("manyConfirmUpdate").replace("{n}", ud(jobs.length)))) return;
+
+    /* A value of "-" blanks the field; an empty cell is skipped, so a sheet
+       filled in for only some columns can't wipe the rest. */
+    for (const { b, c } of jobs) {
+      const title = cell(c[1]);
+      if (title && title !== "-") b.title = title;
+      const set = (col, field) => { const v = cell(c[col]); if (v) b[field] = v === "-" ? "" : v; };
+      set(2, "author"); set(3, "category"); set(5, "publisher"); set(6, "maktaba"); set(7, "department"); set(8, "almari");
+      const vol = cell(c[4]);
+      if (vol) b.volumes = vol === "-" ? 0 : parseInt(toLatinDigits(vol), 10) || 0;
+      logHistory(b, "updated");
+    }
+    $("dlgMany").close();
+    persist();
+    renderAll();
+    toast(`${ud(jobs.length)}${t("manyUpdated")}`);
+    if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n"));
+    return;
+  }
+
   let added = 0;
-  for (const line of lines) {
-    const [title, author = "", category = "", volumes = ""] = line.split("|").map((s) => s.trim());
-    if (!title) continue;
-    DATA.books.push({
+  let nextAcc = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
+  lines.forEach((line, i) => {
+    const c = line.split("|").map((x) => x.trim());
+    const [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = ""] = c;
+    if (!title) { skipped.push(`${i + 1}: ${t("manyNoTitle")}`); return; }
+    if (maktaba && !MAKTABA_OPTIONS.includes(maktaba)) { skipped.push(`${i + 1}: ${t("manyBadBranch")} (${maktaba})`); return; }
+    const b = {
       id: nextId++,
       title,
       author,
-      publisher: "",
+      publisher,
       category: category || (mode === "category" && group ? group : ""),
-      volumes: parseInt(volumes, 10) || 0,
-      maktaba: mode === "shelf" && group ? group : "",
-      department: "",
+      volumes: parseInt(toLatinDigits(volumes), 10) || 0,
+      maktaba: maktaba || (mode === "shelf" && group ? group : ""),
+      department,
+      almari,
       status: "available",
       notes: ""
-    });
-    normalizeBook(DATA.books[DATA.books.length - 1]);
+    };
+    normalizeBook(b);
+    b.accession = String(++nextAcc);
+    logHistory(b, "added");
+    DATA.books.push(b);
     added++;
-  }
+  });
   $("dlgMany").close();
   persist();
   renderAll();
   toast(`${ud(added)}${t("added")}`);
+  if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n"));
 };
 
 function deleteSelected() {

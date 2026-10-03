@@ -2894,3 +2894,11 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 
 .cover-empty-row, .attach-row { display: flex; gap: 6px; margin-top: 6px; }
 .cover-empty-row .url-btn, .attach-row .attach-btn { flex: 1; }
+
+/* Bulk add / update mode switch. Two buttons, one active; the dialog's hint,
+   column format and save label all follow whichever is on. */
+.many-modes { display: flex; gap: 8px; }
+.many-modes button { flex: 1; padding: 8px 12px; border-radius: 8px; border: 2px solid var(--line); background: var(--strip); color: var(--text-2); font-family: var(--ui); font-size: 14.5px; cursor: pointer; }
+.many-modes button.on { border-color: var(--blue); background: var(--blue-wash); color: var(--blue); font-weight: 700; }
+#mFill { margin-top: 8px; padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line-hard); background: var(--panel); color: var(--text-2); font-family: var(--ui); font-size: 14px; cursor: pointer; }
+#mFill:hover { border-color: var(--blue); color: var(--blue); }

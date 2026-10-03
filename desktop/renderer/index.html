@@ -427,12 +427,17 @@
   <div class="modal-body" style="min-width:510px;">
     <h2 data-t="dlgManyTitle">کئی کتابیں شامل کریں</h2>
     <div class="modal-inner">
-      <p class="hint" data-t="dlgManyHint">ہر سطر ایک کتاب — نام | مصنف | موضوع | جلدیں (صرف نام لازمی ہے)</p>
+      <div class="many-modes" id="mModes">
+        <button type="button" class="on" data-mmode="add" data-t="manyModeAdd">نئی کتابیں</button>
+        <button type="button" data-mmode="update" data-t="manyModeUpdate">موجود کتابیں اپ ڈیٹ کریں</button>
+      </div>
+      <p class="hint" id="mHint" style="margin-top:8px;"></p>
+      <button type="button" id="mFill" class="hidden" data-t="manyFill">موجودہ کتابیں بھریں</button>
       <textarea id="mText" rows="11" style="margin-top:8px;"></textarea>
       <p class="hint" id="mCount" style="margin-top:7px;">۰ کتابیں</p>
     </div>
     <div class="modal-actions">
-      <button class="primary" id="mSave" data-t="btnAdd">شامل کریں</button>
+      <button class="primary" id="mSave">شامل کریں</button>
       <button data-close data-t="btnCancel">منسوخ</button>
     </div>
   </div>
