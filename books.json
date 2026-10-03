@@ -616,7 +616,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "32"
     },
     {
       "id": 33,
@@ -632,7 +633,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "33"
     },
     {
       "id": 34,
@@ -648,7 +650,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "34"
     },
     {
       "id": 35,
@@ -664,7 +667,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "35"
     },
     {
       "id": 36,
@@ -680,7 +684,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "36"
     },
     {
       "id": 37,
@@ -696,7 +701,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "37"
     },
     {
       "id": 38,
@@ -712,7 +718,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "38"
     },
     {
       "id": 39,
@@ -728,7 +735,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "39"
     },
     {
       "id": 40,
@@ -746,7 +754,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "40"
     },
     {
       "id": 41,
@@ -754,6 +763,7 @@
       "author": "مولانا صفی الرحمٰن مبارکپوری",
       "category": "سیرت",
       "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
       "status": "available",
       "notes": "",
       "files": [],
@@ -762,7 +772,8 @@
       "almari": "",
       "borrowerAddress": "",
       "borrowerPhone": "",
-      "issueType": "person"
+      "issueType": "person",
+      "accession": "41"
     }
   ],
   "categories": [
