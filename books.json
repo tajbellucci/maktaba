@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-09-18",
+  "updated": "2026-10-03",
   "books": [
     {
       "id": 1,
@@ -574,6 +574,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "30"
+    },
+    {
+      "id": 31,
+      "title": "إلجام العوام",
+      "author": "الإمام الغزالي",
+      "publisher": "دار المنهاج",
+      "category": "عقیدہ وعلم الکلام",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "غرفة للأستاذ",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "31"
     }
   ],
   "categories": [
