@@ -1338,7 +1338,19 @@ function _renderDetail() {
       renderBooks();
     };
   };
-  bind("dTitle", "title");
+  $("dTitle").onchange = () => {
+    const v = $("dTitle").value.trim();
+    const dupEdit = findDuplicateTitle(v, b.id);
+    if (!v || dupEdit) {
+      $("dTitle").value = b.title || "";
+      if (dupEdit) toast(dupMessage(dupEdit));
+      return;
+    }
+    b.title = v;
+    persist();
+    renderGroups();
+    renderBooks();
+  };
   bind("dAuthor", "author");
   bind("dPublisher", "publisher");
   bind("dCategory", "category");
@@ -2480,6 +2492,20 @@ $("oFormat").onchange = () => {
   syncAddOneHasPrint();
 };
 
+/* One title, one record. A second entry under a name that already exists is
+   the cataloguing error the duplicates screen exists to find, so it is stopped
+   where it would be created: Add Book, a title edit in the detail panel, and
+   both bulk modes. Matching uses the same normalization as search (spelling
+   variants of ی/ي, ک/ك, diacritics etc. count as the same name). */
+function findDuplicateTitle(title, exceptId) {
+  const key = norm(title || "");
+  if (!key) return null;
+  return DATA.books.find((x) => x.id !== exceptId && norm(x.title) === key) || null;
+}
+function dupMessage(b) {
+  return t("dupTitle").replace("{t}", b.title).replace("{n}", ud(b.accession || "—"));
+}
+
 $("oSave").onclick = () => {
   const hasPrint = $("oHasPrint").checked;
   /* A book with no physical copy has nowhere to sit — a branch, department or
@@ -2492,6 +2518,8 @@ $("oSave").onclick = () => {
     if (!el.value || !String(el.value).trim()) { el.focus(); toast(t("fieldRequired")); return; }
   }
   const title = $("oTitle").value.trim();
+  const dupOne = findDuplicateTitle(title);
+  if (dupOne) { $("oTitle").focus(); toast(dupMessage(dupOne)); return; }
   const b = {
     id: nextId++,
     title,
@@ -2637,6 +2665,8 @@ $("mSave").onclick = () => {
       if (branch && branch !== "-" && !MAKTABA_OPTIONS.includes(branch)) { skipped.push(`${n}: ${t("manyBadBranch")} (${branch})`); continue; }
       const fmt = parseManyFormat(c[10]);
       if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${cell(c[10])})`); continue; }
+      const newTitle = cell(c[1]);
+      if (newTitle && newTitle !== "-" && findDuplicateTitle(newTitle, b.id)) { skipped.push(`${n}: ${t("manyDupName")} (${newTitle})`); continue; }
       jobs.push({ b, c, fmt });
     }
     if (!jobs.length) { if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL)); return; }
@@ -2677,6 +2707,7 @@ $("mSave").onclick = () => {
        find. An existing match gets this line's non-empty cells instead (a blank
        author on either side still counts as the same book). */
     const same = DATA.books.find((x) => norm(x.title) === norm(title) && (!author || !x.author || norm(x.author) === norm(author)));
+    if (!same && findDuplicateTitle(title)) { skipped.push(`${n}: ${t("manyDupName")} (${title})`); continue; }
     if (same) {
       const fill = (v, field) => { if (v) same[field] = v; };
       fill(author, "author"); fill(category, "category"); fill(publisher, "publisher");

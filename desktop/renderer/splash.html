@@ -41,15 +41,15 @@
 
   .card { text-align: center; color: #f4eddc; position: relative; z-index: 2; }
   .ring {
-    width: 92px; height: 92px; margin: 0 auto 20px;
-    border: 1.5px solid #cfa845;
+    width: 132px; height: 132px; margin: 0 auto 18px;
+    border: none;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 0 7px rgba(207,168,69,.08), 0 0 40px rgba(207,168,69,.2);
     animation: breathe 2.4s ease-in-out infinite;
   }
   @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
-  .ring svg { width: 44px; height: 44px; color: #e8cf8d; }
+  .ring img { width: 100%; height: 100%; display: block; }
 
   h1 {
     font-family: "Noto Nastaliq Urdu", serif;
@@ -111,12 +111,7 @@
   </div>
 
   <div class="card">
-    <div class="ring">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v15H6.5A2.5 2.5 0 0 0 4 19.5z"/>
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v5H6.5A2.5 2.5 0 0 1 4 19.5z"/>
-      </svg>
-    </div>
+    <div class="ring"><img src="img/seal.png" alt="" /></div>
     <h1>مکتبہ نعمانیہ</h1>
     <div class="rule"></div>
     <div class="ar">مكتبة نعمانية</div>
