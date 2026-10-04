@@ -1,24 +1,7 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
   "updated": "2026-10-04",
-  "books": [
-    {
-      "id": 1,
-      "title": "ریاض الصالحین",
-      "author": "امام نووی",
-      "category": "حدیث",
-      "volumes": 2,
-      "status": "available",
-      "notes": "",
-      "files": [],
-      "hasPrint": true,
-      "present": true,
-      "almari": "",
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "issueType": "person"
-    }
-  ],
+  "books": [],
   "categories": [
     "آداب واذکار",
     "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)",
