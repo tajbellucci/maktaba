@@ -517,7 +517,7 @@ function createSplash() {
     resizable: false,
     center: true,
     backgroundColor: "#0e2a1c",
-    icon: path.join(__dirname, "build", "icon.png"),
+    icon: path.join(__dirname, "build", process.platform === "win32" ? "icon.ico" : "icon.png"),
     show: false,
     webPreferences: { contextIsolation: true }
   });
@@ -532,7 +532,7 @@ function createWindow() {
     minWidth: 960,
     minHeight: 640,
     title: "مکتبہ نعمانیہ — Maktaba Naumania",
-    icon: path.join(__dirname, "build", "icon.png"),
+    icon: path.join(__dirname, "build", process.platform === "win32" ? "icon.ico" : "icon.png"),
     backgroundColor: "#eaeef3",
     autoHideMenuBar: true,
     show: false,
