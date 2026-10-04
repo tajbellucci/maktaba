@@ -1870,6 +1870,8 @@ html[data-role="reader"] #footAdd,
 html[data-role="reader"] #footAddMany,
 html[data-role="reader"] #footDel,
 html[data-role="reader"] #bvDelete,
+html[data-role="reader"] #iconbar [data-act="undo"],
+html[data-role="reader"] #iconbar [data-act="redo"],
 html[data-role="reader"] #iconbar [data-act="delete"],
 html[data-role="reader"] [data-act="categoriesMan"],
 html[data-role="reader"] .track-acts,
@@ -2904,3 +2906,7 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 .many-modes button.on { border-color: var(--blue); background: var(--blue-wash); color: var(--blue); font-weight: 700; }
 #mFill { margin-top: 8px; padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line-hard); background: var(--panel); color: var(--text-2); font-family: var(--ui); font-size: 14px; cursor: pointer; }
 #mFill:hover { border-color: var(--blue); color: var(--blue); }
+
+/* Undo / redo sit beside Delete: dimmed and inert when there is nothing to step to. */
+#iconbar [data-act="undo"]:disabled, #iconbar [data-act="redo"]:disabled { opacity: .38; cursor: default; }
+#iconbar [data-act="undo"]:disabled:hover, #iconbar [data-act="redo"]:disabled:hover { background: transparent; }

@@ -444,7 +444,12 @@ async function boot() {
   applyLang();
   DATA = await window.maktaba.load();
   DATA.books.forEach(normalizeBook);
+  categories();
   if (assignAccessions() || didMigrate) persist();
+  /* After the one-off migration save above, not before: that save is the app
+     tidying old records on launch, not something the librarian did, so the
+     first Ctrl+Z must never undo it. */
+  resetUndo();
   nextId = 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0);
   categories();
   refreshCategoryList();
@@ -742,6 +747,7 @@ async function adoptData(next) {
   for (const id of [...ftsScopedIds]) if (!liveIds.has(id)) ftsScopedIds.delete(id);
   if ($("ftsScope")) updateFtsScope();
   categories();
+  resetUndo();
   refreshCategoryList();
   applyTheme();
   renderAll();
@@ -774,11 +780,102 @@ async function checkForUpdate() {
 async function persist() {
   pendingSave = false;
   clearTimeout(saveTimer);
+  recordUndoStep();
   DATA.updated = await window.maktaba.save(DATA);
   renderStatus();
   refreshPublishBadge();
   scheduleAutoPublish();
 }
+
+/* Undo / redo for catalogue edits (master only).
+   Every real edit already funnels through persist(), so that is where a step is
+   recorded: the catalogue as it stood after the previous save is pushed onto the
+   undo stack whenever the new state differs. Snapshots hold only books and
+   categories, and leave out favourite and last-viewed -- those are incidental
+   and save on a timer, so starring a book must not become an undo step and an
+   undo must not un-star anything (current values are carried across a restore).
+   Undo re-saves through persist() like any edit, so the restored state reaches
+   disk and auto-publish the same way; undoing a published delete republishes
+   the book. The stacks are dropped whenever the whole catalogue is replaced
+   (pull, restore, login sync) so undo can never reach back across that. */
+const UNDO_MAX = 30;
+let undoStack = [];
+let redoStack = [];
+let undoBase = null;
+let applyingHistory = false;
+
+function snapshotOf() {
+  return JSON.stringify({
+    books: DATA.books.map((b) => { const { favorite, viewedAt, ...rest } = b; return rest; }),
+    categories: DATA.categories || []
+  });
+}
+
+function resetUndo(keepStacks) {
+  if (!keepStacks) { undoStack = []; redoStack = []; }
+  undoBase = snapshotOf();
+  updateUndoButtons();
+}
+
+function recordUndoStep() {
+  const snap = snapshotOf();
+  if (undoBase === null || applyingHistory) { undoBase = snap; return; }
+  if (snap === undoBase) return;
+  undoStack.push(undoBase);
+  if (undoStack.length > UNDO_MAX) undoStack.shift();
+  redoStack = [];
+  undoBase = snap;
+  updateUndoButtons();
+}
+
+function updateUndoButtons() {
+  const u = document.querySelector('#iconbar [data-act="undo"]');
+  const r = document.querySelector('#iconbar [data-act="redo"]');
+  if (u) { u.disabled = !undoStack.length; u.title = t("mUndo") + " (Ctrl+Z)"; }
+  if (r) { r.disabled = !redoStack.length; r.title = t("mRedo") + " (Ctrl+Y)"; }
+}
+
+async function stepHistory(dir) {
+  if (!IS_MASTER) return;
+  await flushSave();
+  const from = dir === "undo" ? undoStack : redoStack;
+  const to = dir === "undo" ? redoStack : undoStack;
+  if (!from.length) { toast(t(dir === "undo" ? "nothingToUndo" : "nothingToRedo")); return; }
+
+  const target = JSON.parse(from.pop());
+  to.push(snapshotOf());
+  const keep = new Map(DATA.books.map((b) => [b.id, b]));
+  const before = DATA.books.length;
+  DATA.books = target.books.map((b) => {
+    const cur = keep.get(b.id);
+    return { ...b, favorite: cur ? cur.favorite : false, viewedAt: cur ? cur.viewedAt : "" };
+  });
+  DATA.categories = target.categories;
+  DATA.books.forEach(normalizeBook);
+  nextId = Math.max(nextId, 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0));
+  const live = new Set(DATA.books.map((b) => b.id));
+  for (const id of [...ftsScopedIds]) if (!live.has(id)) ftsScopedIds.delete(id);
+  if (!live.has(selectedId)) { selectedId = null; $("bookView").classList.add("hidden"); }
+  if ($("ftsScope")) updateFtsScope();
+
+  applyingHistory = true;
+  try { await persist(); } finally { applyingHistory = false; }
+  categories();
+  refreshCategoryList();
+  renderAll();
+  updateUndoButtons();
+  toast(`${t(dir === "undo" ? "undoDone" : "redoDone")} (${ud(before)} ← ${ud(DATA.books.length)})`);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (!(e.ctrlKey || e.metaKey) || e.altKey || !IS_MASTER) return;
+  const el = e.target;
+  if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+  if (document.querySelector("dialog[open]:not(#dlgCatalog)")) return;
+  const k = e.key.toLowerCase();
+  if (k === "z" && !e.shiftKey) { e.preventDefault(); stepHistory("undo"); }
+  else if (k === "y" || (k === "z" && e.shiftKey)) { e.preventDefault(); stepHistory("redo"); }
+});
 
 /* Auto-publish: a few seconds after a real edit (add/edit/issue/return/
    delete — anything that calls persist(), not the coalesced favourite/
@@ -817,6 +914,7 @@ async function runAutoPublish() {
       if (res.data) {
         DATA = res.data;
         DATA.books.forEach(normalizeBook);
+        resetUndo(true);
         renderAll();
       }
       refreshPublishBadge();
@@ -3011,6 +3109,7 @@ async function doPublish() {
       if (res.data) {
         DATA = res.data;
         DATA.books.forEach(normalizeBook);
+        resetUndo(true);
         renderAll();
       }
       toast(t("published"));
@@ -3143,6 +3242,8 @@ const MENU_ACTIONS = {
   addOne: openAddOne,
   addMany: openAddMany,
   delete: deleteSelected,
+  undo: () => stepHistory("undo"),
+  redo: () => stepHistory("redo"),
   export: doExport,
   publish: doPublish,
   quit: () => window.close(),

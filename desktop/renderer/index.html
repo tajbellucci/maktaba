@@ -66,6 +66,8 @@
   <symbol id="i-max" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/></symbol>
   <symbol id="i-restore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="13" height="13" rx="2"/><path d="M8 8V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-3"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V4.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V7"/><path d="M6 7l1 12.5a2 2 0 0 0 2 1.9h6a2 2 0 0 0 2-1.9L18 7"/><path d="M10 11v6M14 11v6"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.2A10.9 10.9 0 0 1 12 5c6.4 0 10 7 10 7a15.6 15.6 0 0 1-3.2 4.1M6.5 6.8C4 8.5 2 12 2 12s3.6 7 10 7c1.3 0 2.5-.2 3.6-.7"/><path d="M9.5 9.8a3 3 0 0 0 4.2 4.2"/></symbol>
@@ -137,6 +139,8 @@
   <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOneShort">شامل کریں</span></button>
   <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddManyShort">کئی شامل</span></button>
   <button data-act="delete"><svg><use href="#i-x"/></svg><span data-t="mDelete">حذف کریں</span></button>
+  <button data-act="undo" disabled><svg><use href="#i-undo"/></svg><span data-t="mUndo">واپس</span></button>
+  <button data-act="redo" disabled><svg><use href="#i-redo"/></svg><span data-t="mRedo">دوبارہ</span></button>
   <div class="ibsep"></div>
   <button data-act="export"><svg><use href="#i-save"/></svg><span data-t="mExportShort">بیک اپ</span></button>
   <button data-act="pull"><svg><use href="#i-download"/></svg><span id="ibPullLabel" data-t="mPullShort">اپڈیٹ</span></button>
