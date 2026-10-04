@@ -1121,8 +1121,8 @@ function renderGroups() {
   const icon = { category: "i-tag", author: "i-pen", status: "i-check", shelf: "i-shelf" }[mode];
   for (const [name, count] of groups()) {
     const row = document.createElement("div");
-    row.className = "grouprow" + (groupSel.has(name) ? " sel" : "");
-    row.innerHTML = `<div class="c-name"><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
+    row.className = "grouprow" + (groupSel.has(name) ? " checked" : "");
+    row.innerHTML = `<div class="c-name"><span class="g-check${groupSel.has(name) ? " on" : ""}"><svg><use href="#i-tick"/></svg></span><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
     row.onclick = () => {
       if (groupSel.has(name)) groupSel.delete(name); else groupSel.add(name);

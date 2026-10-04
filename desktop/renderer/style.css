@@ -2930,3 +2930,16 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
    not a generic book glyph on a blue tile. */
 .titlebar .mark { background: none !important; box-shadow: none !important; border-radius: 50% !important; width: 34px !important; height: 34px !important; }
 .titlebar .mark img { width: 100%; height: 100%; display: block; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+
+/* Group lists (category, author, almari, status): a real checkbox per row,
+   same look as the book list's. Ticked rows get a light wash rather than the
+   solid blue of a single selection, so several can be ticked and still read. */
+.g-check { width: 14px; height: 14px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 3px; color: transparent; border: 1px solid var(--line-hard); background: var(--panel); cursor: pointer; }
+.g-check svg { width: 10px; height: 10px; opacity: 0; }
+.g-check.on svg { opacity: 1; color: #fff; }
+.grouprow:hover .g-check { border-color: var(--blue); }
+.g-check.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.grouprow.checked { background: var(--blue-wash); }
+.grouprow.checked .c-name { color: var(--blue-deep); font-weight: 700; }
+html[data-mode="dark"] .grouprow.checked { background: rgba(24,115,207,.22); }
+html[data-mode="dark"] .grouprow.checked .c-name { color: #cfe3ff; }
