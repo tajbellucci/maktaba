@@ -2543,10 +2543,19 @@ function parseManyFormat(v) {
   return null;
 }
 
+/* The template is always Urdu, whatever language the app is showing: it is meant
+   to be sent to whoever types the books in, and they enter Urdu. */
+const MANY_UR = {
+  reg: "رجسٹر نمبر",
+  head: "کتاب کا نام | مصنف | موضوع | جلدیں | ناشر | مکتبہ | شعبہ | الماری نمبر | نوٹس | شکل",
+  example: "ریاض الصالحین | امام نووی | حدیث | 2 | دار السلام | نعمانیہ جدید | لائبریری | الف-۱ | نیا نسخہ | طباعتی",
+  word: "مثال"
+};
+
 function manyTemplate() {
-  const head = (manyMode === "update" ? t("manyRegHead") + " | " : "") + t("manyColHead");
-  const ex = (manyMode === "update" ? "28 | " : "") + t("manyColExample");
-  return "# " + head + NL + "# " + t("manyExampleWord") + ": " + ex + NL;
+  const head = (manyMode === "update" ? MANY_UR.reg + " | " : "") + MANY_UR.head;
+  const ex = (manyMode === "update" ? "28 | " : "") + MANY_UR.example;
+  return "# " + head + NL + "# " + MANY_UR.word + ": " + ex + NL;
 }
 
 function paintManyMode() {
