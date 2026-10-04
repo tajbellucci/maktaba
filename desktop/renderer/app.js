@@ -10,6 +10,9 @@ let selectedId = null;
    currently open/highlighted (selectedId). Empty means "search every
    Unicode book", the old default behaviour. */
 const ftsScopedIds = new Set();
+/* Lines highlighted in the checked-books list, waiting to be removed. Separate from
+   ftsScopedIds: highlighting changes nothing until the remove button is pressed. */
+const ftsScopePicked = new Set();
 
 const $ = (id) => document.getElementById(id);
 
@@ -4305,24 +4308,52 @@ function updateFtsScope() {
   list.innerHTML = [...ftsScopedIds].map((id) => {
     const b = DATA.books.find((x) => x.id === id);
     if (!b) return "";
-    return `<div class="fts-scope-item">
+    return `<div class="fts-scope-item${ftsScopePicked.has(id) ? " picked" : ""}" data-pick="${id}">
         <svg><use href="#i-book"/></svg>
         <span>${esc(b.title)}${b.author ? ` <span class="fso-author">(${esc(b.author)})</span>` : ""}</span>
         <button type="button" data-unscope="${id}"><svg><use href="#i-x"/></svg></button>
       </div>`;
   }).join("");
   list.querySelectorAll("[data-unscope]").forEach((btn) => {
-    btn.onclick = () => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
       const id = +btn.dataset.unscope;
       ftsScopedIds.delete(id);
+      ftsScopePicked.delete(id);
       const rowCheck = document.querySelector(`.bookrow [data-check="${id}"]`);
       if (rowCheck) rowCheck.classList.remove("on");
       updateFtsScope();
     };
   });
+  /* Clicking a line highlights it (click again to un-highlight); the red
+     cross below removes every highlighted line at once. */
+  list.querySelectorAll("[data-pick]").forEach((row) => {
+    row.onclick = () => {
+      const id = +row.dataset.pick;
+      if (ftsScopePicked.has(id)) ftsScopePicked.delete(id); else ftsScopePicked.add(id);
+      row.classList.toggle("picked", ftsScopePicked.has(id));
+      $("ftsScopeRemove").disabled = ftsScopePicked.size === 0;
+    };
+  });
+  $("ftsScopeRemove").disabled = ftsScopePicked.size === 0;
 }
+
+
+$("ftsScopeRemove").onclick = () => {
+  for (const id of ftsScopePicked) {
+    ftsScopedIds.delete(id);
+    const rowCheck = document.querySelector(`.bookrow [data-check="${id}"]`);
+    if (rowCheck) rowCheck.classList.remove("on");
+  }
+  ftsScopePicked.clear();
+  updateFtsScope();
+};
+
+/* The broom: empties the whole selection in the search panel and the ticks in
+   the main table together, so one press returns to searching every book. */
 $("ftsScopeClear").onclick = () => {
   ftsScopedIds.clear();
+  ftsScopePicked.clear();
   renderBooks();     // drops every row's checked state
   updateFtsScope();
 };

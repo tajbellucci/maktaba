@@ -445,7 +445,7 @@ html[data-role="reader"] #iconbar [data-act="publish"]:hover { background: trans
    out of view. */
 .fts-scope-list {
   display: flex; flex-direction: column; gap: 2px;
-  max-height: 84px;
+  max-height: 168px;
   overflow-y: auto;
 }
 .fts-scope-item {
@@ -2910,3 +2910,16 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 /* Undo / redo sit beside Delete: dimmed and inert when there is nothing to step to. */
 #iconbar [data-act="undo"]:disabled, #iconbar [data-act="redo"]:disabled { opacity: .38; cursor: default; }
 #iconbar [data-act="undo"]:disabled:hover, #iconbar [data-act="redo"]:disabled:hover { background: transparent; }
+
+/* Checked-books list: a highlighted line is waiting to be removed; the bar under
+   the list holds the two actions (remove highlighted, clear all). */
+.fts-scope-item { cursor: pointer; }
+.fts-scope-item.picked { background: var(--blue); color: #fff; }
+.fts-scope-item.picked svg, .fts-scope-item.picked .fso-author, .fts-scope-item.picked button { color: #fff; }
+.fts-scope-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px; padding-top: 6px; border-top: 1px solid var(--blue-ring); }
+.fts-scope-bar button { display: flex; align-items: center; gap: 6px; background: transparent; border: none; cursor: pointer; padding: 3px 4px; border-radius: 5px; font-family: var(--ui); font-size: 12.5px; color: var(--blue-deep); }
+.fts-scope-bar button svg { width: 16px; height: 16px; flex: none; }
+.fts-scope-bar button:hover:not(:disabled) { background: var(--panel); }
+#ftsScopeRemove { color: var(--red); }
+#ftsScopeRemove:disabled { opacity: .4; cursor: default; }
+#ftsScopeClear:hover { color: var(--blue); }
