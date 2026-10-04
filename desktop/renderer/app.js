@@ -2518,14 +2518,36 @@ $("oSave").onclick = () => {
 };
 
 /* Bulk add and bulk update share one dialog and one column order, so the
-   text a librarian pastes in looks the same either way. Add: Title | Author |
-   Category | Volumes | Publisher | Branch | Department | Almari. Update puts the
-   register number first (the only identity that never changes) and then the
-   same columns; an empty cell leaves that field alone and "-" clears it, since
-   an empty cell has to mean "no change" for a half-filled sheet to be safe. */
+   text a librarian pastes in looks the same either way, and it carries every
+   field the single Add Book form does:
+     Title | Author | Category | Volumes | Publisher | Branch | Department |
+     Almari | Notes | Format
+   Update puts the register number first (the only identity that never changes)
+   and then the same columns; an empty cell leaves that field alone and "-"
+   clears it, since an empty cell has to mean "no change" for a half-filled
+   sheet to be safe. A line starting with # is a comment and is ignored, which is
+   what lets the template carry its own column titles and an example row. */
 let manyMode = "add";
+const NL = String.fromCharCode(10);
 
 const toLatinDigits = (str) => String(str).replace(/[٠-٩]/g, (d) => d.charCodeAt(0) - 1632).replace(/[۰-۹]/g, (d) => d.charCodeAt(0) - 1776);
+
+/* What the Format column may say: the internal word, or the label in any of the
+   three languages ("PDF", "متنی", "طباعتی"...). Empty means the form's default. */
+function parseManyFormat(v) {
+  const x = String(v || "").trim().toLowerCase();
+  if (!x) return "";
+  if (x.includes("pdf")) return "pdf";
+  if (x.includes("unicode") || x.includes("text") || x.includes("txt") || x.includes("متنی") || x.includes("نصي")) return "unicode";
+  if (x.includes("physical") || x.includes("print") || x.includes("طباع") || x.includes("مطبوع")) return "physical";
+  return null;
+}
+
+function manyTemplate() {
+  const head = (manyMode === "update" ? t("manyRegHead") + " | " : "") + t("manyColHead");
+  const ex = (manyMode === "update" ? "28 | " : "") + t("manyColExample");
+  return "# " + head + NL + "# " + t("manyExampleWord") + ": " + ex + NL;
+}
 
 function paintManyMode() {
   document.querySelectorAll("#mModes [data-mmode]").forEach((b) => b.classList.toggle("on", b.dataset.mmode === manyMode));
@@ -2536,7 +2558,7 @@ function paintManyMode() {
 }
 
 function refreshManyCount() {
-  const n = $("mText").value.split("\n").filter((l) => l.trim()).length;
+  const n = $("mText").value.split(NL).filter((l) => l.trim() && !l.trim().startsWith("#")).length;
   $("mCount").textContent = `${ud(n)} ${t("tabAll")}`;
 }
 
@@ -2552,63 +2574,94 @@ document.querySelectorAll("#mModes [data-mmode]").forEach((btn) => {
   btn.onclick = () => { manyMode = btn.dataset.mmode; paintManyMode(); };
 });
 
+/* Fills the box with the column titles (as a # comment, so they are never
+   saved as a book) and one example row, in the interface language. */
+$("mTemplate").onclick = () => {
+  const cur = $("mText").value;
+  $("mText").value = manyTemplate() + (cur && !cur.startsWith("#") ? cur : "");
+  refreshManyCount();
+  $("mText").focus();
+};
+
+/* Copies that same template to the clipboard, so it can be pasted into a
+   WhatsApp message or a document and sent to whoever is typing the books in. */
+$("mCopy").onclick = async () => {
+  const text = manyTemplate();
+  try { await navigator.clipboard.writeText(text); }
+  catch {
+    const tmp = document.createElement("textarea");
+    tmp.value = text; document.body.appendChild(tmp); tmp.select();
+    document.execCommand("copy"); tmp.remove();
+  }
+  toast(t("manyCopied"));
+};
+
 $("mFill").onclick = () => {
-  $("mText").value = DATA.books
+  $("mText").value = manyTemplate() + DATA.books
     .slice()
     .sort((a, b) => (parseInt(a.accession, 10) || 0) - (parseInt(b.accession, 10) || 0))
-    .map((b) => [b.accession, b.title, b.author, b.category, b.volumes || "", b.publisher, b.maktaba, b.department, b.almari]
-      .map((v) => String(v == null ? "" : v).replace(/\|/g, "/")).join(" | "))
-    .join("\n");
+    .map((b) => [b.accession, b.title, b.author, b.category, b.volumes || "", b.publisher, b.maktaba, b.department, b.almari, b.notes, b.format]
+      .map((v) => String(v == null ? "" : v).split("|").join("/").split(NL).join(" ")).join(" | "))
+    .join(NL);
   refreshManyCount();
 };
 
 $("mText").addEventListener("input", refreshManyCount);
 
 $("mSave").onclick = () => {
-  const lines = $("mText").value.split("\n").map((l) => l.trim()).filter(Boolean);
+  /* Keep the line number the user sees in the box, so a skipped-line message
+     points at the right row even with blank lines and # comments around it. */
+  const lines = $("mText").value.split(NL)
+    .map((l, i) => ({ text: l.trim(), n: i + 1 }))
+    .filter((l) => l.text && !l.text.startsWith("#"));
   const skipped = [];
   const cell = (v) => (v === undefined ? "" : v.trim());
 
   if (manyMode === "update") {
     const jobs = [];
-    lines.forEach((line, i) => {
-      const c = line.split("|").map((x) => x.trim());
+    for (const { text, n } of lines) {
+      const c = text.split("|").map((x) => x.trim());
       const reg = toLatinDigits(cell(c[0]));
       const b = DATA.books.find((x) => String(x.accession) === reg);
-      if (!b) { skipped.push(`${i + 1}: ${t("manyNoReg")}`); return; }
-      const branch = cell(c[5]);
-      if (branch && branch !== "-" && !MAKTABA_OPTIONS.includes(branch)) { skipped.push(`${i + 1}: ${t("manyBadBranch")} (${branch})`); return; }
-      jobs.push({ b, c });
-    });
-    if (!jobs.length) { if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n")); return; }
+      if (!b) { skipped.push(`${n}: ${t("manyNoReg")}`); continue; }
+      const branch = cell(c[6]);
+      if (branch && branch !== "-" && !MAKTABA_OPTIONS.includes(branch)) { skipped.push(`${n}: ${t("manyBadBranch")} (${branch})`); continue; }
+      const fmt = parseManyFormat(c[10]);
+      if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${cell(c[10])})`); continue; }
+      jobs.push({ b, c, fmt });
+    }
+    if (!jobs.length) { if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL)); return; }
     if (!confirm(t("manyConfirmUpdate").replace("{n}", ud(jobs.length)))) return;
 
     /* A value of "-" blanks the field; an empty cell is skipped, so a sheet
        filled in for only some columns can't wipe the rest. */
-    for (const { b, c } of jobs) {
+    for (const { b, c, fmt } of jobs) {
       const title = cell(c[1]);
       if (title && title !== "-") b.title = title;
       const set = (col, field) => { const v = cell(c[col]); if (v) b[field] = v === "-" ? "" : v; };
-      set(2, "author"); set(3, "category"); set(5, "publisher"); set(6, "maktaba"); set(7, "department"); set(8, "almari");
+      set(2, "author"); set(3, "category"); set(5, "publisher"); set(6, "maktaba"); set(7, "department"); set(8, "almari"); set(9, "notes");
       const vol = cell(c[4]);
       if (vol) b.volumes = vol === "-" ? 0 : parseInt(toLatinDigits(vol), 10) || 0;
+      if (fmt) b.format = fmt;
       logHistory(b, "updated");
     }
     $("dlgMany").close();
     persist();
     renderAll();
     toast(`${ud(jobs.length)}${t("manyUpdated")}`);
-    if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n"));
+    if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL));
     return;
   }
 
   let added = 0, merged = 0;
   let nextAcc = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
-  lines.forEach((line, i) => {
-    const c = line.split("|").map((x) => x.trim());
-    const [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = ""] = c;
-    if (!title) { skipped.push(`${i + 1}: ${t("manyNoTitle")}`); return; }
-    if (maktaba && !MAKTABA_OPTIONS.includes(maktaba)) { skipped.push(`${i + 1}: ${t("manyBadBranch")} (${maktaba})`); return; }
+  for (const { text, n } of lines) {
+    const c = text.split("|").map((x) => x.trim());
+    const [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = "", notes = "", formatRaw = ""] = c;
+    if (!title) { skipped.push(`${n}: ${t("manyNoTitle")}`); continue; }
+    if (maktaba && !MAKTABA_OPTIONS.includes(maktaba)) { skipped.push(`${n}: ${t("manyBadBranch")} (${maktaba})`); continue; }
+    const fmt = parseManyFormat(formatRaw);
+    if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${formatRaw})`); continue; }
     /* The same book pasted again is the same book: the app already treats an
        identical normalized title + author as a duplicate, so adding it twice
        would just create the cataloguing error the duplicates screen exists to
@@ -2618,37 +2671,43 @@ $("mSave").onclick = () => {
     if (same) {
       const fill = (v, field) => { if (v) same[field] = v; };
       fill(author, "author"); fill(category, "category"); fill(publisher, "publisher");
-      fill(maktaba, "maktaba"); fill(department, "department"); fill(almari, "almari");
+      fill(maktaba, "maktaba"); fill(department, "department"); fill(almari, "almari"); fill(notes, "notes");
       const vol = parseInt(toLatinDigits(volumes), 10);
       if (vol) same.volumes = vol;
+      if (fmt) same.format = fmt;
       logHistory(same, "updated");
       merged++;
-      return;
+      continue;
     }
-    const b = {
+    /* Same rule as the single form: a PDF or text file has no shelf, so branch,
+       department and almari are only kept for a physical book. */
+    const physical = !fmt || fmt === "physical";
+    const bk = {
       id: nextId++,
       title,
       author,
       publisher,
       category: category || (mode === "category" && group ? group : ""),
       volumes: parseInt(toLatinDigits(volumes), 10) || 0,
-      maktaba: maktaba || (mode === "shelf" && group ? group : ""),
-      department,
-      almari,
+      format: fmt || "physical",
+      maktaba: physical ? (maktaba || (mode === "shelf" && group ? group : "")) : "",
+      department: physical ? department : "",
+      almari: physical ? almari : "",
+      hasPrint: physical,
       status: "available",
-      notes: ""
+      notes
     };
-    normalizeBook(b);
-    b.accession = String(++nextAcc);
-    logHistory(b, "added");
-    DATA.books.push(b);
+    normalizeBook(bk);
+    bk.accession = String(++nextAcc);
+    logHistory(bk, "added");
+    DATA.books.push(bk);
     added++;
-  });
+  }
   $("dlgMany").close();
   persist();
   renderAll();
   toast(`${ud(added)}${t("added")}` + (merged ? ` · ${ud(merged)}${t("manyUpdated")}` : ""));
-  if (skipped.length) alert(t("manySkipped") + "\n" + skipped.join("\n"));
+  if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL));
 };
 
 function deleteSelected() {

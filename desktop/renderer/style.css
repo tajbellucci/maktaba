@@ -2904,8 +2904,8 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 .many-modes { display: flex; gap: 8px; }
 .many-modes button { flex: 1; padding: 8px 12px; border-radius: 8px; border: 2px solid var(--line); background: var(--strip); color: var(--text-2); font-family: var(--ui); font-size: 14.5px; cursor: pointer; }
 .many-modes button.on { border-color: var(--blue); background: var(--blue-wash); color: var(--blue); font-weight: 700; }
-#mFill { margin-top: 8px; padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line-hard); background: var(--panel); color: var(--text-2); font-family: var(--ui); font-size: 14px; cursor: pointer; }
-#mFill:hover { border-color: var(--blue); color: var(--blue); }
+#mFill, #mTemplate, #mCopy { padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line-hard); background: var(--panel); color: var(--text-2); font-family: var(--ui); font-size: 14px; cursor: pointer; }
+#mFill:hover, #mTemplate:hover, #mCopy:hover { border-color: var(--blue); color: var(--blue); }
 
 /* Undo / redo sit beside Delete: dimmed and inert when there is nothing to step to. */
 #iconbar [data-act="undo"]:disabled, #iconbar [data-act="redo"]:disabled { opacity: .38; cursor: default; }
@@ -2923,3 +2923,5 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 #ftsScopeRemove { color: var(--red); }
 #ftsScopeRemove:disabled { opacity: .4; cursor: default; }
 #ftsScopeClear:hover { color: var(--blue); }
+
+.many-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
