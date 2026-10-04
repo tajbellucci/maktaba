@@ -1276,7 +1276,12 @@ ipcMain.handle("app:whatsNew", async () => {
   const repo = s.repo || REPO.repo;
   const branch = s.branch || REPO.branch;
   const remote = await fetchRemoteJson(owner, repo, branch, "whatsnew.json");
-  const chosen = remote && Array.isArray(remote.releases) ? remote : local;
+  /* The repo copy is only preferred when it is at least as new as the one
+     bundled with this build; otherwise an old published file would hide the
+     notes for the version actually installed. */
+  const top = (d) => (d && Array.isArray(d.releases) && d.releases[0] ? String(d.releases[0].version) : "0");
+  const newer = (a, b) => { const x = a.split(".").map(Number), y = b.split(".").map(Number); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
+  const chosen = remote && Array.isArray(remote.releases) && !newer(top(local), top(remote)) ? remote : local;
   return { data: chosen, current: app.getVersion(), fromRemote: Boolean(remote) };
 });
 

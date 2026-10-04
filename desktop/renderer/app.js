@@ -1,7 +1,12 @@
 let DATA = { library: "", updated: "", books: [] };
 let nextId = 1;
 let mode = "books";        // rail: books | category | author | status | shelf | favorites | recent
-let group = null;          // selected group value, null = all
+/* Selected groups in the category / author / almari / status tabs. Several can
+   be selected at once (click toggles a row); empty means all books. */
+const groupSel = new Set();
+/* The one selected group, when exactly one is selected: used to pre-fill a new
+   book's category or branch, which has no sensible value for several at once. */
+const singleGroup = () => (groupSel.size === 1 ? [...groupSel][0] : null);
 let filter = "all";        // tab: all | available | issued | missing | overdue
 let sortMode = "accession"; // accession | title | author | added
 let selectedId = null;
@@ -1047,7 +1052,7 @@ function visibleBooks() {
   const out = DATA.books.filter((b) => {
     if (mode === "favorites" && !b.favorite) return false;
     if (mode === "recent" && !b.viewedAt) return false;
-    if (!isFlat() && group !== null && groupKey(b) !== group) return false;
+    if (!isFlat() && groupSel.size && !groupSel.has(groupKey(b))) return false;
     if (!materialFilter.has(b.material)) return false;
     /* The shelf-status tabs (موجود / معار / مطلوب) only mean something for a
        book that physically exists. A digital-only record is never on a shelf,
@@ -1096,14 +1101,17 @@ function renderGroups() {
   if (isFlat()) return;
   $("groupColName").textContent = groupLabel();
   const list = $("groupList");
+  // Rebuilding the rows would jump the list back to the top on every click,
+  // which makes picking several groups down a long list impossible.
+  const keepScroll = list.scrollTop;
   list.innerHTML = "";
 
   const all = document.createElement("div");
-  all.className = "grouprow" + (group === null ? " sel" : "");
+  all.className = "grouprow" + (groupSel.size === 0 ? " sel" : "");
   all.innerHTML = `<div class="c-name"><svg><use href="#i-grid"/></svg><span>${t("tabAll")}</span></div>
                    <div class="c-count">${ud(DATA.books.length)}</div>`;
   all.onclick = () => {
-    group = null;
+    groupSel.clear();
     selectedId = null;
     if (mode === "category") { ftsScopedIds.clear(); updateFtsScope(); }
     renderAll();
@@ -1113,27 +1121,25 @@ function renderGroups() {
   const icon = { category: "i-tag", author: "i-pen", status: "i-check", shelf: "i-shelf" }[mode];
   for (const [name, count] of groups()) {
     const row = document.createElement("div");
-    row.className = "grouprow" + (group === name ? " sel" : "");
+    row.className = "grouprow" + (groupSel.has(name) ? " sel" : "");
     row.innerHTML = `<div class="c-name"><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
     row.onclick = () => {
-      group = name;
+      if (groupSel.has(name)) groupSel.delete(name); else groupSel.add(name);
       selectedId = null;
-      /* Picking a category is now also "scope the search to this category":
-         every book it holds gets checked into the FTS scope automatically,
-         replacing whatever was scoped before — clicking a category is a
-         fresh, deliberate choice of what to search, not an addition to a
-         stale earlier selection. Category only, per how this was asked for;
-         author/shelf/status grouping don't get this. */
+      /* In the category tab the selection is also the search scope: every book
+         in the selected categories is checked into the full-text search, and
+         un-selecting a category takes its books back out. */
       if (mode === "category") {
         ftsScopedIds.clear();
-        for (const b of DATA.books) if (groupKey(b) === name) ftsScopedIds.add(b.id);
+        for (const b of DATA.books) if (groupSel.has(groupKey(b))) ftsScopedIds.add(b.id);
         updateFtsScope();
       }
       renderAll();
     };
     list.appendChild(row);
   }
+  list.scrollTop = keepScroll;
 }
 
 function renderBooks() {
@@ -2327,7 +2333,7 @@ function closeBook() {
 function setMode(next) {
   $("rail").querySelectorAll("[data-mode]").forEach((b) => b.classList.toggle("active", b.dataset.mode === next));
   mode = next;
-  group = null;
+  groupSel.clear();
   selectedId = null;
   showCatalog();
   renderAll();
@@ -2467,9 +2473,9 @@ function openAddOne() {
   $("oFormat").value = "physical";
   $("oHasPrint").checked = true;      // most books added are physical; unchecking is the exception
   syncAddOneHasPrint();
-  fillMaktabaSelect($("oMaktaba"), mode === "shelf" && group ? group : "");
+  fillMaktabaSelect($("oMaktaba"), mode === "shelf" && singleGroup() ? singleGroup() : "");
   updateDeptList($("oMaktaba").value);
-  if (mode === "category" && group) $("oCategory").value = group;
+  if (mode === "category" && singleGroup()) $("oCategory").value = singleGroup();
   const next = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0) + 1;
   /* Where a librarian first meets a register number, so this is where the
      explanation belongs — the client said the bare word meant nothing. */
@@ -2727,10 +2733,10 @@ $("mSave").onclick = () => {
       title,
       author,
       publisher,
-      category: category || (mode === "category" && group ? group : ""),
+      category: category || (mode === "category" && singleGroup() ? singleGroup() : ""),
       volumes: parseInt(toLatinDigits(volumes), 10) || 0,
       format: fmt || "physical",
-      maktaba: physical ? (maktaba || (mode === "shelf" && group ? group : "")) : "",
+      maktaba: physical ? (maktaba || (mode === "shelf" && singleGroup() ? singleGroup() : "")) : "",
       department: physical ? department : "",
       almari: physical ? almari : "",
       hasPrint: physical,
@@ -4482,13 +4488,13 @@ function showDuplicates() {
 async function showWhatsNew() {
   const res = await window.maktaba.whatsNew();
   const body = $("whatsNewBody");
-  const lang = LANG === "ar" ? "ar" : "en";   // release notes are authored in English and Arabic
+  const lang = ["ur", "ar", "en"].includes(LANG) ? LANG : "en";   // notes are authored in all three
   const rel = res.data && res.data.releases;
   body.innerHTML = rel && rel.length
     ? rel.map((r) => `
         <div class="wn-rel">
           <div class="wn-ver">v${esc(r.version)}<span class="wn-date">${esc(r.date)}</span></div>
-          <ul class="wn-list">${(r[lang] || r.en || []).map((li) => `<li>${esc(li)}</li>`).join("")}</ul>
+          <ul class="wn-list">${(r[lang] || r.en || r.ar || []).map((li) => `<li>${esc(li)}</li>`).join("")}</ul>
         </div>`).join("")
     : `<div class="hint">${t("noWhatsNew")}</div>`;
   $("dlgWhatsNew").showModal();

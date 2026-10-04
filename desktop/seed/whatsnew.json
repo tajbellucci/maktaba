@@ -1,6 +1,49 @@
 {
   "releases": [
     {
+      "version": "1.8.0",
+      "date": "2026-10-05",
+      "ur": [
+        "واپس اور دوبارہ: ٹول بار پر «واپس» اور «دوبارہ» کے بٹن، اور Ctrl+Z / Ctrl+Y۔ غلطی سے حذف یا تبدیل کی گئی کتاب فوراً واپس آ جاتی ہے (آخری ۳۰ قدم)۔",
+        "کئی کتابیں ایک ساتھ: اب تمام دس خانے، یعنی نام، مصنف، موضوع، جلدیں، ناشر، مکتبہ، شعبہ، الماری نمبر، نوٹس اور شکل۔",
+        "اردو نمونہ: «نمونہ بھریں» اور «نمونہ کاپی کریں» سے خانوں کے عنوانات اور ایک مثال، جو واٹس ایپ پر بھیج کر کتابیں درج کروائی جا سکتی ہیں۔",
+        "موجود کتابیں اپ ڈیٹ کریں: رجسٹر نمبر کے ساتھ کئی کتابوں کی معلومات ایک ساتھ بدلیں۔ خالی خانہ نہیں بدلتا، «-» اسے خالی کر دیتا ہے۔",
+        "ایک ہی نام کی دوسری کتاب درج نہیں ہوتی: نئی کتاب، نام کی تبدیلی اور کئی کتابوں والی فہرست، سب میں روک دی جاتی ہے، اور پہلے سے موجود کتاب کا رجسٹر نمبر بتایا جاتا ہے۔",
+        "موضوع، مصنف، الماری اور حالت کی فہرست میں اب ایک سے زیادہ انتخاب: ہر سطر پر کلک سے شامل یا الگ کریں۔",
+        "تلاش کے پینل میں منتخب کتابیں: سطر پر کلک کر کے نمایاں کریں اور ہٹائیں، یا «سب صاف کریں» سے سب ہٹائیں۔",
+        "کتابوں کی فہرست میں پہلے کتاب کا نام، پھر مصنف۔",
+        "پڑھنے والے کمپیوٹر پر حذف کا کوئی بٹن نظر نہیں آتا۔",
+        "نیا نشان: «مكتبة نعمانية» عربی خطاطی میں مہر کی شکل میں، جامعہ کے نام کے ساتھ۔",
+        "یہ «نیا کیا ہے» اب اردو میں بھی۔"
+      ],
+      "ar": [
+        "التراجع والإعادة: زرا «تراجع» و«إعادة» في شريط الأدوات، وCtrl+Z / Ctrl+Y. ما حُذف أو عُدّل خطأً يعود فورًا (آخر ٣٠ خطوة).",
+        "إضافة كتب متعددة: كل الحقول العشرة، الاسم والمؤلف والموضوع والأجزاء والناشر والمكتبة والقسم ورقم الخزانة والملاحظات والصيغة.",
+        "نموذج بالأردية: «ملء النموذج» و«نسخ النموذج» لعناوين الأعمدة ومثال، يمكن إرساله عبر واتساب لإدخال الكتب.",
+        "تحديث كتب موجودة برقم السجل دفعة واحدة. الخانة الفارغة لا تتغير، و«-» يمسحها.",
+        "منع تكرار الاسم: لا يُضاف كتاب ثانٍ بالاسم نفسه، في الإضافة وتعديل الاسم والإضافة المتعددة، مع ذكر رقم سجل الكتاب الموجود.",
+        "اختيار متعدد في قوائم الموضوع والمؤلف والخزانة والحالة.",
+        "الكتب المحددة في لوحة البحث: تحديد سطر وحذفه، أو «مسح الكل».",
+        "قائمة الكتب: اسم الكتاب أولًا ثم المؤلف.",
+        "لا يظهر زر الحذف على أجهزة القراءة.",
+        "شعار جديد: «مكتبة نعمانية» بالخط العربي على هيئة ختم مع اسم الجامعة.",
+        "«ما الجديد» متاح بالأردية أيضًا."
+      ],
+      "en": [
+        "Undo and redo: two toolbar buttons and Ctrl+Z / Ctrl+Y bring back a book deleted or changed by mistake (last 30 steps).",
+        "Bulk add now takes all ten fields: name, author, category, volumes, publisher, branch, department, almari no., notes and format.",
+        "Urdu template: Fill template and Copy template give the column titles and an example row, ready to send on WhatsApp to whoever types the books in.",
+        "Update existing books in bulk by register number. An empty cell is left unchanged; a dash clears it.",
+        "Duplicate names are stopped in Add Book, title edits and bulk entry, with the existing book's register number shown.",
+        "Category, author, almari and status lists now allow selecting several at once.",
+        "Selected books in the search panel: highlight lines and remove them, or clear all with the broom.",
+        "The book list shows the book name first, then the author.",
+        "Readers no longer see any delete button.",
+        "New icon: مكتبة نعمانية in Arabic calligraphy as a seal, with the madrassa's name.",
+        "What's New is now available in Urdu too."
+      ]
+    },
+    {
       "version": "1.2.0",
       "date": "2026-09-10",
       "en": [
