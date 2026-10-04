@@ -1,7 +1,7 @@
 {
   "name": "maktaba-desktop",
   "productName": "Maktaba Naumania",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "مکتبہ نعمانیہ — Maktaba Naumania, library manager for Madarsa Naumania",
   "main": "main.js",
   "author": "Taj Magsi",
