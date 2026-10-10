@@ -109,34 +109,2606 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "4"
+    },
+    {
+      "id": 5,
+      "title": "إزالة الخفاء عن خلافة الخلفاء مترجم",
+      "author": "حضرت شاه ولي الله محدث دهلوي رحمه الله، (المتوفى:1173هـ)،ترجمة:مولانا اشتياق احمد صاحب",
+      "publisher": "قديمي كتب خانه",
+      "category": "التاريخ",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "5"
+    },
+    {
+      "id": 6,
+      "title": "تهافت التهافت",
+      "author": "القاضي أبي الوليد محمد بن أحمد بن محمد ابن رشد القرطبي،(المتوفى:595 هـ)",
+      "publisher": "دار الكتب العلمية",
+      "category": "المنطق والفلسفة",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "6"
+    },
+    {
+      "id": 7,
+      "title": "صور من حياة الصحابة",
+      "author": "عبد الرحمن رأفت الباشا (المتوفى: 1406هـ)",
+      "publisher": "المكتبة الغفورية العاصمية",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "7"
+    },
+    {
+      "id": 8,
+      "title": "بهار بوستان شرح اردو بوستان",
+      "author": "مولانا فضل الرحمن دهرمكوتي،(المتوفى:1446ھـ)",
+      "publisher": "مكتبة شركت علمية",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "8"
+    },
+    {
+      "id": 9,
+      "title": "الفقه الأكبرمتن في بيان عقيدة السلف",
+      "author": "أبي الصهيب الهاني الصالحي",
+      "publisher": "دار السلف الصالح",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "9"
+    },
+    {
+      "id": 10,
+      "title": "السنن والمبتدعات المتعلقة بالأذكار والصلوات",
+      "author": "محمد عبد السلام خضر الشقيري، (المتوفى: 1371هـ)",
+      "publisher": "دار الفكر البيروت",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "10"
+    },
+    {
+      "id": 11,
+      "title": "الرياض الأنيقة في شرح أسماء خير الخليقة",
+      "author": "الحافظ جلال الدين عبد الرحمن السيوطي، ت:911هـ)",
+      "publisher": "دار الفكر البيروت، م:أبو هاجر محمد السعيد",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "11"
+    },
+    {
+      "id": 12,
+      "title": "أبناء الصحابة",
+      "author": "الدكتور أحمد خليل جمعة",
+      "publisher": "دار ابن كثير",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "12"
+    },
+    {
+      "id": 13,
+      "title": "بهارستان شرح اردو گلستان",
+      "author": "مولانا ظهير أحمد صاحب",
+      "publisher": "المصباح",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "13"
+    },
+    {
+      "id": 14,
+      "title": "مثنوي مولوي معنوي",
+      "author": "مولانا قاضي سجاد حسين صاحب",
+      "publisher": "حامد ايند كمبني",
+      "category": "التصوف والسلوك",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 6،مف:2",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "14"
+    },
+    {
+      "id": 15,
+      "title": "خطبات حكيم الأمت",
+      "author": "مولانا اشرف علي تهانوي رحمه الله",
+      "publisher": "ادارة تاليفات اشرفية",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 32,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 32،مف:15-18-22-32",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "15"
+    },
+    {
+      "id": 16,
+      "title": "خطبات فقير",
+      "author": "مولاناپیر ذوالفقار احمد نقشبندي رحمه الله",
+      "publisher": "مكتبة الفقير",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 0,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: مو:11-5-6،مف:باقي",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "16"
+    },
+    {
+      "id": 17,
+      "title": "فضائل أعمال",
+      "author": "مولانازكريا كاندهلوي رحمه الله،ت:1403هـ",
+      "publisher": "كتب خانة فيضي",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "17"
+    },
+    {
+      "id": 18,
+      "title": "فضائل صدقات",
+      "author": "مولانازكريا كاندهلوي رحمه الله،ت:1403هـ)",
+      "publisher": "كتب خانة فيضي",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "18"
+    },
+    {
+      "id": 19,
+      "title": "بركات تحفظ ختم نبوت مع أقوال تحفظ ختم نبوت",
+      "author": "محمد رضوان قاسمي",
+      "publisher": "مكتبة فيض القرآن",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "19"
+    },
+    {
+      "id": 20,
+      "title": "خطبات تحفظ ختم نبوت",
+      "author": "محمد رضوان قاسمي",
+      "publisher": "مكتبة فيض القرآن",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "20"
+    },
+    {
+      "id": 21,
+      "title": "علمي خطبات",
+      "author": "مفتي سعيد أحمد بالن بوري",
+      "publisher": "زم زم پبلشرز",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 2،مف:2",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "21"
+    },
+    {
+      "id": 22,
+      "title": "ملفوظات حكيم الأمت",
+      "author": "مولانا اشرف علي تهانوي رحمه الله، ت:911هـ)",
+      "publisher": "ادارة تاليفات أشرفية",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 30,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 30،مف:1-3",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "22"
+    },
+    {
+      "id": 23,
+      "title": "مواعظ درد محبت",
+      "author": "حضرت مولانا محمد شاه حكيم اختر صاحب رحمه الله،ت:911هـ)",
+      "publisher": "خانقاه امدادية اشرفية",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 16,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 16،مف:1-2-3-4-10",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "23"
+    },
+    {
+      "id": 24,
+      "title": "غرائب الأخبار في حياة السلف الأخيار",
+      "author": "خالد سيد علي",
+      "publisher": "مكتبة دار التراث",
+      "category": "التراجم والطبقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 1،مف:2",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "24"
+    },
+    {
+      "id": 25,
+      "title": "أحسن المواعظ",
+      "author": "مولانا محمد حسن جان شهيد رحمه الله",
+      "publisher": "دار التصنيف جامعة عثمانية",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 3،مف:2-3",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "25"
+    },
+    {
+      "id": 26,
+      "title": "خطبات حبيب",
+      "author": "مولاناپيرغلام حبيب نقشبندي مجددي رحمه الله",
+      "publisher": "مكتبة الفقير",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "26"
+    },
+    {
+      "id": 27,
+      "title": "مواعظ مولانا طارق جميل",
+      "author": "مولانا طارق جميل",
+      "publisher": "مكتبة ارسلان",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "2-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "27"
+    },
+    {
+      "id": 28,
+      "title": "كتاب الروضتين في أخبار الدولتين النورية والصلاحية",
+      "author": "شهاب الدين عبد الرحمن بن اسماعيل بن ابراهيم المقدسي الدمشقي المعروف بأبي شامة،(599-665هـ)",
+      "publisher": "مؤسسة الرسالة",
+      "category": "التاريخ",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "28"
+    },
+    {
+      "id": 29,
+      "title": "الطرق الحكمية في السياسية الشرعية",
+      "author": "محمد بن أبي بكر بن أيوب بن سعد شمس الدين ابن قيم الجوزية (ت:751هـ)",
+      "publisher": "المكتبة الإسلامية",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "29"
+    },
+    {
+      "id": 30,
+      "title": "الكواكب النيرات في معرفة من اختلط من الرواة الثقات",
+      "author": "لأبي البركات محمد بن أحمدالمعروف بأن الكيال(863-939هـ)",
+      "publisher": "دار المأمون للتراث،م:عبد القيوم عبد رب النبي",
+      "category": "التراجم والطبقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "30"
+    },
+    {
+      "id": 31,
+      "title": "تاریخ اسلامی جمہوریہ پاکستان",
+      "author": "مولانا ڈاکٹر محمد عادل خان،(ت:2020ء)",
+      "publisher": "المنہل پبلشر",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 1،مف:2",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "31"
+    },
+    {
+      "id": 32,
+      "title": "تاریخ امت مسلمہ",
+      "author": "مولانا محمد اسماعیل ریحان صاحب",
+      "publisher": "المنہل پبلشر",
+      "category": "التاريخ",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جلدیں: 5،مف:3-4-5",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "32"
+    },
+    {
+      "id": 33,
+      "title": "جامع الكرامات الأولياء",
+      "author": "يوسف بن اسماعيل النبهاني، (1225-1350هـ)",
+      "publisher": "دار الفكر،م:ابراهيم عطوة عوض",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "33"
+    },
+    {
+      "id": 34,
+      "title": "الطبقات الكبرى",
+      "author": "محمد بن سعد بن منيع الهاشمي البصري المعروف بابن سعد ،(ت:230هـ)",
+      "publisher": "دار الكتب العلمية،م: محمد عبد القادر عطاء",
+      "category": "التراجم والطبقات",
+      "volumes": 9,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "34"
+    },
+    {
+      "id": 35,
+      "title": "تذكرة الحفاظ",
+      "author": "امام شمس الدين محمد بن أحمد بن عثمان الذهبي ،(ت:748هـ)",
+      "publisher": "دار الكتب العلمية،محشي:شيخ زكريا عميرات",
+      "category": "التراجم والطبقات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "35"
+    },
+    {
+      "id": 36,
+      "title": "ذيل تذكرة الحفاظ",
+      "author": "الحافظ شمس الدين محمد بن علي بن حسن الدمشقي ،(ت:765هـ)",
+      "publisher": "دار الكتب العلمية، محشي:شيخ زكريا عميرات",
+      "category": "التراجم والطبقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "36"
+    },
+    {
+      "id": 37,
+      "title": "الكواكب الدرية في تراجم السادة الصوفية",
+      "author": "شيخ الإسلام زين الدين محمد عبد الرؤوف المناوي ،(ت:1031هـ)",
+      "publisher": "دار الكتب العلمية،تعليق:أحمد فريد المزيدي",
+      "category": "التراجم والطبقات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "37"
+    },
+    {
+      "id": 38,
+      "title": "البداية والنهاية",
+      "author": "عماد الدين أبو الفداء إسماعيل بن عمر القرشي الدمشقي المعروف بـ (ابن كثير) (ت ٧٧٤ هـ)",
+      "publisher": "بيت الأفكار الدولية،إعتنى به:حسان عبد المنان",
+      "category": "التاريخ",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "38"
+    },
+    {
+      "id": 39,
+      "title": "الأذكار المنتخب من كلام سيد الأبرار",
+      "author": "للإمام أبي زكريا يحيى بن شرف النووي ،(ت676 هـ)",
+      "publisher": "مكتبة الصفا،م:طه عبد الرؤوف سعد",
+      "category": "الآداب والأذكار",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة  المحققة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "39"
+    },
+    {
+      "id": 40,
+      "title": "الموسوعة اليوسفية في بيان أدلة الصوفية",
+      "author": "الأستاد الدكتور يوسف خطار محمد",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "40"
+    },
+    {
+      "id": 41,
+      "title": "جلاءالأفهام في فضل الصلاة والسلام على محمد خير الأنام",
+      "author": "إمام شمس الدين أبي عبد الله محمد بن أبي بكر الزرعي الدمشقي  المعروف بابن القيم الجوزية(ت:751 هـ)",
+      "publisher": "دار الكلم الطيب ،م:محيي الدين ديب مستو",
+      "category": "الآداب والأذكار",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة  المحققة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "41"
+    },
+    {
+      "id": 42,
+      "title": "تنبيه الغافلين",
+      "author": "الإمام الفقيه أبي الليث نصر بن محمد الحنفي السمر قندي،(ت375 هـ)",
+      "publisher": "مكتبة الصفا،تخريج:أحمد بن شعبان بن أحمد",
+      "category": "المواعظ والخطب والملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "42"
+    },
+    {
+      "id": 43,
+      "title": "كتاب اصول الدين",
+      "author": "الشيخ جمال الدين أحمد بن محمد الغزنوي الحنفي،(ت593 هـ)",
+      "publisher": "دار البشائر الإسلامية،م:الدكتور عمرو فيق الداعوق",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "الطبعة الأولى  المحققة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "43"
+    },
+    {
+      "id": 44,
+      "title": "أعلام المؤقعين عن رب العالمين",
+      "author": "إمام شمس الدين أبي عبد الله محمد بن أبي بكر الزرعي الدمشقي  المعروف بابن القيم الجوزية(ت:751 هـ)",
+      "publisher": "م:محمد محي الدين عبد الحميد",
+      "category": "أصول الفقه",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "الطبعة القديمة المحققة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "44"
+    },
+    {
+      "id": 45,
+      "title": "موسوعة حياة الصحابة من كتاب التراث",
+      "author": "محمد سعيد مُبيّض (ت: 1444 هـ)",
+      "publisher": "مكتب الغزالي",
+      "category": "التراجم والطبقات",
+      "volumes": 7,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 7 مف:5-6",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "45"
+    },
+    {
+      "id": 46,
+      "title": "الملل والنحل",
+      "author": "الإمام أبي الفتح محمد بن عبد الكريم الشيرستاني ،(ت:548 هـ)",
+      "publisher": "مكتبة المعروفية،معلق:الأستاد أحمد فهمي محمد",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "3-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة القديمة؛ جلدیں: 1 مف:5-6",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "46"
+    },
+    {
+      "id": 47,
+      "title": "الفقه الأسلامي وأدلته",
+      "author": "الأستاذ الدكتور وهبة بن مصطفى الزحيلي ،(ت: 1436هـ)",
+      "publisher": "دار الفكر",
+      "category": "الفقه",
+      "volumes": 8,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة القديمة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "47"
+    },
+    {
+      "id": 48,
+      "title": "الفتاوى العالمكيرية المعروفة بالفتاوى الهندية",
+      "author": "لجنة علمية ضخمة من كبار علماء الهند برئاسة الشيخ نظام الدين البرنهابوري البلخي",
+      "publisher": "قديمي كتب خانة",
+      "category": "الفقه",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة القديمة؛ جلدیں: 6،مف:1",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "48"
+    },
+    {
+      "id": 49,
+      "title": "جامع أحكام النساء",
+      "author": "مصطفى العدوي",
+      "publisher": "دار ابن القيم",
+      "category": "الفقه",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "49"
+    },
+    {
+      "id": 50,
+      "title": "تحفة الفقهاء",
+      "author": "علاء الدين السمرقندي،(ت:539هـ)",
+      "publisher": "دار الكتب العلمية",
+      "category": "الفقه",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "50"
+    },
+    {
+      "id": 51,
+      "title": "سنن أبي داؤود",
+      "author": "الإمام الحافظ أبي داؤود سليمان بن أشعث بن  إسحاق الأزدي السجستاني ،(ت:275هـ)",
+      "publisher": "دار السلام الرياض،مراجعة:صالح بن عبد العزيز آل الشيخ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "51"
+    },
+    {
+      "id": 52,
+      "title": "سنن النسائي الصغرى",
+      "author": "الإمام الحافظ أبي عبد الرحمن أحمد بن شعيب بن علي بن سنان النسائي ،(ت:303هـ)",
+      "publisher": "دار السلام الرياض، مراجعة:صالح بن عبد العزيز آل الشيخ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "52"
+    },
+    {
+      "id": 53,
+      "title": "سبلل الهدى والرشاد في سيرة خير العباد",
+      "author": "الإمام  محمد بن يوسف الصالحي الدمشقي ،(ت:943هـ)",
+      "publisher": "دار الكتب العلمية،ترتيب:خالد عبد الفتاح شبل أبوسليمان",
+      "category": "السيرة النبوية",
+      "volumes": 14,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "53"
+    },
+    {
+      "id": 54,
+      "title": "نبوء ات الرسول دروس وعبر",
+      "author": "عبد الستار الشيخ",
+      "publisher": "دار القلم",
+      "category": "السيرة النبوية",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 4،مف:1-4",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "54"
+    },
+    {
+      "id": 55,
+      "title": "حجية أفعال رسول الله ﷺ أصوليا وحديثيا",
+      "author": "محمد عوامة",
+      "publisher": "دار اليسر",
+      "category": "علوم الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "55"
+    },
+    {
+      "id": 56,
+      "title": "نقو ش پائے مصطفىﷺ",
+      "author": "ابو محمد عبد المالک",
+      "publisher": "العرب",
+      "category": "السيرة النبوية",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "56"
+    },
+    {
+      "id": 57,
+      "title": "زاد المعاد في هدي خير الغباد",
+      "author": "لابن القيم الجوزية(ت:751 هـ)",
+      "publisher": "مؤسسة الرسالة",
+      "category": "السيرة النبوية",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "57"
+    },
+    {
+      "id": 58,
+      "title": "سیرۃ النبی ﷺ",
+      "author": "علامہ شبلی نعمانی  رحمہ اللہ ،(1332 هـ) علامہ سید سلیمان ندوی  رحمہ اللہ،(1373هـ)",
+      "publisher": "دار الإشاعت",
+      "category": "السيرة النبوية",
+      "volumes": 7,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "58"
+    },
+    {
+      "id": 59,
+      "title": "سیرۃ المصطفى ﷺ",
+      "author": "مولانا ادریس صاحب کاندھلوی رحمہ اللہ،(ت: 1394هـ)",
+      "publisher": "مكتبة عمر فاروق",
+      "category": "السيرة النبوية",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 3،مف:1",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "59"
+    },
+    {
+      "id": 60,
+      "title": "حياة الصحابة",
+      "author": "محمد بن يوسف الكاندهلوي،(ت:1383هـ)",
+      "publisher": "دار الكتب العلمية",
+      "category": "السيرة النبوية",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "60"
+    },
+    {
+      "id": 61,
+      "title": "صحيح البخاري",
+      "author": "الإمام الحافظ أبي عبد الله محمد بن إسماعيل البخاري،(ت:256هـ)",
+      "publisher": "دار ابن حزم",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "61"
+    },
+    {
+      "id": 62,
+      "title": "صحيح مسلم",
+      "author": "للإمام أبي الحسين مسلم بن الحجاج القشيري النيسابوري،(ت:261هـ)",
+      "publisher": "دار ابن حزم",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "62"
+    },
+    {
+      "id": 63,
+      "title": "مجمع مقاييس اللغة",
+      "author": "لأبي الحسن أحمد بن فارس بن زكريا ،(ت:395هـ)",
+      "publisher": "مكتبة الأعلام الإسلامي،مح:عبد السلام محمد هارون",
+      "category": "اللغة والمعاجم",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "63"
+    },
+    {
+      "id": 64,
+      "title": "الصحاح تاج اللغة وصحاح العربية مرتب ترتيبا ألفبائيا وفق أوائل الحروف",
+      "author": "أبي نصر إسماعيل بن حماد الجوهري،(ت:398هـ)",
+      "publisher": "دار الحديث القاهرة،راجعه واعتنى به:دكتور محمد محمد تام أنس محمد الشامي -زكريا جابر أحمد",
+      "category": "اللغة والمعاجم",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "64"
+    },
+    {
+      "id": 65,
+      "title": "المنجد عربي اردو",
+      "author": "المترجم: مولانا سعد حسن خان یوسفی،پروفیسر عبد الصمد صارم از ہری،مولانا سید حسین صاحب،مولانا نور احمد قاسمی،پروفیسر محبوب  الہی",
+      "publisher": "دار الإشاعت كراچی",
+      "category": "اللغة والمعاجم",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "65"
+    },
+    {
+      "id": 66,
+      "title": "المعجم الوسيط",
+      "author": "قام بإخراجه:إبراهيم مصطفى،أحمد حسن الزيات،حامد عبد القادر، محمد على النجار",
+      "publisher": "المكتبة الإسلامي",
+      "category": "اللغة والمعاجم",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "66"
+    },
+    {
+      "id": 67,
+      "title": "المنجد في اللغة العربية  المعاصرة",
+      "author": "التحرير:أنطوان نعمه، عصام مُدوَّر، لويس عجيل، متري شماس",
+      "publisher": "دارالمشرق",
+      "category": "اللغة والمعاجم",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "67"
+    },
+    {
+      "id": 68,
+      "title": "قاموس الفقه",
+      "author": "مولانا خالد سيف الله رحماني",
+      "publisher": "زمزم پبلشر",
+      "category": "الفقه",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 5،مف:1-3-4-5",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "68"
+    },
+    {
+      "id": 69,
+      "title": "فرہنگ فارسی عمید",
+      "author": "حسن عمید",
+      "publisher": "انتشارات ا   شجع",
+      "category": "الفقه",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "69"
+    },
+    {
+      "id": 70,
+      "title": "نيل الأوطار من أحاديث سيد الأخبار شرح منتقي الأخبار",
+      "author": "محمد بن علي بن محمد بن عبد الله الشوكاني اليمني (ت ١٢٥٠هـ)",
+      "publisher": "دار الجيل",
+      "category": "الحديث",
+      "volumes": 9,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة القديمة؛ جلدیں: 9،مف:1-2-3-4-5-6",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "70"
+    },
+    {
+      "id": 71,
+      "title": "مرقاة المفاتيح شرح مشكاة المصابيح",
+      "author": "علي بن (سلطان) محمد، أبو الحسن نور الدين الملا الهروي القاري (ت ١٠١٤هـ)",
+      "publisher": "مكتبة حقانية",
+      "category": "الحديث",
+      "volumes": 10,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 10،مف: 3",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "71"
+    },
+    {
+      "id": 72,
+      "title": "تدريب الراوي في شرح تقريب النواوي",
+      "author": "جلال الدين عبد الرحمن بن أبي بكر السيوطي (ت 911هـ)",
+      "publisher": "المكتبة العلمية المدينة المنورة",
+      "category": "الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "72"
+    },
+    {
+      "id": 73,
+      "title": "سننن الترمذي الجامع المختصر من السنن عن رسول الله ومعرفته الصحيح والمعلول وما عليه العمل",
+      "author": "أبي عيسى محمد بن عيسى بن سورة  (ت279هـ)",
+      "publisher": "المكتبة التوفيقية،اعتنى به  : سليمان القاطوني",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "73"
+    },
+    {
+      "id": 74,
+      "title": "كنز العمال في سنن الأقوال والأفعال",
+      "author": "علاء الدين علي المتقي بن حسام الدين الهندي البرهان فوري (ت ٩٧٥ هـ)",
+      "publisher": "مؤسسة الرسالة",
+      "category": "الحديث",
+      "volumes": 18,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-د،ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "74"
+    },
+    {
+      "id": 75,
+      "title": "فتح الملهم بشرح صحيح الإمام مسلم",
+      "author": "علامه شبیر احمد عثمانی رحمه الله",
+      "publisher": "مكتبة دار العلوم كراچي",
+      "category": "",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-د،ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 6،مف:3-4-5-6",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "75"
+    },
+    {
+      "id": 76,
+      "title": "تکملة فتح الملهم بشرح صحيح الإمام مسلم الحديث",
+      "author": "مفتی محمد تقی عثمانی دامت برکاتهم",
+      "publisher": "مكتبة دار العلوم كراچي",
+      "category": "",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "5-د،ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 6،مف: 1-4",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "76"
+    },
+    {
+      "id": 77,
+      "title": "معارف القرآن",
+      "author": "شيخ التفسير والحديث حضرت مولانا الحافظ محمد ادریس صاحب کاندھلوی",
+      "publisher": "الطاف اینڈ سنز",
+      "category": "التفسير",
+      "volumes": 8,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 8،مف7",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "77"
+    },
+    {
+      "id": 78,
+      "title": "أحكام القرآن",
+      "author": "مولانا ظفر احمد عثمانی، مفتی محمد شفیع عثمانی ، مولانا محمد ادریس کاندهلوي",
+      "publisher": "ادارة القرآن والعلوم الإسلامية",
+      "category": "التفسير",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "78"
+    },
+    {
+      "id": 79,
+      "title": "مكمل بيان القرآن",
+      "author": "مولانا اشرف علي تهانوي رحمه الله،(ت:911هـ)",
+      "publisher": "ايچ ايم سعيد",
+      "category": "التفسير",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "79"
+    },
+    {
+      "id": 80,
+      "title": "الجامع لأحكام القرآن",
+      "author": "الإمام أبو عبد الله محمد بن أحمد الأنصاري القرطبي،(ت:671 هـ)",
+      "publisher": "......",
+      "category": "التفسير",
+      "volumes": 20,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "80"
+    },
+    {
+      "id": 81,
+      "title": "علوم القرآن",
+      "author": "مفتي تقي عثماني صاحب دامت بركاتهم العالية",
+      "publisher": "مكتبة دار العلوم كراچي",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "81"
+    },
+    {
+      "id": 82,
+      "title": "تفسير ابن كثير",
+      "author": "علامہ عمادالدين ابن كثير،مترجم:خطيب الهند مولانا محمد جونا گڑھی",
+      "publisher": "اسلامي كتب خانه",
+      "category": "التفسير",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "82"
+    },
+    {
+      "id": 83,
+      "title": "تحفة المنعم اردو شرح صحيح مسلم",
+      "author": "مولانا فضل محمد يوسف زئي صاحب",
+      "publisher": "مكتبة الشيخ",
+      "category": "الحديث",
+      "volumes": 8,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 8،مف:1-2-3-4",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "83"
+    },
+    {
+      "id": 84,
+      "title": "معارف الحديث",
+      "author": "مولانا محمد منظور نعمانی رحمه الله",
+      "publisher": "العزيزاکیڈمی",
+      "category": "الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "84"
+    },
+    {
+      "id": 85,
+      "title": "الأدب المفرد(الجامع الآداب النبوية)",
+      "author": "للإمام الحافظ محمد بن اسماعيل البخاري ،(ت:256هـ)",
+      "publisher": "قديمي كتب خانه،تخريج :الشيخ خالد عبد الرحمن العك",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "85"
+    },
+    {
+      "id": 86,
+      "title": "فضل الباري وفيض الجاري: درمناقب حضرت حضرت سيدنا حاجي دوست محمد قندهاري",
+      "author": "مرتبين:مولانا رحيم بخش اجميري رحمہ الله ،مولانا محمد عادل كاكرء رحمہ الله،ترجمہ:ڈاكٹر محمد نذير رانجها.",
+      "publisher": "خانقہ سراجیہ نقشبندیہ مجددیہ",
+      "category": "الفضائل والمناقب",
+      "volumes": 14,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "86"
+    },
+    {
+      "id": 87,
+      "title": "روضة الصالحين اردو شرح رياض الصالحين",
+      "author": "ترجمة،وتشريح:مولانا محمد حسين صديقي",
+      "publisher": "زم زم پبلشر",
+      "category": "الحديث",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 3،مف:1-2",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "87"
+    },
+    {
+      "id": 88,
+      "title": "رياض الصالحين من كلام سيد المرسلين",
+      "author": "الإمام محيي الدين بن شرف النووي رحمه الله",
+      "publisher": "المكتبة الإسلامية،مح:أحمد إبراهيم زهوة",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "88"
+    },
+    {
+      "id": 89,
+      "title": "بخاري شريف مترجم",
+      "author": "امام المحدثين ابو عبد الله محمد بن اسمعيل بخاري رحمه الله",
+      "publisher": "فريد بك سٹال",
+      "category": "الحديث",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "89"
+    },
+    {
+      "id": 90,
+      "title": "صحيح مسلم شريف مع شرح النووي(مختصر )مترجم",
+      "author": "علامه وحيد الزماں کا سلیس ترجمہ",
+      "publisher": "مشتاق بك كارنر",
+      "category": "الحديث",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "90"
+    },
+    {
+      "id": 91,
+      "title": "انواع کتب حدیث کا تعارف",
+      "author": "مولانا محمد نعمان صاحب",
+      "publisher": "مکتبۃ المتین",
+      "category": "متفرقات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "91"
+    },
+    {
+      "id": 92,
+      "title": "سنن إبن ماجة",
+      "author": "الحافظ أبي عبد الله محمد بن يزيد القزويني،(ت:273هـ)",
+      "publisher": "دار ابن حزم",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع:مفتي عبد الكبير صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "92"
+    },
+    {
+      "id": 93,
+      "title": "الشفا بتعريف حقوق المصطفى",
+      "author": "للقاضي عياض أبي الفضل عياض بن موسى بن عياض اليحصبي (ت:544هـ)",
+      "publisher": "دار الحديث",
+      "category": "السيرة النبوية",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبد الكبير صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "93"
+    },
+    {
+      "id": 94,
+      "title": "التفسير الكبير أو مفاتيح الغيب",
+      "author": "للإمام فخر الدين محمد بن عمر بن الحسين بن الحسن ابن علي التميمي البكري الرازي الشافعي،(ت:604هـ)",
+      "publisher": "دار الكتب العلمية",
+      "category": "التفسير",
+      "volumes": 32,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبد الكبير صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 32،مف:مابقي",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "94"
+    },
+    {
+      "id": 95,
+      "title": "فيض القدير شرح الجامع الصغير",
+      "author": "شمس الدين محمد المعروف بـ:عبد الرؤوف المناوي الشافعي (ت: 1031هـ)",
+      "publisher": "مكتبة نزار مصطفى الباز",
+      "category": "الحديث",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبد الكبير صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 6،مف:مابقي",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "95"
+    },
+    {
+      "id": 96,
+      "title": "كتاب التعريفات",
+      "author": "للشريف الجرجاني علي بن محمد بن سيد الزين أبو الحسن الحسيني الجرجاني،(ت:816)",
+      "publisher": "مكتبة رحمانية",
+      "category": "اللغة والمعاجم",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبد الكبير صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "96"
+    },
+    {
+      "id": 97,
+      "title": "مسند الإمام الحافظ أبي عبد الله أحمد بن حنبل",
+      "author": "الإمام الحافظ أبي عبد الله أحمد بن حنبل ،(ت:241)",
+      "publisher": "بيت الأفكار الدولية",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي حسن صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "97"
+    },
+    {
+      "id": 98,
+      "title": "شرح العقيدة الطحاوية",
+      "author": "للعلامة ابن أبي العز ،(ت: 321 هـ)",
+      "publisher": "المكتبة التوفيقية",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبيد الله صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "98"
+    },
+    {
+      "id": 99,
+      "title": "(تفسير القرطبي) الجامع الأحكام القرآن",
+      "author": "لأبي عبد الله محمد بن أحمد الأنصاري",
+      "publisher": "مكتبة رشيدية،مح:عبدالزاق المهدي",
+      "category": "التفسير",
+      "volumes": 24,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "موضع: مفتي عبيد الله صاحب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة؛ جلدیں: 24،مف:22",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "99"
     }
   ],
   "categories": [
-    "آداب واذکار",
-    "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)",
-    "اصول فقہ",
-    "الادب العربی",
-    "تاریخ",
-    "تراجم وطبقات",
-    "تفسیر",
-    "حدیث",
-    "درس نظامی",
-    "سوانح",
-    "سیاسی کتب",
-    "سیرت",
-    "شروحِ حدیث",
-    "عقیدہ وعلم الکلام",
-    "علوم القرآن/اصول التفسیر",
-    "علوم حدیث",
-    "فتاویٰ",
-    "فقہ",
-    "فقہ حنفی",
-    "فقہ شافعی",
-    "فقہ عام",
-    "فقہ مالکی",
-    "قواعد الفقہ",
-    "لغت",
-    "نحو و صرف"
+    "الآداب والأذكار",
+    "المواعظ والخطب والملفوظات",
+    "أصول الفقه",
+    "الأدب العربي",
+    "التاريخ",
+    "التراجم والطبقات",
+    "التفسير",
+    "الحديث",
+    "الدرس النظامي",
+    "السوانح",
+    "السياسة الشرعية",
+    "السيرة النبوية",
+    "شروح الحديث",
+    "العقيدة وعلم الكلام",
+    "علوم القرآن وأصول التفسير",
+    "علوم الحديث",
+    "الفتاوى",
+    "الفقه",
+    "الفقه الحنفي",
+    "الفقه الشافعي",
+    "الفقه العام",
+    "الفقه المالكي",
+    "القواعد الفقهية",
+    "اللغة والمعاجم",
+    "النحو والصرف",
+    "التصوف والسلوك",
+    "الفضائل والمناقب",
+    "البلاغة",
+    "المنطق والفلسفة",
+    "علم الهيئة والفلك",
+    "الطب",
+    "الأنساب",
+    "متفرقات"
   ],
   "theme": {
     "accent": "blue",
