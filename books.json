@@ -1,7 +1,116 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-10-04",
-  "books": [],
+  "updated": "2026-10-10",
+  "books": [
+    {
+      "id": 1,
+      "title": "تبيين الحقائق شرح كنز الدقائق",
+      "author": "فخر الدين علي الزيلعي، ت: أحمد عزو عناية",
+      "publisher": "مكتبه اشرفيه كوئيته",
+      "category": "فقه",
+      "volumes": 7,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1"
+    },
+    {
+      "id": 2,
+      "title": "النهر الفائق شرح كنز الدقائق",
+      "author": "سراج الدين عمر بن إبراهيم ابن نجيم، مت: أحمد عزو عناية",
+      "publisher": "قديمي كتب خانه كراتشي",
+      "category": "فقه",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "2"
+    },
+    {
+      "id": 3,
+      "title": "شرح مختصر الطحاوي في الفقه الحنفي",
+      "author": "بهاء الدين علي بن محمد بن إسماعيل الإسبيجابي السمرقندي ت:535هـ، مت: عبدالله نذير أحمد عبد الرحمن",
+      "publisher": "دار الرياحين اردن",
+      "category": "فقه",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "3"
+    },
+    {
+      "id": 4,
+      "title": "فتاوى قاضي خان",
+      "author": "فخر الدين أبي المحاسن الحسن بن منصور المعروف بـ قاضي خان ت:592هـ،",
+      "publisher": "قديمي كتب خانه كراتشي",
+      "category": "فقه",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "4-د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "4"
+    }
+  ],
   "categories": [
     "آداب واذکار",
     "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)",
