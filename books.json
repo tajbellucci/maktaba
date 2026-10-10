@@ -3078,6 +3078,978 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "114"
+    },
+    {
+      "id": 115,
+      "title": "مجموع فتاوى شيخ الإسلام ابن تيمية",
+      "author": "شيخ الإسلام أحمد بن تيمية،(ت: 728 هـ )",
+      "publisher": "ناشر: فهد بن عبد العزيز،جمع وترتيب:عبد الرحمن بن محمد بن قاسم الحنبلي",
+      "category": "الفتاوى",
+      "volumes": 37,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "1-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "115"
+    },
+    {
+      "id": 116,
+      "title": "المغني لابن قدامة",
+      "author": "أبو محمد عبد الله بن أحمد بن محمد بن قدامة (٥٤١ - ٦٢٠ هـ)",
+      "publisher": "سطور البحث العلمي،محقق:الدكتور عبد الله بن عبد المحسن التركي",
+      "category": "الفقه",
+      "volumes": 37,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "1-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "116"
+    },
+    {
+      "id": 117,
+      "title": "تفسير بيان القرآن",
+      "author": "حكيم الأمت مجدد ملت حضرت مولانا اشرف على تهانوي",
+      "publisher": "إدارة تاليفات اشرفية",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "117"
+    },
+    {
+      "id": 118,
+      "title": "مقدمة ابن خلدون(كتاب العبر وديوان المبتدأ والخبر في أيام العرب والعجم والبربر ومن عاصرهم من ذوي السلطان الأكبر)",
+      "author": "عبد الرحمن بن خلدون،(ت:808هـ)",
+      "publisher": "دار الكتب العلمية",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "118"
+    },
+    {
+      "id": 119,
+      "title": "سيرت طيبة",
+      "author": "مولانا الطاف الرحمن عباسي",
+      "publisher": "تعليم و تربيت،ترتيب جديده:مفتي عبيد الرحمن عباسي العلمية",
+      "category": "السيرة النبوية",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "119"
+    },
+    {
+      "id": 120,
+      "title": "جلوس الحواري لفهم دروس البخاري",
+      "author": "فضيلة الشيخ المفتي رضاء الحق",
+      "publisher": "مكتبة زمزم،مح:فضيل بتيل",
+      "category": "شروح الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "120"
+    },
+    {
+      "id": 121,
+      "title": "المهذب في فقه الإمام الشافعي لأبي إسحاق الشيرازي",
+      "author": "الدكتور محمد الزحيلي",
+      "publisher": "دار القلم",
+      "category": "الفقه",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "121"
+    },
+    {
+      "id": 122,
+      "title": "شرح المواقف للقاضي عضد الدين عبد الرحمن الإيجي،(ت:756هـ)",
+      "author": "السيد الشريف علي بن محمد الجرجاني ،(ت:816هـ)",
+      "publisher": "النورية الرضوية",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "122"
+    },
+    {
+      "id": 123,
+      "title": "إحياء علوم الدين",
+      "author": "أبو حامد محمد بن محمد الغزالي الطوسي (ت ٥٠٥هـ)",
+      "publisher": "دار القمر",
+      "category": "التصوف والسلوك",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "123"
+    },
+    {
+      "id": 124,
+      "title": "الفية الجهاد في سبيل الله",
+      "author": "مولانا محمد مسعود ازهر",
+      "publisher": "مكتبة عرفان",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "124"
+    },
+    {
+      "id": 125,
+      "title": "العلماء الذين لم يتجاوزوا سن الأشد(15-40)سنة",
+      "author": "علي بن محمد العمران",
+      "publisher": "دار العاصمة",
+      "category": "التراجم والطبقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "125"
+    },
+    {
+      "id": 126,
+      "title": "رسالة المسترشدين للحارث المحاسبي",
+      "author": "أبي عبد الله الحارث بن أسد المحاسبي البصري ، (ت:243) محقق:عبد الفتاح أبو غدة،(ت:1418)،تخريج:سلمان بن عبد الفتاح أبو غدة",
+      "publisher": "المكتوبات الإسلامية",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "126"
+    },
+    {
+      "id": 127,
+      "title": "شرح الصدور بشرح حال الموتى والقبور",
+      "author": "الإمام الحافظ العلامة جلال الدين عبد الرحمن بن أبي بكر السيوطي،إعتنى به:قصي محمد نورس الحلاق",
+      "publisher": "دار المنهاج",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "127"
+    },
+    {
+      "id": 128,
+      "title": "الإعتصام",
+      "author": "للإمام أبي إسحاق ابراهيم الغرناطي الشاطبي،محقق:الشيخ عبد الرازق المهدي",
+      "publisher": "دار الكتاب العربي",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "128"
+    },
+    {
+      "id": 129,
+      "title": "حجة الله البالغة",
+      "author": "أحمد بن عبد الرحيم بن الشهيد وجيه الدين بن معظم بن منصور المعروف بـ «الشاه ولي الله الدهلوي» (ت ١١٧٦هـ)،محقق: مولانا محمد أحسن النانوتوي والسيد سابق",
+      "publisher": "قديمي كتب خانة",
+      "category": "التصوف والسلوك",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "129"
+    },
+    {
+      "id": 130,
+      "title": "التوضيح لشرح الجامع الصحيح",
+      "author": "سراج الدين أبو حفص عمر بن علي بن أحمد الأنصاري الشافعي المعروف بـ ابن الملقن (٧٢٣ - ٨٠٤ هـ) ،محقق:دار الفلاح للبحث العلمي وتحقيق التراث بإشراف خالد الرباط، جمعة فتحي",
+      "publisher": "غراس",
+      "category": "شروح الحديث",
+      "volumes": 35,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "130"
+    },
+    {
+      "id": 131,
+      "title": "الجامع الأحكام القرآن",
+      "author": "أبو عبد الله، محمد بن أحمد الأنصاري القرطبي ،محقق:أحمد البردوني وإبراهيم أطفيش",
+      "publisher": "إحياء التراث",
+      "category": "التفسير",
+      "volumes": 11,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "131"
+    },
+    {
+      "id": 132,
+      "title": "تفسير القرآن العظيم",
+      "author": "الإمام الحافظ عماد الدين،أبو الفداء اسماعيل بن كثير القرشي الدمشقي ،",
+      "publisher": "مكتبة العلوم والحكم",
+      "category": "التفسير",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "132"
+    },
+    {
+      "id": 133,
+      "title": "تتمة موسوعة إبن أبي الدنيا",
+      "author": "المؤلف/المحقق: فاضل بن خلف الحمادة الرقي",
+      "publisher": "دار اطلس الخضراء",
+      "category": "الآداب والأذكار",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "133"
+    },
+    {
+      "id": 134,
+      "title": "فهارس موسوعة إبن أبي الدنيا",
+      "author": "المؤلف/المحقق: فاضل بن خلف الحمادة الرقي",
+      "publisher": "دار اطلس الخضراء",
+      "category": "الآداب والأذكار",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "134"
+    },
+    {
+      "id": 135,
+      "title": "غياث اللغات (مكمل فارسي لغت)",
+      "author": "مولانا محمد غياث الدين رحمه الله",
+      "publisher": "ايچ ایم سعید",
+      "category": "اللغة والمعاجم",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "135"
+    },
+    {
+      "id": 136,
+      "title": "تاج العروس من جواهر القاموس",
+      "author": "للإمام محب الدين أبي فيض السيد محمد مرتضى الحسيني الواسطي الزبيدي الحنفي",
+      "publisher": "دار الفكر",
+      "category": "اللغة والمعاجم",
+      "volumes": 20,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "136"
+    },
+    {
+      "id": 137,
+      "title": "لسان العرب",
+      "author": "للإمام العلامة ابن منظور،(ت:711هـ)",
+      "publisher": "دار الإحياء التراث العربي",
+      "category": "اللغة والمعاجم",
+      "volumes": 17,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "137"
+    },
+    {
+      "id": 138,
+      "title": "عمدة القاري شرح صحيح البخاري",
+      "author": "بدر الدين أبو محمد محمود بن أحمد العينى (ت ٨٥٥ هـ)",
+      "publisher": "مكتبة رشيدية",
+      "category": "شروح الحديث",
+      "volumes": 25,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "138"
+    },
+    {
+      "id": 139,
+      "title": "شرح صحيح البخاري المسمى فتح الباري",
+      "author": "الامام  العلامة زين الدين عبد الرحمن بن أحمد إبن رجب الحنبلي،(ت:795هـ)،راجعه وعلى عليه:أحمد فتحي عبد الرحمن",
+      "publisher": "دار الكتب العلمية",
+      "category": "شروح الحديث",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "139"
+    },
+    {
+      "id": 140,
+      "title": "فيض الباري على صحيح البخاري مع حاشية البدر الساري إلى فيض الباري",
+      "author": "الامام العصر الشيخ محمد أنور الكشميري ثم الديوبندي،(1352هـ)،مؤلف الحاشية:الأستاذ محمدبدر عالم الميرتهي",
+      "publisher": "المجلس العلمي دابهيل",
+      "category": "شروح الحديث",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "140"
+    },
+    {
+      "id": 141,
+      "title": "بهجة النفوس وتحليلها بمعرفة مالها وماعليها شرح مختصر صحيح البخاري",
+      "author": "الامام ابن ابي جمرة ابي محمد عبدالله بن سعد ابن ابي جمرة الاندلسي القرطبي،(ت:699هـ)",
+      "publisher": "دار الجيل",
+      "category": "شروح الحديث",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "141"
+    },
+    {
+      "id": 142,
+      "title": "الأبواب والتراجم لصحيح البخاري",
+      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ، (ت:1402هـ)،راجعه وعلى عليه:محمد رحمة الله حافظ الندوي",
+      "publisher": "دار الكتب العلمية",
+      "category": "التراجم والطبقات",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "142"
+    },
+    {
+      "id": 143,
+      "title": "شرح ابن بطال على صحيح البخاري",
+      "author": "العلامة أبو الحسن علي بن خلف بن عبد الملك إبن بطال البكري القرطبي ثم البلنسي(ت ٤٤٩ هـ)،مح:مصطفى عبد القادر عطا",
+      "publisher": "دار الكتب العلمية",
+      "category": "شروح الحديث",
+      "volumes": 10,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "143"
+    },
+    {
+      "id": 144,
+      "title": "فتح الباري بشرح صحيح البخاري",
+      "author": "للعلامة الحافظ أحمد بن علي بن حجر العسقلاني ،(ت 852هـ)",
+      "publisher": "دار الحديث",
+      "category": "شروح الحديث",
+      "volumes": 14,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "144"
+    },
+    {
+      "id": 145,
+      "title": "منحة الباري بشرح صحيح البخاري المسمى:تحفة الباري",
+      "author": "شيخ الإسلام زين الدين أبو يحيى زكريا بن محمد بن أحمد بن زكريا الأنصاري السنيكي المصري الشافعي (توفي سنة 926 هـ).",
+      "publisher": "مكتبة الرشيد",
+      "category": "شروح الحديث",
+      "volumes": 10,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "145"
+    },
+    {
+      "id": 146,
+      "title": "شرح الجامع الصحيح المعروف شرح صحيح البخاري المسمى بـ: (الكواكب الدراري)",
+      "author": "شمس الدين محمد بن يوسف بن علي الكرماني،(786هـ)",
+      "publisher": "دار إحياء التراث",
+      "category": "شروح الحديث",
+      "volumes": 25,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "146"
+    },
+    {
+      "id": 147,
+      "title": "الرسالة القشيرية في علم التصوف",
+      "author": "العلامة العارف بالله أبي القاسم عبد الكريم بن هوازن القشيري النيسابوري،مح:معروف تزریق و علي عبدالحميد أبو الخير",
+      "publisher": "دارالخير",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "147"
+    },
+    {
+      "id": 148,
+      "title": "كلمات عن منهج الإمام البخاري في صحيحه رواية ودراية",
+      "author": "لفضيلة العلامة محمد عوامة ،جمعها ورتبها:الدكتور محيي الدين محمد عوامة",
+      "publisher": "دارالحديث العوامة",
+      "category": "التصوف والسلوك",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "148"
+    },
+    {
+      "id": 149,
+      "title": "رحمة الباري ترجمة مختصر صحيح البخاري",
+      "author": "ترجمة باللغة الفارسية :الدكتور عبد الرحيم فيروز",
+      "publisher": "دارالسلام للنشر والتوزيع",
+      "category": "شروح الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "149"
+    },
+    {
+      "id": 150,
+      "title": "رحمة الله الواسعة شرح حجة الله البالغة",
+      "author": "مولانا شاه ولي الله صاحب محدث دهلوي، (ت:1176هـ)",
+      "publisher": "زمزم پبلشرز",
+      "category": "العقيدة وعلم الكلام",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "غرفة عامة للشيخ",
+      "almari": "2-أ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-10",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "150"
     }
   ],
   "categories": [
