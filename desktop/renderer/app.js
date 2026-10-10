@@ -68,15 +68,49 @@ let IS_MASTER = false;
    removing a subject on the librarian's machine reaches every other install
    through the same sync as the books themselves. */
 const DEFAULT_CATEGORIES = [
-  "عقیدہ وعلم الکلام", "علوم القرآن/اصول التفسیر", "شروحِ حدیث", "علوم حدیث",
-  "اصول فقہ", "قواعد الفقہ", "فقہ حنفی", "فقہ شافعی", "فقہ مالکی", "فقہ عام",
-  "تاریخ", "تراجم", "نحو و صرف", "تراجم وطبقات", "الادب العربی", "درس نظامی",
-  "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)", "سیاسی کتب", "آداب واذکار", "سوانح"
+  "العقيدة وعلم الكلام", "علوم القرآن وأصول التفسير", "التفسير", "الحديث", "شروح الحديث", "علوم الحديث",
+  "أصول الفقه", "القواعد الفقهية", "الفقه", "الفقه الحنفي", "الفقه الشافعي", "الفقه المالكي", "الفقه العام", "الفتاوى",
+  "السيرة النبوية", "التاريخ", "التراجم والطبقات", "السوانح", "التصوف والسلوك", "الآداب والأذكار",
+  "المواعظ والخطب والملفوظات", "الفضائل والمناقب", "اللغة والمعاجم", "النحو والصرف", "البلاغة", "الأدب العربي",
+  "المنطق والفلسفة", "علم الهيئة والفلك", "الطب", "الأنساب", "السياسة الشرعية", "الدرس النظامي", "متفرقات"
 ];
+
+/* The subject list moved from Urdu to Arabic names (the madrassa's choice).
+   Books and lists written with the old names are renamed once on load, so
+   old and new entries land in the same category instead of two. */
+const CATEGORY_RENAME = {
+  "عقیدہ وعلم الکلام": "العقيدة وعلم الكلام", "علوم القرآن/اصول التفسیر": "علوم القرآن وأصول التفسير",
+  "شروحِ حدیث": "شروح الحديث", "علوم حدیث": "علوم الحديث", "اصول فقہ": "أصول الفقه", "قواعد الفقہ": "القواعد الفقهية",
+  "فقہ حنفی": "الفقه الحنفي", "فقہ شافعی": "الفقه الشافعي", "فقہ مالکی": "الفقه المالكي", "فقہ عام": "الفقه العام",
+  "فقہ": "الفقه", "فتاویٰ": "الفتاوى", "حدیث": "الحديث", "تفسیر": "التفسير", "سیرت": "السيرة النبوية",
+  "تاریخ": "التاريخ", "تراجم": "التراجم والطبقات", "تراجم وطبقات": "التراجم والطبقات", "سوانح": "السوانح",
+  "نحو و صرف": "النحو والصرف", "الادب العربی": "الأدب العربي", "درس نظامی": "الدرس النظامي", "لغت": "اللغة والمعاجم",
+  "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)": "المواعظ والخطب والملفوظات", "سیاسی کتب": "السياسة الشرعية", "آداب واذکار": "الآداب والأذكار"
+};
+
+/* Matching key for names typed by people (branch, department, category):
+   the search normalization plus the letters staff mix freely in names --
+   ه/ہ/ۃ, ى/ی -- and spacing, so نعمانية جدید, نعمانيه جديد and نعمانیہ جدید
+   are one branch, and دار الافتاء / دارالإفتاء one department. Kept out of
+   shared/norm.js on purpose: that file must match the Android search exactly. */
+const nameKey = (v) => norm(v || "").replace(/ه/g, "ہ").replace(/ۃ/g, "ہ").replace(/ى/g, "ی").replace(/\s+/g, "");
+const canonBranch = (v) => MAKTABA_OPTIONS.find((b) => nameKey(b) === nameKey(v)) || null;
+function canonDept(v) {
+  if (!v) return v;
+  const known = Object.values(DEPARTMENTS_BY_MAKTABA).flat().concat(DATA.books.map((b) => b.department).filter(Boolean));
+  return known.find((d) => nameKey(d) === nameKey(v)) || v;
+}
+/* Categories also match without the article (فقه = الفقه) and by their old Urdu name. */
+const catKey = (v) => nameKey(v).replace(/^ال/, "");
+const canonCat = (v) => (v ? CATEGORY_RENAME[v] || categories().find((c) => catKey(c) === catKey(v)) || v : v);
 
 function categories() {
   if (!Array.isArray(DATA.categories) || !DATA.categories.length) {
     DATA.categories = [...DEFAULT_CATEGORIES];
+  } else if (DATA.categories.some((c) => CATEGORY_RENAME[c])) {
+    const renamed = DATA.categories.map((c) => CATEGORY_RENAME[c] || c);
+    DATA.categories = [...new Set(renamed.concat(DEFAULT_CATEGORIES))];
+    didMigrate = true;
   }
   return DATA.categories;
 }
@@ -288,6 +322,7 @@ function normalizeBook(b) {
   if (typeof b.favorite !== "boolean") b.favorite = false;
   if (b.viewedAt === undefined) b.viewedAt = "";
   if (!MATERIALS.includes(b.material)) b.material = "book";
+  if (CATEGORY_RENAME[b.category]) { b.category = CATEGORY_RENAME[b.category]; didMigrate = true; }
   if (b.almari === undefined) b.almari = b.shelf || "";   // almari no. is back — re-requested after being dropped
   if (b.borrowerContact === undefined) b.borrowerContact = "";
   /* Address and phone are separate questions with separate answers, and the
@@ -2582,7 +2617,7 @@ function parseManyFormat(v) {
 const MANY_UR = {
   reg: "رجسٹر نمبر",
   head: "کتاب کا نام | مصنف | موضوع | جلدیں | ناشر | مکتبہ | شعبہ | الماری نمبر | نوٹس | شکل",
-  example: "ریاض الصالحین | امام نووی | حدیث | 2 | دار السلام | نعمانیہ جدید | لائبریری | الف-۱ | نیا نسخہ | طباعتی",
+  example: "ریاض الصالحین | امام نووی | الحديث | 2 | دار السلام | نعمانیہ جدید | لائبریری | الف-۱ | نیا نسخہ | طباعتی",
   word: "مثال"
 };
 
@@ -2668,7 +2703,10 @@ $("mSave").onclick = () => {
       const b = DATA.books.find((x) => String(x.accession) === reg);
       if (!b) { skipped.push(`${n}: ${t("manyNoReg")}`); continue; }
       const branch = cell(c[6]);
-      if (branch && branch !== "-" && !MAKTABA_OPTIONS.includes(branch)) { skipped.push(`${n}: ${t("manyBadBranch")} (${branch})`); continue; }
+      if (branch && branch !== "-" && !canonBranch(branch)) { skipped.push(`${n}: ${t("manyBadBranch")} (${branch})`); continue; }
+      if (branch && branch !== "-") c[6] = canonBranch(branch);
+      if (cell(c[7]) && cell(c[7]) !== "-") c[7] = canonDept(cell(c[7]));
+      if (cell(c[3]) && cell(c[3]) !== "-") c[3] = canonCat(cell(c[3]));
       const fmt = parseManyFormat(c[10]);
       if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${cell(c[10])})`); continue; }
       const newTitle = cell(c[1]);
@@ -2702,9 +2740,12 @@ $("mSave").onclick = () => {
   let nextAcc = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
   for (const { text, n } of lines) {
     const c = text.split("|").map((x) => x.trim());
-    const [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = "", notes = "", formatRaw = ""] = c;
+    let [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = "", notes = "", formatRaw = ""] = c;
     if (!title) { skipped.push(`${n}: ${t("manyNoTitle")}`); continue; }
-    if (maktaba && !MAKTABA_OPTIONS.includes(maktaba)) { skipped.push(`${n}: ${t("manyBadBranch")} (${maktaba})`); continue; }
+    if (maktaba && !canonBranch(maktaba)) { skipped.push(`${n}: ${t("manyBadBranch")} (${maktaba})`); continue; }
+    if (maktaba) maktaba = canonBranch(maktaba);
+    department = canonDept(department);
+    category = canonCat(category);
     const fmt = parseManyFormat(formatRaw);
     if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${formatRaw})`); continue; }
     /* The same book pasted again is the same book: the app already treats an
