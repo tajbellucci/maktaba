@@ -1,6 +1,19 @@
 {
   "releases": [
     {
+      "version": "1.9.1",
+      "date": "2026-10-10",
+      "ur": [
+        "ایک ہی نام کی دو مختلف کتابیں اب درج ہو سکتی ہیں: مثلاً «أحكام القرآن» (جصاص) اور «أحكام القرآن» (ظفر احمد عثمانی)۔ نقل صرف تب روکی جاتی ہے جب نام اور مصنف دونوں ایک ہوں، چاہے مصنف کا نام مختلف انداز میں لکھا ہو۔"
+      ],
+      "ar": [
+        "يمكن الآن إدخال كتابين مختلفين بالعنوان نفسه (مثل «أحكام القرآن» للجصاص ولظفر أحمد العثماني). يُمنع التكرار فقط عند تطابق العنوان والمؤلف، ولو كُتب اسم المؤلف بصيغ مختلفة."
+      ],
+      "en": [
+        "Two different books with the same title can now both be entered (for example «Ahkam al-Qur'an» by al-Jassas and by Zafar Ahmad Usmani). A duplicate is stopped only when both the title and the author match, even if the author's name is written differently."
+      ]
+    },
+    {
       "version": "1.9.0",
       "date": "2026-10-10",
       "ur": [

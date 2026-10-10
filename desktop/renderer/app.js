@@ -1381,7 +1381,7 @@ function _renderDetail() {
   };
   $("dTitle").onchange = () => {
     const v = $("dTitle").value.trim();
-    const dupEdit = findDuplicateTitle(v, b.id);
+    const dupEdit = findDuplicateTitle(v, b.id, b.author);
     if (!v || dupEdit) {
       $("dTitle").value = b.title || "";
       if (dupEdit) toast(dupMessage(dupEdit));
@@ -2533,15 +2533,29 @@ $("oFormat").onchange = () => {
   syncAddOneHasPrint();
 };
 
-/* One title, one record. A second entry under a name that already exists is
-   the cataloguing error the duplicates screen exists to find, so it is stopped
-   where it would be created: Add Book, a title edit in the detail panel, and
-   both bulk modes. Matching uses the same normalization as search (spelling
-   variants of ی/ي, ک/ك, diacritics etc. count as the same name). */
-function findDuplicateTitle(title, exceptId) {
+/* One book, one record -- but a TITLE is not a book. أحكام القرآن by al-Jassas
+   and أحكام القرآن by Zafar Ahmad Usmani are two different works, and معارف
+   القرآن, لغات القرآن and شرح المجلة each have several authors, so refusing a
+   second entry on the title alone wrongly blocked real books. A duplicate is
+   the same title AND the same author. Authors are compared loosely, because the
+   same author is written many ways ("الإمام الحافظ ... العسقلاني" vs "العلامة
+   ... العسقلاني ،(ت 852هـ)"): they match when they share a meaningful name
+   word, or when either one is blank (no author given cannot prove a
+   difference). Used by Add Book, a title edit in the detail panel, and both
+   bulk modes; spelling variants of the title count as the same title. */
+const AUTHOR_NOISE = new Set(["الإمام", "الامام", "العلامة", "علامه", "الشيخ", "حضرت", "مولانا", "رحمه", "الله", "محمد", "عبد", "ابو", "أبو", "ابن", "بن", "الحافظ", "للإمام", "امام", "مفتی", "المتوفى", "للعلامة"]);
+const authorWords = (a) => new Set(norm(a || "").split(/[^\u0600-\u06FFA-Za-z]+/).map((w) => w.replace(/^ال/, "")).filter((w) => w.length >= 4 && !AUTHOR_NOISE.has(w)));
+function sameAuthor(a, b) {
+  if (!norm(a || "") || !norm(b || "")) return true;
+  const x = authorWords(a), y = authorWords(b);
+  if (!x.size || !y.size) return norm(a) === norm(b);
+  for (const w of x) if (y.has(w)) return true;
+  return false;
+}
+function findDuplicateTitle(title, exceptId, author) {
   const key = norm(title || "");
   if (!key) return null;
-  return DATA.books.find((x) => x.id !== exceptId && norm(x.title) === key) || null;
+  return DATA.books.find((x) => x.id !== exceptId && norm(x.title) === key && sameAuthor(x.author, author)) || null;
 }
 function dupMessage(b) {
   return t("dupTitle").replace("{t}", b.title).replace("{n}", ud(b.accession || "—"));
@@ -2559,7 +2573,7 @@ $("oSave").onclick = () => {
     if (!el.value || !String(el.value).trim()) { el.focus(); toast(t("fieldRequired")); return; }
   }
   const title = $("oTitle").value.trim();
-  const dupOne = findDuplicateTitle(title);
+  const dupOne = findDuplicateTitle(title, undefined, $("oAuthor").value.trim());
   if (dupOne) { $("oTitle").focus(); toast(dupMessage(dupOne)); return; }
   const b = {
     id: nextId++,
@@ -2710,7 +2724,7 @@ $("mSave").onclick = () => {
       const fmt = parseManyFormat(c[10]);
       if (fmt === null) { skipped.push(`${n}: ${t("manyBadFormat")} (${cell(c[10])})`); continue; }
       const newTitle = cell(c[1]);
-      if (newTitle && newTitle !== "-" && findDuplicateTitle(newTitle, b.id)) { skipped.push(`${n}: ${t("manyDupName")} (${newTitle})`); continue; }
+      if (newTitle && newTitle !== "-" && findDuplicateTitle(newTitle, b.id, b.author)) { skipped.push(`${n}: ${t("manyDupName")} (${newTitle})`); continue; }
       jobs.push({ b, c, fmt });
     }
     if (!jobs.length) { if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL)); return; }
@@ -2753,8 +2767,7 @@ $("mSave").onclick = () => {
        would just create the cataloguing error the duplicates screen exists to
        find. An existing match gets this line's non-empty cells instead (a blank
        author on either side still counts as the same book). */
-    const same = DATA.books.find((x) => norm(x.title) === norm(title) && (!author || !x.author || norm(x.author) === norm(author)));
-    if (!same && findDuplicateTitle(title)) { skipped.push(`${n}: ${t("manyDupName")} (${title})`); continue; }
+    const same = findDuplicateTitle(title, undefined, author);
     if (same) {
       const fill = (v, field) => { if (v) same[field] = v; };
       fill(author, "author"); fill(category, "category"); fill(publisher, "publisher");
