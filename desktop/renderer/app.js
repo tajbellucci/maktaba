@@ -2391,8 +2391,10 @@ makeColumnResizable($("ftsResizer"), document.querySelector(".ftspane"), { min: 
    happens before the catalogue window is visible and read 0 for both, which
    pushed the header into the scrollbar's strip until the next redraw. The
    ResizeObserver below re-measures the moment the list appears or resizes. */
+let refreshAutoColumns = () => {};   // set by makeBookColumnsResizable below
 function syncListGeometry() {
   const list = $("bookList");
+  refreshAutoColumns();
   document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
   syncRowWidth();
 }
@@ -2415,6 +2417,39 @@ function syncRowWidth() {
   const DEFAULT = { acc: 44, title: 260, author: 160, publisher: 120 };   // for a column hidden when frozen
   let sizes = null;
   try { sizes = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { sizes = null; }
+  /* Until the user sizes a column by hand, every column is as wide as its
+     longest entry (Excel/Shamela auto-fit). The old default gave the title
+     all the spare room while author names were cut to "…", and scrolling
+     sideways only slid those cut columns along. Measured with a canvas in
+     each cell's own font, over all books, so filtering does not make the
+     columns jump. Double-clicking a grip returns here. */
+  let manual = Boolean(sizes);
+  const canvas = document.createElement("canvas").getContext("2d");
+  const TEXT = {
+    acc: (b) => ud(b.accession || "—"),
+    title: (b) => b.title || "",
+    author: (b) => b.author || t("noAuthor"),
+    publisher: (b) => b.publisher || ""
+  };
+  const autoWidths = () => {
+    if (typeof DATA === "undefined" || !DATA || !DATA.books.length) return null;
+    const out = {};
+    for (const k of COLS) {
+      const cell = document.querySelector(".bookrow .br-" + k);
+      if (!cell) return null;
+      const cs = getComputedStyle(cell);
+      canvas.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      let max = 0;
+      for (const b of DATA.books) {
+        // the title cell also holds the status dot and any PDF/TXT badge
+        const extra = k === "title" ? 13 + ((b.format === "pdf" || b.format === "unicode") ? 40 : 0) : 0;
+        max = Math.max(max, canvas.measureText(TEXT[k](b)).width + extra);
+      }
+      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + 8;   // padding, border, rounding slack
+      out[k] = Math.ceil(Math.min(1200, Math.max(k === "acc" ? 44 : 60, max + pad)));
+    }
+    return out;
+  };
   try { localStorage.removeItem("maktaba-table-sizes"); } catch { /* old key from an earlier build */ }
   const apply = () => {
     for (const k of COLS) {
@@ -2428,6 +2463,13 @@ function syncRowWidth() {
   const head = document.querySelector(".bookhead");
   const list = $("bookList");
   apply();
+  refreshAutoColumns = () => {
+    if (manual) return;
+    const w = autoWidths();
+    if (!w || COLS.every((k) => sizes && sizes[k] === w[k])) return;
+    sizes = w;
+    apply();
+  };
   /* The header follows the list by being shifted the same distance, not by
      scrolling itself: its own scroll range came out a few px shorter than
      the list's in RTL, so at the far end it lagged behind the rows. */
@@ -2449,12 +2491,14 @@ function syncRowWidth() {
       // wider than its stored width, and the edge must move from where it is.
       const onScreen = head.querySelector(".bh-" + grip.dataset.col).getBoundingClientRect().width / zoom();
       drag = { col: grip.dataset.col, grip, startX: e.clientX, startW: Math.round(onScreen) };
+      manual = true;   // from now on these are the user's widths, saved below
       grip.classList.add("active");
       document.body.style.cursor = "col-resize";
       e.preventDefault();
       e.stopPropagation();
     });
-    grip.addEventListener("dblclick", () => { sizes = null; apply(); save(); });
+    // Double-click: back to auto-fit (forget the hand-set widths).
+    grip.addEventListener("dblclick", () => { manual = false; sizes = null; save(); refreshAutoColumns(); });
   });
 
   window.addEventListener("mousemove", (e) => {
