@@ -657,7 +657,7 @@ async function refreshMasterUI() {
      inactive, via CSS) rather than disappearing — the tooltip is what
      explains why nothing happens when clicked, since requireMaster() blocks
      the actual write silently otherwise. */
-  for (const act of ["addOne", "addMany", "delete", "publish"]) {
+  for (const act of ["addOne", "addMany", "delete", "publish", "undo", "redo"]) {
     const btn = document.querySelector(`#iconbar [data-act="${act}"]`);
     if (btn) btn.title = IS_MASTER ? "" : t("readerBlocked");
   }
@@ -885,7 +885,7 @@ function updateUndoButtons() {
 }
 
 async function stepHistory(dir) {
-  if (!IS_MASTER) return;
+  if (!requireMaster()) return;   // says why, instead of a silent no-op on a reader
   await flushSave();
   const from = dir === "undo" ? undoStack : redoStack;
   const to = dir === "undo" ? redoStack : undoStack;
@@ -1161,7 +1161,8 @@ function renderGroups() {
   all.className = "grouprow" + (groupSel.size === 0 ? " sel" : "");
   all.innerHTML = `<div class="c-name"><svg><use href="#i-grid"/></svg><span>${t("tabAll")}</span></div>
                    <div class="c-count">${ud(DATA.books.filter((b) => materialFilter.has(b.material)).length)}</div>`;
-  all.onclick = () => {
+  all.onclick = async () => {
+    if (!(await confirmDiscard())) return;
     groupSel.clear();
     selectedId = null;
     if (mode === "category") { ftsScopedIds.clear(); updateFtsScope(); }
@@ -1175,7 +1176,8 @@ function renderGroups() {
     row.className = "grouprow" + (groupSel.has(name) ? " checked" : "");
     row.innerHTML = `<div class="c-name"><span class="g-check${groupSel.has(name) ? " on" : ""}"><svg><use href="#i-tick"/></svg></span><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
-    row.onclick = () => {
+    row.onclick = async () => {
+      if (!(await confirmDiscard())) return;
       if (groupSel.has(name)) groupSel.delete(name); else groupSel.add(name);
       selectedId = null;
       /* In the category tab the selection is also the search scope: every book
@@ -1233,7 +1235,8 @@ function renderBooks() {
       row.classList.add("sel");
       $("footDel").disabled = false;
     };
-    row.ondblclick = () => {
+    row.ondblclick = async () => {
+      if (editDraft && editDraft.id !== b.id && !(await confirmDiscard())) return;
       row.onclick();       // highlight follows the opened book even without a preceding click
       selectedId = b.id;
       b.viewedAt = new Date().toISOString();
@@ -1359,6 +1362,57 @@ function renderDetail() {
   return r;
 }
 
+/* Book edits wait for Save (asked for 2026-10-14) instead of being written on
+   every field change. The draft lives outside the form, so a re-render
+   (a loan, a format change...) does not wipe what was typed; anything that
+   would leave the book with edits pending asks before discarding them. */
+const EDIT_FIELDS = {
+  dTitle: "title", dAuthor: "author", dPublisher: "publisher", dCategory: "category", dVolumes: "volumes",
+  dMaktaba: "maktaba", dDepartment: "department", dAlmari: "almari", dNotes: "notes"
+};
+let editDraft = null;   // { id, values: { dTitle: "...", ... } } while there are unsaved edits
+
+function syncSaveButton() {
+  const btn = $("bvSave");
+  btn.disabled = !editDraft;
+  btn.classList.toggle("dirty", Boolean(editDraft));
+}
+
+function saveEdits() {
+  if (!editDraft || !requireMaster()) return false;
+  const b = DATA.books.find((x) => x.id === editDraft.id);
+  if (!b) { editDraft = null; syncSaveButton(); return false; }
+  const v = editDraft.values;
+  const title = String(v.dTitle).trim();
+  if (!title) { toast(t("needTitle")); if ($("dTitle")) $("dTitle").focus(); return false; }
+  const dup = findDuplicateTitle(title, b.id, String(v.dAuthor).trim());
+  if (dup) { toast(dupMessage(dup)); return false; }
+  for (const [id, field] of Object.entries(EDIT_FIELDS)) {
+    b[field] = field === "volumes" ? (parseInt(v[id], 10) || 0) : String(v[id]).trim();
+  }
+  editDraft = null;
+  persist();
+  renderGroups();
+  renderBooks();
+  renderDetail();
+  $("bvTitle").textContent = b.title;
+  toast(t("savedOk"));
+  return true;
+}
+
+// true = go ahead (nothing pending, or the user chose to discard)
+async function confirmDiscard() {
+  if (!editDraft) return true;
+  const ok = await askConfirm({
+    title: t("unsavedTitle"),
+    body: `<p>${t("unsavedBody")}</p>`,
+    go: t("discardChanges"),
+    danger: true
+  });
+  if (ok) { editDraft = null; syncSaveButton(); }
+  return ok;
+}
+
 function _renderDetail() {
   const body = $("detailBody");
   const b = DATA.books.find((x) => x.id === selectedId);
@@ -1368,6 +1422,8 @@ function _renderDetail() {
        the selection (side menu, category click, delete, a sync) would leave
        it showing an empty "choose a book" card. No book, no window. */
     $("bookView").classList.add("hidden");
+    editDraft = null;
+    syncSaveButton();
     return;
   }
 
@@ -1411,41 +1467,23 @@ function _renderDetail() {
   renderCover(b);
   renderFileRow(b);
 
-  const bind = (id, field, cast) => {
-    $(id).onchange = () => {
-      b[field] = cast ? cast($(id).value) : $(id).value.trim();
-      persist();
-      renderGroups();
-      renderBooks();
-    };
+  // Typed edits go to the draft; Save (saveEdits) writes them.
+  if (editDraft && editDraft.id !== b.id) editDraft = null;   // callers ask before switching books
+  if (editDraft) {
+    for (const [id, val] of Object.entries(editDraft.values)) $(id).value = val;
+    updateDeptList($("dMaktaba").value);
+  }
+  const stored = (field) => String(field === "volumes" ? (b.volumes ?? 0) : (b[field] || "")).trim();
+  const markDirty = () => {
+    const values = {};
+    for (const id of Object.keys(EDIT_FIELDS)) values[id] = $(id).value;
+    const changed = Object.entries(EDIT_FIELDS).some(([id, field]) => String(values[id]).trim() !== stored(field));
+    editDraft = changed ? { id: b.id, values } : null;   // typing a field back to what it was is not an edit
+    syncSaveButton();
   };
-  $("dTitle").onchange = () => {
-    const v = $("dTitle").value.trim();
-    const dupEdit = findDuplicateTitle(v, b.id, b.author);
-    if (!v || dupEdit) {
-      $("dTitle").value = b.title || "";
-      if (dupEdit) toast(dupMessage(dupEdit));
-      return;
-    }
-    b.title = v;
-    persist();
-    renderGroups();
-    renderBooks();
-  };
-  bind("dAuthor", "author");
-  bind("dPublisher", "publisher");
-  bind("dCategory", "category");
-  bind("dVolumes", "volumes", (v) => parseInt(v, 10) || 0);
-  bind("dDepartment", "department");
-  bind("dAlmari", "almari");
-  bind("dNotes", "notes");
-  $("dMaktaba").onchange = () => {
-    b.maktaba = $("dMaktaba").value;
-    updateDeptList(b.maktaba);
-    persist();
-    renderGroups();
-    renderBooks();
-  };
+  for (const id of Object.keys(EDIT_FIELDS)) { $(id).oninput = markDirty; $(id).onchange = markDirty; }
+  $("dMaktaba").addEventListener("change", () => updateDeptList($("dMaktaba").value));
+  syncSaveButton();
   $("dHasPrint").checked = Boolean(b.hasPrint);
   $("hasPrintHint").textContent = b.hasPrint ? "" : t("digitalOnlyHint");
 
@@ -2556,9 +2594,10 @@ function syncRowWidth() {
    books, no selected categories, no type filter, no search left over. A
    leftover type filter was what emptied the table on the client's machine
    while the category counts still said 85. */
-function showHome() {
+async function showHome() {
   const dlg = $("dlgCatalog");
   if (!dlg.open) return;
+  if (!(await confirmDiscard())) return;
   dlg.close();
   groupSel.clear();
   ftsScopedIds.clear();
@@ -2581,13 +2620,15 @@ function openBook() {
   $("bvTitle").textContent = b ? b.title : "";
 }
 
-function closeBook() {
+async function closeBook() {
+  if (!(await confirmDiscard())) return false;
   $("bookView").classList.add("hidden");
   renderBooks();                               // keeps the row selected; shows any edit just made
   renderDetail();
 }
 
-function setMode(next) {
+async function setMode(next) {
+  if (!(await confirmDiscard())) return;
   $("rail").querySelectorAll("[data-mode]").forEach((b) => b.classList.toggle("active", b.dataset.mode === next));
   mode = next;
   groupSel.clear();
@@ -2612,6 +2653,7 @@ $("bvClose").onclick = closeBook;
 
 /* A non-modal dialog gets no Escape handling from the browser, so wire it. */
 document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s" && editDraft) { e.preventDefault(); saveEdits(); return; }
   if (e.key !== "Escape") return;
   if (document.querySelector("dialog[open]:modal")) return;   // let real modals handle their own Esc
   // Topmost first: the book window, then the list under it.
@@ -2673,7 +2715,8 @@ function toggleMaxBook() {
 }
 $("bvMax").onclick = toggleMaxBook;
 // "Another book": back to the list (it sits under the book window).
-$("bvPick").onclick = () => { closeBook(); showCatalog(); };
+$("bvPick").onclick = async () => { if (await closeBook()) showCatalog(); };
+$("bvSave").onclick = saveEdits;
 // Esc closes the dialog natively; keep our state in step with that.
 $("dlgCatalog").addEventListener("close", () => {});
 

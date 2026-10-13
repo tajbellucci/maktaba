@@ -229,14 +229,20 @@ button, input, select, textarea, optgroup, option {
    icon reads as inactive rather than a live coloured action, and the click
    itself is still blocked in JS (requireMaster()), which is what actually
    stops the write, not this styling. */
+html[data-role="reader"] #iconbar [data-act="undo"] svg,
+html[data-role="reader"] #iconbar [data-act="redo"] svg,
 html[data-role="reader"] #iconbar [data-act="addOne"] svg,
 html[data-role="reader"] #iconbar [data-act="addMany"] svg,
 html[data-role="reader"] #iconbar [data-act="delete"] svg,
 html[data-role="reader"] #iconbar [data-act="publish"] svg { color: var(--muted-2); }
+html[data-role="reader"] #iconbar [data-act="undo"],
+html[data-role="reader"] #iconbar [data-act="redo"],
 html[data-role="reader"] #iconbar [data-act="addOne"],
 html[data-role="reader"] #iconbar [data-act="addMany"],
 html[data-role="reader"] #iconbar [data-act="delete"],
 html[data-role="reader"] #iconbar [data-act="publish"] { cursor: default; opacity: .55; }
+html[data-role="reader"] #iconbar [data-act="undo"]:hover,
+html[data-role="reader"] #iconbar [data-act="redo"]:hover,
 html[data-role="reader"] #iconbar [data-act="addOne"]:hover,
 html[data-role="reader"] #iconbar [data-act="addMany"]:hover,
 html[data-role="reader"] #iconbar [data-act="delete"]:hover,
@@ -1921,8 +1927,7 @@ html[data-role="reader"] #footAdd,
 html[data-role="reader"] #footAddMany,
 html[data-role="reader"] #footDel,
 html[data-role="reader"] #bvDelete,
-html[data-role="reader"] #iconbar [data-act="undo"],
-html[data-role="reader"] #iconbar [data-act="redo"],
+html[data-role="reader"] #bvSave,
 html[data-role="reader"] #iconbar [data-act="delete"],
 html[data-role="reader"] [data-act="categoriesMan"],
 html[data-role="reader"] .track-acts,
@@ -2691,6 +2696,11 @@ html[data-font="naskh"] .bv-title { font-family: var(--naskh); line-height: 1.6;
 }
 .bv-btn svg { width: 14px; height: 14px; }
 .bv-btn:hover { background: #d9e9fb; }
+/* Save: quiet until something is edited, then solid blue so it is obvious
+   there is unsaved work. */
+#bvSave:disabled { opacity: .45; cursor: default; background: transparent; border-color: var(--line); color: var(--muted-2); }
+#bvSave.dirty { background: var(--blue); border-color: var(--blue); color: #fff; }
+#bvSave.dirty:hover { background: var(--blue-2); }
 
 .bookview .pane.detail {
   width: auto;
