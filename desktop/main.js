@@ -648,9 +648,8 @@ async function loadWithSync() {
      asking. If this machine is holding work that never reached GitHub, that
      adopt is a silent deletion, so it does not happen: keep the local copy
      and let the window offer the pull with its own diff and confirmation. */
-  if (local && hasUnpublished()) return local;
-
   const remote = await fetchRemoteJson(owner, repo, branch, "books.json", settings.token);
+  if (local && hasUnpublished() && !(await serverMovedSinceOurSync(remote))) return local;
 
   if (remote && (!local || !isLibrarian)) {
     /* Compare CONTENT, not the `updated` stamp. That stamp is a date with
@@ -661,6 +660,9 @@ async function loadWithSync() {
     if (!local || catalogueHash(remote) !== catalogueHash(local)) {
       if (local) snapshotCatalogue("before-auto-pull");
       writeCatalogue(dataFile(), remote);
+      // Same as books:applyData: what we just took IS the published copy, so
+      // it must not show up as "unpublished" against an older stamp.
+      writeJson(publishStateFile(), { hash: catalogueHash(remote), at: new Date().toISOString() });
     }
     return remote;
   }
@@ -700,8 +702,29 @@ ipcMain.handle("books:peekRemote", async () => {
     settings.token
   );
   if (!remote) return { ok: false, error: "انٹرنیٹ سے رابطہ نہیں ہو سکا" };
-  return { ok: true, data: remote };
+  return { ok: true, data: remote, moved: await serverMovedSinceOurSync(remote) };
 });
+
+/* "Unpublished" only means "this machine differs from what IT last published
+   or pulled". Real bug, Taj's PC 2026-10-13: a leftover local edit from
+   5 Oct counted as unpublished work, so the machine refused every update and
+   sat on 38 books while the client published 461 from another PC. Local edits
+   made on top of a copy that ANOTHER machine has since replaced are not work
+   in progress: they can never be published (the divergence guard blocks it)
+   and they hide the real library. True only when all three agree: the server
+   copy is not ours, the last publisher (live Supabase row, not a cached GitHub
+   read) is a different machine, and that publish happened after our last
+   sync. The caller still snapshots the local copy to backups before adopting. */
+async function serverMovedSinceOurSync(remote) {
+  const st = readJson(publishStateFile(), null);
+  if (!remote || !st || !st.hash || !st.at) return false;
+  if (catalogueHash(remote) === st.hash) return false;
+  const res = await supabaseRequest(supabaseCfg(), "/rest/v1/catalogue_version?select=updated_at,publisher_label&id=eq.1", "GET");
+  const row = res.ok && Array.isArray(res.data) && res.data[0];
+  if (!row || !row.updated_at || !row.publisher_label) return false;
+  if (row.publisher_label === require("os").hostname()) return false;
+  return new Date(row.updated_at).getTime() > new Date(st.at).getTime();
+}
 
 /* Applies data the window already holds (the same object it just showed in
    the confirmation dialog) — avoids re-fetching and guarantees the user gets

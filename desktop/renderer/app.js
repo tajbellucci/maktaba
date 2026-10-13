@@ -752,8 +752,10 @@ async function syncOnBecomingMaster() {
   if (d.empty) return;
 
   const state = await window.maktaba.publishState();
-  if (!state.unpublished) {
-    // Nothing local to lose — adopt the server copy without interrupting.
+  /* peek.moved: another machine published after this one last synced, so any
+     local edits sit on a replaced copy and could never be published anyway.
+     Take the library's copy; applyData snapshots the old one to backups. */
+  if (!state.unpublished || peek.moved) {
     await adoptData(peek.data);
     toast(t("syncedFromServer"));
     return;
