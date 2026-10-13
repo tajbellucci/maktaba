@@ -1040,11 +1040,15 @@ const isFlat = () => FLAT_MODES.includes(mode);
    this window — and closing it is remembered per machine, like the display
    settings are, rather than travelling with the synced catalogue. */
 const FTS_OPEN_KEY = "maktaba-fts-open";
-let ftsOpen = localStorage.getItem(FTS_OPEN_KEY) !== "0";
+/* Shamela keeps الكتب (reading) and البحث (search) as two screens, and the
+   client asked for the same (video 2026-10-10): the list opens on the Books
+   screen with no tick boxes; «البحث» switches to the Search screen, where the
+   tick boxes and the search panel appear. Not remembered between visits. */
+let ftsOpen = false;
+try { localStorage.removeItem(FTS_OPEN_KEY); } catch { /* private mode */ }
 
 function setFtsOpen(open) {
   ftsOpen = open;
-  try { localStorage.setItem(FTS_OPEN_KEY, open ? "1" : "0"); } catch { /* private mode */ }
   applyFtsOpen();
 }
 
@@ -1058,6 +1062,8 @@ function applyFtsOpen() {
      librarian means by it. Visible on every rail tab. */
   $("ftsPane").classList.toggle("hidden", !ftsOpen);
   $("railFts").classList.toggle("active", ftsOpen);
+  // Tick boxes (categories and books) exist only on the Search screen; see the CSS.
+  document.documentElement.toggleAttribute("data-fts", ftsOpen);
   // A lone drag handle with nothing beside it to resize looks broken.
   $("ftsResizer").classList.toggle("hidden", !ftsOpen);
 }
@@ -1148,6 +1154,18 @@ function renderAll() {
   renderStatus();
 }
 
+let groupBookIds = new Map();   // group name -> ids of its books, rebuilt by renderGroups
+/* A category's box: full when all its books are ticked, half when some are. */
+function refreshGroupChecks() {
+  document.querySelectorAll("#groupList .grouprow[data-gname]").forEach((row) => {
+    const ids = groupBookIds.get(row.dataset.gname) || [];
+    const n = ids.filter((id) => ftsScopedIds.has(id)).length;
+    const box = row.querySelector(".g-check");
+    box.classList.toggle("on", n > 0 && n === ids.length);
+    box.classList.toggle("part", n > 0 && n < ids.length);
+  });
+}
+
 function renderGroups() {
   if (isFlat()) return;
   $("groupColName").textContent = groupLabel();
@@ -1165,33 +1183,45 @@ function renderGroups() {
     if (!(await confirmDiscard())) return;
     groupSel.clear();
     selectedId = null;
-    if (mode === "category") { ftsScopedIds.clear(); updateFtsScope(); }
     renderAll();
   };
   list.appendChild(all);
 
   const icon = { category: "i-tag", author: "i-pen", status: "i-check", shelf: "i-shelf" }[mode];
+  /* Shamela, as the client showed it: clicking a category's NAME shows that
+     category's books and ticks nothing; only its tick box (Search screen)
+     ticks all of its books. Clicking the name used to tick every book too. */
+  groupBookIds = new Map();
+  for (const b of DATA.books) {
+    if (!materialFilter.has(b.material)) continue;
+    const k = groupKey(b);
+    if (!groupBookIds.has(k)) groupBookIds.set(k, []);
+    groupBookIds.get(k).push(b.id);
+  }
   for (const [name, count] of groups()) {
     const row = document.createElement("div");
-    row.className = "grouprow" + (groupSel.has(name) ? " checked" : "");
-    row.innerHTML = `<div class="c-name"><span class="g-check${groupSel.has(name) ? " on" : ""}"><svg><use href="#i-tick"/></svg></span><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
+    row.className = "grouprow" + (groupSel.has(name) ? " sel" : "");
+    row.dataset.gname = name;
+    row.innerHTML = `<div class="c-name"><span class="g-check" title="${t("ftsCheckTip")}"><svg><use href="#i-tick"/></svg></span><svg><use href="#${icon}"/></svg><span>${esc(name)}</span></div>
                      <div class="c-count">${ud(count)}</div>`;
     row.onclick = async () => {
       if (!(await confirmDiscard())) return;
-      if (groupSel.has(name)) groupSel.delete(name); else groupSel.add(name);
+      groupSel.clear();
+      groupSel.add(name);
       selectedId = null;
-      /* In the category tab the selection is also the search scope: every book
-         in the selected categories is checked into the full-text search, and
-         un-selecting a category takes its books back out. */
-      if (mode === "category") {
-        ftsScopedIds.clear();
-        for (const b of DATA.books) if (groupSel.has(groupKey(b)) && materialFilter.has(b.material)) ftsScopedIds.add(b.id);
-        updateFtsScope();
-      }
       renderAll();
+    };
+    row.querySelector(".g-check").onclick = (ev) => {
+      ev.stopPropagation();   // ticking must not also switch the category shown
+      const ids = groupBookIds.get(name) || [];
+      const all = ids.length && ids.every((id) => ftsScopedIds.has(id));
+      for (const id of ids) { if (all) ftsScopedIds.delete(id); else ftsScopedIds.add(id); }
+      updateFtsScope();
+      renderBooks();          // the ticks on the book rows
     };
     list.appendChild(row);
   }
+  refreshGroupChecks();
   list.scrollTop = keepScroll;
 }
 
@@ -2534,7 +2564,7 @@ function syncRowWidth() {
     if (typeof DATA === "undefined" || !DATA) return;
     let fp = DATA.books.length;
     for (const b of DATA.books) fp = (fp * 31 + String(b.title || "").length * 7 + String(b.author || "").length * 3 + String(b.publisher || "").length + String(b.accession || "").length) % 1000000007;
-    const key = [fp, list.clientWidth, LANG, ...["data-show-acc", "data-show-pub", "data-size", "data-font", "data-density"].map((a) => root.getAttribute(a))].join("|");
+    const key = [fp, list.clientWidth, LANG, ...["data-show-acc", "data-show-pub", "data-size", "data-font", "data-density", "data-fts"].map((a) => root.getAttribute(a))].join("|");
     if (key === lastKey && sizes) return;
     const w = autoWidths();
     if (w) lastKey = key;
@@ -2606,6 +2636,7 @@ async function showHome() {
   syncMaterialUI();
   $("search").value = "";
   selectedId = null;
+  setFtsOpen(false);
   updateFtsScope();
   renderAll();
 }
@@ -2638,7 +2669,10 @@ async function setMode(next) {
 }
 
 $("rail").querySelectorAll("[data-mode]").forEach((btn) => {
-  btn.onclick = () => setMode(btn.dataset.mode);
+  btn.onclick = async () => {
+    await setMode(btn.dataset.mode);
+    if (btn.dataset.mode === "books") setFtsOpen(false);   // «الكتب» is the reading screen
+  };
 });
 /* Non-rail buttons with data-mode (currently just the home screen's "Open
    Library" button) open straight into that mode. Was hardcoded to only ever
@@ -4709,12 +4743,7 @@ function renderFtsResults(found, opts, headingsOnly) {
   }
 }
 
-$("railFts").onclick = () => {
-  // Opening it from any other tab must actually show it, not silently do
-  // nothing because the panel only ever appears on "books".
-  if (!ftsOpen && mode !== "books") { setMode("books"); }
-  setFtsOpen(!ftsOpen);
-};
+$("railFts").onclick = () => setFtsOpen(!ftsOpen);
 $("ftsRun").onclick = runFullTextSearch;
 $("ftsClear").onclick = () => {
   for (const id of ["fts1", "fts2", "fts3", "fts4", "ftsNot"]) $(id).value = "";
@@ -4727,6 +4756,7 @@ $("ftsClear").onclick = () => {
    one book is checked in the list — count only, not a list of titles, so it
    stays one line regardless of how many are checked. */
 function updateFtsScope() {
+  refreshGroupChecks();
   const n = ftsScopedIds.size;
   $("ftsScope").classList.toggle("hidden", n === 0);
   if (!n) { $("ftsScopeList").innerHTML = ""; return; }

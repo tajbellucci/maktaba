@@ -3004,6 +3004,16 @@ html[data-mode="dark"] .rail button:not(.active) svg { color: #fff; }
 .g-check.on svg { opacity: 1; color: #fff; }
 .grouprow:hover .g-check { border-color: var(--blue); }
 .g-check.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+/* Some, not all, of the category's books ticked. */
+.g-check.part { background: var(--blue-wash); border-color: var(--blue); }
+.g-check.part svg { opacity: .55; color: var(--blue); }
+.grouprow.sel .g-check { border-color: rgba(255,255,255,.7); }
+/* Tick boxes belong to the Search screen only (Shamela's البحث); the Books
+   screen (الكتب) is for browsing and reading. Header cell hidden with the row
+   cells so the columns stay in line. */
+html:not([data-fts]) .g-check,
+html:not([data-fts]) .br-check,
+html:not([data-fts]) .bh-check { display: none; }
 .grouprow.checked { background: var(--blue-wash); }
 .grouprow.checked .c-name { color: var(--blue-deep); font-weight: 700; }
 html[data-mode="dark"] .grouprow.checked { background: rgba(24,115,207,.22); }
