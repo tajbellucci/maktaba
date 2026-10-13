@@ -2344,6 +2344,94 @@ function makeColumnResizable(handle, panel, { min = 160, max = 480, storageKey }
 makeColumnResizable($("groupsResizer"), document.querySelector(".groups"), { min: 160, max: 420, storageKey: "maktaba-w-groups" });
 makeColumnResizable($("ftsResizer"), document.querySelector(".ftspane"), { min: 200, max: 480, storageKey: "maktaba-w-fts" });
 
+/* The book table's columns and row height are the user's to set: drag a
+   heading's edge to widen or squeeze that column, drag the bottom edge of any
+   row to make every row taller or shorter; double-click a grip to reset.
+   Header and rows read the same CSS variables (--w-*, --row-h), so they can
+   never drift apart. Each grip resizes the column whose OTHER edge is pinned
+   (columns right of the title grow from the row's start, those left of it
+   from the row's end), so the edge always follows the mouse. Saved per
+   machine; same zoom correction as makeColumnResizable above. */
+(function makeBookTableResizable() {
+  const root = document.documentElement;
+  const zoom = () => parseFloat(getComputedStyle(root).getPropertyValue("--z")) || 1;
+  const KEY = "maktaba-table-sizes";
+  let sizes = {};
+  try { sizes = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch { sizes = {}; }
+  const apply = () => {
+    for (const k of ["acc", "author", "publisher"]) {
+      if (sizes[k]) root.style.setProperty("--w-" + k, sizes[k] + "px"); else root.style.removeProperty("--w-" + k);
+    }
+    if (sizes.row) root.style.setProperty("--row-h", sizes.row + "px"); else root.style.removeProperty("--row-h");
+  };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(sizes)); } catch { /* private mode */ } };
+  apply();
+
+  const head = document.querySelector(".bookhead");
+  const list = $("bookList");
+  let drag = null;   // { col, cell, anchorRight, edge } or { row: true, startY, startH }
+  let swallowClick = false;
+
+  head.querySelectorAll(".th-grip").forEach((grip) => {
+    grip.addEventListener("mousedown", (e) => {
+      const cell = head.querySelector(".bh-" + grip.dataset.col);
+      const r = cell.getBoundingClientRect();
+      const anchorRight = grip.dataset.col === "acc";
+      drag = { col: grip.dataset.col, grip, anchorRight, edge: anchorRight ? r.right : r.left };
+      grip.classList.add("active");
+      document.body.style.cursor = "col-resize";
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    grip.addEventListener("dblclick", () => { delete sizes[grip.dataset.col]; apply(); save(); });
+  });
+
+  // Within 4px of a row's bottom edge = the row-height grip.
+  const nearRowBottom = (e) => {
+    const row = e.target.closest && e.target.closest(".bookrow");
+    if (!row) return null;
+    const r = row.getBoundingClientRect();
+    return r.bottom - e.clientY <= 4 ? row : null;
+  };
+  list.addEventListener("mousemove", (e) => { if (!drag) list.classList.toggle("row-resize", Boolean(nearRowBottom(e))); });
+  list.addEventListener("mouseleave", () => { if (!drag) list.classList.remove("row-resize"); });
+  list.addEventListener("mousedown", (e) => {
+    swallowClick = false;   // a previous drag may have ended outside the list
+    const row = nearRowBottom(e);
+    if (!row) return;
+    drag = { row: true, startY: e.clientY, startH: row.getBoundingClientRect().height / zoom() };
+    e.preventDefault();
+  });
+  list.addEventListener("dblclick", (e) => {
+    if (!nearRowBottom(e)) return;
+    delete sizes.row; apply(); save();
+  }, true);
+  // A drag ends in a click on the row under it; that must not open the book.
+  list.addEventListener("click", (e) => {
+    if (swallowClick) { swallowClick = false; e.stopPropagation(); }
+  }, true);
+
+  window.addEventListener("mousemove", (e) => {
+    if (!drag) return;
+    if (drag.row) {
+      sizes.row = Math.round(Math.max(20, Math.min(120, drag.startH + (e.clientY - drag.startY) / zoom())));
+    } else {
+      const w = (drag.anchorRight ? drag.edge - e.clientX : e.clientX - drag.edge) / zoom();
+      sizes[drag.col] = Math.round(Math.max(30, Math.min(list.clientWidth * 0.6 / zoom(), w)));
+    }
+    apply();
+  });
+  window.addEventListener("mouseup", () => {
+    if (!drag) return;
+    if (drag.row) swallowClick = true;
+    if (drag.grip) drag.grip.classList.remove("active");
+    drag = null;
+    document.body.style.cursor = "";
+    list.classList.remove("row-resize");
+    save();
+  });
+})();
+
 function showHome() {
   const dlg = $("dlgCatalog");
   if (dlg.open) dlg.close();
@@ -2494,7 +2582,9 @@ $("matPrinted").onchange = () => setGroupMaterials(PRINTED, $("matPrinted").chec
 $("matUnprinted").onchange = () =>
   setGroupMaterials(MATERIALS.filter((m) => !PRINTED.includes(m)), $("matUnprinted").checked);
 
-$("search").addEventListener("input", renderBooks);
+// Redraw once typing pauses, not on every key: each redraw lays out the list.
+let searchTimer = null;
+$("search").addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(renderBooks, 180); });
 $("btnClearSearch").onclick = () => { $("search").value = ""; renderBooks(); };
 
 /* ── Add / delete ─────────────────────────────────────────────────────── */

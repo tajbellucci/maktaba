@@ -1245,7 +1245,7 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
 }
 /* Every width here must mirror the matching .br-* cell exactly, or the header
    drifts away from the columns it labels. */
-.bookhead div { padding: 3px 8px; }
+.bookhead div { padding: 3px 8px; position: relative; display: flex; align-items: center; }
 /* padding: 0, not inherited from ".bookhead div" — that 9px each side does
    not fit inside a 13px/18px box, and border-box flex sizing then quietly
    grows the box to fit the padding instead of the declared width, which is
@@ -1253,10 +1253,21 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
 .bh-check { width: 13px; flex: none; padding: 0 !important; }
 .bh-bookicon { width: 18px; flex: none; padding: 0 !important; }
 .bh-star { width: 30px; flex: none; padding: 4px 0 !important; }
-.bh-acc { width: 44px; flex: none; padding: 3px 4px !important; border-left: 1px solid var(--line-soft); text-align: center; }
-.bh-author { width: 17%; flex: none; border-left: 1px solid var(--line-soft); }
-.bh-title { flex: 1; min-width: 0; border-left: 1px solid var(--line-soft); }
-.bh-publisher { width: 14%; flex: none; }
+.bh-acc { width: var(--w-acc, 44px); flex: none; padding: 3px 4px !important; border-left: 1px solid var(--line-soft); justify-content: center; text-align: center; }
+.bh-author { width: var(--w-author, 17%); flex: none; border-left: 1px solid var(--line-soft); }
+/* 8px cell padding + 7px status dot + 6px gap: the heading starts where the
+   title TEXT starts, not over the dot. */
+.bh-title { flex: 1; min-width: 0; border-left: 1px solid var(--line-soft); padding-inline-start: 21px !important; }
+.bh-publisher { width: var(--w-publisher, 14%); flex: none; }
+
+/* Column grips: drag a heading's edge to resize; double-click resets. */
+.bookhead .th-grip {
+  position: absolute; top: 0; bottom: 0; inset-inline-end: -4px;
+  width: 8px; padding: 0; z-index: 2;
+  cursor: col-resize;
+}
+.bookhead .th-grip:hover, .bookhead .th-grip.active { background: var(--blue-wash); }
+.booklist.row-resize, .booklist.row-resize * { cursor: row-resize !important; }
 
 /* Hiding a column in Options must hide its heading too. */
 html[data-show-acc="off"] .bh-acc { display: none; }
@@ -1268,9 +1279,18 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
    screen. */
 .bookhead { padding-inline-end: var(--scrollbar-w, 0px); box-sizing: content-box; }
 
-.bookrow { padding: 0; }
+/* content-visibility: rows off screen skip layout entirely. Laying out ~460
+   rows of Arabic text cost ~650ms on every list redraw (each search key,
+   each filter click); this is what made the app feel slow. */
+.bookrow {
+  padding: 0;
+  height: var(--row-h, auto);
+  overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--row-h, 30px);
+}
 .br-acc {
-  width: 44px; flex: none;
+  width: var(--w-acc, 44px); flex: none;
   padding: 2px 4px;
   text-align: center;
   font-size: 11.5px;
@@ -1280,7 +1300,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   font-variant-numeric: tabular-nums;
 }
 .br-author {
-  width: 17%; flex: none;
+  width: var(--w-author, 17%); flex: none;
   padding: 2px 8px;
   color: var(--muted);
   font-size: 12px;
@@ -1299,7 +1319,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .br-publisher {
-  width: 14%; flex: none;
+  width: var(--w-publisher, 14%); flex: none;
   padding: 2px 8px;
   color: var(--muted-2);
   font-size: 12px;
