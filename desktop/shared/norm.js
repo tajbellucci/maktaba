@@ -221,6 +221,28 @@ function matches(book, query) {
   return q.split(/\s+/).every((word) => hay.includes(word));
 }
 
+/* How well a book that matches() fits the query, lower = better. matches()
+   is deliberately loose (each word anywhere in any field), so without this
+   «تفسير القرآن» listed the one title holding that phrase 9th of 18, behind
+   books that only had «القرآن» in the title and «التفسير» as category.
+     0 exact title (or exact register number)   3 title has all the words
+     1 title starts with the query               4 author has the phrase / all words
+     2 title contains the phrase                 5 anything else (category, notes…) */
+function matchRank(book, query) {
+  const q = norm(query);
+  if (!q) return 0;
+  const title = norm(book.title);
+  if (title === q || norm(book.accession) === q) return 0;
+  if (title.startsWith(q)) return 1;
+  // Phrase also counts with spaces ignored: the catalogue has «تفسيرالقرآن العظيم» typed without one.
+  if (title.includes(q) || title.replace(/\s+/g, "").includes(q.replace(/\s+/g, ""))) return 2;
+  const words = q.split(/\s+/);
+  if (words.every((w) => title.includes(w))) return 3;
+  const author = norm(book.author);
+  if (author.includes(q) || words.every((w) => author.includes(w))) return 4;
+  return 5;
+}
+
 /* Duplicate detection — Shamela's "compare books to sort duplicates".
    In a physical register the same title+author entered twice is a real
    cataloguing error, so the key is the normalized pair, not the record id. */
@@ -239,6 +261,6 @@ if (typeof module !== "undefined") {
   module.exports = {
     norm, normIndexed, findInText,
     normIndexedOpts, findInTextOpts, prepareIndex,
-    matches, duplicateGroups
+    matches, matchRank, duplicateGroups
   };
 }

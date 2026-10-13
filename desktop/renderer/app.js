@@ -1111,8 +1111,15 @@ function visibleBooks() {
     return matches(b, $("search").value);
   });
   // "Recently opened" is inherently ordered by when it was opened.
-  if (mode === "recent") return out.sort((a, b) => String(b.viewedAt).localeCompare(String(a.viewedAt)));
-  return sortBooks(out);
+  const sorted = mode === "recent"
+    ? out.sort((a, b) => String(b.viewedAt).localeCompare(String(a.viewedAt)))
+    : sortBooks(out);
+  /* While searching, best matches first (see matchRank in shared/norm.js);
+     the chosen order still holds inside each group, as sort() is stable. */
+  const q = $("search").value;
+  if (!norm(q)) return sorted;
+  const rank = new Map(sorted.map((b) => [b.id, matchRank(b, q)]));
+  return sorted.sort((a, b) => rank.get(a.id) - rank.get(b.id));
 }
 
 /* Shamela offers "arrange alphabetically" and "arrange by author"; the
@@ -2398,7 +2405,9 @@ function syncListGeometry() {
   document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
   syncRowWidth();
 }
-new ResizeObserver(() => syncListGeometry()).observe($("bookList"));
+// Next frame: re-fitting columns inside the callback changed layout mid-notification
+// ("ResizeObserver loop completed with undelivered notifications").
+new ResizeObserver(() => requestAnimationFrame(syncListGeometry)).observe($("bookList"));
 function syncRowWidth() {
   const root = document.documentElement;
   if (!root.hasAttribute("data-cols-fixed")) return;
@@ -2477,9 +2486,20 @@ function syncRowWidth() {
   const head = document.querySelector(".bookhead");
   const list = $("bookList");
   apply();
+  /* Measuring every book costs ~22ms, too much for every redraw. Re-measure
+     only when the texts, the list width or the language change; the length
+     fingerprint is a ~0.1ms pass (an edit that keeps a field's exact length
+     changes its width by a hair at most). */
+  let lastKey = "";
   refreshAutoColumns = () => {
     if (manual) return;
+    if (typeof DATA === "undefined" || !DATA) return;
+    let fp = DATA.books.length;
+    for (const b of DATA.books) fp = (fp * 31 + String(b.title || "").length * 7 + String(b.author || "").length * 3 + String(b.publisher || "").length + String(b.accession || "").length) % 1000000007;
+    const key = [fp, list.clientWidth, LANG, ...["data-show-acc", "data-show-pub", "data-size", "data-font", "data-density"].map((a) => root.getAttribute(a))].join("|");
+    if (key === lastKey && sizes) return;
     const w = autoWidths();
+    if (w) lastKey = key;
     if (!w || COLS.every((k) => sizes && sizes[k] === w[k])) return;
     sizes = w;
     apply();
