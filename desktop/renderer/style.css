@@ -1313,6 +1313,7 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
    each filter click); this is what made the app feel slow. */
 .bookrow {
   padding: 0;
+  user-select: none;   /* double-click opens the book; it must not also highlight a word */
   content-visibility: auto;
   contain-intrinsic-size: auto 30px;
 }

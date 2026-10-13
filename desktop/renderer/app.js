@@ -1076,9 +1076,12 @@ function groupKey(b) {
   return b.maktaba || t("noMaktaba"); // "shelf" rail mode groups by مکتبہ (library building)
 }
 
+/* Counts follow the type filter (كتب / مجلات ...) like the table does; they
+   used to count every book, so a category could say 85 over an empty table. */
 function groups() {
   const map = new Map();
   for (const b of DATA.books) {
+    if (!materialFilter.has(b.material)) continue;
     const k = groupKey(b);
     map.set(k, (map.get(k) || 0) + 1);
   }
@@ -1150,7 +1153,7 @@ function renderGroups() {
   const all = document.createElement("div");
   all.className = "grouprow" + (groupSel.size === 0 ? " sel" : "");
   all.innerHTML = `<div class="c-name"><svg><use href="#i-grid"/></svg><span>${t("tabAll")}</span></div>
-                   <div class="c-count">${ud(DATA.books.length)}</div>`;
+                   <div class="c-count">${ud(DATA.books.filter((b) => materialFilter.has(b.material)).length)}</div>`;
   all.onclick = () => {
     groupSel.clear();
     selectedId = null;
@@ -1173,7 +1176,7 @@ function renderGroups() {
          un-selecting a category takes its books back out. */
       if (mode === "category") {
         ftsScopedIds.clear();
-        for (const b of DATA.books) if (groupSel.has(groupKey(b))) ftsScopedIds.add(b.id);
+        for (const b of DATA.books) if (groupSel.has(groupKey(b)) && materialFilter.has(b.material)) ftsScopedIds.add(b.id);
         updateFtsScope();
       }
       renderAll();
@@ -1211,18 +1214,25 @@ function renderBooks() {
                      <span class="br-title"><span class="dot" title="${t("st_" + b.status)}"></span>${esc(b.title)}${badges}</span>
                      <span class="br-author">${esc(b.author) || t("noAuthor")}</span>
                      <span class="br-publisher">${esc(b.publisher)}</span>`;
+    /* Shamela: one click selects, a double click opens. Opening on a single
+       click meant every mis-click popped a book over the list. */
     row.onclick = () => {
       selectedId = b.id;
-      b.viewedAt = new Date().toISOString();
-      persistSoon();
       /* Moving the highlight used to rebuild every row in the list — at a few
          thousand books that is the whole list thrown away and recreated just
          to shift one class. Move the class instead. */
       const prev = list.querySelector(".bookrow.sel");
       if (prev) prev.classList.remove("sel");
       row.classList.add("sel");
+      $("footDel").disabled = false;
+    };
+    row.ondblclick = () => {
+      row.onclick();       // highlight follows the opened book even without a preceding click
+      selectedId = b.id;
+      b.viewedAt = new Date().toISOString();
+      persistSoon();
       renderDetail();
-      openBook();          // picker closes, the book takes the window
+      openBook();          // the book opens over the list; closing it returns here
     };
     if (theme().hoverCard) {
       row.onmouseenter = (e) => showCard(b, row, e.clientX);
@@ -1270,6 +1280,19 @@ function renderBooks() {
       const allTab = document.querySelector('#tabs [data-filter="all"]');
       if (allTab) allTab.click();
     };
+    /* The type chips (كتب / مجلات ...) hide whole kinds of record. If that is
+       what emptied the list, say so and offer the one click that undoes it. */
+    if (materialFilter.size < MATERIALS.length) {
+      const hint = document.createElement("button");
+      hint.type = "button";
+      hint.className = "le-btn";
+      hint.textContent = t("emptyMaterialReset");
+      hint.onclick = () => { materialFilter = new Set(MATERIALS); syncMaterialUI(); renderGroups(); renderBooks(); };
+      const note = document.createElement("div");
+      note.className = "le-title";
+      note.textContent = t("emptyMaterial");
+      list.querySelector(".list-empty").append(note, hint);
+    }
   }
 
   $("listCount").textContent = `${ud(books.length)} / ${ud(DATA.books.length)} ${t("tabAll")}`;
@@ -2447,26 +2470,38 @@ function syncRowWidth() {
   });
 })();
 
+/* Closing the list starts the next visit fresh, like Shamela: no ticked
+   books, no selected categories, no type filter, no search left over. A
+   leftover type filter was what emptied the table on the client's machine
+   while the category counts still said 85. */
 function showHome() {
   const dlg = $("dlgCatalog");
-  if (dlg.open) dlg.close();
+  if (!dlg.open) return;
+  dlg.close();
+  groupSel.clear();
+  ftsScopedIds.clear();
+  ftsScopePicked.clear();
+  materialFilter = new Set(MATERIALS);
+  syncMaterialUI();
+  $("search").value = "";
+  selectedId = null;
+  updateFtsScope();
+  renderAll();
 }
 
-/* Shamela closes the picker the moment a book is chosen and shows that book
-   in the window behind it. Nothing here reads book text — we show the
-   catalogue record instead — but the flow is the same. */
+/* The book opens as a window over the list; closing it goes back to the
+   list exactly as it was (the client expected this, not the list closing). */
 function openBook() {
   hideCard();                                  // the hover card from the row just clicked must not linger
-  showHome();                                  // close the picker
   $("bookView").classList.remove("hidden");
+  $("detailBody").scrollTop = 0;               // start at the top, not wherever the last book was scrolled to
   const b = DATA.books.find((x) => x.id === selectedId);
   $("bvTitle").textContent = b ? b.title : "";
 }
 
 function closeBook() {
   $("bookView").classList.add("hidden");
-  selectedId = null;
-  renderBooks();
+  renderBooks();                               // keeps the row selected; shows any edit just made
   renderDetail();
 }
 
@@ -2497,6 +2532,8 @@ $("bvClose").onclick = closeBook;
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   if (document.querySelector("dialog[open]:modal")) return;   // let real modals handle their own Esc
+  // Topmost first: the book window, then the list under it.
+  if (!$("bookView").classList.contains("hidden")) { closeBook(); e.preventDefault(); return; }
   if ($("dlgCatalog").open) { showHome(); e.preventDefault(); }
 });
 
@@ -2553,7 +2590,8 @@ function toggleMaxBook() {
   btn.querySelector("use").setAttribute("href", now ? "#i-restore" : "#i-max");
 }
 $("bvMax").onclick = toggleMaxBook;
-$("bvPick").onclick = showCatalog;
+// "Another book": back to the list (it sits under the book window).
+$("bvPick").onclick = () => { closeBook(); showCatalog(); };
 // Esc closes the dialog natively; keep our state in step with that.
 $("dlgCatalog").addEventListener("close", () => {});
 
@@ -2577,6 +2615,9 @@ function syncMaterialUI() {
   const unprintedOn = MATERIALS.filter((m) => !PRINTED.includes(m)).some((m) => materialFilter.has(m));
   $("matPrinted").checked = printedOn;
   $("matUnprinted").checked = unprintedOn;
+  // A book the table no longer shows must not stay ticked in the search panel.
+  for (const b of DATA.books) if (!materialFilter.has(b.material)) ftsScopedIds.delete(b.id);
+  updateFtsScope();
 }
 
 document.querySelectorAll("[data-mat]").forEach((btn) => {
@@ -2584,6 +2625,7 @@ document.querySelectorAll("[data-mat]").forEach((btn) => {
     const m = btn.dataset.mat;
     if (materialFilter.has(m)) materialFilter.delete(m); else materialFilter.add(m);
     syncMaterialUI();
+    renderGroups();
     renderBooks();
   };
 });
@@ -2591,6 +2633,7 @@ document.querySelectorAll("[data-mat]").forEach((btn) => {
 const setGroupMaterials = (list, on) => {
   list.forEach((m) => (on ? materialFilter.add(m) : materialFilter.delete(m)));
   syncMaterialUI();
+  renderGroups();
   renderBooks();
 };
 $("matPrinted").onchange = () => setGroupMaterials(PRINTED, $("matPrinted").checked);
