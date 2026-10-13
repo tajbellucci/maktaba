@@ -32,8 +32,12 @@ addRange(IGNORED, 0x200B, 0x200F);
    folds even when hamzas are being respected. */
 const FOLD_ALWAYS = new Map([
   [0x064A, "ی"],                                   // ي -> ی
+  [0x0649, "ی"],                                   // ى -> ی  («فتاوى» found only 2 of 16 as «فتاوي»)
   [0x0643, "ک"],                                   // ك -> ک
   [0x0629, "ہ"],                                   // ة -> ہ
+  /* Every heh form is one letter for search: «الهدايه» found 1 of the 10
+     «الهداية», «الہدایہ» found none. Applied to query and text alike. */
+  [0x0647, "ہ"], [0x06BE, "ہ"], [0x06C3, "ہ"], [0x06D5, "ہ"],   // ه ھ ۃ ە -> ہ
   [0x0671, "ا"], [0x0672, "ا"],               // ٱ ٲ -> ا
   [0x0673, "ا"], [0x0675, "ا"]                // ٳ ٵ -> ا
 ]);
@@ -41,7 +45,9 @@ const FOLD_ALWAYS = new Map([
 /* Folded unless "مراعاة الهمزات" is on — these carry a real hamza. */
 const FOLD_HAMZA = new Map([
   [0x0623, "ا"], [0x0625, "ا"], [0x0622, "ا"],   // أ إ آ -> ا
-  [0x0626, "ی"]                                            // ئ    -> ی
+  [0x0626, "ی"],                                           // ئ    -> ی
+  [0x0624, "و"],                                           // ؤ    -> و  («موسسة» found no «مؤسسة»)
+  [0x06C2, "ہ"]                                            // ۂ    -> ہ
 ]);
 
 /* One character in, its normalized form out; "" means drop it.
@@ -58,6 +64,9 @@ function foldChar(ch, code, keepHarakat, keepHamza, daggerAsAlef) {
     if (h !== undefined) return h;
   }
   if (code < 0x80) return code >= 65 && code <= 90 ? String.fromCharCode(code + 32) : ch;
+  // Arabic-Indic and Urdu digits are the same numbers: «٧٨» / «۷۸» found nothing, «78» found book 78.
+  if (code >= 0x0660 && code <= 0x0669) return String.fromCharCode(code - 0x0660 + 48);
+  if (code >= 0x06F0 && code <= 0x06F9) return String.fromCharCode(code - 0x06F0 + 48);
   if (code >= 0x0600 && code <= 0x06FF) return ch;   // Arabic script has no case
   return ch.toLowerCase();
 }
@@ -208,17 +217,30 @@ function findInTextOpts(text, query, opts, prepared) {
 /* Substring match across every searchable field.
    Substring, not whole-word: the reference app's exact-match-only search is
    its most complained-about flaw. */
+/* The catalogue query as it is matched: normalized, punctuation read as a
+   space («تفسير، القرطبي» found nothing), and "" when it is too short to mean
+   anything — the box says "at least three letters", yet «ا» matched all 461
+   books. A number of any length still searches (register number «7»). */
+/* Only real punctuation: diacritics are marks, not punctuation (treating them as such split «صَحِيح» into letters), and "-" and "/" are part of codes like almari «4-د». */
+const PUNCT = /[()\[\]{}،,.:;!?؟"'«»…]+/g;
+function searchTerm(query) {
+  const q = norm(String(query == null ? "" : query).replace(PUNCT, " ")).replace(/\s+/g, " ").trim();
+  if (/^\d+$/.test(q)) return q;
+  return q.replace(/\s/g, "").length >= 3 ? q : "";
+}
+
 function matches(book, query) {
-  const q = norm(query);
+  const q = searchTerm(query);
   if (!q) return true;
   const hay = norm(
     [
       book.title, book.author, book.publisher, book.category, book.notes,
       book.maktaba, book.department, book.borrower,
+      book.almari,     // the shelf a librarian is standing at («4-د» was not searchable)
       book.accession   // a librarian holding the book reads its register number off the spine
-    ].join(" ")
+    ].join(" ").replace(PUNCT, " ")
   );
-  return q.split(/\s+/).every((word) => hay.includes(word));
+  return q.split(" ").every((word) => hay.includes(word));
 }
 
 /* How well a book that matches() fits the query, lower = better. matches()
@@ -229,16 +251,16 @@ function matches(book, query) {
      1 title starts with the query               4 author has the phrase / all words
      2 title contains the phrase                 5 anything else (category, notes…) */
 function matchRank(book, query) {
-  const q = norm(query);
+  const q = searchTerm(query);
   if (!q) return 0;
-  const title = norm(book.title);
+  const title = norm(String(book.title || "").replace(PUNCT, " ")).replace(/\s+/g, " ");
   if (title === q || norm(book.accession) === q) return 0;
   if (title.startsWith(q)) return 1;
   // Phrase also counts with spaces ignored: the catalogue has «تفسيرالقرآن العظيم» typed without one.
   if (title.includes(q) || title.replace(/\s+/g, "").includes(q.replace(/\s+/g, ""))) return 2;
   const words = q.split(/\s+/);
   if (words.every((w) => title.includes(w))) return 3;
-  const author = norm(book.author);
+  const author = norm(String(book.author || "").replace(PUNCT, " ")).replace(/\s+/g, " ");
   if (author.includes(q) || words.every((w) => author.includes(w))) return 4;
   return 5;
 }
@@ -261,6 +283,6 @@ if (typeof module !== "undefined") {
   module.exports = {
     norm, normIndexed, findInText,
     normIndexedOpts, findInTextOpts, prepareIndex,
-    matches, matchRank, duplicateGroups
+    matches, matchRank, searchTerm, duplicateGroups
   };
 }

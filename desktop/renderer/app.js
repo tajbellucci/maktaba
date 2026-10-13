@@ -1126,7 +1126,7 @@ function visibleBooks() {
   /* While searching, best matches first (see matchRank in shared/norm.js);
      the chosen order still holds inside each group, as sort() is stable. */
   const q = $("search").value;
-  if (!norm(q)) return sorted;
+  if (!searchTerm(q)) return sorted;
   const rank = new Map(sorted.map((b) => [b.id, matchRank(b, q)]));
   return sorted.sort((a, b) => rank.get(a.id) - rank.get(b.id));
 }
