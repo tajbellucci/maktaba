@@ -816,6 +816,11 @@ dialog {
 }
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
 dialog::backdrop { background: rgba(23, 34, 46, .38); backdrop-filter: blur(2px); }
+/* The browser centres a modal dialog with margin: auto, and the global
+   "* { margin: 0 }" reset took that away: every popup (Add Book, Issue,
+   confirmations...) opened pinned to a corner of the window. The catalogue
+   picker positions itself in JS, so it keeps its own margins. */
+dialog:modal:not(.picker) { margin: auto; }
 
 /* A tall dialog (Add Book is the worst case) used to overflow into the
    dialog's own scroll area, which pushed the Save/Cancel bar below the fold
@@ -1268,6 +1273,10 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
 }
 .bookhead .th-grip:hover, .bookhead .th-grip.active { background: var(--blue-wash); }
 
+/* Each cell takes its direction from its own text: in the English UI an
+   Arabic name was cut off at its START ("...ي، ت: أحمد") instead of its end. */
+.br-author, .br-publisher { unicode-bidi: plaintext; }
+
 /* Once the user sizes a column, every column becomes a fixed width (Shamela
    style): the row is as wide as its columns, and when they no longer fit the
    list scrolls sideways. The header scrolls with it (scrollLeft synced in JS). */
@@ -1279,7 +1288,13 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
 html[data-cols-fixed] .bookrow { width: var(--row-w); min-width: 100%; }
 /* The header stays one screen wide; its fixed-width cells overflow it, which
    is what lets the JS scroll it in step with the list. */
-html[data-cols-fixed] .bookhead > * { flex-shrink: 0; }
+html[data-cols-fixed] .bookhead > * { flex-shrink: 0; transform: translateX(var(--hx, 0px)); }
+/* The last visible column takes up any space the others leave, so squeezing
+   a column never leaves a blank strip at the end of the row. */
+html[data-cols-fixed] .bh-publisher,
+html[data-cols-fixed] .br-publisher,
+html[data-cols-fixed][data-show-pub="off"] .bh-author,
+html[data-cols-fixed][data-show-pub="off"] .br-author { flex-grow: 1; }
 html[data-cols-fixed] .bh-title,
 html[data-cols-fixed] .br-title { flex: none; width: var(--w-title); }
 
@@ -1433,7 +1448,10 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
   padding: 8px !important;
   height: auto !important;
 }
-.wide-btn { margin-top: 10px; color: var(--blue); font-weight: 600; }
+.wide-btn { margin-top: 10px; color: var(--blue); font-weight: 600; display: flex; align-items: center; gap: 7px; }
+/* Without a size an inline SVG falls back to 300x150: the Issue / Transfer
+   icons filled the whole tracking panel. */
+.wide-btn svg { width: 16px; height: 16px; flex: none; }
 .wide-btn:disabled { opacity: .4; }
 
 /* Tracking panel */

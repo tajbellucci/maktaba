@@ -361,7 +361,9 @@ function hasUnpublished() {
 }
 
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  // Local calendar date (UTC said "yesterday" before 5am in Pakistan).
+  const d = new Date();
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 }
 
 /* A stable random id for this install, generated once and kept forever —

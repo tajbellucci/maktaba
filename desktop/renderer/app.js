@@ -357,7 +357,11 @@ function assignAccessions() {
   return assigned;
 }
 
-const todayISO = () => new Date().toISOString().slice(0, 10);
+/* Local calendar date, not UTC: toISOString() is UTC, so between midnight
+   and 5am in Pakistan every issue/return was stamped with yesterday's date
+   and due dates came out a day early. */
+const localISO = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+const todayISO = () => localISO(new Date());
 
 function logHistory(b, action, detail) {
   b.history.unshift({ date: todayISO(), action, detail: detail || "" });
@@ -1275,8 +1279,7 @@ function renderBooks() {
   /* The header never scrolls but the list does, so it carries a scrollbar the
      header lacks — reserve that exact width on the header or every column
      drifts out of line with its heading the moment the list needs to scroll. */
-  document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
-  syncRowWidth();
+  syncListGeometry();
   refreshOfflineBadges();
 }
 
@@ -1639,7 +1642,8 @@ function renderDurationLine(b) {
   const leftText = left < 0
     ? t("daysOverdue").replace("{n}", ud(Math.abs(left)))
     : t("daysLeft").replace("{n}", ud(left));
-  el.textContent = `${t("durationDays").replace("{n}", ud(total))} — ${leftText}`;
+  // A due date typed before the issue date has no meaningful length; say only how late it is.
+  el.textContent = total >= 0 ? `${t("durationDays").replace("{n}", ud(total))} — ${leftText}` : leftText;
 }
 
 /* Issuing asks who is taking the book before it leaves the shelf — a loan
@@ -1678,7 +1682,7 @@ function openIssueDialog(b, kind) {
     const days = parseInt($("iDays").value, 10) || 0;
     const due = new Date();
     due.setDate(due.getDate() + days);
-    $("iDue").value = due.toISOString().slice(0, 10);
+    $("iDue").value = localISO(due);
   };
   recalc();
   $("iDays").oninput = recalc;
@@ -1830,7 +1834,7 @@ function setStatus(b, next) {
     b.issueDate = todayISO();
     const due = new Date();
     due.setDate(due.getDate() + 14);          // 14-day loan, the usual madrassa period
-    b.dueDate = due.toISOString().slice(0, 10);
+    b.dueDate = localISO(due);
     logHistory(b, "issued", b.borrower);
   } else if (b.status === "issued" && next === "available") {
     // Clears whichever holder it had, so a book cannot come back still
@@ -2356,13 +2360,25 @@ makeColumnResizable($("ftsResizer"), document.querySelector(".ftspane"), { min: 
 /* Row width = the header's columns added up (see the CSS for why rows cannot
    size themselves). Also re-run by renderBooks, since showing or hiding a
    column in Options changes the total. */
+/* Measured, so only valid while the list is on screen: the first render
+   happens before the catalogue window is visible and read 0 for both, which
+   pushed the header into the scrollbar's strip until the next redraw. The
+   ResizeObserver below re-measures the moment the list appears or resizes. */
+function syncListGeometry() {
+  const list = $("bookList");
+  document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
+  syncRowWidth();
+}
+new ResizeObserver(() => syncListGeometry()).observe($("bookList"));
 function syncRowWidth() {
   const root = document.documentElement;
   if (!root.hasAttribute("data-cols-fixed")) return;
   const z = parseFloat(getComputedStyle(root).getPropertyValue("--z")) || 1;
   let w = 0;
   for (const c of document.querySelector(".bookhead").children) w += c.getBoundingClientRect().width;
-  root.style.setProperty("--row-w", Math.ceil(w / z) + "px");
+  // floor, not ceil: rounding up made rows 1px wider than the list and
+  // showed a useless 1px scrollbar.
+  root.style.setProperty("--row-w", Math.floor(w / z) + "px");
 }
 (function makeBookColumnsResizable() {
   const root = document.documentElement;
@@ -2385,7 +2401,11 @@ function syncRowWidth() {
   const head = document.querySelector(".bookhead");
   const list = $("bookList");
   apply();
-  list.addEventListener("scroll", () => { head.scrollLeft = list.scrollLeft; });
+  /* The header follows the list by being shifted the same distance, not by
+     scrolling itself: its own scroll range came out a few px shorter than
+     the list's in RTL, so at the far end it lagged behind the rows. */
+  const follow = () => head.style.setProperty("--hx", (-list.scrollLeft) + "px");
+  list.addEventListener("scroll", follow);
 
   let drag = null;
   head.querySelectorAll(".th-grip").forEach((grip) => {
@@ -2398,7 +2418,10 @@ function syncRowWidth() {
         }
         apply();
       }
-      drag = { col: grip.dataset.col, grip, startX: e.clientX, startW: sizes[grip.dataset.col] };
+      // Start from the width on screen: the last column may be stretched
+      // wider than its stored width, and the edge must move from where it is.
+      const onScreen = head.querySelector(".bh-" + grip.dataset.col).getBoundingClientRect().width / zoom();
+      drag = { col: grip.dataset.col, grip, startX: e.clientX, startW: Math.round(onScreen) };
       grip.classList.add("active");
       document.body.style.cursor = "col-resize";
       e.preventDefault();
@@ -2413,7 +2436,7 @@ function syncRowWidth() {
     const dx = (root.dir === "ltr" ? e.clientX - drag.startX : drag.startX - e.clientX) / zoom();
     sizes[drag.col] = Math.round(Math.max(30, Math.min(1200, drag.startW + dx)));
     apply();
-    head.scrollLeft = list.scrollLeft;
+    follow();
   });
   window.addEventListener("mouseup", () => {
     if (!drag) return;
