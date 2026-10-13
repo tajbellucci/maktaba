@@ -2332,6 +2332,7 @@ function renderStatus() {
 function showCatalog() {
   const dlg = $("dlgCatalog");
   if (!dlg.open) dlg.show();
+  applyFtsOpen();   // light the top-bar screen button now the list is actually open (at start-up it was not)
   fitPicker();
 }
 
