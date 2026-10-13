@@ -1357,6 +1357,10 @@ function _renderDetail() {
   const b = DATA.books.find((x) => x.id === selectedId);
   if (!b) {
     body.innerHTML = `<div class="dempty"><svg><use href="#i-book"/></svg><span>${t("detailEmpty")}</span></div>`;
+    /* The book window now stays open over the list, so anything that clears
+       the selection (side menu, category click, delete, a sync) would leave
+       it showing an empty "choose a book" card. No book, no window. */
+    $("bookView").classList.add("hidden");
     return;
   }
 

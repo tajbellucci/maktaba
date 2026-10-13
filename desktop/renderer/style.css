@@ -2474,6 +2474,10 @@ html[data-density="compact"] .grouprow .c-count { padding-top: 4px; padding-bott
   transition: all .14s;
 }
 .matbar button svg { width: 14px; height: 14px; }
+/* Removed from view at the client's request (2026-10-13): every record is a
+   printed book, and clicking «كتب» hid all of them. The markup stays because
+   the wiring reads it at startup; with the strip gone every type stays on. */
+.matbar { display: none !important; }
 .matbar button:hover { border-color: var(--blue-2); color: var(--blue); }
 .matbar button.on {
   background: var(--blue-wash);
