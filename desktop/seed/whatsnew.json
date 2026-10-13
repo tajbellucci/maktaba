@@ -1,6 +1,37 @@
 {
   "releases": [
     {
+      "version": "1.10.0",
+      "date": "2026-10-14",
+      "ur": [
+        "شاملہ کی طرح دو اسکرین: اوپر کی پٹی میں «الکتب» (پڑھنے کے لیے) اور «البحث» (تلاش، نشان والے خانوں کے ساتھ)۔",
+        "زمرے کے نام پر کلک صرف اس کی کتابیں دکھاتا ہے؛ کتابوں پر نشان صرف خانے سے لگتا ہے۔",
+        "ایک کلک انتخاب، دو کلک کتاب کھولنا؛ کتاب فہرست کے اوپر کھلتی ہے اور بند کرنے پر فہرست واپس آتی ہے۔",
+        "کتاب میں تبدیلی اب «محفوظ کریں» بٹن سے؛ بغیر محفوظ کیے بند کرنے پر پوچھا جاتا ہے۔ واپس/دوبارہ اوپر کی پٹی میں۔",
+        "تلاش بہتر: بہترین نتیجہ سب سے اوپر؛ ة/ه/ہ، ى/ی، ؤ/و، عربی/اردو ہندسے ایک سمجھے جاتے ہیں؛ الماری نمبر سے بھی تلاش۔",
+        "اجرا (Issue) کے بٹن اور تمام ڈائیلاگ اب درست جگہ اور سائز میں؛ تاریخیں پاکستان کے وقت کے مطابق۔",
+        "کالم چوڑائی کھینچ کر بدلیں (دوہرا کلک = خودکار)، فہرست تیز، اور پرانی کاپی اب اپڈیٹ کو نہیں روکتی۔"
+      ],
+      "ar": [
+        "شاشتان كالشاملة: في الشريط العلوي «الكتب» (للقراءة) و«البحث» (مع مربعات التحديد).",
+        "النقر على اسم القسم يعرض كتبه فقط؛ تحديد الكتب يكون من المربع فقط.",
+        "نقرة للتحديد ونقرتان لفتح الكتاب؛ يُفتح الكتاب فوق القائمة ويعود إليها عند الإغلاق.",
+        "تعديل الكتاب يُحفظ بزر «حفظ»، ويُسأل قبل ترك تعديلات غير محفوظة. التراجع والإعادة في الشريط العلوي.",
+        "بحث أدق: الأقرب أولًا؛ ة/ه/ہ، ى/ی، ؤ/و، والأرقام العربية والأردية متساوية؛ والبحث برقم الخزانة.",
+        "أزرار الإعارة وجميع النوافذ بالحجم والمكان الصحيح؛ التواريخ بتوقيت باكستان.",
+        "تغيير عرض الأعمدة بالسحب (نقرتان = تلقائي)، قائمة أسرع، والنسخة القديمة لم تعد تمنع التحديث."
+      ],
+      "en": [
+        "Two screens like Shamela: «Books» (reading) and «Search» (with tick boxes) at the start of the top bar.",
+        "Clicking a category name only shows its books; books are ticked only from the tick box.",
+        "One click selects, double-click opens; the book opens over the list and closing returns to it.",
+        "Book edits now use a Save button, and leaving unsaved edits asks first. Undo/redo on the top bar.",
+        "Better search: best matches first; ة/ه/ہ, ى/ی, ؤ/و and Arabic/Urdu digits are treated alike; almari number is searchable.",
+        "Issue/Transfer buttons and all dialogs now the right size and place; dates follow Pakistan time.",
+        "Drag to resize columns (double-click = auto-fit), a faster list, and a stale local copy no longer blocks updates."
+      ]
+    },
+    {
       "version": "1.9.1",
       "date": "2026-10-10",
       "ur": [

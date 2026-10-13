@@ -8,6 +8,11 @@
 const fs=require("fs"),path=require("path"),cp=require("child_process");
 const ROOT=path.join(require("os").tmpdir(), "mkt-datasafety-" + Date.now());
 const prof=(n)=>path.join(ROOT,n);
+/* A run from source keeps its data in "<user-data-dir> (dev)" (main.js,
+   IS_DEV_RUN), so that is where the files are seeded and read. Seeding the
+   bare folder meant the app never saw them: test 1 passed without testing
+   anything and 2/3 failed, from the dev-isolation change until 2026-10-14. */
+const dd=(dir)=>dir+" (dev)";
 /* Any real catalogue shape will do; the seed one ships with the app, so this
    runs on a machine that has never opened it. */
 const base=JSON.parse(fs.readFileSync(path.join(__dirname,"seed","books.json"),"utf8"));
@@ -15,10 +20,11 @@ const base=JSON.parse(fs.readFileSync(path.join(__dirname,"seed","books.json"),"
 function seed(name, mutate){
   const dir=prof(name);
   fs.rmSync(dir,{recursive:true,force:true});
-  fs.mkdirSync(dir,{recursive:true});
-  fs.writeFileSync(path.join(dir,"settings.json"),JSON.stringify(
+  fs.rmSync(dd(dir),{recursive:true,force:true});
+  fs.mkdirSync(dd(dir),{recursive:true});
+  fs.writeFileSync(path.join(dd(dir),"settings.json"),JSON.stringify(
     {owner:"tajbellucci",repo:"maktaba",branch:"main",isLibrarian:false},null,2));
-  mutate(dir);
+  mutate(dd(dir));
   return dir;
 }
 function run(dir){
@@ -26,7 +32,7 @@ function run(dir){
     {timeout:22000,stdio:"pipe"});
 }
 function books(dir){
-  try{return JSON.parse(fs.readFileSync(path.join(dir,"books.json"),"utf8")).books.length;}
+  try{return JSON.parse(fs.readFileSync(path.join(dd(dir),"books.json"),"utf8")).books.length;}
   catch(e){return "UNREADABLE";}
 }
 
@@ -41,7 +47,7 @@ const d1=seed("unpublished",(dir)=>{
 });
 try{run(d1);}catch(e){}
 const n1=books(d1);
-const kept=(()=>{try{return JSON.parse(fs.readFileSync(path.join(d1,"books.json"),"utf8"))
+const kept=(()=>{try{return JSON.parse(fs.readFileSync(path.join(dd(d1),"books.json"),"utf8"))
   .books.some(b=>b.title==="UNPUBLISHED TEST BOOK");}catch{return false;}})();
 console.log(`1. unpublished work survives silent adopt : ${kept?"PASS":"FAIL"} (books=${n1}, expected ${extra.books.length})`);
 
@@ -53,10 +59,10 @@ const d2=seed("corrupt",(dir)=>{
 });
 try{run(d2);}catch(e){}
 const n2=books(d2);
-const rec=(()=>{try{return JSON.parse(fs.readFileSync(path.join(d2,"books.json"),"utf8"))
+const rec=(()=>{try{return JSON.parse(fs.readFileSync(path.join(dd(d2),"books.json"),"utf8"))
   .books.some(b=>b.title==="UNPUBLISHED TEST BOOK");}catch{return false;}})();
-const badKept=fs.existsSync(path.join(d2,"backups")) &&
-  fs.readdirSync(path.join(d2,"backups")).some(f=>f.endsWith(".bad"));
+const badKept=fs.existsSync(path.join(dd(d2),"backups")) &&
+  fs.readdirSync(path.join(dd(d2),"backups")).some(f=>f.endsWith(".bad"));
 console.log(`2. corrupt catalogue recovered from backup: ${rec?"PASS":"FAIL"} (books=${n2}, expected ${extra.books.length})`);
 console.log(`3. damaged file kept for inspection        : ${badKept?"PASS":"FAIL"}`);
 

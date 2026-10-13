@@ -35,9 +35,10 @@ const FOLD_ALWAYS = new Map([
   [0x0649, "ی"],                                   // ى -> ی  («فتاوى» found only 2 of 16 as «فتاوي»)
   [0x0643, "ک"],                                   // ك -> ک
   [0x0629, "ہ"],                                   // ة -> ہ
-  /* Every heh form is one letter for search: «الهدايه» found 1 of the 10
+  /* Heh forms are one letter for search (ھ excepted, see below): «الهدايه» found 1 of the 10
      «الهداية», «الہدایہ» found none. Applied to query and text alike. */
-  [0x0647, "ہ"], [0x06BE, "ہ"], [0x06C3, "ہ"], [0x06D5, "ہ"],   // ه ھ ۃ ە -> ہ
+  [0x0647, "ہ"], [0x06C3, "ہ"], [0x06D5, "ہ"],   // ه ۃ ە -> ہ
+  // NOT ھ: in Urdu ہ/ھ are different letters (بہار spring vs بھار load; test-norm.js).
   [0x0671, "ا"], [0x0672, "ا"],               // ٱ ٲ -> ا
   [0x0673, "ا"], [0x0675, "ا"]                // ٳ ٵ -> ا
 ]);
