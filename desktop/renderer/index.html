@@ -137,6 +137,11 @@
      that existed before is actually gone — only what most people never
      opened stops taking up a permanent slot. -->
 <div class="iconbar" id="iconbar">
+  <!-- Shamela's main bar starts with its two screens: الكتب (browse/read)
+       and البحث (search, with tick boxes). Same order, same place. -->
+  <button data-act="screenBooks" id="ibBooks"><svg><use href="#i-searchbook"/></svg><span data-t="railBooks">الکتب</span></button>
+  <button data-act="screenSearch" id="ibSearch"><svg><use href="#i-search"/></svg><span data-t="railFts">بحث</span></button>
+  <div class="ibsep"></div>
   <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOneShort">شامل کریں</span></button>
   <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddManyShort">کئی شامل</span></button>
   <button data-act="delete"><svg><use href="#i-x"/></svg><span data-t="mDelete">حذف کریں</span></button>
@@ -229,10 +234,6 @@
     <button data-mode="status"><svg><use href="#i-check"/></svg><span data-t="railStatus">حالت</span></button>
     <button data-mode="favorites"><svg><use href="#i-star"/></svg><span data-t="railFavorites">پسندیدہ</span></button>
     <button data-mode="recent"><svg><use href="#i-clock"/></svg><span data-t="railRecent">مؤخرا</span></button>
-    <!-- Toggles the search panel, deliberately NOT a data-mode button: the
-         panel is independent of which grouping the list is showing, so
-         browsing by category and searching texts work at the same time. -->
-    <button id="railFts"><svg><use href="#i-search"/></svg><span data-t="railFts">بحث</span></button>
     <div class="tsep-h"></div>
     <button id="railHome"><svg><use href="#i-grid"/></svg><span data-t="railHome">مرکزی صفحہ</span></button>
   </nav>

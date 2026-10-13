@@ -223,6 +223,11 @@ button, input, select, textarea, optgroup, option {
 #iconbar [data-act="publish"]   svg { color: #7a4fb5; }
 #iconbar [data-act="settings"]  svg { color: #4a6fa5; }
 #iconbar [data-act="appearance"] svg { color: #8a3b6e; }
+/* The two screen buttons (Shamela's الكتب / البحث): the open screen stays lit. */
+#iconbar [data-act="screenBooks"] svg  { color: #125fb0; }
+#iconbar [data-act="screenSearch"] svg { color: #b23127; }
+#iconbar #ibBooks.active, #iconbar #ibSearch.active { background: var(--blue-wash); box-shadow: inset 0 -2px 0 var(--blue); }
+#iconbar #ibBooks.active span, #iconbar #ibSearch.active span { color: var(--blue); font-weight: 700; }
 
 /* A reader still sees Add/Delete/Publish on the rail — Shamela's own reading
    copy does not hide its toolbar depending on who is looking at it — but the

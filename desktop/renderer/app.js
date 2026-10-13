@@ -1061,7 +1061,10 @@ function applyFtsOpen() {
      books, so searching from inside that tab is now exactly what a
      librarian means by it. Visible on every rail tab. */
   $("ftsPane").classList.toggle("hidden", !ftsOpen);
-  $("railFts").classList.toggle("active", ftsOpen);
+  // Top-bar screen buttons: the open screen is highlighted; none while the list is closed.
+  const listOpen = $("dlgCatalog").open;
+  $("ibBooks").classList.toggle("active", listOpen && !ftsOpen);
+  $("ibSearch").classList.toggle("active", listOpen && ftsOpen);
   // Tick boxes (categories and books) exist only on the Search screen; see the CSS.
   document.documentElement.toggleAttribute("data-fts", ftsOpen);
   // A lone drag handle with nothing beside it to resize looks broken.
@@ -2669,10 +2672,7 @@ async function setMode(next) {
 }
 
 $("rail").querySelectorAll("[data-mode]").forEach((btn) => {
-  btn.onclick = async () => {
-    await setMode(btn.dataset.mode);
-    if (btn.dataset.mode === "books") setFtsOpen(false);   // «الكتب» is the reading screen
-  };
+  btn.onclick = () => setMode(btn.dataset.mode);
 });
 /* Non-rail buttons with data-mode (currently just the home screen's "Open
    Library" button) open straight into that mode. Was hardcoded to only ever
@@ -2752,7 +2752,7 @@ $("bvMax").onclick = toggleMaxBook;
 $("bvPick").onclick = async () => { if (await closeBook()) showCatalog(); };
 $("bvSave").onclick = saveEdits;
 // Esc closes the dialog natively; keep our state in step with that.
-$("dlgCatalog").addEventListener("close", () => {});
+$("dlgCatalog").addEventListener("close", applyFtsOpen);   // un-light the top-bar screen button
 
 $("tabs").querySelectorAll("button").forEach((btn) => {
   btn.onclick = () => {
@@ -3713,6 +3713,8 @@ const MENU_ACTIONS = {
   addOne: openAddOne,
   addMany: openAddMany,
   delete: deleteSelected,
+  screenBooks: () => openScreen(false),
+  screenSearch: () => openScreen(true),
   undo: () => stepHistory("undo"),
   redo: () => stepHistory("redo"),
   export: doExport,
@@ -4743,7 +4745,12 @@ function renderFtsResults(found, opts, headingsOnly) {
   }
 }
 
-$("railFts").onclick = () => setFtsOpen(!ftsOpen);
+// The two screens, opened from the top bar like Shamela's.
+function openScreen(search) {
+  showCatalog();
+  setFtsOpen(search);
+  renderAll();
+}
 $("ftsRun").onclick = runFullTextSearch;
 $("ftsClear").onclick = () => {
   for (const id of ["fts1", "fts2", "fts3", "fts4", "ftsNot"]) $(id).value = "";
