@@ -1276,6 +1276,7 @@ function renderBooks() {
      header lacks — reserve that exact width on the header or every column
      drifts out of line with its heading the moment the list needs to scroll. */
   document.documentElement.style.setProperty("--scrollbar-w", (list.offsetWidth - list.clientWidth) + "px");
+  syncRowWidth();
   refreshOfflineBadges();
 }
 
@@ -2344,90 +2345,81 @@ function makeColumnResizable(handle, panel, { min = 160, max = 480, storageKey }
 makeColumnResizable($("groupsResizer"), document.querySelector(".groups"), { min: 160, max: 420, storageKey: "maktaba-w-groups" });
 makeColumnResizable($("ftsResizer"), document.querySelector(".ftspane"), { min: 200, max: 480, storageKey: "maktaba-w-fts" });
 
-/* The book table's columns and row height are the user's to set: drag a
-   heading's edge to widen or squeeze that column, drag the bottom edge of any
-   row to make every row taller or shorter; double-click a grip to reset.
-   Header and rows read the same CSS variables (--w-*, --row-h), so they can
-   never drift apart. Each grip resizes the column whose OTHER edge is pinned
-   (columns right of the title grow from the row's start, those left of it
-   from the row's end), so the edge always follows the mouse. Saved per
-   machine; same zoom correction as makeColumnResizable above. */
-(function makeBookTableResizable() {
+/* The book table's columns are the user's to size, Shamela style: drag a
+   heading's left edge to widen or squeeze that column; double-click any grip
+   to go back to the default layout. The first drag freezes every column at
+   its current width, so from then on each column is a fixed width, the row
+   is as wide as its columns, and when they no longer fit the list scrolls
+   sideways (the header scrolls with it). In RTL a column's right edge stays
+   put while it resizes, so the edge follows the mouse. Header and rows read
+   the same CSS variables, so they never drift apart. Saved per machine. */
+/* Row width = the header's columns added up (see the CSS for why rows cannot
+   size themselves). Also re-run by renderBooks, since showing or hiding a
+   column in Options changes the total. */
+function syncRowWidth() {
+  const root = document.documentElement;
+  if (!root.hasAttribute("data-cols-fixed")) return;
+  const z = parseFloat(getComputedStyle(root).getPropertyValue("--z")) || 1;
+  let w = 0;
+  for (const c of document.querySelector(".bookhead").children) w += c.getBoundingClientRect().width;
+  root.style.setProperty("--row-w", Math.ceil(w / z) + "px");
+}
+(function makeBookColumnsResizable() {
   const root = document.documentElement;
   const zoom = () => parseFloat(getComputedStyle(root).getPropertyValue("--z")) || 1;
-  const KEY = "maktaba-table-sizes";
-  let sizes = {};
-  try { sizes = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch { sizes = {}; }
+  const KEY = "maktaba-table-cols";
+  const COLS = ["acc", "title", "author", "publisher"];
+  const DEFAULT = { acc: 44, title: 260, author: 160, publisher: 120 };   // for a column hidden when frozen
+  let sizes = null;
+  try { sizes = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { sizes = null; }
+  try { localStorage.removeItem("maktaba-table-sizes"); } catch { /* old key from an earlier build */ }
   const apply = () => {
-    for (const k of ["acc", "author", "publisher"]) {
-      if (sizes[k]) root.style.setProperty("--w-" + k, sizes[k] + "px"); else root.style.removeProperty("--w-" + k);
+    for (const k of COLS) {
+      if (sizes && sizes[k]) root.style.setProperty("--w-" + k, sizes[k] + "px");
+      else root.style.removeProperty("--w-" + k);
     }
-    if (sizes.row) root.style.setProperty("--row-h", sizes.row + "px"); else root.style.removeProperty("--row-h");
+    if (sizes) root.setAttribute("data-cols-fixed", ""); else root.removeAttribute("data-cols-fixed");
+    syncRowWidth();
   };
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(sizes)); } catch { /* private mode */ } };
-  apply();
-
+  const save = () => { try { sizes ? localStorage.setItem(KEY, JSON.stringify(sizes)) : localStorage.removeItem(KEY); } catch { /* private mode */ } };
   const head = document.querySelector(".bookhead");
   const list = $("bookList");
-  let drag = null;   // { col, cell, anchorRight, edge } or { row: true, startY, startH }
-  let swallowClick = false;
+  apply();
+  list.addEventListener("scroll", () => { head.scrollLeft = list.scrollLeft; });
 
+  let drag = null;
   head.querySelectorAll(".th-grip").forEach((grip) => {
     grip.addEventListener("mousedown", (e) => {
-      const cell = head.querySelector(".bh-" + grip.dataset.col);
-      const r = cell.getBoundingClientRect();
-      const anchorRight = grip.dataset.col === "acc";
-      drag = { col: grip.dataset.col, grip, anchorRight, edge: anchorRight ? r.right : r.left };
+      if (!sizes) {
+        sizes = {};
+        for (const k of COLS) {
+          const w = head.querySelector(".bh-" + k).getBoundingClientRect().width / zoom();
+          sizes[k] = Math.round(w >= 30 ? w : DEFAULT[k]);
+        }
+        apply();
+      }
+      drag = { col: grip.dataset.col, grip, startX: e.clientX, startW: sizes[grip.dataset.col] };
       grip.classList.add("active");
       document.body.style.cursor = "col-resize";
       e.preventDefault();
       e.stopPropagation();
     });
-    grip.addEventListener("dblclick", () => { delete sizes[grip.dataset.col]; apply(); save(); });
+    grip.addEventListener("dblclick", () => { sizes = null; apply(); save(); });
   });
-
-  // Within 4px of a row's bottom edge = the row-height grip.
-  const nearRowBottom = (e) => {
-    const row = e.target.closest && e.target.closest(".bookrow");
-    if (!row) return null;
-    const r = row.getBoundingClientRect();
-    return r.bottom - e.clientY <= 4 ? row : null;
-  };
-  list.addEventListener("mousemove", (e) => { if (!drag) list.classList.toggle("row-resize", Boolean(nearRowBottom(e))); });
-  list.addEventListener("mouseleave", () => { if (!drag) list.classList.remove("row-resize"); });
-  list.addEventListener("mousedown", (e) => {
-    swallowClick = false;   // a previous drag may have ended outside the list
-    const row = nearRowBottom(e);
-    if (!row) return;
-    drag = { row: true, startY: e.clientY, startH: row.getBoundingClientRect().height / zoom() };
-    e.preventDefault();
-  });
-  list.addEventListener("dblclick", (e) => {
-    if (!nearRowBottom(e)) return;
-    delete sizes.row; apply(); save();
-  }, true);
-  // A drag ends in a click on the row under it; that must not open the book.
-  list.addEventListener("click", (e) => {
-    if (swallowClick) { swallowClick = false; e.stopPropagation(); }
-  }, true);
 
   window.addEventListener("mousemove", (e) => {
     if (!drag) return;
-    if (drag.row) {
-      sizes.row = Math.round(Math.max(20, Math.min(120, drag.startH + (e.clientY - drag.startY) / zoom())));
-    } else {
-      const w = (drag.anchorRight ? drag.edge - e.clientX : e.clientX - drag.edge) / zoom();
-      sizes[drag.col] = Math.round(Math.max(30, Math.min(list.clientWidth * 0.6 / zoom(), w)));
-    }
+    // The grip sits on the column's end edge: left in RTL, right in English.
+    const dx = (root.dir === "ltr" ? e.clientX - drag.startX : drag.startX - e.clientX) / zoom();
+    sizes[drag.col] = Math.round(Math.max(30, Math.min(1200, drag.startW + dx)));
     apply();
+    head.scrollLeft = list.scrollLeft;
   });
   window.addEventListener("mouseup", () => {
     if (!drag) return;
-    if (drag.row) swallowClick = true;
-    if (drag.grip) drag.grip.classList.remove("active");
+    drag.grip.classList.remove("active");
     drag = null;
     document.body.style.cursor = "";
-    list.classList.remove("row-resize");
     save();
   });
 })();

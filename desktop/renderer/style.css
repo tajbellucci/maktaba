@@ -1267,7 +1267,21 @@ html[dir="ltr"] .rail button.active::before { right: auto; left: -5px; border-ra
   cursor: col-resize;
 }
 .bookhead .th-grip:hover, .bookhead .th-grip.active { background: var(--blue-wash); }
-.booklist.row-resize, .booklist.row-resize * { cursor: row-resize !important; }
+
+/* Once the user sizes a column, every column becomes a fixed width (Shamela
+   style): the row is as wide as its columns, and when they no longer fit the
+   list scrolls sideways. The header scrolls with it (scrollLeft synced in JS). */
+.bookhead { overflow: hidden; }
+#bookList { overflow-x: auto; }
+/* Rows get an explicit width (--row-w, measured from the header in JS):
+   content-visibility rows cannot size to max-content, so they would stay one
+   screen wide and the scrollbar would never appear. */
+html[data-cols-fixed] .bookrow { width: var(--row-w); min-width: 100%; }
+/* The header stays one screen wide; its fixed-width cells overflow it, which
+   is what lets the JS scroll it in step with the list. */
+html[data-cols-fixed] .bookhead > * { flex-shrink: 0; }
+html[data-cols-fixed] .bh-title,
+html[data-cols-fixed] .br-title { flex: none; width: var(--w-title); }
 
 /* Hiding a column in Options must hide its heading too. */
 html[data-show-acc="off"] .bh-acc { display: none; }
@@ -1284,10 +1298,8 @@ html[data-show-pub="off"] .bh-publisher { display: none; }
    each filter click); this is what made the app feel slow. */
 .bookrow {
   padding: 0;
-  height: var(--row-h, auto);
-  overflow: hidden;
   content-visibility: auto;
-  contain-intrinsic-size: auto var(--row-h, 30px);
+  contain-intrinsic-size: auto 30px;
 }
 .br-acc {
   width: var(--w-acc, 44px); flex: none;

@@ -280,7 +280,7 @@ const STRINGS = {
     publishDevRunMsg: "هذه نسخة اختبارية (تعمل من المصدر). النشر منها معطّل لحماية المكتبة الحقيقية — استخدم التطبيق المثبّت.",
     fFormat: "الصيغة", fmtPhysical: "كتاب مطبوع", fmtPdf: "ملف PDF", fmtUnicode: "ملف نصي (Unicode)",
     noFileAttached: "لا يوجد ملف مرفق", attachFile: "إرفاق ملف", openFile: "فتح الملف",
-    colAuthor: "المؤلف", colBook: "الکتاب", colPublisher: "الناشر", homeTagline: "المكتبة النعمانية",
+    colAuthor: "المؤلف", colBook: "الكتاب", colPublisher: "الناشر", homeTagline: "المكتبة النعمانية",
     homeEnter: "افتح المكتبة", railHome: "الصفحة الرئيسية",
     fPublisher: "الناشر", fMaktaba: "الفرع", fDepartment: "القسم", noMaktaba: "(بلا فرع)",
     fAccession: "الرقم التسلسلي", accessionAuto: "تلقائي", colAccession: "الرقم التسلسلي",
@@ -657,7 +657,7 @@ const STRINGS = {
   }
 };
 
-let LANG = localStorage.getItem("maktaba-lang") || "ur";
+let LANG = localStorage.getItem("maktaba-lang") || "ar";   // Arabic by default; a machine's own choice is kept
 
 function t(key) {
   return (STRINGS[LANG] && STRINGS[LANG][key]) || STRINGS.ur[key] || key;
