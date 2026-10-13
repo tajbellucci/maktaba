@@ -2417,12 +2417,16 @@ function syncRowWidth() {
   const DEFAULT = { acc: 44, title: 260, author: 160, publisher: 120 };   // for a column hidden when frozen
   let sizes = null;
   try { sizes = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { sizes = null; }
-  /* Until the user sizes a column by hand, every column is as wide as its
-     longest entry (Excel/Shamela auto-fit). The old default gave the title
-     all the spare room while author names were cut to "…", and scrolling
-     sideways only slid those cut columns along. Measured with a canvas in
-     each cell's own font, over all books, so filtering does not make the
-     columns jump. Double-clicking a grip returns here. */
+  /* Until the user sizes a column by hand, the columns share the visible
+     width by what their text needs (measured with a canvas in each cell's
+     own font, over all books, so filtering does not make them jump). The old
+     default gave the title all the spare room while author names were cut to
+     "…". Pure fit-to-longest made one long entry stretch a whole column past
+     the screen, so each column is capped at a share of the visible width
+     (author 45%, title 30%, publisher 25%); room a column does not need goes
+     to the ones still cut, author first. The few longest entries end in "…"
+     and show in full on the hover card or when the column is dragged wider.
+     Double-clicking a grip returns here. */
   let manual = Boolean(sizes);
   const canvas = document.createElement("canvas").getContext("2d");
   const TEXT = {
@@ -2448,6 +2452,16 @@ function syncRowWidth() {
       const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + 8;   // padding, border, rounding slack
       out[k] = Math.ceil(Math.min(1200, Math.max(k === "acc" ? 44 : 60, max + pad)));
     }
+    // Share out the visible width: needs above, caps below.
+    const fixed = [".bh-check", ".bh-bookicon", ".bh-star"].reduce((a, sel) => a + head.querySelector(sel).getBoundingClientRect().width, 0) / zoom();
+    // clientWidth is already in CSS px (unlike getBoundingClientRect, which the zoom scales).
+    const avail = list.clientWidth - fixed - out.acc - 2;
+    if (avail < 200) return out;   // list not laid out yet; keep the plain fit
+    const need = { title: out.title, author: out.author, publisher: out.publisher };
+    const SHARE = { author: 0.45, title: 0.30, publisher: 0.25 };
+    let left = avail;
+    for (const k of ["author", "title", "publisher"]) { out[k] = Math.min(need[k], Math.floor(avail * SHARE[k])); left -= out[k]; }
+    for (const k of ["author", "title", "publisher"]) { const add = Math.min(left, need[k] - out[k]); if (add > 0) { out[k] += add; left -= add; } }
     return out;
   };
   try { localStorage.removeItem("maktaba-table-sizes"); } catch { /* old key from an earlier build */ }
