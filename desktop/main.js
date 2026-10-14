@@ -276,8 +276,10 @@ function leanCatalogue(d) {
    overwrote everyone else's recently-opened list on the next sync.
    It is still stored locally, so the tab keeps working per machine. */
 function withoutLocalOnly(d) {
+  // The recycle bin (deleted) is this librarian's own safety net: never published, never fingerprinted.
+  const { deleted, ...base } = d;
   return {
-    ...d,
+    ...base,
     books: (d.books || []).map((b) => {
       const { viewedAt, ...rest } = b;
       return rest;
@@ -783,6 +785,22 @@ ipcMain.handle("books:export", async (_e, data) => {
   });
   if (canceled || !filePath) return null;
   writeJson(filePath, data);
+  return filePath;
+});
+
+/* The current list as a CSV Excel opens with Arabic intact (UTF-8 BOM). A run
+   from source can be pointed at a file instead of the dialog, for the tests. */
+ipcMain.handle("books:exportCsv", async (_e, csv, name) => {
+  let filePath = !app.isPackaged && process.env.MAKTABA_TEST_SAVE;
+  if (!filePath) {
+    const res = await dialog.showSaveDialog({
+      defaultPath: `${name || "maktaba"}-${today()}.csv`,
+      filters: [{ name: "Excel (CSV)", extensions: ["csv"] }]
+    });
+    if (res.canceled || !res.filePath) return null;
+    filePath = res.filePath;
+  }
+  fs.writeFileSync(filePath, "\uFEFF" + csv, "utf8");
   return filePath;
 });
 

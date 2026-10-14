@@ -25,6 +25,7 @@ contextBridge.exposeInMainWorld("maktaba", {
   pickImage: () => ipcRenderer.invoke("file:pickImage"),
   openFile: (filePath) => ipcRenderer.invoke("file:open", filePath),
   fileLocalUrl: (filePath) => ipcRenderer.invoke("file:localUrl", filePath),
+  exportCsv: (csv, name) => ipcRenderer.invoke("books:exportCsv", csv, name),
   readText: (filePath) => ipcRenderer.invoke("file:readText", filePath),
   cachedStatus: (urls) => ipcRenderer.invoke("file:cachedStatus", urls),
   cachedImages: (urls) => ipcRenderer.invoke("file:cachedImages", urls),

@@ -1,5 +1,7 @@
 let DATA = { library: "", updated: "", books: [] };
 let nextId = 1;
+// Highest id in use, recycle bin included, so a new book never takes a deleted one's id.
+const maxBookId = () => Math.max(0, ...DATA.books.map((b) => b.id || 0), ...(DATA.deleted || []).map((b) => b.id || 0));
 let mode = "books";        // rail: books | category | author | status | shelf | favorites | recent
 /* Selected groups in the category / author / almari / status tabs. Several can
    be selected at once (click toggles a row); empty means all books. */
@@ -347,9 +349,12 @@ function normalizeBook(b) {
 }
 
 /* Register numbers are assigned once and never reused, so a number in a
-   paper register always points at the same physical copy. */
+   paper register always points at the same physical copy. The recycle bin
+   counts too: a deleted book keeps its number, so a new one cannot take it
+   (and restoring the deleted book cannot clash). */
+const maxAccession = () => [...DATA.books, ...(DATA.deleted || [])].reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
 function assignAccessions() {
-  let max = DATA.books.reduce((m, b) => Math.max(m, parseInt(b.accession, 10) || 0), 0);
+  let max = maxAccession();
   let assigned = 0;
   for (const b of DATA.books) {
     if (!b.accession) { b.accession = String(++max); assigned++; }
@@ -497,7 +502,7 @@ async function boot() {
      tidying old records on launch, not something the librarian did, so the
      first Ctrl+Z must never undo it. */
   resetUndo();
-  nextId = 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0);
+  nextId = 1 + maxBookId();
   categories();
   refreshCategoryList();
   applyTheme();
@@ -780,6 +785,8 @@ async function syncOnBecomingMaster() {
    everything that reads from it. Used by both the pull button and login sync. */
 async function adoptData(next) {
   await flushSave();          // don't let a queued write land after the swap
+  // The recycle bin is local (never published), so a pulled copy carries none: keep ours.
+  if (DATA && DATA.deleted && !next.deleted) next.deleted = DATA.deleted;
   await window.maktaba.applyData(next);
   // Whatever local now matches server, any divergence auto-publish paused
   // on is resolved by definition.
@@ -790,7 +797,7 @@ async function adoptData(next) {
   ftsCacheClear();
   DATA = next;
   DATA.books.forEach(normalizeBook);
-  nextId = 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0);
+  nextId = 1 + maxBookId();
   // Drop any checked-for-search id a sync just removed the book behind.
   const liveIds = new Set(DATA.books.map((b) => b.id));
   for (const id of [...ftsScopedIds]) if (!liveIds.has(id)) ftsScopedIds.delete(id);
@@ -856,7 +863,8 @@ let applyingHistory = false;
 function snapshotOf() {
   return JSON.stringify({
     books: DATA.books.map((b) => { const { favorite, viewedAt, ...rest } = b; return rest; }),
-    categories: DATA.categories || []
+    categories: DATA.categories || [],
+    deleted: DATA.deleted || []   // undoing a delete also takes the book back out of the bin
   });
 }
 
@@ -900,8 +908,9 @@ async function stepHistory(dir) {
     return { ...b, favorite: cur ? cur.favorite : false, viewedAt: cur ? cur.viewedAt : "" };
   });
   DATA.categories = target.categories;
+  DATA.deleted = target.deleted || [];
   DATA.books.forEach(normalizeBook);
-  nextId = Math.max(nextId, 1 + DATA.books.reduce((m, b) => Math.max(m, b.id || 0), 0));
+  nextId = Math.max(nextId, 1 + maxBookId());
   const live = new Set(DATA.books.map((b) => b.id));
   for (const id of [...ftsScopedIds]) if (!live.has(id)) ftsScopedIds.delete(id);
   if (!live.has(selectedId)) { selectedId = null; $("bookView").classList.add("hidden"); }
@@ -1133,15 +1142,37 @@ function visibleBooks() {
 
 /* Shamela offers "arrange alphabetically" and "arrange by author"; the
    register number is the third axis a physical library actually uses. */
+let sortDir = 1;   // 1 = as listed below, -1 = reversed (second click on a heading)
 function sortBooks(list) {
   const by = sortMode;
   const cmp = {
     title: (a, b) => String(a.title).localeCompare(String(b.title), "ar"),
     author: (a, b) => String(a.author).localeCompare(String(b.author), "ar"),
+    publisher: (a, b) => String(a.publisher).localeCompare(String(b.publisher), "ar"),
     accession: (a, b) => (parseInt(a.accession, 10) || 0) - (parseInt(b.accession, 10) || 0),
     added: (a, b) => (b.id || 0) - (a.id || 0)
   }[by];
-  return cmp ? [...list].sort(cmp) : list;
+  return cmp ? [...list].sort((a, b) => sortDir * cmp(a, b)) : list;
+}
+
+/* Excel-style: click a column heading to sort by it, click again to reverse;
+   the heading shows an arrow. Kept in step with the sort dropdown. */
+const SORT_COL = { acc: "accession", title: "title", author: "author", publisher: "publisher" };
+function updateSortIndicators() {
+  for (const [col, key] of Object.entries(SORT_COL)) {
+    const h = document.querySelector(".bh-" + col);
+    h.classList.toggle("sort-asc", sortMode === key && sortDir === 1);
+    h.classList.toggle("sort-desc", sortMode === key && sortDir === -1);
+  }
+}
+for (const [col, key] of Object.entries(SORT_COL)) {
+  document.querySelector(".bh-" + col).addEventListener("click", (e) => {
+    if (e.target.closest(".th-grip")) return;   // resizing, not sorting
+    if (sortMode === key) sortDir = -sortDir; else { sortMode = key; sortDir = 1; }
+    $("sortSel").value = sortMode;
+    updateSortIndicators();
+    renderBooks();
+  });
 }
 
 /* ── Render ───────────────────────────────────────────────────────────── */
@@ -2767,7 +2798,26 @@ $("tabs").querySelectorAll("button").forEach((btn) => {
   };
 });
 
-$("sortSel").onchange = () => { sortMode = $("sortSel").value; renderBooks(); };
+$("sortSel").onchange = () => { sortMode = $("sortSel").value; sortDir = 1; updateSortIndicators(); renderBooks(); };
+updateSortIndicators();
+
+/* Keyboard in the book list, like a spreadsheet: ↑/↓ move, Home/End jump,
+   Enter opens. Only while the list is in front and no box has the caret. */
+document.addEventListener("keydown", (e) => {
+  if (!["ArrowDown", "ArrowUp", "Home", "End", "Enter"].includes(e.key)) return;
+  if (!$("dlgCatalog").open || !$("bookView").classList.contains("hidden")) return;
+  if (document.querySelector("dialog[open]:modal")) return;
+  if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(document.activeElement.tagName)) return;
+  const rows = [...$("bookList").querySelectorAll(".bookrow")];
+  if (!rows.length) return;
+  e.preventDefault();
+  const cur = rows.findIndex((r) => r.classList.contains("sel"));
+  if (e.key === "Enter") { if (cur >= 0) rows[cur].dispatchEvent(new MouseEvent("dblclick", { bubbles: true })); return; }
+  const next = e.key === "Home" ? 0 : e.key === "End" ? rows.length - 1
+    : Math.max(0, Math.min(rows.length - 1, cur + (e.key === "ArrowDown" ? 1 : -1)));
+  rows[next].click();
+  rows[next].scrollIntoView({ block: "nearest" });
+});
 /* Material filter wiring. The two checkboxes are Shamela's printed /
    non-printed masters; the buttons under them toggle individual kinds. */
 function syncMaterialUI() {
@@ -2824,7 +2874,7 @@ function openAddOne() {
   fillMaktabaSelect($("oMaktaba"), mode === "shelf" && singleGroup() ? singleGroup() : "");
   updateDeptList($("oMaktaba").value);
   if (mode === "category" && singleGroup()) $("oCategory").value = singleGroup();
-  const next = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0) + 1;
+  const next = maxAccession() + 1;
   /* Where a librarian first meets a register number, so this is where the
      explanation belongs — the client said the bare word meant nothing. */
   $("oAccHint").textContent =
@@ -2904,7 +2954,7 @@ $("oSave").onclick = () => {
     notes: $("oNotes").value.trim()
   };
   normalizeBook(b);
-  b.accession = String(DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0) + 1);
+  b.accession = String(maxAccession() + 1);
   logHistory(b, "added");
   DATA.books.push(b);
   selectedId = b.id;
@@ -3064,7 +3114,7 @@ $("mSave").onclick = () => {
   }
 
   let added = 0, merged = 0;
-  let nextAcc = DATA.books.reduce((m, x) => Math.max(m, parseInt(x.accession, 10) || 0), 0);
+  let nextAcc = maxAccession();
   for (const { text, n } of lines) {
     const c = text.split("|").map((x) => x.trim());
     let [title, author = "", category = "", volumes = "", publisher = "", maktaba = "", department = "", almari = "", notes = "", formatRaw = ""] = c;
@@ -3123,6 +3173,98 @@ $("mSave").onclick = () => {
   if (skipped.length) alert(t("manySkipped") + NL + skipped.join(NL));
 };
 
+/* ── Recycle bin ─────────────────────────────────────────────────────────
+   A deleted book is kept here (this computer only, never published) for 30
+   days and can be put back. Undo still works too; this covers a mistake
+   noticed later. */
+const BIN_DAYS = 30;
+function moveToBin(list) {
+  const gone = new Set(list.map((b) => b.id));
+  DATA.books = DATA.books.filter((x) => !gone.has(x.id));
+  const now = new Date();
+  const cutoff = now.getTime() - BIN_DAYS * 86400000;
+  DATA.deleted = [
+    ...list.map((b) => { const { favorite, viewedAt, ...rest } = b; return { ...rest, deletedAt: now.toISOString() }; }),
+    ...(DATA.deleted || []).filter((b) => new Date(b.deletedAt).getTime() >= cutoff)
+  ];
+}
+
+function showBin() {
+  if (!requireMaster()) return;
+  renderBin();
+  $("dlgBin").showModal();
+}
+
+function renderBin() {
+  const box = $("binList");
+  const list = DATA.deleted || [];
+  box.innerHTML = list.length
+    ? list.map((b, i) => `
+      <div class="bin-row">
+        <div class="bin-info">
+          <div class="bin-title">${esc(b.title)}</div>
+          <div class="bin-meta">${esc(b.author || "")}${b.accession ? ` · ${t("colAccession")} ${ud(b.accession)}` : ""} · ${t("binDeletedOn")} ${esc(String(b.deletedAt || "").slice(0, 10))}</div>
+        </div>
+        <button type="button" class="bin-btn" data-binrestore="${i}">${t("binRestore")}</button>
+        <button type="button" class="bin-btn danger" data-binpurge="${i}">${t("binPurge")}</button>
+      </div>`).join("")
+    : `<div class="hint">${t("binEmpty")}</div>`;
+  box.querySelectorAll("[data-binrestore]").forEach((el) => { el.onclick = () => restoreFromBin(+el.dataset.binrestore); });
+  box.querySelectorAll("[data-binpurge]").forEach((el) => { el.onclick = () => purgeFromBin(+el.dataset.binpurge); });
+}
+
+function restoreFromBin(i) {
+  if (!requireMaster()) return;
+  const b = DATA.deleted[i];
+  if (!b) return;
+  const dup = findDuplicateTitle(b.title, undefined, b.author);
+  if (dup) { toast(dupMessage(dup)); return; }
+  const { deletedAt, ...book } = b;
+  DATA.deleted.splice(i, 1);
+  normalizeBook(book);
+  DATA.books.push(book);
+  persist();
+  renderAll();
+  renderBin();
+  toast(t("binRestored"));
+}
+
+async function purgeFromBin(i) {
+  if (!requireMaster()) return;
+  const b = DATA.deleted[i];
+  if (!b) return;
+  const ok = await askConfirm({ title: t("binPurge"), body: `<p class="ask-book">${esc(b.title)}</p><p>${t("binPurgeConfirm")}</p>`, go: t("binPurge"), danger: true });
+  if (!ok) return;
+  DATA.deleted.splice(i, 1);
+  persist();
+  renderBin();
+}
+
+/* ── Export to Excel ─────────────────────────────────────────────────────
+   The list as it stands (filters, search and sort applied), one row per
+   book, column names in the app's language. */
+function exportExcelCsv(books) {
+  const cols = [
+    ["colAccession", (b) => b.accession], ["colBook", (b) => b.title], ["colAuthor", (b) => b.author],
+    ["colPublisher", (b) => b.publisher], ["fCategory", (b) => b.category], ["fVolumes", (b) => b.volumes],
+    ["fMaktaba", (b) => b.maktaba], ["fDepartment", (b) => b.department], ["fShelf", (b) => b.almari],
+    ["railStatus", (b) => t("st_" + b.status)], ["fBorrower", (b) => (b.status === "issued" ? heldByLine(b) : "")],
+    ["fDueDate", (b) => (b.status === "issued" ? b.dueDate : "")], ["fNotes", (b) => b.notes]
+  ];
+  const cell = (v) => {
+    const s = String(v == null ? "" : v).replace(/\r?\n/g, " ");
+    return /[",;]/.test(s) || /^\s|\s$/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+  const head = cols.map(([k]) => cell(t(k).replace(" *", "")));
+  return [head.join(","), ...books.map((b) => cols.map(([, get]) => cell(get(b))).join(","))].join("\r\n");
+}
+
+async function doExportExcel() {
+  const books = visibleBooks();
+  const path = await window.maktaba.exportCsv(exportExcelCsv(books), "maktaba");
+  if (path) toast(t("exportedExcel").replace("{n}", ud(books.length)));
+}
+
 function deleteSelected() {
   if (!requireMaster()) return;
 
@@ -3140,7 +3282,7 @@ function deleteSelected() {
   if (checked.length === 1) {
     const b = checked[0];
     if (!confirm(`"${b.title}" — ${t("confirmDelete")}`)) return;
-    DATA.books = DATA.books.filter((x) => x.id !== b.id);
+    moveToBin([b]);
     ftsScopedIds.delete(b.id);
     if (selectedId === b.id) {
       selectedId = null;
@@ -3155,7 +3297,7 @@ function deleteSelected() {
   if (checked.length > 1) {
     if (!confirm(t("confirmDeleteMany").replace("{n}", ud(checked.length)))) return;
     const doomed = new Set(checked.map((x) => x.id));
-    DATA.books = DATA.books.filter((x) => !doomed.has(x.id));
+    moveToBin(checked);
     doomed.forEach((id) => ftsScopedIds.delete(id));
     if (doomed.has(selectedId)) {
       selectedId = null;
@@ -3176,7 +3318,7 @@ function deleteSelected() {
      elsewhere in the app. */
   if (!b) { toast(t("detailEmpty")); return; }
   if (!confirm(`"${b.title}" — ${t("confirmDelete")}`)) return;
-  DATA.books = DATA.books.filter((x) => x.id !== selectedId);
+  moveToBin([b]);
   ftsScopedIds.delete(selectedId);
   selectedId = null;
   $("bookView").classList.add("hidden");
@@ -3718,6 +3860,8 @@ const MENU_ACTIONS = {
   addMany: openAddMany,
   delete: deleteSelected,
   screenBooks: () => openScreen(false),
+  exportExcel: doExportExcel,
+  recycleBin: showBin,
   openBooks: () => { const tab = rdTab(rdActive) || rdTabs[0]; if (tab) rdShow(tab); },
   screenSearch: () => openScreen(true),
   undo: () => stepHistory("undo"),

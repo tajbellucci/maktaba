@@ -164,6 +164,8 @@
       <button data-act="categoriesMan"><svg><use href="#i-tag"/></svg><span data-t="mCategories">موضوعات کی فہرست</span></button>
       <button data-act="issued"><svg><use href="#i-clock"/></svg><span data-t="mIssued">جاری شدہ کتابیں</span></button>
       <button data-act="duplicates"><svg><use href="#i-copy"/></svg><span data-t="mDuplicates">مکرر کتابیں تلاش کریں</span></button>
+      <button data-act="exportExcel"><svg><use href="#i-download"/></svg><span data-t="mExportExcel">Excel میں برآمد کریں</span></button>
+      <button data-act="recycleBin" class="master-only"><svg><use href="#i-trash"/></svg><span data-t="mRecycleBin">حذف شدہ کتابیں</span></button>
       <div class="dsep"></div>
       <button data-act="focusSearch"><svg><use href="#i-search"/></svg><span data-t="mFocusSearch">تلاش باکس پر جائیں</span></button>
       <button data-act="clearSearch"><svg><use href="#i-x"/></svg><span data-t="mClearSearch">تلاش صاف کریں</span></button>
@@ -273,6 +275,7 @@
       <select id="sortSel" title="ترتیب">
         <option value="accession" data-t-opt="sortAccession">رجسٹر نمبر</option>
         <option value="title" data-t-opt="sortTitle">نام</option>
+        <option value="publisher" data-t-opt="sortPublisher">ناشر</option>
         <option value="author" data-t-opt="sortAuthor">مصنف</option>
         <option value="added" data-t-opt="sortAdded">حال ہی میں شامل</option>
       </select>
@@ -871,6 +874,17 @@
       </table>
     </div>
     <div class="rd-foot hidden" id="rdFoot"></div>
+  </div>
+</dialog>
+
+<!-- Recycle bin: books deleted on this computer, restorable for 30 days. -->
+<dialog id="dlgBin">
+  <div class="modal-body bin-body">
+    <h2 data-t="binTitle">حذف شدہ کتابیں</h2>
+    <div class="modal-inner" id="binList"></div>
+    <div class="modal-actions">
+      <button data-close data-t="btnClose">بند کریں</button>
+    </div>
   </div>
 </dialog>
 

@@ -3043,3 +3043,18 @@ html[data-mode="dark"] .grouprow.checked .c-name { color: #cfe3ff; }
 .reader-body.pdf-mode .rd-pager, .reader-body.pdf-mode .rd-results, .reader-body.pdf-mode .rd-foot { display: none !important; }
 #iconbar [data-act="openBooks"] svg { color: #1e8449; }
 #ibReaderCount { font-variant-numeric: tabular-nums; }
+
+/* Column headings sort on click (Excel-style); the arrow shows the order. */
+.bh-acc, .bh-title, .bh-author, .bh-publisher { cursor: pointer; user-select: none; }
+.bh-acc:hover, .bh-title:hover, .bh-author:hover, .bh-publisher:hover { color: var(--blue); }
+.bookhead .sort-asc > span::after { content: ' \25B2'; font-size: 9px; color: var(--blue); }
+.bookhead .sort-desc > span::after { content: ' \25BC'; font-size: 9px; color: var(--blue); }
+/* Recycle bin list */
+.bin-body { min-width: min(640px, calc(var(--vw) - 40px)); }
+#binList { display: grid; gap: 6px; max-height: calc(var(--vh) - 220px); overflow-y: auto; }
+.bin-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--strip-2); }
+.bin-info { flex: 1; min-width: 0; }
+.bin-title { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bin-meta { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bin-btn { flex: none; border: 1px solid var(--blue-2); background: var(--blue-wash); color: var(--blue); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.bin-btn.danger { border-color: var(--red); background: var(--red-wash); color: var(--red); }
