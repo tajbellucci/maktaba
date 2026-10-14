@@ -2232,7 +2232,7 @@ function renderFileRow(b) {
       <span class="filename" title="${p}">${baseName(p)}</span>
       ${/* A Unicode text file opens in the app so it can be searched; a PDF
             still goes to the system viewer, because its pages are images. */""}
-      ${b.format === "unicode"
+      ${b.format === "unicode" || b.format === "pdf" || isPdfPath(p)
         ? `<button class="tbtn" data-read="${i}" title="${t("readInApp")}"><svg><use href="#i-searchbook"/></svg></button>`
         : ""}
       <button class="tbtn" data-open="${i}" title="${t("openFile")}"><svg><use href="#i-book"/></svg></button>
@@ -2296,7 +2296,10 @@ function renderFileRow(b) {
     };
   });
   row.querySelectorAll("[data-read]").forEach((btn) => {
-    btn.onclick = () => openReader(b, b.files[+btn.dataset.read]);
+    btn.onclick = () => {
+      const p = b.files[+btn.dataset.read];
+      if (b.format === "pdf" || isPdfPath(p)) openPdfTab(b, p); else openReader(b, p);
+    };
   });
   row.querySelectorAll("[data-drop]").forEach((btn) => {
     btn.onclick = () => {
@@ -3715,6 +3718,7 @@ const MENU_ACTIONS = {
   addMany: openAddMany,
   delete: deleteSelected,
   screenBooks: () => openScreen(false),
+  openBooks: () => { const tab = rdTab(rdActive) || rdTabs[0]; if (tab) rdShow(tab); },
   screenSearch: () => openScreen(true),
   undo: () => stepHistory("undo"),
   redo: () => stepHistory("redo"),
@@ -4277,35 +4281,158 @@ function applyReaderScript(text) {
   if (script) el.classList.add("script-" + script);
 }
 
-async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly) {
-  $("rdTitle").textContent = book.title || "";
-  $("rdFile").textContent = baseName(filePath);
-  $("rdQuery").value = preset || "";   // a search result opens already on its word
-  $("rdCount").textContent = "";
-  $("rdBookTitle").textContent = book.title || "";
-  $("rdText").innerHTML = `<div class="hint">${t("readerLoading")}</div>`;
-  $("rdRows").innerHTML = "";
-  $("rdResults").classList.add("hidden");
-  $("rdFoot").classList.add("hidden");
-  $("rdToc").innerHTML = "";
-  $("dlgReader").showModal();
+/* ── Reader tabs ─────────────────────────────────────────────────────────
+   Several books open at once, Unicode text or PDF, one tab each — what the
+   client showed in Shamela (video 2026-10-10). The reader's globals
+   (readerText, readerPages, …) always belong to the tab on screen; a tab's
+   own copy lives in tab.state and is swapped in and out on a switch, so each
+   book keeps its page, search and results. A PDF keeps its own frame alive
+   for the same reason. Closing the window keeps the books open behind it
+   («الكتب المفتوحة» on the top bar brings them back); a tab's × closes one. */
+const RD_MAX_TABS = 8;
+let rdTabs = [];       // { key: file path, title, file, kind: "text"|"pdf", state, error, frame }
+let rdActive = null;   // key of the tab on screen
+const rdTab = (key) => rdTabs.find((x) => x.key === key);
+const isPdfPath = (p) => /\.pdf($|[?#])/i.test(String(p || ""));
 
-  const res = await window.maktaba.readText(filePath);
-  if (!res.ok) {
-    $("rdText").innerHTML = `<div class="hint err">${res.error || t("readerFailed")}</div>`;
+function rdSaveState() {
+  const tab = rdTab(rdActive);
+  if (!tab || tab.kind !== "text" || !tab.state || tab.state.text == null) return;
+  Object.assign(tab.state, {
+    text: readerText, hits: readerHits, at: readerAt, pages: readerPages, page: readerPage,
+    toc: readerToc, index: readerIndex, query: $("rdQuery").value, count: $("rdCount").textContent
+  });
+}
+
+function refreshOpenBooksButton() {
+  $("ibReader").classList.toggle("hidden", !rdTabs.length || $("dlgReader").open);
+  $("ibReaderCount").textContent = rdTabs.length ? ud(rdTabs.length) : "";
+}
+
+function renderRdTabs() {
+  const bar = $("rdTabs");
+  bar.innerHTML = rdTabs.map((x, i) => `
+    <div class="rd-tab${x.key === rdActive ? " on" : ""}" data-rdi="${i}" title="${esc(x.title)}">
+      <span class="rd-tab-kind">${x.kind === "pdf" ? "PDF" : "TXT"}</span>
+      <span class="rd-tab-name">${esc(x.title)}</span>
+      <button type="button" class="rd-tab-x" data-rdx="${i}" title="${t("btnClose")}"><svg><use href="#i-x"/></svg></button>
+    </div>`).join("");
+  bar.querySelectorAll("[data-rdi]").forEach((el) => { el.onclick = () => rdSwitch(rdTabs[+el.dataset.rdi].key); });
+  bar.querySelectorAll("[data-rdx]").forEach((el) => {
+    el.onclick = (ev) => { ev.stopPropagation(); rdCloseTab(rdTabs[+el.dataset.rdx].key); };
+  });
+  const on = bar.querySelector(".rd-tab.on");
+  if (on) on.scrollIntoView({ block: "nearest", inline: "nearest" });
+  refreshOpenBooksButton();
+}
+
+// Put a tab on screen: its title, its kind of pane, and (text) its own state.
+function rdShow(tab) {
+  rdActive = tab.key;
+  $("rdTitle").textContent = tab.title;
+  $("rdBookTitle").textContent = tab.title;
+  $("rdFile").textContent = tab.file;
+  document.querySelector(".reader-body").classList.toggle("pdf-mode", tab.kind === "pdf");
+  $("rdPdf").classList.toggle("hidden", tab.kind !== "pdf");
+  rdTabs.forEach((x) => { if (x.frame) x.frame.classList.toggle("hidden", x.key !== tab.key); });
+  if (tab.kind === "text") {
+    if (tab.error) {
+      $("rdText").innerHTML = `<div class="hint err">${esc(tab.error)}</div>`;
+    } else if (!tab.state || tab.state.text == null) {
+      $("rdText").innerHTML = `<div class="hint">${t("readerLoading")}</div>`;
+      $("rdToc").innerHTML = ""; $("rdToc").classList.add("hidden");
+      $("rdRows").innerHTML = ""; $("rdResults").classList.add("hidden"); $("rdFoot").classList.add("hidden");
+      $("rdQuery").value = (tab.state && tab.state.query) || ""; $("rdCount").textContent = "";
+    } else {
+      const st = tab.state;
+      readerText = st.text; readerHits = st.hits; readerAt = st.at; readerPages = st.pages;
+      readerPage = st.page; readerToc = st.toc; readerIndex = st.index;
+      $("rdQuery").value = st.query;
+      applyReaderScript(readerText);
+      renderRdToc();
+      paintReader();
+      renderRdResults();
+      $("rdCount").textContent = st.count;
+      $("rdPrev").disabled = $("rdNext").disabled = readerHits.length < 2;
+    }
+  }
+  if (!$("dlgReader").open) $("dlgReader").showModal();
+  renderRdTabs();
+}
+
+function rdSwitch(key) {
+  if (key === rdActive) return;
+  rdSaveState();
+  const tab = rdTab(key);
+  if (tab) rdShow(tab);
+}
+
+function rdAddTab(tab) {
+  rdTabs.push(tab);
+  while (rdTabs.length > RD_MAX_TABS) {   // past the limit the oldest other book closes
+    const i = rdTabs.findIndex((x) => x.key !== tab.key);
+    const [gone] = rdTabs.splice(i, 1);
+    if (gone.frame) gone.frame.remove();
+  }
+}
+
+function rdCloseTab(key) {
+  const i = rdTabs.findIndex((x) => x.key === key);
+  if (i < 0) return;
+  const [gone] = rdTabs.splice(i, 1);
+  if (gone.frame) gone.frame.remove();
+  if (key !== rdActive) { renderRdTabs(); return; }
+  rdActive = null;
+  if (rdTabs.length) rdShow(rdTabs[Math.min(i, rdTabs.length - 1)]);
+  else { $("dlgReader").close(); renderRdTabs(); }
+}
+
+async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly) {
+  rdSaveState();
+  const existing = rdTab(filePath);
+  if (existing) {
+    rdShow(existing);
+    // a search result opens the already-open book on its word
+    if (preset && existing.kind === "text" && existing.state && existing.state.text != null) {
+      $("rdQuery").value = preset;
+      runReaderSearch(presetOpts, presetHeadingsOnly);
+    }
     return;
   }
-  readerText = res.text;
-  applyReaderScript(readerText);
-  readerHits = [];
-  readerAt = 0;
-  readerPage = 0;
-  readerIndex = null;
-  readerPages = paginate(readerText);
-  readerToc = buildToc(readerText, readerPages);
-  renderRdToc();
-  if (preset) runReaderSearch(presetOpts, presetHeadingsOnly); else { paintReader(); renderRdResults(); }
+  const tab = { key: filePath, title: book.title || "", file: baseName(filePath), kind: "text", state: { query: preset || "" } };
+  rdAddTab(tab);
+  rdShow(tab);
+
+  const res = await window.maktaba.readText(filePath);
+  if (!rdTab(tab.key)) return;                      // closed while it loaded
+  if (!res.ok) {
+    tab.error = res.error || t("readerFailed");
+    if (rdActive === tab.key) rdShow(tab);
+    return;
+  }
+  const pages = paginate(res.text);
+  tab.state = { text: res.text, hits: [], at: 0, pages, page: 0, toc: buildToc(res.text, pages), index: null, query: preset || "", count: "" };
+  if (rdActive !== tab.key) return;                 // another tab was chosen meanwhile; this one is ready for later
+  rdShow(tab);
+  if (preset) { runReaderSearch(presetOpts, presetHeadingsOnly); rdSaveState(); }
   setTimeout(() => $("rdQuery").focus(), 60);
+}
+
+// A PDF opens in a reader tab too, in Chromium's own PDF viewer.
+async function openPdfTab(book, filePath) {
+  rdSaveState();
+  const existing = rdTab(filePath);
+  if (existing) { rdShow(existing); return; }
+  const res = await window.maktaba.fileLocalUrl(filePath);
+  if (!res || !res.ok) { toast(t(res && res.error === "offline" ? "fileOffline" : "fileMissing")); return; }
+  const frame = document.createElement("iframe");
+  frame.src = res.url;
+  frame.title = book.title || "";
+  $("rdPdf").appendChild(frame);
+  const tab = { key: filePath, title: book.title || "", file: baseName(filePath), kind: "pdf", frame };
+  rdAddTab(tab);
+  rdShow(tab);
+  refreshOfflineBadges();   // a hosted scan was just cached
 }
 
 
@@ -4514,7 +4641,9 @@ $("rdQuery").addEventListener("keydown", (e) => {
 });
 $("rdNext").onclick = () => stepReader(1);
 $("rdPrev").onclick = () => stepReader(-1);
+// The window's ×: the books stay open behind it (tabs keep their place).
 $("rdClose").onclick = () => $("dlgReader").close();
+$("dlgReader").addEventListener("close", () => { rdSaveState(); refreshOpenBooksButton(); });
 
 /* Pinch-to-zoom in the reading pane, the more you zoom the bigger it gets.
    Set only on #rdText itself, not :root, so it can never bleed into the
@@ -4575,6 +4704,7 @@ $("rdPageBox").addEventListener("keydown", (e) => {
    the caret is not in one of its input boxes. */
 document.addEventListener("keydown", (e) => {
   if (!$("dlgReader").open) return;
+  if ((rdTab(rdActive) || {}).kind === "pdf") return;   // the PDF viewer pages itself
   if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) return;
   if (e.key === "ArrowLeft") { e.preventDefault(); goToPage(readerPage + 1); }
   if (e.key === "ArrowRight") { e.preventDefault(); goToPage(readerPage - 1); }

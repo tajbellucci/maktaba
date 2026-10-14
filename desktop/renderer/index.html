@@ -141,6 +141,8 @@
        and البحث (search, with tick boxes). Same order, same place. -->
   <button data-act="screenBooks" id="ibBooks"><svg><use href="#i-searchbook"/></svg><span data-t="railBooks">الکتب</span></button>
   <button data-act="screenSearch" id="ibSearch"><svg><use href="#i-search"/></svg><span data-t="railFts">بحث</span></button>
+  <!-- Back to the books left open in the reader; shown only while there are some. -->
+  <button data-act="openBooks" id="ibReader" class="hidden"><svg><use href="#i-book"/></svg><span><span data-t="openBooks">الكتب المفتوحة</span> <b id="ibReaderCount"></b></span></button>
   <div class="ibsep"></div>
   <button data-act="addOne"><svg><use href="#i-plus"/></svg><span data-t="mAddOneShort">شامل کریں</span></button>
   <button data-act="addMany"><svg><use href="#i-list"/></svg><span data-t="mAddManyShort">کئی شامل</span></button>
@@ -799,6 +801,9 @@
      the list" but "find a word inside this book". -->
 <dialog id="dlgReader">
   <div class="modal-body reader-body">
+    <!-- One tab per open book (Unicode text or PDF), the way Shamela keeps
+         several books open; closing the window keeps them open behind. -->
+    <div class="rd-tabs" id="rdTabs"></div>
     <!-- The book's name lives in the title band below, the way the reference
          app shows it; a second big heading up here was the same text twice
          and cost the reading pane 67px of height. Kept only as the hidden
@@ -832,6 +837,10 @@
     <!-- Chapter tree first in the DOM so RTL puts it on the physical RIGHT,
          beside the text, where the reference app keeps it. Hidden when the
          file has no headings to build one from. -->
+    <!-- PDF tabs: one frame each (Chromium's own PDF viewer), kept alive so a
+         book stays on its page while another tab is read. -->
+    <div class="rd-pdf hidden" id="rdPdf"></div>
+
     <div class="rd-main">
       <nav class="rd-toc hidden" id="rdToc"></nav>
       <div class="rd-text" id="rdText"></div>

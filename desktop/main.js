@@ -1113,6 +1113,21 @@ ipcMain.handle("file:downloadAllTexts", async (_e, data) => {
   return { total: texts.size + docs.size, downloaded, alreadyCached, failed };
 });
 
+/* A PDF read INSIDE the app (reader tab) instead of the system viewer: the
+   same cached-download bargain as file:open, but the local copy's file URL
+   comes back for the reader's frame (Chromium's built-in PDF viewer). */
+ipcMain.handle("file:localUrl", async (_e, filePath) => {
+  const real = resolveStoredPath(filePath);
+  if (!real) return { ok: false, error: "missing" };
+  let local = real;
+  if (/^https?:\/\//i.test(real)) {
+    local = cachedPathFor(real) || await fetchBinaryToCache(real, MAX_DOC_BYTES);
+    if (!local) return { ok: false, error: "offline" };
+  }
+  if (!fs.existsSync(local)) return { ok: false, error: "missing" };
+  return { ok: true, url: require("url").pathToFileURL(local).href };
+});
+
 ipcMain.handle("file:open", async (_e, filePath) => {
   const real = resolveStoredPath(filePath);
   if (!real) return { ok: false, error: "missing" };
