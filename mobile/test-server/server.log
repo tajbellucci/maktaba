@@ -1,0 +1,8 @@
+::ffff:127.0.0.1 - - [14/Sep/2026 11:27:43] "GET /books.json HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:30:33] "GET /books.json HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:30:36] "GET /books.json HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:30:37] "GET /texts/arabic.txt HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:30:41] "GET /books.json HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:30:42] "GET /texts/urdu.txt HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:31:59] "GET /books.json HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [14/Sep/2026 11:32:10] "GET /books.json HTTP/1.1" 200 -

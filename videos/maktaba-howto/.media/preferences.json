@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "preferences": {
+    "aspect": {
+      "value": "1920x1080",
+      "confirmed_in": [
+        "maktaba-howto"
+      ],
+      "updated_at": "2026-09-30T05:02:28.116Z"
+    },
+    "language": {
+      "value": "ur",
+      "confirmed_in": [
+        "maktaba-howto"
+      ],
+      "updated_at": "2026-09-30T05:02:28.605Z"
+    }
+  },
+  "sightings": {}
+}

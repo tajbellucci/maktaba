@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Maktaba Naumania</string>
+    <string name="catalog_search_label">Search</string>
+    <string name="catalog_load_error">Could not load catalog: %1$s</string>
+    <string name="home_title">Darul Ifta Library</string>
+    <string name="home_subtitle">Madarsa Naumania</string>
+    <string name="home_open_catalog">Browse Library</string>
+    <string name="preview_search_label">Search in book</string>
+    <string name="preview_no_matches">No results</string>
+    <string name="preview_match_count">%1$d / %2$d</string>
+    <string name="preview_load_error">Could not load file: %1$s</string>
+    <string name="detail_read_book">Read Book</string>
+    <string name="detail_open_pdf">Open PDF</string>
+
+    <string name="status_available">Available</string>
+    <string name="status_issued">Issued</string>
+    <string name="status_missing">Missing</string>
+    <string name="status_overdue">Overdue</string>
+    <string name="held_by_person">Person</string>
+    <string name="held_by_department">Department</string>
+    <string name="borrower_hidden">With a person (name kept private)</string>
+    <string name="due_date_label">Due back</string>
+    <string name="history_title">Book History</string>
+    <string name="history_action_issued">Issued</string>
+    <string name="history_action_transferred">Transferred</string>
+    <string name="history_action_returned">Returned</string>
+    <string name="history_action_broughtBack">Returned</string>
+    <string name="history_action_missing">Missing</string>
+    <string name="history_action_available">Available</string>
+</resources>

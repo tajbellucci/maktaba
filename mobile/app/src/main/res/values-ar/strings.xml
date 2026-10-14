@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">المكتبة النعمانية</string>
+    <string name="catalog_search_label">بحث</string>
+    <string name="catalog_load_error">تعذر تحميل الفهرس: %1$s</string>
+    <string name="home_title">دار الافتاء مکتبہ</string>
+    <string name="home_subtitle">مدرسہ نعمانیہ</string>
+    <string name="home_open_catalog">عرض المكتبة</string>
+    <string name="preview_search_label">البحث في الكتاب</string>
+    <string name="preview_no_matches">لا توجد نتائج</string>
+    <string name="preview_match_count">%1$d / %2$d</string>
+    <string name="preview_load_error">تعذر تحميل الملف: %1$s</string>
+    <string name="detail_read_book">قراءة الكتاب</string>
+    <string name="detail_open_pdf">فتح ملف PDF</string>
+
+    <string name="status_available">متوفر</string>
+    <string name="status_issued">معار</string>
+    <string name="status_missing">غير موجود</string>
+    <string name="status_overdue">متأخر</string>
+    <string name="held_by_person">شخص</string>
+    <string name="held_by_department">قسم</string>
+    <string name="borrower_hidden">لدى شخص (الاسم محفوظ)</string>
+    <string name="due_date_label">تاريخ الإرجاع</string>
+    <string name="history_title">سجل الكتاب</string>
+    <string name="history_action_issued">تمت الإعارة</string>
+    <string name="history_action_transferred">تم النقل</string>
+    <string name="history_action_returned">تمت الإعادة</string>
+    <string name="history_action_broughtBack">تمت الإعادة</string>
+    <string name="history_action_missing">غير موجود</string>
+    <string name="history_action_available">متوفر</string>
+</resources>

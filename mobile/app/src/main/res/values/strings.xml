@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">مکتبہ نعمانیہ</string>
+    <string name="catalog_search_label">تلاش</string>
+    <string name="catalog_load_error">کیٹلاگ لوڈ نہیں ہوسکا: %1$s</string>
+    <string name="home_title">دار الافتاء مکتبہ</string>
+    <string name="home_subtitle">مدرسہ نعمانیہ</string>
+    <string name="home_open_catalog">کتب خانہ دیکھیں</string>
+    <string name="preview_search_label">کتاب میں تلاش کریں</string>
+    <string name="preview_no_matches">کوئی نتیجہ نہیں</string>
+    <string name="preview_match_count">%1$d / %2$d</string>
+    <string name="preview_load_error">فائل لوڈ نہیں ہوسکی: %1$s</string>
+    <string name="detail_read_book">کتاب پڑھیں</string>
+    <string name="detail_open_pdf">پی ڈی ایف کھولیں</string>
+
+    <string name="status_available">موجود</string>
+    <string name="status_issued">معار</string>
+    <string name="status_missing">مطلوب</string>
+    <string name="status_overdue">میعاد ختم</string>
+    <string name="held_by_person">فرد</string>
+    <string name="held_by_department">شعبہ</string>
+    <string name="borrower_hidden">کسی فرد کے پاس (نام محفوظ)</string>
+    <string name="due_date_label">واپسی کی تاریخ</string>
+    <string name="history_title">کتاب کی تاریخ</string>
+    <string name="history_action_issued">جاری شدہ</string>
+    <string name="history_action_transferred">منتقل</string>
+    <string name="history_action_returned">واپس</string>
+    <string name="history_action_broughtBack">واپس</string>
+    <string name="history_action_missing">مطلوب</string>
+    <string name="history_action_available">دستیاب</string>
+</resources>

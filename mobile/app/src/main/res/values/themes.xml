@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AppCompat descendant required: AppCompatActivity (used for per-app language
+         persistence via AppCompatDelegate) throws otherwise. -->
+    <style name="Theme.MaktabaNaumania" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>
