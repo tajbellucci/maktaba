@@ -1,6 +1,31 @@
 {
   "releases": [
     {
+      "version": "1.11.0",
+      "date": "2026-10-14",
+      "ur": [
+        "شاملہ کی طرح ایک وقت میں کئی کتابیں: یونیکوڈ اور PDF کتابیں ریڈر میں الگ الگ ٹیب میں کھلتی ہیں، PDF بھی ایپ کے اندر۔ ریڈر بند کرنے پر کتابیں کھلی رہتی ہیں؛ «کھلی کتابیں» سے واپس آئیں۔",
+        "سرخی پر کلک سے ترتیب (رقم، الکتاب، المؤلف، الناشر)، دوبارہ کلک سے الٹ۔",
+        "کی بورڈ: اوپر/نیچے تیر سے کتاب بدلیں، Enter سے کھولیں، Home/End سے شروع/آخر۔",
+        "«المزيد» میں Excel میں برآمد: موجودہ فہرست ایک فائل میں۔",
+        "حذف شدہ کتابیں 30 دن تک «سلة المحذوفات» میں رہتی ہیں اور واپس لائی جا سکتی ہیں۔"
+      ],
+      "ar": [
+        "عدة كتب في وقت واحد كالشاملة: كتب النص والـPDF تُفتح في تبويبات داخل القارئ، والـPDF داخل البرنامج. إغلاق القارئ يبقي الكتب مفتوحة؛ «الكتب المفتوحة» تعيدها.",
+        "الترتيب بالنقر على عنوان العمود (الرقم، الكتاب، المؤلف، الناشر)، ونقرة ثانية تعكسه.",
+        "لوحة المفاتيح: الأسهم للتنقل بين الكتب، Enter للفتح، Home/End للأول والأخير.",
+        "«تصدير إلى Excel» من «المزيد»: القائمة الحالية في ملف.",
+        "الكتب المحذوفة تبقى 30 يومًا في «سلة المحذوفات» ويمكن استعادتها."
+      ],
+      "en": [
+        "Several books at once, like Shamela: Unicode and PDF books open as tabs in the reader, PDFs inside the app. Closing the reader keeps them open; «Open books» brings them back.",
+        "Click a column heading (No., Title, Author, Publisher) to sort; click again to reverse.",
+        "Keyboard: arrow keys move between books, Enter opens, Home/End jump to first/last.",
+        "Export to Excel (under More): the current list in one file.",
+        "Deleted books stay 30 days in the Recycle bin and can be restored."
+      ]
+    },
+    {
       "version": "1.10.0",
       "date": "2026-10-14",
       "ur": [
