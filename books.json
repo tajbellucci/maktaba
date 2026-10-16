@@ -6892,19 +6892,24 @@
     {
       "id": 255,
       "title": "غاية السعاية في حل ما في الهداية",
-      "author": "مولانامحمد حنيف صاحب",
-      "publisher": "المكتبة الاشرفية",
-      "category": "",
+      "author": "مولانا محمد حنیف صاحب",
+      "publisher": "دار تصنیف جامعہ علوم اسلامیہ",
+      "category": "الفقه",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "ب-2، ط: خلفي",
+      "almari": "ہ-٤",
       "hasPrint": true,
       "status": "available",
       "notes": "جلدیں: 1/2مف:باقي",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-16",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -18807,6 +18812,987 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "694"
+    },
+    {
+      "id": 695,
+      "title": "النحو الوافي",
+      "author": "عباس حسن",
+      "publisher": "دار المعارف",
+      "category": "النحو",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "695"
+    },
+    {
+      "id": 696,
+      "title": "خطبہ کے شرعی احکام",
+      "author": "مولانا محمد عمران عثمان",
+      "publisher": "دار عمران اکیڈمی",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "696"
+    },
+    {
+      "id": 697,
+      "title": "دور حاضر کے سیاسی و اقتصادی مسائل اور تعلیمات واشارات",
+      "author": "مولانا سید محمد میاں صاحب",
+      "publisher": "جمعيہ کمپوزنگ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "697"
+    },
+    {
+      "id": 698,
+      "title": "نصرت الحجاج",
+      "author": "نصرت علی صدیقی",
+      "publisher": "مکتبہ دارالعلوم کراچی",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "698"
+    },
+    {
+      "id": 699,
+      "title": "شرح قطر اپنی وبل الصدی",
+      "author": "عبد الله بن هشام الأنصاري المترفة ٧٦١",
+      "publisher": "دار المنار",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "699"
+    },
+    {
+      "id": 700,
+      "title": "اصلاحی بیانات ورسائل",
+      "author": "مولانا مفتی عبد الرؤف  صاحب سکھروی",
+      "publisher": "میمن اسلامک پبلشرز",
+      "category": "النحو",
+      "volumes": 0,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "700"
+    },
+    {
+      "id": 701,
+      "title": "مستند مجموعہ وظائف",
+      "author": "اساتذہ مدرسہ بہت العلم",
+      "publisher": "بيت العلم ٹرسٹ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "701"
+    },
+    {
+      "id": 702,
+      "title": "دروس مکتوبات",
+      "author": "حضرت۔شیخ ہمایوں حنیف نقشبندی",
+      "publisher": "مكتبہ اصلاح نفس",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "702"
+    },
+    {
+      "id": 703,
+      "title": "فضائل درود ودعا",
+      "author": "حضرت مولانا عبد القدوس",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "703"
+    },
+    {
+      "id": 704,
+      "title": "پیغام پاکستان",
+      "author": "محققین ادارہ تحقیقات اسلامی",
+      "publisher": "ادارہ تحقیقات اسلامی",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "704"
+    },
+    {
+      "id": 705,
+      "title": "شرعی پردہ",
+      "author": "مولانا عاشق الٰہی بلند شہری",
+      "publisher": "مكتبہ مکیہ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "705"
+    },
+    {
+      "id": 706,
+      "title": "فتاوی مظاہر علوم المعروف بہ فتاوی خلیلیہ",
+      "author": "حضرت اقدس مولانا خلیل احمد سہارنپوری صاحب",
+      "publisher": "مكتبة الشيخ",
+      "category": "الفقه",
+      "volumes": 0,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "706"
+    },
+    {
+      "id": 707,
+      "title": "معارف مثنوى شرح مثنوى مولانا روم",
+      "author": "مولانا شاه حکیم محمد اختر صاحب رحمہ اللہ",
+      "publisher": "خانقاہ امدادیہ اشرفیہ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "707"
+    },
+    {
+      "id": 708,
+      "title": "قصص الانبیاء",
+      "author": "مولانا فرید احمد صاحب",
+      "publisher": "بابا سنز",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "708"
+    },
+    {
+      "id": 709,
+      "title": "بنت زینت حوا",
+      "author": "مفتی صاحب اور محمود صاحب",
+      "publisher": "دار الکتب العلمیہ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "709"
+    },
+    {
+      "id": 710,
+      "title": "جواہرات فاروقی",
+      "author": "مولانا ضیاء الرحمن فاروقی",
+      "publisher": "حیدر کرار اکیڈمی",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "710"
+    },
+    {
+      "id": 711,
+      "title": "تعلیم الاسلام المرتب العربی",
+      "author": "علامہ مفتی محمد کفایت اللہ دہلوی",
+      "publisher": "مدرسہ ابن عباس",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "711"
+    },
+    {
+      "id": 712,
+      "title": "زیارت روضہ اقدس",
+      "author": "مفتی ابوالخیر عارف محمود",
+      "publisher": "خانقاہ امدادیہ اشرفیہ",
+      "category": "الزیارۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "712"
+    },
+    {
+      "id": 713,
+      "title": "رسول اللہ صلی اللہ علیہ وسلم کی نظر میں دنیا کی حقیقت",
+      "author": "شاہ حکیم محمد اختر صاحب",
+      "publisher": "خانقاہ امدادیہ اشرفیہ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "713"
+    },
+    {
+      "id": 714,
+      "title": "خطبات حکیم الاسلام",
+      "author": "حضرت مولانا قاری محمد طیب صاحب",
+      "publisher": "ادارہ اسلامیات",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ھ-٤مف:باقی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "714"
+    },
+    {
+      "id": 715,
+      "title": "گوہر شاہی",
+      "author": "مولانا سعید احمد جلال پوری شہید",
+      "publisher": "عالمی مجلس تحفظ ختم نبوت",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "715"
+    },
+    {
+      "id": 716,
+      "title": "حاضری و حضوری",
+      "author": "مولانا محمد فرحان فیروز میمن صاحب",
+      "publisher": "ادارہ تالیفات اختریہ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "716"
+    },
+    {
+      "id": 717,
+      "title": "مسلمان نوجوانوں",
+      "author": "شیخ عبداللہ ناصح عنوان",
+      "publisher": "دار تصنیف جامعہ علوم اسلامیہ",
+      "category": "النصح",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "717"
+    },
+    {
+      "id": 718,
+      "title": "باب الحماسہ من دیوان الحماسہ",
+      "author": "محمد اعزاز علی",
+      "publisher": "قدیمی کتب خانہ",
+      "category": "الادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "718"
+    },
+    {
+      "id": 719,
+      "title": "المنہاج",
+      "author": "محمد کی",
+      "publisher": "قدیمی کتب خانہ",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "719"
+    },
+    {
+      "id": 720,
+      "title": "توضیح الدراسۃ شرح باب الحماسۃ",
+      "author": "ابن الحسن عباسی",
+      "publisher": "مکتبہ عمر فاروق",
+      "category": "الادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "720"
+    },
+    {
+      "id": 721,
+      "title": "اشرف الہدایۃ",
+      "author": "حضرت مولانا محمد یوسف صاحب",
+      "publisher": "کتب خانہ مظہری",
+      "category": "الفقه",
+      "volumes": 13,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "721"
+    },
+    {
+      "id": 722,
+      "title": "تحفہ عثمانیہ",
+      "author": "حضرت مولانا مفتی ذاکر حسن نعمانی",
+      "publisher": "دار تصنیف",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "722"
+    },
+    {
+      "id": 723,
+      "title": "حقوق جمال مصطفی",
+      "author": "منیر احمد علوی",
+      "publisher": "شبان ختم نبوت",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "723"
+    },
+    {
+      "id": 724,
+      "title": "اسیران جمال مصطفی",
+      "author": "مفتی صابر محمود صاحب",
+      "publisher": "دار کتب العلمیہ",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "724"
+    },
+    {
+      "id": 725,
+      "title": "تلخیص المفتاح",
+      "author": "محمد عبدالرحمن",
+      "publisher": "مکتبہ رحمانیہ",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "725"
+    },
+    {
+      "id": 726,
+      "title": "الاضافات",
+      "author": "مولانا محمد افتخار",
+      "publisher": "مکتبہ امدادیہ",
+      "category": "الادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "726"
+    },
+    {
+      "id": 727,
+      "title": "معارف الحواشی شرح اصول الشاشی",
+      "author": "مولانا عبدالحئی استوری",
+      "publisher": "مکتبہ عمر فاروق",
+      "category": "أصول الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "727"
+    },
+    {
+      "id": 728,
+      "title": "خلاصۃ السراجی",
+      "author": "مولوی محمد خلیل اللہ",
+      "publisher": "مکتب تفسیریہ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "728"
+    },
+    {
+      "id": 729,
+      "title": "المفردات فی غریب القران",
+      "author": "محمد بن مفضل راغب اصفہانی",
+      "publisher": "کارخانہ تجارت کتب",
+      "category": "اللغۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "729"
+    },
+    {
+      "id": 730,
+      "title": "جاء الحق",
+      "author": "مولانا مفتی احمد يارخان",
+      "publisher": "القران پبلشرز",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "730"
     }
   ],
   "categories": [
