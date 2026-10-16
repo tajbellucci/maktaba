@@ -19928,6 +19928,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "735"
+    },
+    {
+      "id": 736,
+      "title": "شرح الأقطع للقدوري",
+      "author": "أبو نصر الأقطع أحمد بن محمد بن محمد البغدادي الحنفي  (474) ت: محمد بن سيد بن عبد الفتاح درويش",
+      "publisher": "دار المنهاج القويم",
+      "category": "الفقه",
+      "volumes": 7,
+      "maktaba": "قباء مسجد",
+      "department": "خزانه - ٤",
+      "almari": "ب-١",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "736"
     }
   ],
   "categories": [
