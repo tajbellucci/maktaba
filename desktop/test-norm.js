@@ -14,10 +14,17 @@ assert.ok(matches(book({ title: "صحیح البخاری" }), "بخار"), "subs
 assert.ok(!matches(book({ title: "صحیح البخاری" }), "مسلم"), "non-match rejected");
 assert.ok(matches(book({ title: "Fiqh Book" }), "fiqh"), "latin lowercase match");
 
-// tracking fields are searchable: a librarian searches by register number and borrower
-assert.ok(matches(book({ title: "الہدایہ", accession: "42" }), "42"), "accession searchable");
-assert.ok(matches(book({ title: "الہدایہ", borrower: "عبد اللہ" }), "عبد"), "borrower searchable");
-assert.ok(matches(book({ title: "الہدایہ", publisher: "دار الفكر" }), "الفکر"), "publisher searchable, normalized");
+// search = the phrase inside title or author, nothing else
+assert.ok(matches(book({ title: "الہدایہ", accession: "42" }), "42"), "register number still finds its book");
+assert.ok(matches(book({ title: "x", almari: "4-د" }), "4-د"), "almari code still finds its book");
+assert.ok(!matches(book({ title: "الہدایہ", borrower: "عبد اللہ" }), "عبد"), "borrower not searched");
+assert.ok(!matches(book({ title: "الہدایہ", publisher: "دار الفكر" }), "الفکر"), "publisher not searched");
+assert.ok(!matches(book({ title: "معارف القرآن", category: "التفسير" }), "تفسير"), "category not searched");
+assert.ok(!matches(book({ title: "معارف القرآن", notes: "تفسير" }), "تفسير"), "notes not searched");
+assert.ok(matches(book({ title: "تفسير ابن كثير" }), "تفسير"), "word in title found");
+assert.ok(matches(book({ title: "كتاب", author: "ابن كثير" }), "ابن كثير"), "phrase in author found");
+assert.ok(!matches(book({ title: "القرآن تفسير" }), "تفسير القرآن"), "words in the wrong order are not the phrase");
+assert.ok(matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسير القرآن"), "title typed without the space still matches");
 
 // duplicate detection: same title+author twice is a cataloguing error
 const dups = duplicateGroups([

@@ -230,18 +230,24 @@ function searchTerm(query) {
   return q.replace(/\s/g, "").length >= 3 ? q : "";
 }
 
+/* Catalogue search = the typed PHRASE inside the title or the author. Nothing
+   else is searched: a word that only sits in the category, notes, publisher or
+   borrower does not make a book a result («تفسير» listed books that merely
+   had «التفسير» as a category). Spaces are ignored in the comparison so a
+   title typed without one («تفسيرالقرآن») still matches. The two non-text
+   keys a librarian holds in hand, register number and almari code, still
+   find their book. */
+function phraseIn(text, q, qNoSpace) {
+  const h = norm(String(text == null ? "" : text).replace(PUNCT, " ")).replace(/\s+/g, " ");
+  return h.includes(q) || h.replace(/\s/g, "").includes(qNoSpace);
+}
+
 function matches(book, query) {
   const q = searchTerm(query);
   if (!q) return true;
-  const hay = norm(
-    [
-      book.title, book.author, book.publisher, book.category, book.notes,
-      book.maktaba, book.department, book.borrower,
-      book.almari,     // the shelf a librarian is standing at («4-د» was not searchable)
-      book.accession   // a librarian holding the book reads its register number off the spine
-    ].join(" ").replace(PUNCT, " ")
-  );
-  return q.split(" ").every((word) => hay.includes(word));
+  const qNoSpace = q.replace(/\s/g, "");
+  if (phraseIn(book.title, q, qNoSpace) || phraseIn(book.author, q, qNoSpace)) return true;
+  return norm(book.accession) === q || norm(book.almari) === q;
 }
 
 /* How well a book that matches() fits the query, lower = better. matches()
