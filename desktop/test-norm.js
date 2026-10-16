@@ -23,7 +23,7 @@ assert.ok(!matches(book({ title: "الہدایہ", publisher: "دار الفكر
 assert.ok(!matches(book({ title: "معارف القرآن", category: "التفسير" }), "تفسير"), "category not searched");
 assert.ok(!matches(book({ title: "معارف القرآن", notes: "تفسير" }), "تفسير"), "notes not searched");
 assert.ok(matches(book({ title: "تفسير ابن كثير" }), "تفسير"), "word in title found");
-assert.ok(matches(book({ title: "كتاب", author: "ابن كثير" }), "ابن كثير"), "phrase in author found");
+assert.ok(!matches(book({ title: "معارف القرآن", author: "شيخ التفسير والحديث" }), "تفسير"), "author not searched");
 assert.ok(!matches(book({ title: "القرآن تفسير" }), "تفسير القرآن"), "words in the wrong order are not the phrase");
 assert.ok(!matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسير القرآن"), "space counts: «تفسير القرآن» is not «تفسيرالقرآن»");
 assert.ok(matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسيرالقرآن"), "«تفسيرالقرآن» finds the title written that way");

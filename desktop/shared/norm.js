@@ -230,9 +230,10 @@ function searchTerm(query) {
   return q.replace(/\s/g, "").length >= 3 ? q : "";
 }
 
-/* Catalogue search = the typed PHRASE inside the title or the author. Nothing
-   else is searched: a word that only sits in the category, notes, publisher or
-   borrower does not make a book a result («تفسير» listed books that merely
+/* Catalogue search = the typed PHRASE inside the TITLE. Nothing else is
+   searched: not the author («تفسير» listed «معارف القرآن» because its author
+   is «شيخ التفسير»), and not category, notes, publisher or borrower — a word
+   there does not make a book a result («تفسير» listed books that merely
    had «التفسير» as a category). Spaces count: «تفسيرالقرآن» finds only the
    title written that way, «تفسير القرآن» only the one with the space. The two non-text
    keys a librarian holds in hand, register number and almari code, still
@@ -247,7 +248,7 @@ function matches(book, query) {
   /* A bare number is a register number: «78» used to also list every book
      whose author line carries a death year like 786. */
   if (/^\d+$/.test(q)) return norm(book.accession) === q;
-  if (phraseIn(book.title, q) || phraseIn(book.author, q)) return true;
+  if (phraseIn(book.title, q)) return true;
   return norm(book.accession) === q || norm(book.almari) === q;
 }
 

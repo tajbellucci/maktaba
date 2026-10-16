@@ -87,7 +87,9 @@ const CATEGORY_RENAME = {
   "فقہ": "الفقه", "فتاویٰ": "الفتاوى", "حدیث": "الحديث", "تفسیر": "التفسير", "سیرت": "السيرة النبوية",
   "تاریخ": "التاريخ", "تراجم": "التراجم والطبقات", "تراجم وطبقات": "التراجم والطبقات", "سوانح": "السوانح",
   "نحو و صرف": "النحو والصرف", "الادب العربی": "الأدب العربي", "درس نظامی": "الدرس النظامي", "لغت": "اللغة والمعاجم",
-  "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)": "المواعظ والخطب والملفوظات", "سیاسی کتب": "السياسة الشرعية", "آداب واذکار": "الآداب والأذكار"
+  "اصلاحی کتب(خطبات، ملفوظات اور مکتوبات)": "المواعظ والخطب والملفوظات", "سیاسی کتب": "السياسة الشرعية", "آداب واذکار": "الآداب والأذكار",
+  /* 2026-10-17: spelling variants typed while entering the 275 books of 2026-10-16. */
+  "عقیدہ وعلم کلام": "العقيدة وعلم الكلام", "العقیدہ": "العقيدة وعلم الكلام", "السیرۃ": "السيرة النبوية", "التصوف": "التصوف والسلوك", "النحو": "النحو والصرف", "الصرف": "النحو والصرف", "الادب": "الأدب العربي", "اصول الحديث": "علوم الحديث", "اصول الحيث": "علوم الحديث", "علم الحديث": "علوم الحديث", "الغۃ": "اللغة والمعاجم", "اللغۃ": "اللغة والمعاجم", "علوم القرآن": "علوم القرآن وأصول التفسير", "اصول تفسیر": "علوم القرآن وأصول التفسير", "قواعد الفقه": "القواعد الفقهية", "قواعد": "القواعد الفقهية", "المنطق": "المنطق والفلسفة", "فضائل": "الفضائل والمناقب", "التراجم": "التراجم والطبقات", "الرجال": "التراجم والطبقات", "الخطبۃ": "المواعظ والخطب والملفوظات", "فتاوى(عربي)": "الفتاوى"
 };
 
 /* Matching key for names typed by people (branch, department, category):
@@ -756,6 +758,11 @@ function runConfirmedSync(action, { onFailToast, cancelToast } = {}) {
 async function syncOnBecomingMaster() {
   const peek = await window.maktaba.peekRemote();
   if (!peek.ok) return;
+  /* Compare like with like: this copy was tidied on load (category renames),
+     the server's was not yet. Without this, the tidy-up alone counted as "the
+     server differs" and the server copy replaced this one, wiping any edit
+     made in the seconds after logging in. */
+  peek.data.books.forEach(normalizeBook);
 
   const d = diffCatalogues(DATA, peek.data);
   if (d.empty) return;
@@ -1487,6 +1494,7 @@ function saveEdits() {
   for (const [id, field] of Object.entries(EDIT_FIELDS)) {
     b[field] = field === "volumes" ? (parseInt(v[id], 10) || 0) : String(v[id]).trim();
   }
+  b.category = canonCat(b.category);   // a typed variant («التصوف») lands on the listed name
   editDraft = null;
   persist();
   renderGroups();
@@ -2976,7 +2984,7 @@ $("oSave").onclick = () => {
     title,
     author: $("oAuthor").value.trim(),
     publisher: $("oPublisher").value.trim(),
-    category: $("oCategory").value.trim(),
+    category: canonCat($("oCategory").value.trim()),
     volumes: parseInt($("oVolumes").value, 10) || 0,
     format: $("oFormat").value,
     maktaba: hasPrint ? $("oMaktaba").value : "",
