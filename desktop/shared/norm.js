@@ -233,20 +233,21 @@ function searchTerm(query) {
 /* Catalogue search = the typed PHRASE inside the title or the author. Nothing
    else is searched: a word that only sits in the category, notes, publisher or
    borrower does not make a book a result («تفسير» listed books that merely
-   had «التفسير» as a category). Spaces are ignored in the comparison so a
-   title typed without one («تفسيرالقرآن») still matches. The two non-text
+   had «التفسير» as a category). Spaces count: «تفسيرالقرآن» finds only the
+   title written that way, «تفسير القرآن» only the one with the space. The two non-text
    keys a librarian holds in hand, register number and almari code, still
    find their book. */
-function phraseIn(text, q, qNoSpace) {
-  const h = norm(String(text == null ? "" : text).replace(PUNCT, " ")).replace(/\s+/g, " ");
-  return h.includes(q) || h.replace(/\s/g, "").includes(qNoSpace);
+function phraseIn(text, q) {
+  return norm(String(text == null ? "" : text).replace(PUNCT, " ")).replace(/\s+/g, " ").includes(q);
 }
 
 function matches(book, query) {
   const q = searchTerm(query);
   if (!q) return true;
-  const qNoSpace = q.replace(/\s/g, "");
-  if (phraseIn(book.title, q, qNoSpace) || phraseIn(book.author, q, qNoSpace)) return true;
+  /* A bare number is a register number: «78» used to also list every book
+     whose author line carries a death year like 786. */
+  if (/^\d+$/.test(q)) return norm(book.accession) === q;
+  if (phraseIn(book.title, q) || phraseIn(book.author, q)) return true;
   return norm(book.accession) === q || norm(book.almari) === q;
 }
 

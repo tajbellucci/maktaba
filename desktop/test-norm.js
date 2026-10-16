@@ -16,6 +16,7 @@ assert.ok(matches(book({ title: "Fiqh Book" }), "fiqh"), "latin lowercase match"
 
 // search = the phrase inside title or author, nothing else
 assert.ok(matches(book({ title: "الہدایہ", accession: "42" }), "42"), "register number still finds its book");
+assert.ok(!matches(book({ title: "كتاب", author: "الكرماني (786هـ)", accession: "146" }), "78"), "a number is the register number, not a year inside the author line");
 assert.ok(matches(book({ title: "x", almari: "4-د" }), "4-د"), "almari code still finds its book");
 assert.ok(!matches(book({ title: "الہدایہ", borrower: "عبد اللہ" }), "عبد"), "borrower not searched");
 assert.ok(!matches(book({ title: "الہدایہ", publisher: "دار الفكر" }), "الفکر"), "publisher not searched");
@@ -24,7 +25,9 @@ assert.ok(!matches(book({ title: "معارف القرآن", notes: "تفسير" 
 assert.ok(matches(book({ title: "تفسير ابن كثير" }), "تفسير"), "word in title found");
 assert.ok(matches(book({ title: "كتاب", author: "ابن كثير" }), "ابن كثير"), "phrase in author found");
 assert.ok(!matches(book({ title: "القرآن تفسير" }), "تفسير القرآن"), "words in the wrong order are not the phrase");
-assert.ok(matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسير القرآن"), "title typed without the space still matches");
+assert.ok(!matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسير القرآن"), "space counts: «تفسير القرآن» is not «تفسيرالقرآن»");
+assert.ok(matches(book({ title: "تفسيرالقرآن العظيم" }), "تفسيرالقرآن"), "«تفسيرالقرآن» finds the title written that way");
+assert.ok(!matches(book({ title: "تفسير القرآن العظيم" }), "تفسيرالقرآن"), "«تفسيرالقرآن» does not find «تفسير القرآن»");
 
 // duplicate detection: same title+author twice is a cataloguing error
 const dups = duplicateGroups([

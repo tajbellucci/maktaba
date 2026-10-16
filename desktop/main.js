@@ -751,9 +751,13 @@ ipcMain.handle("books:applyData", (_e, data) => {
    `updated` value rather than null, so the caller's `DATA.updated = await
    save(...)` cannot get overwritten with something falsy; the local
    catalogue is simply left exactly as it was. */
+/* Counts local saves. A publish captures it at the start and only writes its
+   own copy back to disk if nothing was saved meanwhile — see doPublish(). */
+let saveSeq = 0;
 ipcMain.handle("books:save", (_e, data) => {
   if (!isMasterNow()) return readJson(dataFile(), {}).updated || null;
   data.updated = today();
+  saveSeq++;
   writeCatalogue(dataFile(), data);
   return data.updated;
 });
@@ -770,6 +774,7 @@ ipcMain.on("books:saveSync", (e, data) => {
   }
   try {
     data.updated = today();
+    saveSeq++;
     writeCatalogue(dataFile(), data);
     e.returnValue = data.updated;
   } catch {
@@ -1701,7 +1706,16 @@ async function doPublish(data) {
      window-close prompt calls doPublish() directly and would otherwise slip
      straight past a handler-level check — the same gap that already lets a
      close-prompt publish bypass REPO.publishFrozen. One guard, every caller. */
-  if (IS_DEV_RUN) return { ok: false, error: "dev-run-no-publish" };
+  const seqAtStart = saveSeq;
+  /* Test hook, dev runs only: a publish that takes MAKTABA_TEST_PUBLISH_MS and
+     never touches the network, so the save-during-publish race can be run. */
+  if (IS_DEV_RUN) {
+    const ms = Number(process.env.MAKTABA_TEST_PUBLISH_MS) || 0;
+    if (!ms) return { ok: false, error: "dev-run-no-publish" };
+    await new Promise((r) => setTimeout(r, ms));
+    if (saveSeq === seqAtStart) writeCatalogue(dataFile(), data);
+    return { ok: true, data };
+  }
 
   const s = readSettings();
   /* errorCode alongside the legacy Urdu error text: the text stays for any
@@ -1853,7 +1867,10 @@ async function doPublish(data) {
     // than a guess. The rewritten cover/file URLs are part of what we publish,
     // so hash the object as it now stands.
     writeJson(publishStateFile(), { hash: catalogueHash(forRemote), at: new Date().toISOString() });
-    writeCatalogue(dataFile(), data);
+    /* A save that landed while this publish was on the network is newer than
+       `data`; writing `data` here used to put the old copy back over it, and
+       the librarian's edit (a category added to a book) vanished from disk. */
+    if (saveSeq === seqAtStart) writeCatalogue(dataFile(), data);
 
     /* Nudge readers awake. This is the ONLY thing that makes a publish reach
        readers within a second or two instead of on their next 6-minute poll

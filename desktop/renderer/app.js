@@ -833,7 +833,9 @@ async function checkForUpdate() {
   }
 }
 
+let saveGen = 0;   // bumped by every save; lets a publish tell if edits landed while it ran
 async function persist() {
+  saveGen++;
   pendingSave = false;
   clearTimeout(saveTimer);
   recordUndoStep();
@@ -963,17 +965,47 @@ function clearAutoPublishPause() {
   autoPublishPaused = false;
 }
 
+/* A publish is a few seconds on the network. Two things used to go wrong
+   with an edit saved during that window (client report: a category added to
+   a book "takes long to update, sometimes never"):
+     · the returned copy replaced DATA wholesale, so the newer edit vanished
+       from the screen and the next save wrote the old copy back;
+     · the edit's own publish found one in flight and was dropped, not queued.
+   Now a publish that comes back after newer saves keeps DATA, takes over only
+   the hosted cover/file URLs, and queues one more publish for the edit. */
+let publishAgain = false;
+
+function carryHostedUrls(from) {
+  const byId = new Map(from.books.map((b) => [b.id, b]));
+  for (const b of DATA.books) {
+    const r = byId.get(b.id);
+    if (!r) continue;
+    if (typeof b.image === "string" && b.image.startsWith("userdata:covers/") && /^https?:/i.test(r.image || "")) b.image = r.image;
+    if (Array.isArray(b.files) && Array.isArray(r.files) && b.files.length === r.files.length) {
+      b.files = b.files.map((f, i) => (typeof f === "string" && f.startsWith("userdata:files/") && /^https?:/i.test(r.files[i] || "") ? r.files[i] : f));
+    }
+  }
+}
+
 async function runAutoPublish() {
-  if (!IS_MASTER || autoPublishInFlight) return;
+  if (!IS_MASTER) return;
+  if (autoPublishInFlight) { publishAgain = true; return; }
   autoPublishInFlight = true;
+  publishAgain = false;
+  const gen = saveGen;
   try {
     const res = await window.maktaba.publish(DATA);
     if (res.ok) {
-      if (res.data) {
+      if (res.data && saveGen === gen) {
         DATA = res.data;
         DATA.books.forEach(normalizeBook);
         resetUndo(true);
         renderAll();
+      } else if (res.data) {
+        carryHostedUrls(res.data);
+        DATA.updated = await window.maktaba.save(DATA);
+        resetUndo(true);
+        publishAgain = true;
       }
       refreshPublishBadge();
       toast(t("autoPublished"));
@@ -1003,6 +1035,7 @@ async function runAutoPublish() {
     // its own error messages) is still there for whenever they check.
   } finally {
     autoPublishInFlight = false;
+    if (publishAgain) { publishAgain = false; scheduleAutoPublish(); }
   }
 }
 
