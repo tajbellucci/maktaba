@@ -19793,6 +19793,141 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "730"
+    },
+    {
+      "id": 731,
+      "title": "السراج الوهاج الموضح لكل طالب ومحتاج",
+      "author": "أبو بكر لن علي بن محمد الحدادي الحنفي (800) ت: عبد المحسن طه يونس العباوي",
+      "publisher": "دار ابن حزم",
+      "category": "الفقه",
+      "volumes": 13,
+      "maktaba": "قباء مسجد",
+      "department": "فقه",
+      "almari": "خزانه - ٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "731"
+    },
+    {
+      "id": 732,
+      "title": "فتح القدير",
+      "author": "كمال الدين محمد بن عبد الواحد السيواسي (681) تع وتخ: عبد الرزاق غالب المهدي",
+      "publisher": "مكتبة رشيدية",
+      "category": "الفقه",
+      "volumes": 10,
+      "maktaba": "قباء مسجد",
+      "department": "خزانه - ٤",
+      "almari": "ألف-١",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "732"
+    },
+    {
+      "id": 733,
+      "title": "معراج الدراية في شرح الهداية",
+      "author": "قوام الدين الكاكي الحنفي (749) اعتنى: عبد الحفيظ محمد علي بيضون",
+      "publisher": "مكتبة حقانية",
+      "category": "الفقه",
+      "volumes": 10,
+      "maktaba": "قباء مسجد",
+      "department": "خزانه - ٤",
+      "almari": "ب-١",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "733"
+    },
+    {
+      "id": 734,
+      "title": "الأمالي على سنن أبي داود",
+      "author": "إمام العصر محمد أنور شاه الكشميري (1352) جمع: الشيخ محمد ظهور الحق السلهتي",
+      "publisher": "مكتبة حقانية",
+      "category": "شروح الحديث",
+      "volumes": 2,
+      "maktaba": "قباء مسجد",
+      "department": "خزانه - ٤",
+      "almari": "ب-١",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "734"
+    },
+    {
+      "id": 735,
+      "title": "غاية البيان نادرة الزمان في آخر الأوان",
+      "author": "قوام الدين أمير كاتب بن أمير عمر الأتقاني الفارابي الحنفي (758) ت: مركز الدراسات والبحوث",
+      "publisher": "دار الضياء",
+      "category": "الفقه",
+      "volumes": 19,
+      "maktaba": "قباء مسجد",
+      "department": "خزانه - ٤",
+      "almari": "ج-١",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "جديد نسخه",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-16",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "735"
     }
   ],
   "categories": [
