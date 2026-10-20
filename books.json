@@ -2072,19 +2072,24 @@
     {
       "id": 75,
       "title": "فتح الملهم بشرح صحيح الإمام مسلم",
-      "author": "علامه شبیر احمد عثمانی رحمه الله",
-      "publisher": "مكتبة دار العلوم كراچي",
+      "author": "العلامة شبیر أحمد العثماني رحمه الله، مفتي تقي العثماني",
+      "publisher": "مكتبة دار العلوم",
       "category": "شروح الحديث",
-      "volumes": 6,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "5-د،ه",
+      "volumes": 12,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "2",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة؛ جلدیں: 6،مف:3-4-5-6",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -22722,6 +22727,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "822"
+    },
+    {
+      "id": 823,
+      "title": "شرح المواقف",
+      "author": "السيد الشريف علي بن محمد الجرجاني،(ت:816هـ)",
+      "publisher": "مكتبة رشيدية",
+      "category": "العقيدة",
+      "volumes": 8,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "823"
     }
   ],
   "categories": [
