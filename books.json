@@ -2809,7 +2809,7 @@
       "category": "التراجم والطبقات",
       "volumes": 22,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "1-ب",
       "hasPrint": true,
       "status": "available",
@@ -2817,6 +2817,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2833,10 +2838,10 @@
       "title": "مكتوبات امام رباني",
       "author": "شيخ أحمد سرهندي مجدد الف ثاني،(1034هـ)",
       "publisher": "erkam yavinlari",
-      "category": "التصوف والسلوك",
+      "category": "تصوف",
       "volumes": 4,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "1-ب",
       "hasPrint": true,
       "status": "available",
@@ -2844,6 +2849,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2860,10 +2870,10 @@
       "title": "القول النصيح فيما يتعلق بمقاصد تراجم الصحيح",
       "author": "العلمة الاستاد الفاضل اللوذعي فخر المحدثين مولانا سيد فخر الدين أحمد رحمه الله(1392هـ)",
       "publisher": "پريس دهلي",
-      "category": "شروح الحديث",
+      "category": "شرح الحديث",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "1-ب",
       "hasPrint": true,
       "status": "available",
@@ -2871,6 +2881,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2887,10 +2902,10 @@
       "title": "القول الفصيح فيما يتعلق بأبواب الصحيح",
       "author": "العلامة الأستاد الفاضل اللوذعي فخر المحدثين مولانا سيد فخر الدين أحمد رحمه الله(1392هـ)",
       "publisher": "پريس دهلي",
-      "category": "شروح الحديث",
+      "category": "شرح الحديث",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "1-ب",
       "hasPrint": true,
       "status": "available",
@@ -2898,6 +2913,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2917,14 +2937,19 @@
       "category": "الفتاوى",
       "volumes": 10,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "1-د",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة؛ جلدیں: 10،مف:6-7",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2968,10 +2993,10 @@
       "title": "ترجمة الإمام المجتهد شيخ الإسلام سراج الدين البلقيني",
       "author": "تأليف ولده الإمام الفقيه العلامة علم الدين صالح بن عمر البلقيني،(ت:805هـ)",
       "publisher": "أروقة،مح:الدكتور عمر حسن القيام",
-      "category": "التراجم والطبقات",
+      "category": "الترجمة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -2979,6 +3004,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2995,10 +3025,10 @@
       "title": "ترجمة شيخ الإسلام قاضي القضاة جلال الدين البلقيني",
       "author": "تصنيف أخيه الإمام الفقيه العلامة علم الدين صالح بن عمر البلقيني(ت:868هـ)",
       "publisher": "أروقة،مح:سليم محمد عامر",
-      "category": "التراجم والطبقات",
+      "category": "الترجمة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -3006,6 +3036,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3025,7 +3060,7 @@
       "category": "الفقه",
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -3033,6 +3068,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3049,10 +3089,10 @@
       "title": "الفوائد الجسام على قواعد ابن عبد السلام",
       "author": "شيخ الإسلام سراج الدين أبي حفص البلقيني (ت:805هـ)",
       "publisher": "أروقة،مح: الدكتور عمر حسن القيام",
-      "category": "القواعد الفقهية",
+      "category": "علوم الفقة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -3060,6 +3100,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3076,10 +3121,10 @@
       "title": "الإبريز الخالص عن الفضة في إبراض معاني خصائص المصطفى اللتي في الروضة",
       "author": "شيخ الإسلام قاضي القضاة جلال الدين عبد الرحمن البلقيني (ت:824هـ)",
       "publisher": "أروقة،مح:سليم محمد عامر",
-      "category": "السيرة النبوية",
+      "category": "خصائص المصطفى",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -3087,6 +3132,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3103,10 +3153,10 @@
       "title": "مجموعة الرسائل البلقينية",
       "author": "شيخ الإسلام سراج الدين عمر بن رسلان وولديه قاضي القضاة جلال الدين عبد الرحمن البلقيني،وعلم الدين البلقيني",
       "publisher": "أروقة،مح:ثلة من الباحثين",
-      "category": "متفرقات",
+      "category": "الرسائل",
       "volumes": 2,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "2-ج",
       "hasPrint": true,
       "status": "available",
@@ -3114,6 +3164,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3133,7 +3188,7 @@
       "category": "الفتاوى",
       "volumes": 26,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "3-ب،ه",
       "hasPrint": true,
       "status": "available",
@@ -3141,6 +3196,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3157,10 +3217,10 @@
       "title": "المدرس الأفضل فيما يرمض ويشار إاليه في المطول",
       "author": "الإستاد الشيخ  محمد علي المدرس الأفغاني",
       "publisher": "ذو القربى ايران،قم،محقق:السيد حسن السجادي",
-      "category": "البلاغة",
+      "category": "علوم البلاغة",
       "volumes": 4,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة خاصة للشيخ",
+      "department": "الغرفة الخاصة",
       "almari": "3-ب،ه",
       "hasPrint": true,
       "status": "available",
@@ -3168,6 +3228,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -22754,6 +22819,30 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "823"
+    },
+    {
+      "id": 824,
+      "title": "خزانة:1-2-3 _أ",
+      "author": "النسخة الجديدة",
+      "category": "مطبوع",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "824"
     }
   ],
   "categories": [
