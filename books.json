@@ -7293,19 +7293,24 @@
     {
       "id": 263,
       "title": "مشكاة المصابيح",
-      "author": "لأبي عبدالله محمد بن عبدالله الخطيب التبريزي،(ت: 741 هـ)",
-      "publisher": "مكتبة البشرى",
+      "author": "الامام المحدث محمد بن عبد اللہ الخطیب التبریزی",
+      "publisher": "مکتبہ البشری",
       "category": "الحديث",
-      "volumes": 2,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "8-1",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-4",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "خلفی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -18760,13 +18765,18 @@
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "الف-4",
+      "almari": "الف-4 خلفی",
       "hasPrint": true,
       "status": "available",
-      "notes": "خلفی",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -18795,6 +18805,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -18822,6 +18837,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -18848,6 +18868,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -18890,7 +18915,7 @@
       "id": 690,
       "title": "سنن نسائی شریف مترجم",
       "author": "مولانا خورشید حسن قاسمی",
-      "publisher": "مکتبہ العلم",
+      "publisher": "مکتبۃ العلم",
       "category": "الحديث",
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
@@ -18902,6 +18927,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19007,6 +19037,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -22843,6 +22878,114 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "824"
+    },
+    {
+      "id": 825,
+      "title": "تفهيم البخاري شرح صحيح البخاري",
+      "author": "مولانا ظهور الباري اعظم",
+      "publisher": "دار الاشاعت",
+      "category": "الحديث",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-٤ خلفي",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "دو نسخے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "825"
+    },
+    {
+      "id": 826,
+      "title": "اسعد المفاتیح شرح اردو مشکاۃ المصابیح",
+      "author": "مولانا ابو محمد عبد الغنی جاجروی",
+      "publisher": "مکتبہ الحسن",
+      "category": "الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-4",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "خلفی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "826"
+    },
+    {
+      "id": 827,
+      "title": "مشکاۃ شریف مترجم",
+      "author": "حکیم الامت مفتی احمد یار خان",
+      "publisher": "مکتبہ اسلامیہ",
+      "category": "الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-4",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "خلفی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "827"
+    },
+    {
+      "id": 828,
+      "title": "انوار المصابیح لمن يطالع مشكاة المصابيح",
+      "author": "مولانا مفتي محمد انور",
+      "publisher": "مکتبہ الخیر",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-4",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "خلفی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "828"
     }
   ],
   "categories": [
