@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "books": [
     {
       "id": 1,
@@ -1239,19 +1239,24 @@
     {
       "id": 46,
       "title": "الملل والنحل",
-      "author": "الإمام أبي الفتح محمد بن عبد الكريم الشيرستاني ،(ت:548 هـ)",
-      "publisher": "مكتبة المعروفية،معلق:الأستاد أحمد فهمي محمد",
-      "category": "العقيدة وعلم الكلام",
+      "author": "للإمام أبي الفتح محمد بن عبد الكريم الشهرستاني(ت:548هـ)،تحقيق:عادل أحمد إبراهيم",
+      "publisher": "المكتبة الحقانية",
+      "category": "العقيدة",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-ه",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة؛ جلدیں: 1 مف:5-6",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2121,19 +2126,24 @@
     {
       "id": 77,
       "title": "معارف القرآن",
-      "author": "شيخ التفسير والحديث حضرت مولانا الحافظ محمد ادریس صاحب کاندھلوی",
-      "publisher": "الطاف اینڈ سنز",
+      "author": "مفتى محمد شفيع صاحب",
+      "publisher": "مكتبہ معارف اللقرآن",
       "category": "التفسير",
-      "volumes": 8,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-أ",
+      "volumes": 9,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة؛ جلدیں: 8،مف7",
+      "notes": "النسخہ الجديدہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2148,19 +2158,24 @@
     {
       "id": 78,
       "title": "أحكام القرآن",
-      "author": "مولانا ظفر احمد عثمانی، مفتی محمد شفیع عثمانی ، مولانا محمد ادریس کاندهلوي",
-      "publisher": "ادارة القرآن والعلوم الإسلامية",
+      "author": "المفتى الفقيه المفسر العلامة محمد شفيع على ضوء ما أفاده مولانا الشيخ أشرف علي التهانوي",
+      "publisher": "مكتبة تهانوي",
       "category": "التفسير",
       "volumes": 5,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-أ",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -2175,19 +2190,24 @@
     {
       "id": 79,
       "title": "مكمل بيان القرآن",
-      "author": "مولانا اشرف علي تهانوي رحمه الله،(ت:911هـ)",
-      "publisher": "ايچ ايم سعيد",
+      "author": "حکیم الامت مولانا محمد أشرف علی تھانوی",
+      "publisher": "البشری",
       "category": "التفسير",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-أ",
+      "volumes": 3,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "النسخہ الجديدہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4213,19 +4233,24 @@
     {
       "id": 153,
       "title": "تفسير عثمانى",
-      "author": "ترجمه: شيخ الهند حضرت مولانا محمود الحسن،تفسير:شيخ الإسلام حضرت علامه شبير احمد عثماني",
-      "publisher": "دار الإشاعت",
+      "author": "شیخ الاسلام حضرت مولانا شبیر احمد عثمانی",
+      "publisher": "دار الاشاعت",
       "category": "التفسير",
       "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "الف-1، ط:أمامي",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "النسخہ الجديدہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4672,19 +4697,24 @@
     {
       "id": 170,
       "title": "جامع الترمذي والمذهب الحنفي",
-      "author": "العلامة المفتي أصغر علي الرباني",
-      "publisher": "مكتبة ربانية كراتشي",
+      "author": "المفتي أصغر علي الرباني",
+      "publisher": "مكتبة ربانية",
       "category": "الحديث",
       "volumes": 12,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ب -2، ط:أمامي",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "3",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -11940,19 +11970,24 @@
     {
       "id": 438,
       "title": "إعلاء السنن",
-      "author": "مولانا ظفر أحمد العثماني التهانوي مت: نحو: 1394 هـ، ت: المفتي تقي العثماني، وغيره",
-      "publisher": "إدارة القرآن والعلوم الإسلامية",
-      "category": "الحديث",
-      "volumes": 22,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "6-ج",
+      "author": "الشيخ المحدث الفقيه ظفر أحمد العثماني التهانوي على ضوء ماأفاده الشيخ أشرف علي التهانوي،(ت:1362هـ)",
+      "publisher": "المكتبة الحقانية",
+      "category": "شروح الحديث",
+      "volumes": 25,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "3",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -22012,6 +22047,681 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "797"
+    },
+    {
+      "id": 798,
+      "title": "الإكليل على مدارك التنزيل وحقائق التأويل",
+      "author": "الشيخ محمد عبد الحق بن شاه الهندي الحنفي (ت:1333هـ)، وضبط نصه: الشيخ محيي الدين اسامة البير قدار",
+      "publisher": "مكتبة عمر فاروق",
+      "category": "التفسير",
+      "volumes": 7,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى ألف",
+      "almari": "النسخة الجديدة",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "مطبوع",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "798"
+    },
+    {
+      "id": 799,
+      "title": "تفسير الشيخ رشيد الخطيب الموصلي للقرآن العظيم",
+      "author": "الدكتور خالد محمد حماش، اعتنى به:مجاهد أحمد مكي",
+      "publisher": "أروقة",
+      "category": "التفسير",
+      "volumes": 9,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى ألف",
+      "almari": "النسخة الجديدة",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "مطبوع",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "799"
+    },
+    {
+      "id": 800,
+      "title": "تفسير الكشاف عن حقائق التنزيل وعيون الأقاويل في وجوه التأويل",
+      "author": "الإمام أبي القاسم جار الله محمود بن عمر بن محمد الزمخشري(538هـ)",
+      "publisher": "قديمي كتب خانة",
+      "category": "التفسير",
+      "volumes": 4,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "800"
+    },
+    {
+      "id": 801,
+      "title": "تفسير القرآن العظيم (تفسير لابن الكثير)",
+      "author": "الإمام الحافظ إبن كثير الدمشقي،مح:عبد الرزاق المهدي",
+      "publisher": "دار الكتب العربي",
+      "category": "التفسير",
+      "volumes": 6,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "801"
+    },
+    {
+      "id": 802,
+      "title": "تفسير القرآن العظيم",
+      "author": "الإمام ابن فورك أبي بكر محمد بن الحسن الأصبهاني الأنصاري، (ت:406هـ)،مح:محمد بنصر العلوي",
+      "publisher": "دار اللباب",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "802"
+    },
+    {
+      "id": 803,
+      "title": "العرف الذكي شرح جامع الترمذي",
+      "author": "فضيلة الشيخ المفتي المحدث عبد الله المعروفي",
+      "publisher": "المكتبة الوحيدية",
+      "category": "شروح الحديث",
+      "volumes": 20,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "803"
+    },
+    {
+      "id": 804,
+      "title": "المدونة الجامعة للأحاديث المروية عن النبي الكريم ﷺ",
+      "author": "إشراف: محمد تقي العثماني",
+      "publisher": "دار العلوم",
+      "category": "الحديث",
+      "volumes": 20,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "804"
+    },
+    {
+      "id": 805,
+      "title": "مرقاة المفاتيح شرح مشكاة المصابيح",
+      "author": "للإمام العلامة محمد بن عبد الله الخطيب التبريزي (ت:741هـ)",
+      "publisher": "مكتبة رشيدية",
+      "category": "شروح الحديث",
+      "volumes": 12,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "3",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "805"
+    },
+    {
+      "id": 806,
+      "title": "شرح مقاصد الكلام في عقائد الإسلام",
+      "author": "الإمام سعد التفتازني،مح:عثمان مصطفى النابلسي",
+      "publisher": "دار النور",
+      "category": "العقيدة",
+      "volumes": 6,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "806"
+    },
+    {
+      "id": 807,
+      "title": "الأسماء والصفات",
+      "author": "الإمام الأصولي المتكلم الأستاد أبي منصور عبد القاهر بن طاهر البغدادي الأشعري الشافعي،(429هـ)",
+      "publisher": "دار التقوى",
+      "category": "العقيدة",
+      "volumes": 3,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "807"
+    },
+    {
+      "id": 808,
+      "title": "نجم المهتدي ورجم المعتدي",
+      "author": "للإمام فخر الدين أبي عبد الله محمد بن محمد عثمان بن عمر ابن المعلم القرشي(725هـ)",
+      "publisher": "دار التقوى",
+      "category": "العقيدة",
+      "volumes": 2,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "808"
+    },
+    {
+      "id": 809,
+      "title": "الأسماء والصفات وهو أسماء الله جل ثناءه وصفاته",
+      "author": "للإمام الحافط أبي بكر أحمد بن الحسين البيهقي(458هـ)،مح:سعد بن نجدت عمر",
+      "publisher": "رسالة منشورات مروان عبول",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "809"
+    },
+    {
+      "id": 810,
+      "title": "ألفاظ الكفر مع شرحه ويليه ألفاظ الكفر",
+      "author": "لبدرالرشيد الحنفي(768هـ)،شارح:لملا علي القاري، (1014هـ)،لبديع الدين القزويني،(ت:625هـ)",
+      "publisher": "مكتبة الحرم",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "810"
+    },
+    {
+      "id": 811,
+      "title": "جمل أصول الدين ومعه شرح الجمل",
+      "author": "للإمام أبي سلمة محمد بن محمد بكر السمرقندي (ت:350هـ)شارح:للإمام أبي الحسن محمد بن يحيى بن إسحاق البشاغري، مح:أكرم محمد إسماعيل أبو عواد",
+      "publisher": "دار الخيرٹوپي",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "811"
+    },
+    {
+      "id": 812,
+      "title": "رسالة التنزيهات",
+      "author": "العلامة الشيخ محمد بن أبي بكر المرعشي الشهير بسا جقلي زاده(ت:1114هـ) مح:عمرو يوسف الجندي",
+      "publisher": "دار الكتب",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "812"
+    },
+    {
+      "id": 813,
+      "title": "الكفاية في الهداية",
+      "author": "نور الدين أحمد بن محمود بن أبي بكر الصابوني (580هـ)،مح:محمد اروتشي",
+      "publisher": "دار ابن حزم",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "813"
+    },
+    {
+      "id": 814,
+      "title": "شرح تجريد القواعد",
+      "author": "محمد بن محمد بن محمود البابرتي الماتريدي الحنفي، (ت:786 هـ ) ، تحقيق:الأستاد الدكتور عبد المحسن طه يونس العبادي",
+      "publisher": "دار الرياحين",
+      "category": "العقيدة",
+      "volumes": 2,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "814"
+    },
+    {
+      "id": 815,
+      "title": "حاشية على الخمسون في أصول الدين",
+      "author": "الإمام فخر الدين الرازي، تحقيق:د.سعيد فودة",
+      "publisher": "الأصلين",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "815"
+    },
+    {
+      "id": 816,
+      "title": "صدق الكلام في علم الكلام",
+      "author": "الإمام العلامة المتكلم كمال الدين الأندكاتي(ت:777هـ) ،تحقيق: حافظ عاشور حافظ",
+      "publisher": "مكتبة الغانم",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "816"
+    },
+    {
+      "id": 817,
+      "title": "كتاب التوحيد",
+      "author": "لأبي منصور محمد بن محمد بن محمود الماتريدي السمرقندي(ت:944هـ) ، تحقيق: الأستاد الدكتور بكر طوبال اوغلي والأستاد المساعد الدكتور محمد آروشي",
+      "publisher": "دار الكتب",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "817"
+    },
+    {
+      "id": 818,
+      "title": "التمهيد لشرح كتاب التوحيد",
+      "author": "الشيخ صالح بن عبد العزيز بن محمد آل الشيخ",
+      "publisher": "مكتبة دار المنهاج",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "818"
+    },
+    {
+      "id": 819,
+      "title": "الاستواء معلوم والكيف مجهول",
+      "author": "الشريف حاتم بن عارف العوني",
+      "publisher": "دار المعراج",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "819"
+    },
+    {
+      "id": 820,
+      "title": "عقيدة أهل السنة والجماعة على ضوء الكتاب والسنة",
+      "author": "الدكتور سعيد بن مسفر بن مفرح القحطاني",
+      "publisher": "دار طيبة الخضراء",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثاني",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "820"
+    },
+    {
+      "id": 821,
+      "title": "الانتباهات المفيدة على الاشتباهات الجديدة",
+      "author": "الشيخ أشرف علي التهانوي(ت:1362هـ)",
+      "publisher": "معهد المعارف",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "821"
+    },
+    {
+      "id": 822,
+      "title": "المسامرة مع شرح المسايرة في العقائد المنجية في الآخرة",
+      "author": "للإمام كمال الدين محمد بن محمد بن أبي شريف المقدسي(ت: 905 هـ)، للإمام كمال الدين محمد بن عبد الواحد ابن الهمام الحنفي المعروف بإبن الهمام(ت:861 هـ)",
+      "publisher": "دار الكتب",
+      "category": "العقيدة",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثاني",
+      "almari": "2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "822"
     }
   ],
   "categories": [
