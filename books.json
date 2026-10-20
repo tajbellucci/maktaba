@@ -7086,6 +7086,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "updated",
           "detail": ""
@@ -9826,19 +9831,24 @@
     {
       "id": 356,
       "title": "شرح قطر الندى وبل الصدى",
-      "author": "جمال الدين عبد الله بن هشام الانصاري",
+      "author": "عبد الله بن هشام الأنصاري المتوفی ٧٦١ھ",
       "publisher": "دار المنار",
       "category": "النحو",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "ہ,2",
+      "almari": "د-٤",
       "hasPrint": true,
       "status": "available",
       "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "updated",
@@ -19070,6 +19080,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19096,6 +19111,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19124,6 +19144,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19150,6 +19175,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "updated",
@@ -19210,6 +19245,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19223,7 +19263,7 @@
     {
       "id": 701,
       "title": "مستند مجموعہ وظائف",
-      "author": "اساتذہ مدرسہ بہت العلم",
+      "author": "اساتذہ مدرسہ بیت العلم",
       "publisher": "بيت العلم ٹرسٹ",
       "category": "التصوف",
       "volumes": 1,
@@ -19236,6 +19276,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19250,7 +19295,7 @@
     {
       "id": 702,
       "title": "دروس مکتوبات",
-      "author": "حضرت۔شیخ ہمایوں حنیف نقشبندی",
+      "author": "حضرت شیخ ہمایوں حنیف نقشبندی",
       "publisher": "مكتبہ اصلاح نفس",
       "category": "التصوف",
       "volumes": 1,
@@ -19263,6 +19308,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19289,6 +19339,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19317,6 +19372,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19343,6 +19403,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19371,6 +19436,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19398,6 +19468,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19424,6 +19499,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19479,6 +19559,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19506,6 +19591,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19521,7 +19611,7 @@
       "title": "زیارت روضہ اقدس",
       "author": "مفتی ابوالخیر عارف محمود",
       "publisher": "خانقاہ امدادیہ اشرفیہ",
-      "category": "الزیارۃ",
+      "category": "تصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
@@ -19532,6 +19622,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19560,6 +19655,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19586,6 +19686,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19614,6 +19719,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19640,6 +19750,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19668,6 +19783,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19694,6 +19814,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19722,6 +19847,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19749,6 +19879,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19775,6 +19910,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "updated",
@@ -19808,6 +19953,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19835,6 +19985,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19848,7 +20003,7 @@
     {
       "id": 724,
       "title": "اسیران جمال مصطفی",
-      "author": "مفتی صابر محمود صاحب",
+      "author": "مفتی صابر محمود",
       "publisher": "دار کتب العلمیہ",
       "category": "السیرۃ",
       "volumes": 1,
@@ -19861,6 +20016,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19889,6 +20049,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19915,6 +20080,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19943,6 +20113,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19969,6 +20144,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19997,6 +20177,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20023,6 +20208,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-20",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -22986,6 +23176,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "828"
+    },
+    {
+      "id": 829,
+      "title": "زینت بنت  حوا",
+      "author": "مفتی صابر محمود صاحب",
+      "publisher": "دار الکتب العلمیہ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "د-٤",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-20",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "829"
     }
   ],
   "categories": [
