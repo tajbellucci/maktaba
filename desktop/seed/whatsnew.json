@@ -1,6 +1,25 @@
 {
   "releases": [
     {
+      "version": "1.13.0",
+      "date": "2026-10-22",
+      "ur": [
+        "نئی شکل «دیگر فائل»: Word، Excel، PowerPoint، EPUB اور تصویری اسکین کتاب کے ساتھ منسلک کریں (کمپیوٹر سے یا لنک سے)۔ کھولنے کا بٹن انہیں کمپیوٹر کے اپنے پروگرام میں کھولتا ہے۔",
+        "Word (.docx) فائل اب ایپ کے ریڈر میں متن کی طرح پڑھی جا سکتی ہے: تلاش، صفحات، اور کئی کتابوں کی تلاش میں بھی شامل۔",
+        "حفاظت: پروگرام فائلیں (exe وغیرہ) نہ منسلک ہو سکتی ہیں نہ کھل سکتی ہیں۔"
+      ],
+      "ar": [
+        "صيغة جديدة «ملف آخر»: إرفاق ملفات Word وExcel وPowerPoint وEPUB والصور الممسوحة (من الجهاز أو من رابط). زر الفتح يفتحها في برنامج الجهاز.",
+        "ملف Word (.docx) يُقرأ الآن داخل القارئ كالنص: بحث وصفحات، ويدخل في البحث في عدة كتب.",
+        "أمان: لا يمكن إرفاق ملفات البرامج (exe وغيرها) ولا فتحها."
+      ],
+      "en": [
+        "New format «Other document»: attach Word, Excel, PowerPoint, EPUB and image scans (from the PC or a link). The open button opens them in the PC's own program.",
+        "Word (.docx) files can now be read in the app's reader like text: search, pages, and included in multi-book search.",
+        "Safety: program files (exe etc.) can neither be attached nor opened."
+      ]
+    },
+    {
       "version": "1.12.0",
       "date": "2026-10-17",
       "ur": [
