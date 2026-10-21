@@ -1311,6 +1311,7 @@ function renderBooks() {
     const badges = [
       b.format === "pdf" ? `<span class="fmt-badge">PDF</span>` : "",
       b.format === "unicode" ? `<span class="fmt-badge">TXT</span>` : "",
+      b.format === "document" && (b.files || []).length ? `<span class="fmt-badge">${esc(fileExt(b.files[0]))}</span>` : "",
       /* Shamela shows which books are already on disk; this used to happen
          silently in the background with no way to see it had. Starts hidden,
          revealed by refreshOfflineBadges() once the real answer is known —
@@ -1549,6 +1550,7 @@ function _renderDetail() {
       <option value="physical">${t("fmtPhysical")}</option>
       <option value="pdf">${t("fmtPdf")}</option>
       <option value="unicode">${t("fmtUnicode")}</option>
+      <option value="document">${t("fmtDoc")}</option>
     </select>
     <label class="chk hasprint"><input type="checkbox" id="dHasPrint" /><span>${t("hasPrintLabel")}</span></label>
     <p class="hint" id="hasPrintHint"></p>
@@ -2087,7 +2089,7 @@ function showCard(b, row, cursorX) {
         ${b.status === "issued" && b.issueType === "person" ? line(t("fBorrowerAddress"), b.borrowerAddress || b.borrowerContact) : ""}
         ${b.status === "issued" && b.issueType === "person" ? line(t("fBorrowerPhone"), b.borrowerPhone) : ""}
         ${line(t("fDueDate"), b.dueDate)}
-        ${line(t("fFormat"), b.format === "physical" ? t("fmtPhysical") : b.format === "pdf" ? t("fmtPdf") : t("fmtUnicode"))}
+        ${line(t("fFormat"), t({ physical: "fmtPhysical", pdf: "fmtPdf", unicode: "fmtUnicode", document: "fmtDoc" }[b.format] || "fmtPhysical"))}
         ${(b.files || []).length ? line(t("attachedFiles"), ud(b.files.length)) : ""}
         ${line(t("fNotes"), b.notes)}
         ${isOverdue(b) ? `<div class="bc-note">[${t("overdue")}]</div>` : ""}
@@ -2344,16 +2346,16 @@ function renderFileRow(b) {
       const url = $("fileUrlInput").value.trim();
       if (!url) { $("fileUrlInput").focus(); return; }
       $("dlgFileUrl").close();
-      toast(t("downloading"));
+      toast(t("fileDownloading"));
       const res = await window.maktaba.downloadFile(url, b.format);
       if (res.ok) {
         b.files = [...(b.files || []), res.path];
         persist();
         renderFileRow(b);
         renderBooks();
-        toast(t("photoSaved"));
+        toast(t("fileSaved"));
       } else {
-        alert(t("photoFailed") + " " + (res.error || ""));
+        alert(t("fileFailed") + " " + (res.error || ""));
       }
     };
   };
@@ -2363,7 +2365,7 @@ function renderFileRow(b) {
       /* A hosted scan is downloaded on first open. Offline, that is the one
          thing that cannot be done, and saying nothing looked like a dead
          button. */
-      if (res && !res.ok) toast(t(res.error === "offline" ? "fileOffline" : "fileMissing"));
+      if (res && !res.ok) toast(t(res.error === "offline" ? "fileOffline" : res.error === "blocked-type" ? "fileBlocked" : "fileMissing"));
       else refreshOfflineBadges();
     };
   });
@@ -2602,7 +2604,7 @@ function syncRowWidth() {
       let max = 0;
       for (const b of DATA.books) {
         // the title cell also holds the status dot and any PDF/TXT badge
-        const extra = k === "title" ? 13 + ((b.format === "pdf" || b.format === "unicode") ? 40 : 0) : 0;
+        const extra = k === "title" ? 13 + ((b.format === "pdf" || b.format === "unicode" || b.format === "document") ? 40 : 0) : 0;
         max = Math.max(max, canvas.measureText(TEXT[k](b)).width + extra);
       }
       const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + 8;   // padding, border, rounding slack
@@ -4479,6 +4481,7 @@ let rdTabs = [];       // { key: file path, title, file, kind: "text"|"pdf", sta
 let rdActive = null;   // key of the tab on screen
 const rdTab = (key) => rdTabs.find((x) => x.key === key);
 const isPdfPath = (p) => /\.pdf($|[?#])/i.test(String(p || ""));
+const fileExt = (p) => ((/\.([a-z0-9]{1,5})(?:[?#]|$)/i.exec(String(p || "")) || [])[1] || "DOC").toUpperCase();
 
 function rdSaveState() {
   const tab = rdTab(rdActive);

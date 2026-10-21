@@ -834,10 +834,20 @@ function filesAreIdentical(a, b) {
   try { return fs.statSync(a).size === fs.statSync(b).size; } catch { return false; }
 }
 
+/* Office documents, e-books and page scans a library keeps beside its PDFs.
+   They open in the PC's own program (Word, Excel...), so this list is also
+   the gate on what an attachment may be: nothing runnable (exe, bat, macro
+   documents like docm) can be attached or opened through it. */
+const DOC_EXTS = ["doc", "docx", "rtf", "odt", "xls", "xlsx", "ods", "csv", "ppt", "pptx", "odp", "epub", "jpg", "jpeg", "png", "tif", "tiff"];
+const OPENABLE_EXTS = new Set(["pdf", "txt", "md", ...DOC_EXTS]);
+const extOf = (p) => ((/\.([a-z0-9]{1,5})(?:[?#]|$)/i.exec(String(p || "")) || [])[1] || "").toLowerCase();
+
 ipcMain.handle("file:pick", async (_e, format) => {
   const filters = format === "pdf"
     ? [{ name: "PDF", extensions: ["pdf"] }]
-    : [{ name: "Text", extensions: ["txt", "md"] }];
+    : format === "document"
+      ? [{ name: "Word, Excel, PowerPoint, EPUB, صور", extensions: DOC_EXTS }]
+      : [{ name: "Text", extensions: ["txt", "md"] }];
   // multiSelections: one book can hold many scans (volume 1, volume 2, …)
   const { canceled, filePaths } = await dialog.showOpenDialog({
     filters,
@@ -1154,6 +1164,8 @@ ipcMain.handle("file:localUrl", async (_e, filePath) => {
 ipcMain.handle("file:open", async (_e, filePath) => {
   const real = resolveStoredPath(filePath);
   if (!real) return { ok: false, error: "missing" };
+  // shell.openPath runs whatever the extension says; a catalogue link must never launch a program.
+  if (!OPENABLE_EXTS.has(extOf(real))) return { ok: false, error: "blocked-type" };
 
   /* A PDF published to Releases is an https:// URL by the time a reader sees
      it. Handing that URL to the browser meant the scan came down again on
@@ -1226,6 +1238,7 @@ function fetchBinaryFollowingRedirects(urlStr, opts, hopsLeft, resolve) {
       return resolve({ ok: false, error: `${opts.typeLabel} (HTTP ${res.statusCode}, ${type || "unknown type"})` });
     }
     const ext = opts.extFor(type, target.pathname);
+    if (!ext) { res.resume(); return resolve({ ok: false, error: `${opts.typeLabel} (${type || "unknown type"})` }); }
     const name = `${opts.prefix}-${Date.now().toString(36)}${ext}`;
     const dest = path.join(opts.dir(), name);
     const chunks = [];
@@ -1274,7 +1287,38 @@ const filesDir = () => {
   return dir;
 };
 
+const DOC_TYPES = {
+  "application/msword": ".doc",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
+  "application/rtf": ".rtf", "text/rtf": ".rtf",
+  "application/vnd.oasis.opendocument.text": ".odt",
+  "application/vnd.ms-excel": ".xls",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": ".xlsx",
+  "application/vnd.oasis.opendocument.spreadsheet": ".ods", "text/csv": ".csv",
+  "application/vnd.ms-powerpoint": ".ppt",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation": ".pptx",
+  "application/vnd.oasis.opendocument.presentation": ".odp",
+  "application/epub+zip": ".epub",
+  "image/jpeg": ".jpg", "image/png": ".png", "image/tiff": ".tif"
+};
+
 ipcMain.handle("file:downloadFile", (_e, url, kind) => new Promise((resolve) => {
+  if (kind === "document") {
+    // The link's own extension wins (hosts often send octet-stream); else the content type decides; else refused.
+    return fetchBinaryFollowingRedirects(url, {
+      dir: filesDir,
+      pathPrefix: "userdata:files/",
+      prefix: "doc",
+      allowedTypes: [...Object.keys(DOC_TYPES), "application/octet-stream", "application/zip", "binary/octet-stream"],
+      typeLabel: "Not a Word/Excel/PowerPoint/EPUB/image file",
+      maxBytes: MAX_DOC_BYTES,
+      extFor: (type, pathname) => {
+        const e = extOf(pathname);
+        if (DOC_EXTS.includes(e)) return "." + e;
+        return DOC_TYPES[type] || null;
+      }
+    }, 5, resolve);
+  }
   const isPdf = kind === "pdf";
   fetchBinaryFollowingRedirects(url, {
     dir: filesDir,

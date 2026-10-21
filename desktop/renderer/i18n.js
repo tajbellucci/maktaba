@@ -60,7 +60,7 @@ const STRINGS = {
     divergedOfferRestore: "GitHub پر ایسی تبدیلیاں موجود ہیں جو اس کمپیوٹر پر نہیں۔ (GitHub: {remote} کتابیں، یہاں: {local})\n\nابھی شائع کرنے سے وہ مٹ جائیں گی۔\n\nکیا ابھی GitHub والا نسخہ منگوایا جائے؟ (پہلے فرق دکھایا جائے گا) اس کے بعد اپنی تبدیلی دوبارہ کریں — پھر خودکار اشاعت چل پڑے گی۔",
     publishFrozenMsg: "شائع کرنے کی سہولت عارضی طور پر بند ہے۔", publishFail: "ناکام: ", publishing: "شائع ہو رہا ہے…", added: " کتابیں شامل کی گئیں",
     publishDevRunMsg: "یہ ٹیسٹ نسخہ ہے (سورس سے چل رہا ہے)۔ اصل لائبریری کو محفوظ رکھنے کے لیے اس سے شائع نہیں کیا جا سکتا — انسٹال شدہ ایپ استعمال کریں۔",
-    fFormat: "شکل", fmtPhysical: "طباعتی کتاب", fmtPdf: "PDF فائل", fmtUnicode: "متنی فائل (Unicode)",
+    fFormat: "شکل", fmtPhysical: "طباعتی کتاب", fmtPdf: "PDF فائل", fmtUnicode: "متنی فائل (Unicode)", fmtDoc: "دیگر فائل (Word، Excel، PowerPoint، EPUB، تصویر)", fileBlocked: "اس قسم کی فائل نہیں کھولی جا سکتی",
     noFileAttached: "کوئی فائل منسلک نہیں", attachFile: "فائل منسلک کریں", openFile: "فائل کھولیں",
     colAuthor: "المؤلف", colBook: "الکتاب", colPublisher: "الناشر", homeTagline: "جامعہ نعمانیہ ڈیجیٹل لائبریری",
     homeEnter: "لائبریری کھولیں", railHome: "مرکزی صفحہ",
@@ -219,7 +219,7 @@ const STRINGS = {
     masterLoggedIn: "ماسٹر موڈ فعال ہو گیا", masterLockLost: "ماسٹر موڈ ختم ہو گیا — دوبارہ لاگ اِن کریں",
     masterHeldBy: "ابھی {who} ماسٹر ہے — پہلے وہاں لاگ آؤٹ کریں",
 
-    downloading: "تصویر ڈاؤن لوڈ ہو رہی ہے…", photoSaved: "تصویر محفوظ ہو گئی", photoFailed: "تصویر حاصل نہیں ہو سکی:",
+    downloading: "تصویر ڈاؤن لوڈ ہو رہی ہے…", fileDownloading: "فائل ڈاؤن لوڈ ہو رہی ہے…", fileSaved: "فائل منسلک ہو گئی", fileFailed: "فائل حاصل نہیں ہو سکی:", photoSaved: "تصویر محفوظ ہو گئی", photoFailed: "تصویر حاصل نہیں ہو سکی:",
 
 
   },
@@ -279,7 +279,7 @@ const STRINGS = {
     divergedOfferRestore: "توجد على GitHub تغييرات ليست على هذا الجهاز. (GitHub: {remote} كتاب، هنا: {local})\n\nالنشر الآن سيمحوها.\n\nهل نجلب نسخة GitHub الآن؟ (سيُعرض الفرق أولاً) ثم أعد تنفيذ تعديلك — وبعدها يعمل النشر التلقائي.",
     publishFrozenMsg: "خاصية النشر متوقفة مؤقتًا.", publishFail: "فشل: ", publishing: "جاري النشر…", added: " كتبًا تمت إضافتها",
     publishDevRunMsg: "هذه نسخة اختبارية (تعمل من المصدر). النشر منها معطّل لحماية المكتبة الحقيقية — استخدم التطبيق المثبّت.",
-    fFormat: "الصيغة", fmtPhysical: "كتاب مطبوع", fmtPdf: "ملف PDF", fmtUnicode: "ملف نصي (Unicode)",
+    fFormat: "الصيغة", fmtPhysical: "كتاب مطبوع", fmtPdf: "ملف PDF", fmtUnicode: "ملف نصي (Unicode)", fmtDoc: "ملف آخر (Word، Excel، PowerPoint، EPUB، صورة)", fileBlocked: "لا يمكن فتح هذا النوع من الملفات",
     noFileAttached: "لا يوجد ملف مرفق", attachFile: "إرفاق ملف", openFile: "فتح الملف",
     colAuthor: "المؤلف", colBook: "الكتاب", colPublisher: "الناشر", homeTagline: "المكتبة النعمانية",
     homeEnter: "افتح المكتبة", railHome: "الصفحة الرئيسية",
@@ -437,7 +437,7 @@ const STRINGS = {
     masterLoggedIn: "تم تفعيل وضع المدير", masterLockLost: "انتهى وضع المدير — سجّل الدخول مرة أخرى",
     masterHeldBy: "{who} هو المدير حاليًا — سجّل الخروج هناك أولاً",
 
-    downloading: "جاري تنزيل الصورة…", photoSaved: "تم حفظ الصورة", photoFailed: "تعذر جلب الصورة:",
+    downloading: "جاري تنزيل الصورة…", fileDownloading: "جاري تنزيل الملف…", fileSaved: "تم إرفاق الملف", fileFailed: "تعذر جلب الملف:", photoSaved: "تم حفظ الصورة", photoFailed: "تعذر جلب الصورة:",
 
 
   },
@@ -497,7 +497,7 @@ const STRINGS = {
     divergedOfferRestore: "GitHub has changes this computer does not have. (GitHub: {remote} books, here: {local})\n\nPublishing now would erase them.\n\nFetch the GitHub copy now? (the difference is shown first) Then redo your change — auto-publish will work again after that.",
     publishFrozenMsg: "Publishing is temporarily turned off.", publishFail: "Failed: ", publishing: "Publishing…", added: " books added",
     publishDevRunMsg: "This is a test copy (running from source). Publishing from it is disabled so the real library stays safe — use the installed app.",
-    fFormat: "Format", fmtPhysical: "Physical book", fmtPdf: "PDF file", fmtUnicode: "Text file (Unicode)",
+    fFormat: "Format", fmtPhysical: "Physical book", fmtPdf: "PDF file", fmtUnicode: "Text file (Unicode)", fmtDoc: "Other document (Word, Excel, PowerPoint, EPUB, image)", fileBlocked: "This type of file cannot be opened",
     noFileAttached: "No file attached", attachFile: "Attach file", openFile: "Open file",
     colAuthor: "Author", colBook: "Title", colPublisher: "Publisher", homeTagline: "Jamia Naumania Digital Library",
     homeEnter: "Open Library", railHome: "Home",
@@ -654,7 +654,7 @@ const STRINGS = {
     masterLoggedIn: "Master mode is on", masterLockLost: "Master mode ended — log in again",
     masterHeldBy: "{who} is currently master — log out there first",
 
-    downloading: "Downloading image…", photoSaved: "Photo saved", photoFailed: "Could not fetch the image:",
+    downloading: "Downloading image…", fileDownloading: "Downloading file…", fileSaved: "File attached", fileFailed: "Could not fetch the file:", photoSaved: "Photo saved", photoFailed: "Could not fetch the image:",
 
 
   }
