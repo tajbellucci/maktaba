@@ -12611,9 +12611,9 @@
       "id": 458,
       "title": "أصول السرخسي",
       "author": "محمد بن أحمد بن ابي سهل السرخسي المتوفى سنة 490",
-      "publisher": "اصول الفقه",
-      "category": "م1",
-      "volumes": 2,
+      "publisher": "مكتبة ابن تيمية",
+      "category": "أصول الفقه",
+      "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "دار الافتاء",
       "almari": "مكتب مفتي عبدالستار حفظه الله",
@@ -12623,6 +12623,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-21",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-21",
           "action": "updated",
@@ -23723,19 +23728,24 @@
     {
       "id": 848,
       "title": "جامع المباني",
-      "author": "شمس الدين القهستاني المتوفى 950",
-      "publisher": "دار الفوز",
+      "author": "شمس الدين محمد القهستاني المتوفى نحو: 950",
+      "publisher": "مكتبة الغانم",
       "category": "الفقه",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "دار الافتاء",
-      "almari": "مكتب مفتي عثمان حفظه الله",
+      "almari": "مكتب مفتي عبدالستار حفظه الله",
       "hasPrint": true,
       "status": "available",
-      "notes": "ت: محمد عثمان الافشاني",
+      "notes": "ت: محمد عثمان الافشاني حفظه الله تعالى",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-21",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-21",
           "action": "added",
@@ -24858,6 +24868,141 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "889"
+    },
+    {
+      "id": 890,
+      "title": "أشرف الوسائل الى فهم الشمائل",
+      "author": "شهاب الدين أحمد بن حجر الهيتمي المتوفى 974",
+      "publisher": "دار الكتب العلمية",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "مكتب مفتي عثمان حفظه الله",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "ومعه كتاب جواهر الدرر في مناقب ابن حجر للشيخ ابي بكر بن محمد بن عبد الله الشافعي",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-21",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "890"
+    },
+    {
+      "id": 891,
+      "title": "39.\tالفوز الكبير",
+      "author": "الشاه ولي الله الدهلوي المتوفى 1176",
+      "publisher": "دار البخاري",
+      "category": "اصول تفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "مكتب مفتي عثمان حفظه الله",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "-",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-21",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "891"
+    },
+    {
+      "id": 892,
+      "title": "التبيان",
+      "author": "الشاه محمد علي الصابوني",
+      "publisher": "البشرى",
+      "category": "اصول تفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "مكتب مفتي عثمان حفظه الله",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "-",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-21",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "892"
+    },
+    {
+      "id": 893,
+      "title": "مختصر كتاب النظر في أحكام النظر",
+      "author": "ابن القطان المتوفى 628",
+      "publisher": "مكتبة التوبة",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "مكتب مفتي عثمان حفظه الله",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "-",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-21",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "893"
+    },
+    {
+      "id": 894,
+      "title": "42.\tتحفة الأخيار بمختصر الاذكار",
+      "author": "ابوبكر بن شيخ الملا المتوفى 1270",
+      "publisher": "دار النعمان",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "مكتب مفتي عثمان حفظه الله",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "-",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-21",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "894"
     }
   ],
   "categories": [
