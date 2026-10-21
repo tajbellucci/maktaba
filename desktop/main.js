@@ -4,6 +4,7 @@ const fs = require("fs");
 const REPO = require("./shared/repo");
 const https = require("https");
 const crypto = require("crypto");
+const zlib = require("zlib");
 
 /* Development runs must never touch the library the madrassa actually reads.
    ────────────────────────────────────────────────────────────────────────
@@ -999,9 +1000,70 @@ function cachedPathFor(url) {
   return null;
 }
 
+/* Word (.docx) shown in the app's text reader. A .docx is a zip; the text is
+   in word/document.xml. Read with zlib alone: no zip library ships with the
+   app. Paragraphs become lines, tabs and breaks are kept, formatting dropped.
+   Old binary .doc files are not readable this way and still open in Word. */
+function zipEntry(buf, wanted) {
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  }
+  if (eocd < 0) return null;
+  const count = buf.readUInt16LE(eocd + 10);
+  let at = buf.readUInt32LE(eocd + 16);
+  for (let n = 0; n < count && buf.readUInt32LE(at) === 0x02014b50; n++) {
+    const method = buf.readUInt16LE(at + 10), size = buf.readUInt32LE(at + 20);
+    const nameLen = buf.readUInt16LE(at + 28), extraLen = buf.readUInt16LE(at + 30), commentLen = buf.readUInt16LE(at + 32);
+    const local = buf.readUInt32LE(at + 42);
+    const name = buf.toString("utf8", at + 46, at + 46 + nameLen);
+    if (name === wanted) {
+      const start = local + 30 + buf.readUInt16LE(local + 26) + buf.readUInt16LE(local + 28);
+      const raw = buf.subarray(start, start + size);
+      return method === 0 ? raw : method === 8 ? zlib.inflateRawSync(raw) : null;
+    }
+    at += 46 + nameLen + extraLen + commentLen;
+  }
+  return null;
+}
+
+function docxToText(buf) {
+  const xml = zipEntry(buf, "word/document.xml");
+  if (!xml) return null;
+  const ent = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" };
+  const decode = (s) => s.replace(/&(amp|lt|gt|quot|apos|#\d+|#x[0-9a-f]+);/gi, (m, e) =>
+    e[0] === "#" ? String.fromCodePoint(/^#x/i.test(e) ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10)) : ent[e.toLowerCase()]);
+  const lines = [];
+  for (const [para] of xml.toString("utf8").matchAll(/<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g)) {
+    let line = "";
+    for (const m of para.matchAll(/<w:t(?:\s[^>]*)?>([^<]*)<\/w:t>|<w:tab\/>|<w:br[^>]*\/>/g)) {
+      line += m[1] !== undefined ? decode(m[1]) : m[0].startsWith("<w:tab") ? "\t" : "\n";
+    }
+    lines.push(line);
+  }
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+const isDocx = (p) => /\.docx(?:[?#]|$)/i.test(String(p || ""));
+
 ipcMain.handle("file:readText", async (_e, filePath) => {
   try {
     const real = resolveStoredPath(filePath);
+
+    if (isDocx(real)) {
+      let file = real;
+      if (/^https?:\/\//i.test(real)) {
+        const cachedText = textCachePath(real);
+        if (fs.existsSync(cachedText)) return { ok: true, text: fs.readFileSync(cachedText, "utf8"), name: real.split("/").pop() };
+        file = cachedPathFor(real) || await fetchBinaryToCache(real, MAX_DOC_BYTES);
+        if (!file) return { ok: false, error: "فائل حاصل نہیں ہو سکی — انٹرنیٹ کنکشن چیک کریں" };
+      }
+      if (!fs.existsSync(file)) return { ok: false, error: "فائل نہیں ملی" };
+      const text = docxToText(fs.readFileSync(file));
+      if (text === null) return { ok: false, error: "یہ Word فائل پڑھی نہیں جا سکی" };
+      if (/^https?:\/\//i.test(real)) { try { fs.writeFileSync(textCachePath(real), text, "utf8"); } catch { /* best-effort */ } }
+      return { ok: true, text, name: path.basename(file) };
+    }
 
     // Attachments published to Releases are URLs by the time a reader sees them.
     if (/^https?:\/\//i.test(real)) {

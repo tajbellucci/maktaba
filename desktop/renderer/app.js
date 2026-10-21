@@ -2306,7 +2306,7 @@ function renderFileRow(b) {
       <span class="filename" title="${p}">${baseName(p)}</span>
       ${/* A Unicode text file opens in the app so it can be searched; a PDF
             still goes to the system viewer, because its pages are images. */""}
-      ${b.format === "unicode" || b.format === "pdf" || isPdfPath(p)
+      ${b.format === "unicode" || b.format === "pdf" || isPdfPath(p) || isDocxPath(p)
         ? `<button class="tbtn" data-read="${i}" title="${t("readInApp")}"><svg><use href="#i-searchbook"/></svg></button>`
         : ""}
       <button class="tbtn" data-open="${i}" title="${t("openFile")}"><svg><use href="#i-book"/></svg></button>
@@ -4481,6 +4481,9 @@ let rdTabs = [];       // { key: file path, title, file, kind: "text"|"pdf", sta
 let rdActive = null;   // key of the tab on screen
 const rdTab = (key) => rdTabs.find((x) => x.key === key);
 const isPdfPath = (p) => /\.pdf($|[?#])/i.test(String(p || ""));
+const isDocxPath = (p) => /\.docx($|[?#])/i.test(String(p || ""));
+// Files the text reader and the search panel can read: Unicode texts, and Word (.docx) shown as text.
+const searchableFiles = (b) => (b.format === "unicode" ? (b.files || []) : (b.files || []).filter(isDocxPath));
 const fileExt = (p) => ((/\.([a-z0-9]{1,5})(?:[?#]|$)/i.exec(String(p || "")) || [])[1] || "DOC").toUpperCase();
 
 function rdSaveState() {
@@ -4501,7 +4504,7 @@ function renderRdTabs() {
   const bar = $("rdTabs");
   bar.innerHTML = rdTabs.map((x, i) => `
     <div class="rd-tab${x.key === rdActive ? " on" : ""}" data-rdi="${i}" title="${esc(x.title)}">
-      <span class="rd-tab-kind">${x.kind === "pdf" ? "PDF" : "TXT"}</span>
+      <span class="rd-tab-kind">${x.kind === "pdf" ? "PDF" : isDocxPath(x.key) ? "DOCX" : "TXT"}</span>
       <span class="rd-tab-name">${esc(x.title)}</span>
       <button type="button" class="rd-tab-x" data-rdx="${i}" title="${t("btnClose")}"><svg><use href="#i-x"/></svg></button>
     </div>`).join("");
@@ -4995,7 +4998,7 @@ async function runFullTextSearch() {
   const scoped = ftsScopedIds.size
     ? DATA.books.filter((b) => ftsScopedIds.has(b.id))
     : DATA.books;
-  const targets = scoped.filter((b) => b.format === "unicode" && (b.files || []).length);
+  const targets = scoped.filter((b) => searchableFiles(b).length);
   $("ftsResults").innerHTML = "";
   if (!targets.length) {
     $("ftsStatus").textContent = ftsScopedIds.size ? t("ftsNoTextsScoped") : t("ftsNoTexts");
@@ -5013,7 +5016,7 @@ async function runFullTextSearch() {
        repaints: once a book's text is cached, nothing in this loop actually
        waits on anything, and the whole scan runs in one frozen frame. */
     await new Promise((r) => setTimeout(r, 0));
-    for (const path of b.files) {
+    for (const path of searchableFiles(b)) {
       const entry = await ftsEntryOf(path);
       const text = entry.text;
       if (!text) continue;
