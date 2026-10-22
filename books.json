@@ -4076,7 +4076,7 @@
       "title": "إحياء علوم الدين",
       "author": "أبو حامد محمد بن محمد الغزالي الطوسي (ت ٥٠٥هـ)",
       "publisher": "دار القمر",
-      "category": "الأسرار والحكم",
+      "category": "التصوف",
       "volumes": 5,
       "maktaba": "نعمانیہ جدید",
       "department": "الغرفة العامة",
@@ -4087,6 +4087,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
