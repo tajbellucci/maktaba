@@ -1445,19 +1445,24 @@
     {
       "id": 46,
       "title": "الملل والنحل",
-      "author": "الإمام أبي الفتح محمد بن عبد الكريم الشيرستاني ،(ت:548 هـ)",
-      "publisher": "مكتبة المعروفية،معلق:الأستاد أحمد فهمي محمد",
-      "category": "العقائد",
+      "author": "للإمام أبي الفتح محمد بن عبد الكريم الشهرستاني(ت:548هـ)،تحقيق:عادل أحمد إبراهيم",
+      "publisher": "المكتبة الحقانية",
+      "category": "العقيدة",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-ه",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثانية",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -2487,19 +2492,24 @@
     {
       "id": 77,
       "title": "معارف القرآن",
-      "author": "شيخ تفسير والحديث حضرت مولانا الحافظ محمد ادریس صاحب کاندہلوی",
-      "publisher": "الطاف اینڈ سنز",
+      "author": "مفتى محمد شفيع صاحب",
+      "publisher": "مكتبہ معارف اللقرآن",
       "category": "التفسير",
-      "volumes": 8,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-ا",
+      "volumes": 9,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخہ الجديدہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -2524,19 +2534,24 @@
     {
       "id": 78,
       "title": "أحكام القرآن",
-      "author": "مولانا ظفر احمد عثمانی، مفتی محمد شفیع عثمانی ، مولانا محمد ادریس کاندهلوي",
-      "publisher": "ادارة القرآن والعلوم الإسلامية",
+      "author": "المفتى الفقيه المفسر العلامة محمد شفيع على ضوء ما أفاده مولانا الشيخ أشرف علي التهانوي",
+      "publisher": "مكتبة تهانوي",
       "category": "التفسير",
       "volumes": 5,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-أ",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -2561,19 +2576,24 @@
     {
       "id": 79,
       "title": "مكمل بيان القرآن",
-      "author": "مولانا اشرف علي تهانوي رحمه الله،(ت:911هـ)",
-      "publisher": "ايچ ايم سعيد",
+      "author": "حکیم الامت مولانا محمد أشرف علی تھانوی",
+      "publisher": "البشری",
       "category": "التفسير",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-أ",
+      "volumes": 3,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "النسخہ الجديدہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5263,6 +5283,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -5726,6 +5751,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -13049,6 +13079,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -23366,6 +23401,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23392,6 +23432,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23420,6 +23465,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23446,6 +23496,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23474,6 +23529,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23500,6 +23560,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23528,6 +23593,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23554,6 +23624,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23582,6 +23657,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23608,6 +23688,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23636,6 +23721,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23662,6 +23752,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23690,6 +23785,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23716,6 +23816,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23744,6 +23849,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23770,6 +23880,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23798,6 +23913,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23824,6 +23944,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23852,6 +23977,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23878,6 +24008,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23906,6 +24041,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23932,6 +24072,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -23960,6 +24105,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -23986,6 +24136,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
@@ -24014,6 +24169,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -24027,19 +24187,24 @@
     {
       "id": 823,
       "title": "شرح المواقف",
-      "author": "سيد شريف علي بن محمد الجرجاني المتوفى سنة 816",
-      "publisher": "النورية الرضوية",
-      "category": "عقيدة",
+      "author": "المؤلف:السيد الشريف علي بن محمد الجرجاني،(ت:816هـ)",
+      "publisher": "مكتبة رشيدية",
+      "category": "العقيدة",
       "volumes": 8,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "مكتب مفتي عبدالستار حفظه الله",
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الثاني",
+      "almari": "1",
       "hasPrint": true,
       "status": "available",
-      "notes": "-",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
