@@ -35360,6 +35360,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1066"
+    },
+    {
+      "id": 1067,
+      "title": "تبشير الناس لشرح قال بعض الناس",
+      "author": "ابو الحسن خليق الزمان",
+      "publisher": "کمپیوٹرائز",
+      "category": "شروح الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ,2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1067"
     }
   ],
   "categories": [
