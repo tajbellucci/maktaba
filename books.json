@@ -8879,19 +8879,24 @@
     {
       "id": 263,
       "title": "مشكاة المصابيح",
-      "author": "محمد بن عبد الله الخطيب التبريزي مت: نحو: 738 هـ، شرح وت: د: عبد الحميد الهندواني",
-      "publisher": "المكتبة العصرية",
+      "author": "الامام المحدث محمد بن عبد اللہ الخطیب التبریزی",
+      "publisher": "مکتبہ البشری",
       "category": "الحديث",
-      "volumes": 5,
+      "volumes": 3,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "6-ب",
+      "department": "لائبریری",
+      "almari": "الف-4",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخة",
+      "notes": "خلفی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -23236,13 +23241,18 @@
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "الف-4 خلفی",
+      "almari": "الف-4",
       "hasPrint": true,
       "status": "available",
-      "notes": "طباعتی",
+      "notes": "خلفی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -23276,6 +23286,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -23307,6 +23322,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -23340,6 +23360,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -23372,6 +23397,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -23386,7 +23416,7 @@
       "id": 690,
       "title": "سنن نسائی شریف مترجم",
       "author": "مولانا خورشید حسن قاسمی",
-      "publisher": "مکتبۃ العلم",
+      "publisher": "مکتبہ العلم",
       "category": "الحديث",
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
@@ -23398,6 +23428,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -23428,6 +23463,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -23454,6 +23494,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -23482,6 +23527,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -23508,6 +23558,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
