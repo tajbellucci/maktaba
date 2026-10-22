@@ -36525,6 +36525,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36550,6 +36555,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36589,6 +36599,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36614,6 +36629,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36653,6 +36673,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36678,6 +36703,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36717,6 +36747,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36742,6 +36777,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36781,6 +36821,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36806,6 +36851,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36845,6 +36895,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36870,6 +36925,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -36909,6 +36969,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36941,6 +37006,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -36966,6 +37036,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38559,6 +38634,168 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1161"
+    },
+    {
+      "id": 1162,
+      "title": "سیدنا بلال رضی اللہ تعالی عنہ",
+      "author": "محمد صحبت خان کوہاٹی",
+      "publisher": "مکتبہ قمر الاسلام",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1162"
+    },
+    {
+      "id": 1163,
+      "title": "معارف اسم محمد",
+      "author": "مولانا محمد ثناء اللہ اسعد",
+      "publisher": "-",
+      "category": "السیرۃ",
+      "volumes": 0,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1163"
+    },
+    {
+      "id": 1164,
+      "title": "جامع السیر",
+      "author": "شیخ یوسف متالہ",
+      "publisher": "مجموعہ ارشادات",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1164"
+    },
+    {
+      "id": 1165,
+      "title": "شمائل النبی الخاتم لتسكين قلب البهائم",
+      "author": "مفتی روح الامین",
+      "publisher": "ضیاء الاسلام کتب خانہ",
+      "category": "السیرۃ",
+      "volumes": 0,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1165"
+    },
+    {
+      "id": 1166,
+      "title": "تحفه الورده شرح قصيده برده",
+      "author": "مولانا حماد اللہ",
+      "publisher": "مکتبہ حمادیہ",
+      "category": "السیرۃ والقصیدۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1166"
+    },
+    {
+      "id": 1167,
+      "title": "کفریہ الفاظ اور ان کے احکامات",
+      "author": "مولانا مفتی عبدالشکور قاسمی",
+      "publisher": "بیت السلام",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1167"
     }
   ],
   "categories": [
