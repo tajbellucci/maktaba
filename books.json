@@ -29557,6 +29557,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "982"
+    },
+    {
+      "id": 983,
+      "title": "51.\tجامع الترمذي مع حاشية سهارنفوري",
+      "author": "الإمام الترمذي",
+      "publisher": "ايچ ایم سعید",
+      "category": "شروح الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة القديمة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "983"
     }
   ],
   "categories": [
