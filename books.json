@@ -7400,19 +7400,24 @@
     {
       "id": 211,
       "title": "اشعة اللمعات",
-      "author": "اللإمام العلامة عبد الحق المحدث الدهلوي",
-      "publisher": "مكتبة نورية رضوية",
-      "category": "الحديث",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ج-1، ط: خلفي",
+      "author": "محدث عبد الحق الدهلوي",
+      "publisher": "مكتبة نورية رضوية سكهر",
+      "category": "شروح الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "خزانة1-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "اولين غير موجود",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
