@@ -6095,19 +6095,24 @@
     {
       "id": 161,
       "title": "الفتاوى التاتارخانيه",
-      "author": "العلامة عالم بن العلاء الأنصاري الأندربتى الدهلوي المتوفى: 786",
-      "publisher": "قديمى كتب خانه",
-      "category": "الفقه",
-      "volumes": 5,
-      "maktaba": "نعمانیہ جدید",
+      "author": "الإمام الفقيه عالم بن علاءالحنفي صاحب",
+      "publisher": "إدارةالقرأن والعلوم الاسلامية",
+      "category": "الفتاوى",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
       "department": "لائبریری",
-      "almari": "ج-1، ط:أمامي",
+      "almari": "6،د",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "-",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -17680,19 +17685,24 @@
     {
       "id": 565,
       "title": "احسن الفتاوی",
-      "author": "مفتی رشید احمد",
-      "publisher": "جامعہ رشیدیہ",
-      "category": "الفقه",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
+      "author": "مفتی رشيد صاحب",
+      "publisher": "ايچ ايم سعيد",
+      "category": "الفتاوى",
+      "volumes": 7,
+      "maktaba": "نعمانیہ قدیم",
       "department": "لائبریری",
-      "almari": "ہ,2",
+      "almari": "7،د",
       "hasPrint": true,
       "status": "available",
-      "notes": "مف:باقی",
+      "notes": "صرف چوتھی جلد موجود نہیں ہے",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38796,6 +38806,237 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1167"
+    },
+    {
+      "id": 1168,
+      "title": "البحرالرائق شرح كنزالدقائق",
+      "author": "الإمام الفقيه ابن نجيم الشيخ زين الدين صاحب",
+      "publisher": "إيچ إيم سعيد",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "-",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1168"
+    },
+    {
+      "id": 1169,
+      "title": "شمائل كبري، مفتی محمد ارشادصاحب ،سیرت،2ـ7،زمزم پبلشرز",
+      "author": "نعمانیہ جديد",
+      "publisher": "طباعتی",
+      "category": "1د،امامی",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1169"
+    },
+    {
+      "id": 1170,
+      "title": "كتاب التراتيب الإدارية والعمالات والصناعات والمتاجر والحالة العلمية",
+      "author": "السياسة النبوية",
+      "publisher": "دار البشائر الاسلامية",
+      "category": "سیروتاریخ",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1170"
+    },
+    {
+      "id": 1171,
+      "title": "وفاء الوفاء، نور الدين علي بن احمدالمصري،فضائل حرم المدينة،4،دارالاحياء التراث العربي تمام جلدیں موجود ہیں،نعمانیہ قديم ،لائبریری،7،د",
+      "author": "طباعتی",
+      "category": "",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1171"
+    },
+    {
+      "id": 1172,
+      "title": "تسہیل النحو",
+      "author": "مولانا عبداللہ گنگوہی",
+      "publisher": "البشریٰ",
+      "category": "علم نحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "دونسخے مختلف مکتبوں میں 4باء خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1172"
+    },
+    {
+      "id": 1173,
+      "title": "فوائدمكيه",
+      "author": "قاری عبد الرحمن مکی صاحب",
+      "publisher": "البشریٰ",
+      "category": "علم تجوید",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1173"
+    },
+    {
+      "id": 1174,
+      "title": "أسدالغابة،سیروتاریخ ،عزالدين بن الاثير،جلد6،طباعت دارالفکر",
+      "author": "",
+      "category": "",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1174"
+    },
+    {
+      "id": 1175,
+      "title": "مناقب الصحابة",
+      "author": "عبدالرحمن البدري،سیروتاريخ،2,3،مطبعةالعمرانيةللاوفست",
+      "publisher": "طباعتی",
+      "category": "پہلی جلدموجودنہیں،نعمانیہ قديم",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1175"
+    },
+    {
+      "id": 1176,
+      "title": "فتاویٰ شاہ محمد اسحاق دہلوی المعروف به ماءة مساءل",
+      "author": "،فتاوی،1،المنهل،۔",
+      "publisher": "طباعتی",
+      "category": "،نعمانیہ قديم",
+      "volumes": 0,
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1176"
     }
   ],
   "categories": [
