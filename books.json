@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "books": [
     {
       "id": 1,
@@ -7814,19 +7814,24 @@
     {
       "id": 281,
       "title": "جامع المباني شرح فقه الكيداني",
-      "author": "شمس الدين محمد القهستانى",
-      "publisher": "مكتبة الفوز",
-      "category": "السيرة النبوية",
+      "author": "شمس الدین محمد القہستانی",
+      "publisher": "مکتبۃ الغانم للنشر والتوزیع",
+      "category": "الفقه",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ج -3، ط: خلفي",
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -25003,6 +25008,357 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "894"
+    },
+    {
+      "id": 895,
+      "title": "الدرر المباحۃ فی الحظر والاباحۃ",
+      "author": "الفقیہ الشیخ خلیل بن عبد القادر الشیبانی  الشہیر بالنحلاوی المتوفی1350ھ",
+      "publisher": "دارالفتح",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "895"
+    },
+    {
+      "id": 896,
+      "title": "التعلیقات الملاح علی تہذیب مقدمۃ ابن صلاح",
+      "author": "عبد العزیز بن عبد اللہ الراجحی",
+      "publisher": "مرکز عبد العزیز الراجحی",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "896"
+    },
+    {
+      "id": 897,
+      "title": "الفوائد المنتقاء",
+      "author": "امام العصر محمد انور شاہ الکشمیری",
+      "publisher": "دار الفتح",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "897"
+    },
+    {
+      "id": 898,
+      "title": "النوادر",
+      "author": "للامام ابی یعلی بن منصور الرازی الحنفی المتوفی211ھ",
+      "publisher": "عالم الثقافۃ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "898"
+    },
+    {
+      "id": 899,
+      "title": "مختصر القدوری فی ثوبہ الجدید",
+      "author": "للامام ابی الحسن احمد بن محمد القدوری البغدادی المتوفی428ھ",
+      "publisher": "مکتبۃ خدمات العلوم الشرعیۃ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "899"
+    },
+    {
+      "id": 900,
+      "title": "متن النقایۃ مختصر الوقایۃ فی مسائل الہدایۃ",
+      "author": "للامام صدر الشریعۃ عبد اللہ بن مسعود بن تاج الشریعۃ محمود بن صدر الشریعۃ الاکبر المحبوبی المتوفی747ھ",
+      "publisher": "دار السلطان للنشر",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف1",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "900"
+    },
+    {
+      "id": 901,
+      "title": "جواہر الفتاوی",
+      "author": "للامام محمد بن عبد الرشید الکرمانی المتوفی565ھ",
+      "publisher": "دار الکتب",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "901"
+    },
+    {
+      "id": 902,
+      "title": "الفتاوی البساطیۃ فی فقہ السادۃ الحنفیۃ",
+      "author": "لمفتی الحنفیۃ فی المدینۃ المنورۃ عمر بن احمد بن عمر البساطی المتوفی1247ھ",
+      "publisher": "توضیح دار الریاحین",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "902"
+    },
+    {
+      "id": 903,
+      "title": "مختارات النوازل",
+      "author": "للامام برہان الدین ابی الحسن علی ابن ابی بکر بن عبد الجلیل المرغینانی المتوفی593ھ",
+      "publisher": "مکتبۃ طیبۃ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "903"
+    },
+    {
+      "id": 904,
+      "title": "المتون الفقہیۃ للسادۃ الحنفیۃ",
+      "author": "محمود امین السید",
+      "publisher": "المکتبۃ الحقانیۃ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "904"
+    },
+    {
+      "id": 905,
+      "title": "التصحیح و الترجیح علی مختصر القدوری",
+      "author": "العلامۃ الشیخ قاسم بن قطلوبغا المصری الحنفی المتوفی 879ھ",
+      "publisher": "المکتبۃ الحقانیۃ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "905"
+    },
+    {
+      "id": 906,
+      "title": "الجواہر من فقہ الحنفیۃ",
+      "author": "شیخ الاسلام ابن قاسم ابن احمد الخوارزمی",
+      "publisher": "دار السمان",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "906"
+    },
+    {
+      "id": 907,
+      "title": "الفوائد المستمدۃ",
+      "author": "العلامۃ الشیخ عبد الفتاح ابو غدہ",
+      "publisher": "دار الفتح",
+      "category": "اصول الحدیث",
+      "volumes": 1,
+      "maktaba": "قباء مسجد",
+      "department": "عمود",
+      "almari": "رف2",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "907"
     }
   ],
   "categories": [
