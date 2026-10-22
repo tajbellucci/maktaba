@@ -23480,35 +23480,6 @@
       "accession": "690"
     },
     {
-      "id": 691,
-      "title": "طباعتی",
-      "author": "",
-      "category": "",
-      "volumes": 0,
-      "almari": "",
-      "hasPrint": true,
-      "status": "available",
-      "notes": "",
-      "files": [],
-      "present": true,
-      "history": [
-        {
-          "date": "2026-10-22",
-          "action": "updated",
-          "detail": ""
-        },
-        {
-          "date": "2026-10-16",
-          "action": "added",
-          "detail": ""
-        }
-      ],
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "issueType": "person",
-      "accession": "691"
-    },
-    {
       "id": 692,
       "title": "مشکاۃشریف ترجمہ",
       "author": "حکیم الامت مفتی احمد یار خان",
@@ -28242,40 +28213,6 @@
       "accession": "823"
     },
     {
-      "id": 824,
-      "title": "خزانة:1-2-3 _أ",
-      "author": "النسخة الجديدة",
-      "category": "مطبوع",
-      "volumes": 0,
-      "almari": "",
-      "hasPrint": true,
-      "status": "available",
-      "notes": "",
-      "files": [],
-      "present": true,
-      "history": [
-        {
-          "date": "2026-10-22",
-          "action": "updated",
-          "detail": ""
-        },
-        {
-          "date": "2026-10-22",
-          "action": "updated",
-          "detail": ""
-        },
-        {
-          "date": "2026-10-20",
-          "action": "added",
-          "detail": ""
-        }
-      ],
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "issueType": "person",
-      "accession": "824"
-    },
-    {
       "id": 825,
       "title": "تفهيم البخاري شرح صحيح البخاري",
       "author": "مولانا ظهور الباري اعظم",
@@ -32050,35 +31987,6 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "942"
-    },
-    {
-      "id": 943,
-      "title": ":باقی",
-      "author": "طباعتی",
-      "category": "",
-      "volumes": 0,
-      "almari": "",
-      "hasPrint": true,
-      "status": "available",
-      "notes": "",
-      "files": [],
-      "present": true,
-      "history": [
-        {
-          "date": "2026-10-22",
-          "action": "updated",
-          "detail": ""
-        },
-        {
-          "date": "2026-10-22",
-          "action": "added",
-          "detail": ""
-        }
-      ],
-      "borrowerAddress": "",
-      "borrowerPhone": "",
-      "issueType": "person",
-      "accession": "943"
     },
     {
       "id": 944,
@@ -36573,6 +36481,411 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1100"
+    },
+    {
+      "id": 1101,
+      "title": "تاریخ اسلام",
+      "author": "شاہ معین الدین احمد ندوی",
+      "publisher": "ادارۃ نشریات اسلام",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1101"
+    },
+    {
+      "id": 1102,
+      "title": "ہماری ماں حضرت خدیجۃ الکبری رضی اللہ تعالی عنہ",
+      "author": "ڈاکٹر عامر لیاقت حسین",
+      "publisher": "احمد پبلشرز",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1102"
+    },
+    {
+      "id": 1103,
+      "title": "سیرت مصطفی صلی اللہ علیہ وسلم",
+      "author": "حضرت مولانا محمد ادریس صاحب کاندھلوی",
+      "publisher": "مکتبہ عثمانیہ",
+      "category": "السیرۃ",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1103"
+    },
+    {
+      "id": 1104,
+      "title": "حضرت ابوبکر کے تاریخی خطوط",
+      "author": "سید خورشید احمد",
+      "publisher": "مکتبۃ البخاری",
+      "category": "السیرۃ",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1104"
+    },
+    {
+      "id": 1105,
+      "title": "حضرت انس کے سو قصے",
+      "author": "مولانا محمد اویس سرور",
+      "publisher": "بیت العلوم",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1105"
+    },
+    {
+      "id": 1106,
+      "title": "سرکار مدینہ صلی اللہ علیہ وسلم اور اپ کے خلفائے راشدین",
+      "author": "مولانا چراغ حسن حسرت",
+      "publisher": "طہ پبلشرز",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1106"
+    },
+    {
+      "id": 1107,
+      "title": "خاتون جنت حضرت سیدہ فاطمہ رضی اللہ تعالی عنہا",
+      "author": "حضرت مولانا محمد اقبال رنگونی",
+      "publisher": "ادارہ اشاعت الاسلام",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1107"
+    },
+    {
+      "id": 1108,
+      "title": "مومنات کا قافلہ اور ان کا کردار",
+      "author": "عبداللہ بدران",
+      "publisher": "دارالاشاعت",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1108"
+    },
+    {
+      "id": 1109,
+      "title": "سیرت عائشہ رضی اللہ تعالی عنہا",
+      "author": "حضرت علامہ سید سلیمان ندوی",
+      "publisher": "مکتبہ مدنیہ",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1109"
+    },
+    {
+      "id": 1110,
+      "title": "حیات حسنین",
+      "author": "فیصل ہالوی",
+      "publisher": "سند ہ",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1110"
+    },
+    {
+      "id": 1111,
+      "title": "وفات النبی صلی اللہ علیہ وسلم ورحلت خاتون جنت",
+      "author": "حاجی محمد محمود حسن رضوی",
+      "publisher": "قدیم",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1111"
+    },
+    {
+      "id": 1112,
+      "title": "حضرت عبداللہ بن مسعود کے سو قصے",
+      "author": "مولانا محمد اویس سرور",
+      "publisher": "بیت العلوم",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1112"
+    },
+    {
+      "id": 1113,
+      "title": "الجمل التي لا محل لها من الاعراب في القران الكريم",
+      "author": "الدكتور طلال يحيى",
+      "publisher": "دار دجله",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1113"
+    },
+    {
+      "id": 1114,
+      "title": "هذه زوجتي",
+      "author": "عصام بن محمد الشريف",
+      "publisher": "دار الصفوه",
+      "category": "متفرقات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1114"
+    },
+    {
+      "id": 1115,
+      "title": "دل کی دنیا",
+      "author": "مفتی اعظم پاکستان مولانا محمد شفیع صاحب",
+      "publisher": "ادارۃ القران والعلوم الاسلامیہ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1115"
     }
   ],
   "categories": [
