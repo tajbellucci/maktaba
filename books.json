@@ -857,18 +857,23 @@
       "id": 24,
       "title": "غرائب الأخبار في حياة السلف الأخيار",
       "author": "خالد سيد علي",
-      "publisher": "مكتبة دار التراث",
-      "category": "قصص وأخبار الصالحين",
+      "publisher": "مكتبه دار التراث",
+      "category": "السوانح",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "2-ه",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "جلدیں: 1،مف:2",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -3197,13 +3202,18 @@
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "ه-5",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخة",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -6814,19 +6824,24 @@
     {
       "id": 188,
       "title": "رياض الصالحين",
-      "author": "الإمام أبي زكريا يحيى بن شرف النووي الدمشقي(676هـ) ت وتخ وتع: شعيب الأرنؤوط وعبد العزيز رباح وأحمد يوسف الدقاق",
-      "publisher": "قديمي كتب خانة",
+      "author": "الامام ابي زكريا يحيى بن الشرف النووي الدمشقي",
+      "publisher": "مکتبہ دار الاشاعت",
       "category": "الحديث",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "ه-5",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخة",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -6932,19 +6947,24 @@
     {
       "id": 192,
       "title": "إسلامي جمهوريه پاکستان",
-      "author": "مولانا ڈاکٹر محمد عادل خان",
-      "publisher": "المنهل",
+      "author": "حضرت ڈاکٹر محمد عادل خان",
+      "publisher": "مھند پبلشر ز",
       "category": "التاريخ",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ب-4، ط:أمامي",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -19190,19 +19210,24 @@
     {
       "id": 620,
       "title": "القاموس الجدید",
-      "author": "مولانا وحید الزمان قاسمی کیرانوی",
-      "publisher": "ادارۃاسلامیات",
-      "category": "الغۃ",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "د،ہ1",
+      "author": "حضرت مولانا وحید الزمان قاسمی",
+      "publisher": "ادارہ اسلامیات",
+      "category": "اللغۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "اردو،عربی",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -34374,19 +34399,24 @@
     {
       "id": 1022,
       "title": "فتوحات شام",
-      "author": "مولانا فضل محمد یوسف زئی",
-      "publisher": "مکتبہ ایمان ویقین",
+      "author": "حضرت مولانا فضل محمد یوسف زئی",
+      "publisher": "مکتبہ ایمان",
       "category": "التاريخ",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "خزانة1-ب",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "جدید نسخہ",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -34536,19 +34566,24 @@
     {
       "id": 1028,
       "title": "التسهيل الضروري لمسائل القدوري",
-      "author": "مولانا عاشق الهى برنى",
+      "author": "حضرت محمد عاشق الهي البرني",
       "publisher": "كتب خانه اشرفيه",
       "category": "الفقه",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "خزانة1-ب",
+      "almari": "ب- خزانہ",
       "hasPrint": true,
       "status": "available",
-      "notes": "نسخة قديمة",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -35755,6 +35790,789 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1071"
+    },
+    {
+      "id": 1072,
+      "title": "القاموس الوحید",
+      "author": "مولانا وحید الزمان قاسمی",
+      "publisher": "ادارہ اسلامیات",
+      "category": "الغت",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1072"
+    },
+    {
+      "id": 1073,
+      "title": "یادگار ملاقاتیں",
+      "author": "افادات مولانا اشرف علی تھانوی رحمہ اللہ",
+      "publisher": "ادارہ اسلامیات",
+      "category": "السوانح",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "دو نسخے مکرر",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1073"
+    },
+    {
+      "id": 1074,
+      "title": "احیاءعلوم الدین",
+      "author": "ابی حامد محمد بن محمد الغزالی",
+      "publisher": "شرکۃ مکتبہ",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1074"
+    },
+    {
+      "id": 1075,
+      "title": "الامام الشافعي",
+      "author": "اعتنى به عبد الرحمن المصطاوي",
+      "publisher": "دار المعرفه",
+      "category": "الادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1075"
+    },
+    {
+      "id": 1076,
+      "title": "خزينه الاسرار",
+      "author": "مولانا احمد علی بن شاہ",
+      "publisher": "مکتبۃ الحبیب",
+      "category": "تصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1076"
+    },
+    {
+      "id": 1077,
+      "title": "المعجم الوسيط",
+      "author": "جماعه",
+      "publisher": "دار نشر اللغه العربيه",
+      "category": "اللغه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1077"
+    },
+    {
+      "id": 1078,
+      "title": "سیرت امام ابو حنیفہ",
+      "author": "پروفیسر حکیم سید علی احمد عباسی",
+      "publisher": "مکتبہ محمود",
+      "category": "السوانح",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1078"
+    },
+    {
+      "id": 1079,
+      "title": "علمائے ہند کا شاندار ماضی",
+      "author": "حضرت مولانا سید محمد میاں",
+      "publisher": "مکتبہ مدنیۃ",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1079"
+    },
+    {
+      "id": 1080,
+      "title": "تطبيق القوانين الصرفيه على صيغ القرانيه",
+      "author": "المفتي روح الامين",
+      "publisher": "مکتبہ الرشاد",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1080"
+    },
+    {
+      "id": 1081,
+      "title": "مختصر كتاب الوافي بالوفيات",
+      "author": "صلاح الدين الصفدي",
+      "publisher": "الهيئه المصريه العامه",
+      "category": "وفيات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1081"
+    },
+    {
+      "id": 1082,
+      "title": "تسهيل الاعراب القران المبين",
+      "author": "مفتي روح الامين",
+      "publisher": "مکتبہ ایمان",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1082"
+    },
+    {
+      "id": 1083,
+      "title": "کشف النقاب",
+      "author": "حضرت دکتور محمد حبیب اللہ مختار شہید",
+      "publisher": "جامعۃ العلوم الاسلامیہ",
+      "category": "الحديث",
+      "volumes": 6,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1083"
+    },
+    {
+      "id": 1084,
+      "title": "مقالات صوفیہ",
+      "author": "حضرت مولانا اشرف علی تھانوی",
+      "publisher": "ادارہ تالیفات اشرفیہ",
+      "category": "تصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1084"
+    },
+    {
+      "id": 1085,
+      "title": "دین اسلام میں سنت اور حدیث کا مقام",
+      "author": "مولانا ڈاکٹر احمد حسن ٹونکی",
+      "publisher": "مکتبہ البشر ی",
+      "category": "متفرقات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1085"
+    },
+    {
+      "id": 1086,
+      "title": "دروس الزمان فی شہر الصیام",
+      "author": "سید عبدالعظیم",
+      "publisher": "دارالقیمہ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1086"
+    },
+    {
+      "id": 1087,
+      "title": "خواتین کے لیے تربیتی بیانات",
+      "author": "حضرت پیر ذوالفقار احمد نقشبندی",
+      "publisher": "دار المطالعۃ",
+      "category": "تصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1087"
+    },
+    {
+      "id": 1088,
+      "title": "خاموس الاضداد",
+      "author": "راجی اسمر",
+      "publisher": "دار احیاء اللغۃ العربیہ",
+      "category": "الغۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1088"
+    },
+    {
+      "id": 1089,
+      "title": "من توجيهات الرسول صلى الله عليه وسلم",
+      "author": "الاستاذ الدكتور احمد عمر هاشم",
+      "publisher": "اطلس",
+      "category": "السيرة",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1089"
+    },
+    {
+      "id": 1090,
+      "title": "خطبات محمدی",
+      "author": "حضرت مولانا محمد صاحب محدث",
+      "publisher": "الدار السلفيه",
+      "category": "الخطبات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1090"
+    },
+    {
+      "id": 1091,
+      "title": "دروس تربوية المرأة المسلمة",
+      "author": "عصام محمد الشريف",
+      "publisher": "دار الصفوة",
+      "category": "المترفات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1091"
+    },
+    {
+      "id": 1092,
+      "title": "تلخیص النحو",
+      "author": "مفتی روح الامین",
+      "publisher": "مکتبہ الرشاد",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "دو نسخے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1092"
+    },
+    {
+      "id": 1093,
+      "title": "هدايه النحو",
+      "author": "حضرت",
+      "publisher": "مکتبہ الرشاد",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1093"
+    },
+    {
+      "id": 1094,
+      "title": "شاہراہ علم",
+      "author": "زیر سرپرستی حضرت مولانا غلام محمد صاحب",
+      "publisher": "جامعہ اسلامیہ اشاعت العلوم",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1094"
+    },
+    {
+      "id": 1095,
+      "title": "مغني اللبيب",
+      "author": "ابي محمد عبد الله جمال الدين بن يوسف",
+      "publisher": "مکتبہ ومطبعه محمد علي صبيح",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1095"
+    },
+    {
+      "id": 1096,
+      "title": "الدلائل الى الكتب والمسائل",
+      "author": "حضرت مولانا مفتی دوست محمد القاسمي",
+      "publisher": "الاشاعه القاسميه",
+      "category": "الدلائل",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1096"
+    },
+    {
+      "id": 1097,
+      "title": "علوم القران",
+      "author": "حضرت مولانا شمس الحق افغانی",
+      "publisher": "مکتبہ البشری",
+      "category": "علوم القرآن",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1097"
+    },
+    {
+      "id": 1098,
+      "title": "ملفوظات محمد کشمیری",
+      "author": "حضرت محمد انور شاہ کشمیری",
+      "publisher": "ادارہ تالیفات اشرفیہ",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1098"
+    },
+    {
+      "id": 1099,
+      "title": "رسائل الرشید",
+      "author": "حضرت مولانا مفتی رشید احمد لدھیانوی",
+      "publisher": "مکتبہ حلیمیہ",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1099"
+    },
+    {
+      "id": 1100,
+      "title": "تبلیغی اور اصلاحی مضامین",
+      "author": "حضرت مولانا مفتی محمد عاشق الہی صاحب",
+      "publisher": "ادارۃ المعارف کراچی",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1100"
     }
   ],
   "categories": [
