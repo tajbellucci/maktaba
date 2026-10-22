@@ -11054,6 +11054,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "updated",
           "detail": ""
@@ -11477,19 +11482,24 @@
     {
       "id": 356,
       "title": "شرح قطر الندى وبل الصدى",
-      "author": "عبد الله بن هشام الأنصاري المتوفی ٧٦١ھ",
+      "author": "جمال الدين عبد الله بن هشام الانصاري",
       "publisher": "دار المنار",
       "category": "النحو",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "د-٤",
+      "almari": "ہ,2",
       "hasPrint": true,
       "status": "available",
       "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -15445,6 +15455,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "updated",
           "detail": ""
@@ -17525,19 +17540,24 @@
     {
       "id": 565,
       "title": "احسن الفتاوی",
-      "author": "مفتي رشيد احمد صاحب",
-      "publisher": "ايچ ایم سعید",
-      "category": "الفتاوى",
+      "author": "مفتی رشید احمد",
+      "publisher": "جامعہ رشیدیہ",
+      "category": "الفقه",
       "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "8-1",
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ہ,2",
       "hasPrint": true,
       "status": "available",
       "notes": "مف:باقی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -19054,6 +19074,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19080,6 +19105,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19108,6 +19138,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19134,6 +19169,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19162,6 +19202,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19188,6 +19233,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19216,6 +19266,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19242,6 +19297,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19270,6 +19330,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19296,6 +19361,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19324,6 +19394,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19350,6 +19425,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19378,6 +19458,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19404,6 +19489,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19432,6 +19522,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19458,6 +19553,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19486,6 +19586,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19512,6 +19617,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19540,6 +19650,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19566,6 +19681,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19594,6 +19714,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19620,6 +19745,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19648,6 +19778,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19674,6 +19809,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19702,6 +19842,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19728,6 +19873,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19756,6 +19906,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19782,6 +19937,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19810,6 +19970,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19836,6 +20001,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19864,6 +20034,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19890,6 +20065,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19918,6 +20098,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19944,6 +20129,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -19972,6 +20162,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -19998,6 +20193,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20026,6 +20226,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20052,6 +20257,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20080,6 +20290,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20106,6 +20321,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20134,6 +20354,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20160,6 +20385,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20188,6 +20418,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20214,6 +20449,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20242,6 +20482,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20268,6 +20513,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20296,6 +20546,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20322,6 +20577,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20350,6 +20610,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20376,6 +20641,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20404,6 +20674,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20430,6 +20705,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20458,6 +20738,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20484,6 +20769,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20512,6 +20802,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20538,6 +20833,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20566,6 +20866,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20592,6 +20897,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20620,6 +20930,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20646,6 +20961,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20674,6 +20994,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20700,6 +21025,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -20728,6 +21058,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20755,6 +21090,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -20781,6 +21121,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
