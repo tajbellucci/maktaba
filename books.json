@@ -1254,7 +1254,7 @@
       "id": 40,
       "title": "الموسوعة اليوسفية في بيان أدلة الصوفية",
       "author": "الأستاد الدكتور يوسف خطار محمد",
-      "category": "التصوف والسلوك",
+      "category": "تصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "دار التصنیف",
@@ -1266,6 +1266,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
@@ -1274,7 +1279,8 @@
       "borrowerAddress": "",
       "borrowerPhone": "",
       "issueType": "person",
-      "accession": "40"
+      "accession": "40",
+      "publisher": "-"
     },
     {
       "id": 41,
