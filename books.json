@@ -28564,6 +28564,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "981"
+    },
+    {
+      "id": 982,
+      "title": "أحكام القرآن (للجصاص)",
+      "author": "الإمام أبو بكر أحمد بن علي الرازي الجصاص الحنفي،(ت:370 هـ)",
+      "publisher": "قديمي كتب خانة",
+      "category": "التفسير",
+      "volumes": 3,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "6-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "982"
     }
   ],
   "categories": [
