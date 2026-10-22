@@ -19062,7 +19062,7 @@
       "title": "القاموس الجدید",
       "author": "مولانا وحید الزمان قاسمی کیرانوی",
       "publisher": "ادارۃاسلامیات",
-      "category": "الغۃ",
+      "category": "لغۃ",
       "volumes": 2,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
@@ -19073,6 +19073,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
