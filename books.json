@@ -2598,19 +2598,24 @@
     {
       "id": 80,
       "title": "الجامع لأحكام القرآن",
-      "author": "الإمام أبو عبد الله محمد بن أحمد الأنصاري القرطبي،(ت:671 هـ)",
-      "publisher": ".....",
+      "author": "أبو عبد الله، محمد بن أحمد الأنصاري القرطبي ،محقق:أحمد البردوني وإبراهيم أطفيش",
+      "publisher": "إحياء التراث",
       "category": "التفسير",
-      "volumes": 20,
+      "volumes": 11,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-ب",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3748,7 +3753,7 @@
       "category": "الفتاوى",
       "volumes": 37,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "1-أ",
       "hasPrint": true,
       "status": "available",
@@ -3756,6 +3761,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3775,7 +3785,7 @@
       "category": "الفقه",
       "volumes": 37,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "1-أ",
       "hasPrint": true,
       "status": "available",
@@ -3783,6 +3793,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3802,7 +3817,7 @@
       "category": "التفسير",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3810,6 +3825,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3829,7 +3849,7 @@
       "category": "التاريخ",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3837,6 +3857,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3853,10 +3878,10 @@
       "title": "سيرت طيبة",
       "author": "مولانا الطاف الرحمن عباسي",
       "publisher": "تعليم و تربيت،ترتيب جديده:مفتي عبيد الرحمن عباسي العلمية",
-      "category": "السيرة النبوية",
+      "category": "سيرت",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3864,6 +3889,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3883,7 +3913,7 @@
       "category": "شروح الحديث",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3891,6 +3921,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3910,7 +3945,7 @@
       "category": "الفقه",
       "volumes": 2,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3918,6 +3953,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3934,10 +3974,10 @@
       "title": "شرح المواقف للقاضي عضد الدين عبد الرحمن الإيجي،(ت:756هـ)",
       "author": "السيد الشريف علي بن محمد الجرجاني ،(ت:816هـ)",
       "publisher": "النورية الرضوية",
-      "category": "العقيدة وعلم الكلام",
+      "category": "العقيدة",
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -3945,6 +3985,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -3959,19 +4004,24 @@
     {
       "id": 123,
       "title": "إحياء علوم الدين",
-      "author": "للإمام الشيخ حجة الإسلام أبو حامد محمد بن محمد بن أحمد الغزالي ،(ت: 505 هـ )",
+      "author": "أبو حامد محمد بن محمد الغزالي الطوسي (ت ٥٠٥هـ)",
       "publisher": "دار القمر",
-      "category": "الحکم",
-      "volumes": 1,
+      "category": "الأسرار والحكم",
+      "volumes": 5,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "مکتب: مفتي عبد الكبير صاحب",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -3993,10 +4043,10 @@
       "title": "الفية الجهاد في سبيل الله",
       "author": "مولانا محمد مسعود ازهر",
       "publisher": "مكتبة عرفان",
-      "category": "الفقه",
+      "category": "الجهاد",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4004,6 +4054,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4020,10 +4075,10 @@
       "title": "العلماء الذين لم يتجاوزوا سن الأشد(15-40)سنة",
       "author": "علي بن محمد العمران",
       "publisher": "دار العاصمة",
-      "category": "التراجم والطبقات",
+      "category": "التراجم",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4031,6 +4086,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4047,10 +4107,10 @@
       "title": "رسالة المسترشدين للحارث المحاسبي",
       "author": "أبي عبد الله الحارث بن أسد المحاسبي البصري ، (ت:243) محقق:عبد الفتاح أبو غدة،(ت:1418)،تخريج:سلمان بن عبد الفتاح أبو غدة",
       "publisher": "المكتوبات الإسلامية",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4058,6 +4118,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4072,19 +4137,24 @@
     {
       "id": 127,
       "title": "شرح الصدور بشرح حال الموتى والقبور",
-      "author": "الحافظ جلال الدين عبد الرحمن السيوطي،(ت911 هـ)",
-      "publisher": "دار ابن كثير،م:يوسف علي بديوي",
-      "category": "عقائد",
+      "author": "الإمام الحافظ العلامة جلال الدين عبد الرحمن بن أبي بكر السيوطي،إعتنى به:قصي محمد نورس الحلاق",
+      "publisher": "دار المنهاج",
+      "category": "العقيدة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-د",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة المحققة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4116,10 +4186,10 @@
       "title": "الإعتصام",
       "author": "للإمام أبي إسحاق ابراهيم الغرناطي الشاطبي،محقق:الشيخ عبد الرازق المهدي",
       "publisher": "دار الكتاب العربي",
-      "category": "العقيدة وعلم الكلام",
+      "category": "العقيدة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4127,6 +4197,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4143,10 +4218,10 @@
       "title": "حجة الله البالغة",
       "author": "أحمد بن عبد الرحيم بن الشهيد وجيه الدين بن معظم بن منصور المعروف بـ «الشاه ولي الله الدهلوي» (ت ١١٧٦هـ)،محقق: مولانا محمد أحسن النانوتوي والسيد سابق",
       "publisher": "قديمي كتب خانة",
-      "category": "التصوف والسلوك",
+      "category": "الأسرار والحكم",
       "volumes": 2,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4154,6 +4229,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4173,7 +4253,7 @@
       "category": "شروح الحديث",
       "volumes": 35,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4181,6 +4261,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4227,7 +4312,7 @@
       "category": "التفسير",
       "volumes": 4,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4235,6 +4320,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4251,10 +4341,10 @@
       "title": "تتمة موسوعة إبن أبي الدنيا",
       "author": "المؤلف/المحقق: فاضل بن خلف الحمادة الرقي",
       "publisher": "دار اطلس الخضراء",
-      "category": "الآداب والأذكار",
+      "category": "الآداب الإسلامي",
       "volumes": 6,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4262,6 +4352,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4305,10 +4400,10 @@
       "title": "غياث اللغات (مكمل فارسي لغت)",
       "author": "مولانا محمد غياث الدين رحمه الله",
       "publisher": "ايچ ایم سعید",
-      "category": "اللغة والمعاجم",
+      "category": "اللغة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4316,6 +4411,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4332,10 +4432,10 @@
       "title": "تاج العروس من جواهر القاموس",
       "author": "للإمام محب الدين أبي فيض السيد محمد مرتضى الحسيني الواسطي الزبيدي الحنفي",
       "publisher": "دار الفكر",
-      "category": "اللغة والمعاجم",
+      "category": "المعاجم",
       "volumes": 20,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4343,6 +4443,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4359,10 +4464,10 @@
       "title": "لسان العرب",
       "author": "للإمام العلامة ابن منظور،(ت:711هـ)",
       "publisher": "دار الإحياء التراث العربي",
-      "category": "اللغة والمعاجم",
+      "category": "اللغة",
       "volumes": 17,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4370,6 +4475,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4385,18 +4495,23 @@
       "id": 138,
       "title": "عمدة القاري شرح صحيح البخاري",
       "author": "بدر الدين أبو محمد محمود بن أحمد العينى (ت ٨٥٥ هـ)",
-      "publisher": "دار الفكر",
-      "category": "الحديث",
+      "publisher": "مكتبة رشيدية",
+      "category": "شروح الحديث",
       "volumes": 25,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "5-ب",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4421,7 +4536,7 @@
       "category": "شروح الحديث",
       "volumes": 5,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4429,6 +4544,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4448,7 +4568,7 @@
       "category": "شروح الحديث",
       "volumes": 4,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4456,6 +4576,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4475,7 +4600,7 @@
       "category": "شروح الحديث",
       "volumes": 4,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4483,6 +4608,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4497,19 +4627,24 @@
     {
       "id": 142,
       "title": "الأبواب والتراجم لصحيح البخاري",
-      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ،(ت: 1402 هـ)",
-      "publisher": "ایچ ایم سعيد کمپنی",
-      "category": "شروح الحديث",
-      "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "7-ه",
+      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ، (ت:1402هـ)،راجعه وعلى عليه:محمد رحمة الله حافظ الندوي",
+      "publisher": "دار الكتب العلمية",
+      "category": "التراجم",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -4549,7 +4684,7 @@
       "category": "شروح الحديث",
       "volumes": 10,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4557,6 +4692,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4571,19 +4711,24 @@
     {
       "id": 144,
       "title": "فتح الباري بشرح صحيح البخاري",
-      "author": "للإمام الحافظ أحمد بن علي بن حجر العسقلاني، (ت:852هـ)",
-      "publisher": "دار الديان للتراث",
+      "author": "للعلامة الحافظ أحمد بن علي بن حجر العسقلاني ،(ت 852هـ)",
+      "publisher": "دار الحديث",
       "category": "شروح الحديث",
-      "volumes": 13,
+      "volumes": 14,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-د",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4613,7 +4758,7 @@
       "category": "شروح الحديث",
       "volumes": 10,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4621,6 +4766,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4640,7 +4790,7 @@
       "category": "شروح الحديث",
       "volumes": 25,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4648,6 +4798,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4664,10 +4819,10 @@
       "title": "الرسالة القشيرية في علم التصوف",
       "author": "العلامة العارف بالله أبي القاسم عبد الكريم بن هوازن القشيري النيسابوري،مح:معروف تزریق و علي عبدالحميد أبو الخير",
       "publisher": "دارالخير",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4675,6 +4830,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4691,10 +4851,10 @@
       "title": "كلمات عن منهج الإمام البخاري في صحيحه رواية ودراية",
       "author": "لفضيلة العلامة محمد عوامة ،جمعها ورتبها:الدكتور محيي الدين محمد عوامة",
       "publisher": "دارالحديث العوامة",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4702,6 +4862,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4721,7 +4886,7 @@
       "category": "شروح الحديث",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4729,6 +4894,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -4745,10 +4915,10 @@
       "title": "رحمة الله الواسعة شرح حجة الله البالغة",
       "author": "مولانا شاه ولي الله صاحب محدث دهلوي، (ت:1176هـ)",
       "publisher": "زمزم پبلشرز",
-      "category": "العقيدة وعلم الكلام",
+      "category": "العقيدة",
       "volumes": 5,
       "maktaba": "نعمانیہ جدید",
-      "department": "غرفة عامة للشيخ",
+      "department": "الغرفة العامة",
       "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
@@ -4756,6 +4926,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
