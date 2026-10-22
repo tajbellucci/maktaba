@@ -23663,7 +23663,7 @@
       "title": "چراغ  راہ",
       "author": "محترمہ بدریہ کاظم",
       "publisher": "-",
-      "category": "التفسير",
+      "category": "(اردو)تفسیر",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
@@ -23674,6 +23674,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "added",
