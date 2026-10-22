@@ -39732,6 +39732,60 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1190"
+    },
+    {
+      "id": 1191,
+      "title": "كافية",
+      "author": "علامة ابن حاجب صاحب",
+      "publisher": "البشري",
+      "category": "نحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1191"
+    },
+    {
+      "id": 1192,
+      "title": "كنزالدقائق",
+      "author": "أبوالبركات أحمدبن محمد النسفي صاحب",
+      "publisher": "دارالفاروق الاعظم",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی جلدموجودہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1192"
     }
   ],
   "categories": [
