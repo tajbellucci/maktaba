@@ -2922,19 +2922,24 @@
     {
       "id": 77,
       "title": "معارف القرآن",
-      "author": "شيخ تفسير والحديث حضرت مولانا الحافظ محمد ادریس صاحب کاندہلوی",
-      "publisher": "الطاف اینڈ سنز",
+      "author": "مفتی محمد شفیع صاحب",
+      "publisher": "قدیمی",
       "category": "التفسير",
-      "volumes": 8,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-ا",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخہ الجديدہ",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -37084,7 +37089,57 @@
         },
         {
           "date": "2026-10-22",
-          "action": "added",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
           "detail": ""
         }
       ],
@@ -37820,6 +37875,384 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1144"
+    },
+    {
+      "id": 1145,
+      "title": "اسلام میں صحابہ کرام کی ائینی حیثیت",
+      "author": "ضیاء الرحمن فاروقی",
+      "publisher": "ریان",
+      "category": "السیرۃ والتاریخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1145"
+    },
+    {
+      "id": 1146,
+      "title": "احکام نماز",
+      "author": "عالم فقری",
+      "publisher": "پیغام القران",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1146"
+    },
+    {
+      "id": 1147,
+      "title": "المغنی فی ضبط اسماء الرجال",
+      "author": "علامہ محمد طاہر پٹنی",
+      "publisher": "تارہ اسلامیات",
+      "category": "الرجال",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1147"
+    },
+    {
+      "id": 1148,
+      "title": "تحفہ اہل سنت",
+      "author": "حضرت مولانا عبدالشکور لکھنوی",
+      "publisher": "مکتبہ امدادیہ",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1148"
+    },
+    {
+      "id": 1149,
+      "title": "اصح السیر",
+      "author": "اب البرکات عبدالرؤف صاحب",
+      "publisher": "مجلس نشریات اسلام",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1149"
+    },
+    {
+      "id": 1150,
+      "title": "سیرۃالنبی صلی اللہ علیہ وسلم",
+      "author": "حضرت مولانا سلیمان ندوی",
+      "publisher": "مجلس نشریات اسلام",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "دو نسخے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1150"
+    },
+    {
+      "id": 1151,
+      "title": "سیدنا حضرت ابراہیم علیہ السلام",
+      "author": "مولانا کریم بخش صاحب",
+      "publisher": "مکتبہ عمر بن خطاب",
+      "category": "السیرۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1151"
+    },
+    {
+      "id": 1152,
+      "title": "عرفان محبت شرح فیضان محبت",
+      "author": "حکیم اختر صاحب دامت برکاتہم العالیہ",
+      "publisher": "کتب خانہ مظہری",
+      "category": "التصوف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1152"
+    },
+    {
+      "id": 1153,
+      "title": "تحصیل قطبی قطبی کی اردو شرح",
+      "author": "مفتی محمد طارق",
+      "publisher": "مکتبۃ الایمان",
+      "category": "المنطق",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1153"
+    },
+    {
+      "id": 1154,
+      "title": "القطبی",
+      "author": "قطب الدین ابو عبداللہ محمد بن محمد تحتانی رازی",
+      "publisher": "مکتبۃ البشری",
+      "category": "المنطق",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1154"
+    },
+    {
+      "id": 1155,
+      "title": "سراج التہذیب فی حل شرحِ التہذیب",
+      "author": "مولانا منظور الحق صاحب",
+      "publisher": "دارالعلوم",
+      "category": "المنطق",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1155"
+    },
+    {
+      "id": 1156,
+      "title": "اقناع الضمير",
+      "author": "شيخ عبد الوحيد ملك عبد الحق المكي المدني",
+      "publisher": "دار الفوز",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1156"
+    },
+    {
+      "id": 1157,
+      "title": "معين الفلسفه",
+      "author": "حضرت مولانا سعید احمد پالن پوری",
+      "publisher": "البشرا",
+      "category": "العقیدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1157"
+    },
+    {
+      "id": 1158,
+      "title": "المواہب الدنیہ",
+      "author": "علامہ قسطولانی",
+      "publisher": "قدیمی",
+      "category": "متفرقات",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1158"
     }
   ],
   "categories": [
