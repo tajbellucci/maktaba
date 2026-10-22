@@ -26694,19 +26694,24 @@
     {
       "id": 779,
       "title": "شرح ملا جامي",
-      "author": "للشيخ نور الدين عبد الرحمن بن أحمد  الجامي،(ت: 898هـ)",
-      "publisher": "مكتبةعلوم اسلامية",
+      "author": "علامہ اب البرکات عبدالرحمن بن احمد الجامی",
+      "publisher": "مکتبہ البشری",
       "category": "النحو",
       "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "8-1",
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ب-٤خلفی",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -35642,6 +35647,114 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1067"
+    },
+    {
+      "id": 1068,
+      "title": "التسہیل اسلامی فی حل شرحِ الجامی",
+      "author": "حضرت مولانا قاری صدیق احمد صاحب",
+      "publisher": "مکتبہ علمیۃ",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ب-٤خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1068"
+    },
+    {
+      "id": 1069,
+      "title": "المقامات الحریریۃ",
+      "author": "محمد قاسم بن علی بن عثمان الحریری",
+      "publisher": "مکتبہ رحمانیہ",
+      "category": "الادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ب-٤خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1069"
+    },
+    {
+      "id": 1070,
+      "title": "علم الصیغہ",
+      "author": "حضرت مولانا مفتی محمد رفیع عثمانی",
+      "publisher": "ادارۃالمعارف",
+      "category": "الصرف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ب-٤خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1070"
+    },
+    {
+      "id": 1071,
+      "title": "علم الصیغہ",
+      "author": "مولانا خدا بخش ملتانی",
+      "publisher": "متبہ نفیسیہ",
+      "category": "الصرف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "ب-٤خلفی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1071"
     }
   ],
   "categories": [
