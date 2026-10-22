@@ -28059,13 +28059,18 @@
       "volumes": 3,
       "maktaba": "نعمانیہ جدید",
       "department": "لائبریری",
-      "almari": "الف-٤ خلفي",
+      "almari": "الف-٤",
       "hasPrint": true,
       "status": "available",
-      "notes": "دو نسخے",
+      "notes": "خلفي",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "added",
