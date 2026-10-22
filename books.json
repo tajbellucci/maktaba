@@ -2818,6 +2818,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -2849,6 +2854,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -2882,6 +2892,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -2914,6 +2929,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -2945,6 +2965,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -3005,6 +3030,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -3036,6 +3066,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -3069,6 +3104,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -3100,6 +3140,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -3133,6 +3178,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -3164,6 +3214,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -3197,6 +3252,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -3228,6 +3288,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-20",
           "action": "updated",
@@ -23124,6 +23189,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "added",
           "detail": ""
@@ -27476,6 +27546,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "972"
+    },
+    {
+      "id": 973,
+      "title": "مجلة الشريعة والدراسات الإسلامية",
+      "author": "عدة أشخاص",
+      "publisher": "مجلس النشر العلمي",
+      "category": "متفرقات",
+      "volumes": 101,
+      "maktaba": "نعمانیہ جدید",
+      "department": "الغرفة الخاصة",
+      "almari": "",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "973"
     }
   ],
   "categories": [
