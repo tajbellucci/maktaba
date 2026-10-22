@@ -6878,19 +6878,24 @@
     {
       "id": 210,
       "title": "أصول الشاشي",
-      "author": "للإمام نظام الدين الشاشي",
-      "publisher": "البشرى",
+      "author": "الإمام أبو علي أحمد بن محمد بن إسحاق الشاشي",
+      "publisher": "مكتبة رحمانية",
       "category": "أصول الفقه",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ج-1، ط: خلفي",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "8-1",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
