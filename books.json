@@ -39786,6 +39786,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1192"
+    },
+    {
+      "id": 1193,
+      "title": "نزهة الأصحاب في معاشرة الأصحاب",
+      "author": "مؤيد الدين أبي نصرالسموئل بن أبي البقاءيحيى بن عباس العربي الإسرائيل صاحب",
+      "publisher": "دارالآفاق العربية",
+      "category": "علم طب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،ه",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1193"
     }
   ],
   "categories": [
