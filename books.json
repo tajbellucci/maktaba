@@ -2423,19 +2423,24 @@
     {
       "id": 75,
       "title": "فتح الملهم بشرح صحيح الإمام مسلم",
-      "author": "علامه شبیر احمد عثمانی رحمه الله",
-      "publisher": "مكتبة دار العلوم كراچي",
+      "author": "علامه شبیر احمد عثمانی رحمه الله، مفتي تقي العثماني",
+      "publisher": "مكتبة دار العلوم",
       "category": "شروح الحديث",
-      "volumes": 6,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "5-د،ه",
+      "volumes": 12,
+      "maktaba": "قباء مسجد",
+      "department": "الخزانة  الأولى",
+      "almari": "2",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
