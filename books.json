@@ -6114,6 +6114,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
@@ -6434,19 +6439,24 @@
     {
       "id": 173,
       "title": "آپ کے مسائل اور ان کا حل",
-      "author": "مولانا یوسف لدھیانوی شہید",
+      "author": "مفتی محمد یوسف لدھیانوی صاحب",
       "publisher": "مکتبہ لدھیانوی",
       "category": "الفتاوى",
-      "volumes": 8,
+      "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "3ہ",
+      "department": "لائبریری",
+      "almari": "1د،خلفی",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "تمام جلدیں موجود ہیں",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "updated",
@@ -17744,6 +17754,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22861,19 +22876,24 @@
     {
       "id": 678,
       "title": "خلافت و ملوکیت کی تاریخی و شرعی حیثیت",
-      "author": "حافظ صلاح الدین",
-      "publisher": "نعمانی کتب خانہ",
-      "category": "التاريخ",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
+      "author": "حافظ صلاح الدين يوسف",
+      "publisher": "مكتبة ضياءالحديث",
+      "category": "السيرة النبوية",
+      "volumes": 4,
+      "maktaba": "نعمانیہ قدیم",
       "department": "لائبریری",
-      "almari": "ہ,2",
+      "almari": "8باء",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -25001,19 +25021,24 @@
     {
       "id": 732,
       "title": "فتح القدير",
-      "author": "كمال الدين محمد بن عبد الواحد السيواسي (681) تع وتخ: عبد الرزاق غالب المهدي",
-      "publisher": "مكتبة رشيدية",
+      "author": "الإمام كمال الدين محمد بن عبد الواحد صاحب",
+      "publisher": "مكتبةرشيدية",
       "category": "الفقه",
-      "volumes": 10,
-      "maktaba": "قباء مسجد",
-      "department": "خزانه - ٤",
-      "almari": "ألف-١",
+      "volumes": 9,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ب",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخه",
+      "notes": "تمام جلدیں  موجود ہیں",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -38825,6 +38850,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38877,6 +38907,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38899,6 +38934,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -38928,6 +38968,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38955,6 +39000,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38979,6 +39029,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38991,17 +39046,22 @@
     {
       "id": 1175,
       "title": "مناقب الصحابة",
-      "author": "عبدالرحمن البدري،سیروتاريخ،2,3،مطبعةالعمرانيةللاوفست",
-      "publisher": "طباعتی",
-      "category": "پہلی جلدموجودنہیں،نعمانیہ قديم",
-      "volumes": 0,
-      "almari": "",
+      "author": "عبدالرحمن البدري",
+      "publisher": "پہلی جلدموجودنہیں",
+      "category": "سیروتاريخ",
+      "volumes": 2,
+      "almari": "7،ھ",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39011,7 +39071,9 @@
       "borrowerAddress": "",
       "borrowerPhone": "",
       "issueType": "person",
-      "accession": "1175"
+      "accession": "1175",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری"
     },
     {
       "id": 1176,
@@ -39037,6 +39099,254 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1176"
+    },
+    {
+      "id": 1177,
+      "title": "صحبتے با اہل دل",
+      "author": "مولانا سید ابو الحسن علی ندوی  صاحب",
+      "publisher": "مجلس نشریات اسلام",
+      "category": "ملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "2،ج،امامی،",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1177"
+    },
+    {
+      "id": 1178,
+      "title": "رحمة للعالمين",
+      "author": "قاضي محمد سليمان صاحب",
+      "publisher": "دار الحديث",
+      "category": "سيرت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "2،ج ،امامی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1178"
+    },
+    {
+      "id": 1179,
+      "title": "اسلامی معشیت کے بنیادی اصول",
+      "author": "مفتی محمد عبدالسلام صاحب",
+      "publisher": "اسلامي كتب خانه",
+      "category": "اسلامی معیشت کے اصول",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "2،ج ،امامی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1179"
+    },
+    {
+      "id": 1180,
+      "title": "تهافت الملاحده",
+      "author": "ڈاکٹر مفتی یاسر ندیم الواجدی صاحب",
+      "publisher": "السعید",
+      "category": "علم کلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "2،ج ،امامی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1180"
+    },
+    {
+      "id": 1181,
+      "title": "فقه العبادات",
+      "author": "محمد بن صالح العثيمين صاحب",
+      "publisher": "مدار الوطن للنشر",
+      "category": "الفتاوى",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1181"
+    },
+    {
+      "id": 1182,
+      "title": "كفاية الأخيار في حل غاية الإختصار",
+      "author": "الإمام تقي الدين أبي بكربن محمد بن الحسيني صاحب",
+      "publisher": "دارالمعرفة",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی،دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1182"
+    },
+    {
+      "id": 1183,
+      "title": "التبیان فی علوم القرآن",
+      "author": "محمد علي الصابوني",
+      "publisher": "مكتبة البشري",
+      "category": "علوم القرآن",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء خلفي",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1183"
+    },
+    {
+      "id": 1184,
+      "title": "منهاج السنة النبوية في نقض كلام الشيعةوالقدريه",
+      "author": "امام ابن تيميه",
+      "publisher": "المكتبة السلفيه",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 4,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "8باء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1184"
+    },
+    {
+      "id": 1185,
+      "title": "السيرة النبوية",
+      "author": "الدكتور علي محمد الصلابي",
+      "publisher": "تمام جلدیں موجودہیں",
+      "category": "السيرة النبوية",
+      "volumes": 9,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ھ",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1185"
     }
   ],
   "categories": [
