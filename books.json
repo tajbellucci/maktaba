@@ -1487,19 +1487,24 @@
     {
       "id": 47,
       "title": "الفقه الإسلامي وأدلته",
-      "author": "الأستاذ الدكتور وهبة بن مصطفى الزحيلي ،(ت: 1436هـ)",
-      "publisher": "دار الفكر",
+      "author": "الأستاذ الدكتور وهبة الزحيلي",
+      "publisher": "رشيدية",
       "category": "الفقه",
-      "volumes": 8,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "4-أ",
+      "volumes": 11,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -1844,19 +1849,24 @@
     {
       "id": 58,
       "title": "سیرۃ النبی ﷺ",
-      "author": "علامہ شبلی نعمانی  رحمہ اللہ ،(1332)، علامہ سید سلیمان ندوی  رحمہ اللہ،(1373)",
-      "publisher": "دار الاشاعت",
-      "category": "السيرة النبوية",
+      "author": "علامة شبلي نعماني رحمه الله،علامة سيد سليمان ندوي رحمه الله",
+      "publisher": "الفيصل",
+      "category": "السيرت",
       "volumes": 7,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "4-د",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ج",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -1950,19 +1960,29 @@
     {
       "id": 61,
       "title": "صحيح البخاري",
-      "author": "الإمام الحافظ أبي عبد الله محمد بن إسماعيل البخاري، (ت:256هـ)",
-      "publisher": "دار ابن حزم",
+      "author": "الإمام أبو عبد الله محمد بن إسماعيل البخاري(ت:256 هـ)",
+      "publisher": "قديمي كتب خانه",
       "category": "الحديث",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "4-د",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ه",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -2992,19 +3012,24 @@
     {
       "id": 92,
       "title": "سنن إبن ماجة",
-      "author": "الحافظ أبي عبد الله محمد بن يزيد القزويني،(ت:275هـ)",
-      "publisher": "دار ابن حزم",
+      "author": "الحافظ أبو عبد الله محمد بن يزيد القزويني المعروف بابن ماجه (توفي 273 هـ)",
+      "publisher": "قديمي كتب خانه",
       "category": "الحديث",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "مکتب:مفتي عبد الكبير صاحب",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ه",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4302,19 +4327,24 @@
     {
       "id": 127,
       "title": "شرح الصدور بشرح حال الموتى والقبور",
-      "author": "الإمام الحافظ العلامة جلال الدين عبد الرحمن بن أبي بكر السيوطي،إعتنى به:قصي محمد نورس الحلاق",
-      "publisher": "دار المنهاج",
+      "author": "امام جلال الدین عبد الرحمن بن أبي بكر السيوطي الشافعي،مترجم:مولانا ابن مسعود مفتي سيد شجاعت علي قادري",
+      "publisher": "مدينة پبلشنگ كمپني",
       "category": "العقيدة",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "الغرفة العامة",
-      "almari": "2-أ",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ج",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4857,19 +4887,29 @@
     {
       "id": 142,
       "title": "الأبواب والتراجم لصحيح البخاري",
-      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ، (ت:1402هـ)،راجعه وعلى عليه:محمد رحمة الله حافظ الندوي",
-      "publisher": "دار الكتب العلمية",
-      "category": "التراجم",
-      "volumes": 6,
-      "maktaba": "نعمانیہ جدید",
-      "department": "الغرفة العامة",
-      "almari": "2-أ",
+      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ،(ت: 1402 هـ)",
+      "publisher": "ایچ ایم سعيد کمپنی",
+      "category": "شروح الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "7-ه",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -8279,19 +8319,24 @@
     {
       "id": 263,
       "title": "مشكاة المصابيح",
-      "author": "محمد بن عبد اللہ الخطیب التبریزی المتوفی737ھ",
-      "publisher": "المکتبۃ العصریۃ",
+      "author": "لأبي عبدالله محمد بن عبدالله الخطيب التبريزي،(ت: 741 هـ)",
+      "publisher": "مكتبة البشرى",
       "category": "الحديث",
-      "volumes": 5,
+      "volumes": 2,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "ج-9",
+      "almari": "8-1",
       "hasPrint": true,
       "status": "available",
-      "notes": "مف:2۔3",
+      "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -16554,6 +16599,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21449,6 +21499,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21480,6 +21535,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21513,6 +21573,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21544,6 +21609,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21577,6 +21647,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21608,6 +21683,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21641,6 +21721,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21672,6 +21757,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21705,6 +21795,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21737,6 +21832,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21768,6 +21868,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21811,6 +21921,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21842,6 +21957,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21875,6 +21995,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21906,6 +22031,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -21939,6 +22069,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -21970,6 +22105,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22003,6 +22143,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22034,6 +22179,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22067,6 +22217,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22098,6 +22253,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22131,6 +22291,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22162,6 +22327,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22195,6 +22365,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22226,6 +22401,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22259,6 +22439,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22290,6 +22475,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22323,6 +22513,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22354,6 +22549,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22387,6 +22587,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22418,6 +22623,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22451,6 +22661,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22482,6 +22697,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22515,6 +22735,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22546,6 +22771,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22579,6 +22809,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22610,6 +22845,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22643,6 +22883,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22674,6 +22919,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22717,6 +22972,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22749,6 +23009,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22768,18 +23033,23 @@
       "id": 778,
       "title": "التوضيح مع حاشيته التلويح",
       "author": "سعد الدين مسعود بن عمر التفتازاني(ت ٧٩٢ هـ)",
-      "publisher": "المكتبة",
+      "publisher": "المكتبة النعمانية",
       "category": "أصول الفقه",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
       "department": "دار الافتاء",
-      "almari": "8-ألف",
+      "almari": "8-1",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة القديمة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22813,6 +23083,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22844,6 +23119,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22877,6 +23157,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22908,6 +23193,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -22941,6 +23231,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -22972,6 +23267,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -23005,6 +23305,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -23036,6 +23341,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -23069,6 +23379,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -23100,6 +23415,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -23133,6 +23453,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -23164,6 +23489,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -23197,6 +23527,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -23228,6 +23563,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
@@ -23261,6 +23601,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -23292,6 +23637,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-19",
           "action": "updated",
