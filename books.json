@@ -1167,19 +1167,24 @@
     {
       "id": 32,
       "title": "تاریخ امت مسلمہ",
-      "author": "مولانا محمد اسماعیل ریحان صاحب",
-      "publisher": "المنہل پبلشر",
+      "author": "مولانا محمد اسماعیل ریحان",
+      "publisher": "المنھل",
       "category": "التاريخ",
-      "volumes": 5,
+      "volumes": 6,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-ب",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
       "hasPrint": true,
       "status": "available",
-      "notes": "جلدیں: 5،مف:3-4-5",
+      "notes": "پہلی جلد موجود نہیں",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -6889,19 +6894,24 @@
     {
       "id": 188,
       "title": "رياض الصالحين",
-      "author": "الامام ابي زكريا يحيى بن الشرف النووي الدمشقي",
-      "publisher": "مکتبہ دار الاشاعت",
+      "author": "امام نووی",
+      "publisher": "دار السلام",
       "category": "الحديث",
-      "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "ب- خزانہ",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "الف-۱",
       "hasPrint": true,
       "status": "available",
       "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -7503,19 +7513,24 @@
     {
       "id": 210,
       "title": "أصول الشاشي",
-      "author": "الإمام أبو علي أحمد بن محمد بن إسحاق الشاشي",
-      "publisher": "مكتبة رحمانية",
+      "author": "مولانا اسحاق بن ابرھیم،نظام الدین الشاشی صاحب",
+      "publisher": "دارالغرب الاسلامی",
       "category": "أصول الفقه",
       "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "8-1",
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -39813,6 +39828,816 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1193"
+    },
+    {
+      "id": 1194,
+      "title": "محاسبہ قادیانیت",
+      "author": "مولانا اللہ وسایا",
+      "publisher": "عالمی مجلس تحفظ ختم نبوت",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 36,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "34-36کےعلاوہ باقی تمام جلدیں الماری نمبر 3,جیم امامی میں موجود ہیں",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1194"
+    },
+    {
+      "id": 1195,
+      "title": "حضرت معاویہ رضی اللہ تعالیٰ عنہ اور تاریخی حقائق",
+      "author": "مولانا محمد تقی عثمانی",
+      "publisher": "ادارت المعارف کراچی",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1195"
+    },
+    {
+      "id": 1196,
+      "title": "اظہار العیب فی کتاب علم الغیب",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1196"
+    },
+    {
+      "id": 1197,
+      "title": "تبرید النواظر فی تحقیق الحاضروالناظر",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1197"
+    },
+    {
+      "id": 1198,
+      "title": "مقام ابی حنیفہ",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "سوانح حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1198"
+    },
+    {
+      "id": 1199,
+      "title": "عبارات اکابر",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "سوانح حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1199"
+    },
+    {
+      "id": 1200,
+      "title": "محدثِ زمان،محمد زاھد بن الحسن الکوثری کی مشہور کتاب تانیب الخطیب کا اردو ترجمہ، جس کا نام ہے: (امام ابوحنیفہ کا عادلانہ دفاع)",
+      "author": "مترجم عبد القدوس خان",
+      "publisher": "عمر اکادمی",
+      "category": "سوانح حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1200"
+    },
+    {
+      "id": 1201,
+      "title": "نشر الطیب فی ذکر الحبیب صلی اللّٰہ علیہ وسلّم",
+      "author": "مولانا اشرف علی تھانوی رحمۃ اللّٰہ علیہ",
+      "publisher": "خانقاہ امدادیہ اشرفیہ",
+      "category": "السيرة النبوية",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1201"
+    },
+    {
+      "id": 1202,
+      "title": "علماء حق کے مجاھدانہ کارنامے",
+      "author": "مولانا سید محمد میاں رحمۃ اللّٰہ علیہ",
+      "publisher": "جمعیت پبلیکشنز",
+      "category": "سوانحِ حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1202"
+    },
+    {
+      "id": 1203,
+      "title": "درسی تقریر برائے مختصر المعانی",
+      "author": "افادات مولانا محمد امین صاحب،ضبط وترتیب فخرالزمان آخوند زادہ",
+      "publisher": "الھلال کراچی",
+      "category": "علم معانی",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1203"
+    },
+    {
+      "id": 1204,
+      "title": "تقلید کی شرعی حیثیت",
+      "author": "مولانا محمد تقی عثمانی",
+      "publisher": "ادارت المعارف کراچی",
+      "category": "أصول الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1204"
+    },
+    {
+      "id": 1205,
+      "title": "علماء دیوبند کادینی رخ اور مسلکی مزاج",
+      "author": "حکیم الاسلام مولانا محمد قاری طیب صاحب",
+      "publisher": "ادارہ اسلامیات لاھور",
+      "category": "سوانحِ حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1205"
+    },
+    {
+      "id": 1206,
+      "title": "تفریح الخواطر فی رد تنویر الخواطر",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1206"
+    },
+    {
+      "id": 1207,
+      "title": "دور جدید کا مسیلمہ کذاب (گوہر شاہی)",
+      "author": "مولانا سعید احمد جلالپوری",
+      "publisher": "عالمی مجلس تحفظ ختم نبوت",
+      "category": "فرق باطلہ کی تردید",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1207"
+    },
+    {
+      "id": 1208,
+      "title": "تفریح الکلام الحاوی فی تحقیق عبارت الطحاوی",
+      "author": "مولانا سرفراز خان صفدر",
+      "publisher": "مکتبہ صفدر یہ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4جیم تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1208"
+    },
+    {
+      "id": 1209,
+      "title": "سراج النحو شرحِ اردو ھدایت النحو",
+      "author": "مفتی کفیل الرحمن نشاط عثمانی",
+      "publisher": "ایچ ایم سعید",
+      "category": "علم نحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1209"
+    },
+    {
+      "id": 1210,
+      "title": "تسہیل نحو میر",
+      "author": "مولانا محمد یوسف رشید",
+      "publisher": "مکتبہ الارشاد",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "اس کے 2سیٹ ہیں",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1210"
+    },
+    {
+      "id": 1211,
+      "title": "تفہیم الفلکیات",
+      "author": "مولانا اسد اللہ شہباز علی",
+      "publisher": "الحجاز کراچی",
+      "category": "علم فلکیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1211"
+    },
+    {
+      "id": 1212,
+      "title": "تحفۃ البلاغہ شرح اردو دروس البلاغہ",
+      "author": "مولانا مزمل علی صاحب",
+      "publisher": "مکتبہ رحمانیہ",
+      "category": "علم بلاغت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1212"
+    },
+    {
+      "id": 1213,
+      "title": "الجھد الکافی فی شرح متن الکافی (فی علمی العروض والقوافی)",
+      "author": "مولانا مزمل علی صاحب",
+      "publisher": "مکتبہ العلم",
+      "category": "علم بلاغت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1213"
+    },
+    {
+      "id": 1214,
+      "title": "درس مقامات",
+      "author": "مولانا ابن الحسن عباسی صاحب",
+      "publisher": "مکتبہ فاروقیہ",
+      "category": "علم ادب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1214"
+    },
+    {
+      "id": 1215,
+      "title": "مصباح المعانی مع ترجمہ اردو شرحِ ملا جامی",
+      "author": "مولانا سید حسن استاد التفسیر دارالعلوم دیوبند",
+      "publisher": "مکتبہ سید احمد شہید",
+      "category": "علم نحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1215"
+    },
+    {
+      "id": 1216,
+      "title": "منھاج الصرف",
+      "author": "مولانا محمد ارشد صاحب",
+      "publisher": "مدرسہ منھاج العلوم الاسلامیہ",
+      "category": "علم صرف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1216"
+    },
+    {
+      "id": 1217,
+      "title": "میزان الصرف",
+      "author": "مولانا طاھر صدیق صاحب",
+      "publisher": "دارالکتب العربیہ",
+      "category": "علم صرف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1217"
+    },
+    {
+      "id": 1218,
+      "title": "احسن المسائل اردو ترجمہ کنز الدقائق",
+      "author": "مولانا محمد احسن صدیقی صاحب",
+      "publisher": "ایچ ایم سعید",
+      "category": "علم فقہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1218"
+    },
+    {
+      "id": 1219,
+      "title": "حسامی",
+      "author": "مولانا عبد الحق بن محمد امین صاحب",
+      "publisher": "مکتبہ حقانیہ",
+      "category": "أصول الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1219"
+    },
+    {
+      "id": 1220,
+      "title": "خیر الاصول فی حدیث الرسول",
+      "author": "مولانا خیر محمد جالندھری صاحب",
+      "publisher": "مکتبہ البشریٰ",
+      "category": "اصول حدیث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1220"
+    },
+    {
+      "id": 1221,
+      "title": "تدریب الصرف",
+      "author": "اساتذہ جامعہ العلوم الاسلامیہ",
+      "publisher": "مجلس دعوت وتحقیق",
+      "category": "علم صرف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1221"
+    },
+    {
+      "id": 1222,
+      "title": "توضیحات شرح اردو مرقات",
+      "author": "افتخار احمد سمتی پوری",
+      "publisher": "قدیمی کتب خانہ",
+      "category": "علم منطق",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1222"
+    },
+    {
+      "id": 1223,
+      "title": "الھدیہ السعیدیہ",
+      "author": "فضل حق خیرآبادی",
+      "publisher": "مکتبہ البشریٰ",
+      "category": "علم فلسفہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "لائبریری",
+      "almari": "4باء تحتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1223"
     }
   ],
   "categories": [
