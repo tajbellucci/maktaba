@@ -2961,6 +2961,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-20",
           "action": "updated",
           "detail": ""
@@ -37904,6 +37909,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -37929,6 +37939,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -37968,6 +37983,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -37993,6 +38013,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38032,6 +38057,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38057,6 +38087,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38096,6 +38131,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38121,6 +38161,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38160,6 +38205,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38185,6 +38235,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38224,6 +38279,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38249,6 +38309,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38288,6 +38353,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38320,6 +38390,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38328,6 +38403,87 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1158"
+    },
+    {
+      "id": 1159,
+      "title": "جمالین فی شرح جلالین",
+      "author": "حضرت مولانا محمد جمال بلند شہری",
+      "publisher": "زمزم پبلشرز",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1159"
+    },
+    {
+      "id": 1160,
+      "title": "الوهابيون تاريخ ما اهمله التاريخ",
+      "author": "مجموعه من الباحثين",
+      "publisher": "رياض الرئيس للكتب والنشر",
+      "category": "التاريخ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1160"
+    },
+    {
+      "id": 1161,
+      "title": "تعليم النحو",
+      "author": "الجماعه",
+      "publisher": "العلوم الاسلاميه",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1161"
     }
   ],
   "categories": [
