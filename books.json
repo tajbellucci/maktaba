@@ -30154,6 +30154,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "983"
+    },
+    {
+      "id": 984,
+      "title": "سنن أبي داود",
+      "author": "الإمام الحافظ أبي داؤود سليمان بن أشعث بن  إسحاق الأزدي السجستاني،(ت:275هـ)",
+      "publisher": "دار السلام الرياض،مراجعة:صالح بن عبد العزيز آل الشيخ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار التصنیف",
+      "almari": "4-ب",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "النسخة الجديدة",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "984"
     }
   ],
   "categories": [
