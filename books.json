@@ -1389,19 +1389,24 @@
     {
       "id": 38,
       "title": "البداية والنهاية",
-      "author": "عماد الدين أبو الفداء إسماعيل بن عمر القرشي الدمشقي المعروف بـ (ابن كثير) (ت ٧٧٤ هـ)",
-      "publisher": "بيت الأفكار الدولية،إعتنى به:حسان عبد المنان",
-      "category": "التاريخ",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-ج",
+      "author": "الحافظ ابن كثير",
+      "publisher": "دارالفكر",
+      "category": "سیر و تاریخ",
+      "volumes": 7,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ھ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -6119,6 +6124,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
@@ -6452,6 +6462,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -17759,6 +17774,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-19",
           "action": "updated",
           "detail": ""
@@ -17868,19 +17888,24 @@
     {
       "id": 569,
       "title": "فتاوی رحیمیہ",
-      "author": "مفتی عبد الرحیم لاجپوری",
+      "author": "مولانا مفتی عبد الرحیم لاجپوری",
       "publisher": "دار الاشاعت",
       "category": "الفتاوى",
-      "volumes": 5,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "2ھ",
+      "volumes": 10,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "7،ھ",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -22930,6 +22955,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-16",
           "action": "added",
           "detail": ""
@@ -25034,6 +25064,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38855,6 +38890,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38912,6 +38952,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -38934,6 +38979,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -38973,6 +39023,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39005,6 +39060,11 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39027,6 +39087,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -39118,6 +39183,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39143,6 +39213,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39172,6 +39247,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39197,6 +39277,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39226,6 +39311,11 @@
       "history": [
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39251,6 +39341,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39285,6 +39380,16 @@
         },
         {
           "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-22",
           "action": "added",
           "detail": ""
         }
@@ -39310,6 +39415,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-22",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39347,6 +39457,114 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1185"
+    },
+    {
+      "id": 1186,
+      "title": "شمائل كبري",
+      "author": "مفتی محمد ارشادصاحب",
+      "publisher": "زمزم پبلشرز",
+      "category": "السيرة النبوية",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "1د،امامی",
+      "almari": "پہلی ،تیسری اور پانچویں جلدیں موجود نہیں",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1186"
+    },
+    {
+      "id": 1187,
+      "title": "فضل الله الصمد في توضيح الادب المفرد",
+      "author": "فضل الله الجيلاني",
+      "publisher": "مطبعة المحدث",
+      "category": "الحديث",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "8باء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1187"
+    },
+    {
+      "id": 1188,
+      "title": "الطب النبوي",
+      "author": "شمس الدين محمد بن ابي بكر بن ايوبالزرعي الدمشقي ابن قيم الجوزية",
+      "publisher": "دار الكتب العلمية",
+      "category": "علم طب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "8باء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1188"
+    },
+    {
+      "id": 1189,
+      "title": "فتاویٰ شاہ محمد اسحاق دہلوی المعروف به ماءة مساءل-",
+      "author": "",
+      "publisher": "المنهل",
+      "category": "الفتاوى",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری ،7،ھ",
+      "almari": "طباعتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-22",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1189"
     }
   ],
   "categories": [
