@@ -22584,19 +22584,29 @@
     {
       "id": 672,
       "title": "الاشباه والنظائر",
-      "author": "ابو الفضل عبد الرحمن بن كمال ابو بكر جلال الدين السيوطي",
-      "publisher": "دار الكتاب العربي",
-      "category": "قواعد",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
+      "author": "الإمام القاضي أبوالوليدمحمد بن أحمد بن محمد بن احمد بن رشد القرطبي الاندلسي صاحب",
+      "publisher": "دارالفكر",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
       "department": "لائبریری",
-      "almari": "ہ,2",
+      "almari": "6،ھ،صرف پہلی،دوسری جلدیں موجود ہیں",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-23",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-23",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -35147,19 +35157,24 @@
     {
       "id": 1047,
       "title": "منهاج الصالحين",
-      "author": "السيد محمد الحسيني الروحاني",
-      "publisher": "دار الزهزاء",
-      "category": "فقه (التشيع)",
-      "volumes": 0,
+      "author": "السيد محمد الحسيني الروحاني صاحب",
+      "publisher": "دار الزهراء",
+      "category": "الفتاوى",
+      "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "ه-5",
+      "department": "لائبریری",
+      "almari": "6،د",
       "hasPrint": true,
       "status": "available",
-      "notes": "جديد نسخة",
+      "notes": "صرف پہلی جلد موجود ہے",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-23",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -40803,6 +40818,33 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1223"
+    },
+    {
+      "id": 1224,
+      "title": "الإستضعاف وأحكامه",
+      "author": "زياد بن عابدالمشوخي صاحب",
+      "publisher": "إدارة الشؤون الإسلامية",
+      "category": "أحكام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،ھ۔",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-23",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1224"
     }
   ],
   "categories": [
