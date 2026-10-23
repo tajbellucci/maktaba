@@ -39060,14 +39060,14 @@
     },
     {
       "id": 1171,
-      "title": "وفاء الوفاء، نور الدين علي بن احمدالمصري،فضائل حرم المدينة،4،دارالاحياء التراث العربي تمام جلدیں موجود ہیں،نعمانیہ قديم ،لائبریری،7،د",
-      "author": "طباعتی",
+      "title": "وفاء الوفاء، فضائل حرم المدينة",
+      "author": "نور الدين علي بن احمدالمصري",
       "category": "",
-      "volumes": 0,
-      "almari": "",
+      "volumes": 4,
+      "almari": "7،د",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "تمام جلدیں موجود ہیں",
       "files": [],
       "present": true,
       "history": [
@@ -39095,7 +39095,10 @@
       "borrowerAddress": "",
       "borrowerPhone": "",
       "issueType": "person",
-      "accession": "1171"
+      "accession": "1171",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری،",
+      "publisher": "دارالاحياء التراث العربي"
     },
     {
       "id": 1172,
