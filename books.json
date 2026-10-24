@@ -28687,7 +28687,7 @@
       "maktaba": "نعمانیہ جدید",
       "department": "دار الافتاء",
       "almari": "مكتب مفتي حميد الله حفظه الله",
-      "hasPrint": true,
+      "hasPrint": false,
       "status": "available",
       "notes": "-",
       "files": [],
@@ -28707,8 +28707,7 @@
       "borrowerAddress": "",
       "borrowerPhone": "",
       "issueType": "person",
-      "accession": "835",
-      "format": "unicode"
+      "accession": "835"
     },
     {
       "id": 836,
