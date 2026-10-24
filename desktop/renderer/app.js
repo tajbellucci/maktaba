@@ -3405,7 +3405,30 @@ async function doExport() {
    confirm-and-diff step a manual pull gets. Silent on anything that would
    otherwise be a toast — going offline for a minute, or already being
    current, happens constantly in the background and is not news. */
+/* A reader has nothing of its own to lose (it cannot save), so the automatic
+   check simply takes the library's copy: books, categories and attached
+   files added, removed or replaced on the master all arrive within seconds
+   of the nudge, or by the next poll. It used to open a confirm box and wait
+   for a click, and to skip entirely while any window was open, including the
+   book list a reader keeps open all day; a reader PC sat on old data for
+   good (seen 2026-10-24: a text attached on the master never arrived). */
+let readerSyncing = false;
+async function readerAutoSync() {
+  if (readerSyncing) return;
+  readerSyncing = true;
+  try {
+    const peek = await window.maktaba.peekRemote();
+    if (!peek.ok || IS_MASTER) return;
+    if (diffCatalogues(DATA, peek.data).empty) return;
+    await adoptData(peek.data);
+    toast(t("syncedFromServer"));
+  } finally {
+    readerSyncing = false;
+  }
+}
+
 async function doPull(auto = false) {
+  if (auto && !IS_MASTER) return readerAutoSync();
   if (auto) {
     if (document.querySelector("dialog[open]")) return;      // never interrupt
     if (IS_MASTER) {
@@ -3628,8 +3651,15 @@ const DIFF_FIELDS = [
   ["title", "fTitle"], ["author", "fAuthor"], ["category", "fCategory"],
   ["publisher", "fPublisher"], ["almari", "fShelf"], ["volumes", "fVolumes"],
   ["status", "railStatus"], ["dueDate", "fDueDate"], ["accession", "fAccession"],
-  ["notes", "fNotes"], ["image", "diffCover"], ["format", "fFormat"]
+  ["notes", "fNotes"], ["image", "diffCover"], ["format", "fFormat"],
+  /* Attached files were missing here, so a publish that only added, removed or
+     replaced a file looked like "nothing changed" to every other PC and was
+     never pulled (2026-10-24, book 835). Shown by file name, not full URL. */
+  ["files", "attachedFiles"], ["maktaba", "fMaktaba"], ["department", "fDepartment"], ["pdfOffset", "fPdfOffset"]
 ];
+const diffValue = (b, key) => key === "files"
+  ? (b.files || []).map(baseName).join("، ")
+  : (b[key] == null ? "" : String(b[key]));
 
 function diffCatalogues(from, to) {
   /* The remote/incoming copy is written LEAN — default-valued fields
@@ -3654,8 +3684,8 @@ function diffCatalogues(from, to) {
     if (!old) continue;
     const fields = [];
     for (const [key, label] of DIFF_FIELDS) {
-      const a = old[key] == null ? "" : String(old[key]);
-      const c = b[key] == null ? "" : String(b[key]);
+      const a = diffValue(old, key);
+      const c = diffValue(b, key);
       if (a !== c) fields.push({ label, from: a, to: c });
     }
     if (fields.length) changed.push({ book: b, fields });
