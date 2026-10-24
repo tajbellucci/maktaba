@@ -848,7 +848,8 @@ ipcMain.handle("file:pick", async (_e, format) => {
     ? [{ name: "PDF", extensions: ["pdf"] }]
     : format === "document"
       ? [{ name: "Word, Excel, PowerPoint, EPUB, صور", extensions: DOC_EXTS }]
-      : [{ name: "Text", extensions: ["txt", "md"] }];
+      // A text book may also carry its PDF scan, so search can jump to the printed page.
+      : [{ name: "Text / PDF", extensions: ["txt", "md", "pdf"] }];
   // multiSelections: one book can hold many scans (volume 1, volume 2, …)
   const { canceled, filePaths } = await dialog.showOpenDialog({
     filters,
@@ -1123,6 +1124,7 @@ function precacheUnicodeTexts(data) {
     if (b.format !== "unicode" || !Array.isArray(b.files)) continue;
     for (const f of b.files) {
       if (typeof f !== "string" || !/^https?:\/\//i.test(f)) continue;
+      if (/\.pdf(?:[?#]|$)/i.test(f)) continue;   // a text book's PDF scan is not text
       if (precacheSeen.has(f)) continue;
       const cached = textCachePath(f);
       /* A hosted file can be replaced behind the same URL, and the cache is
@@ -1186,7 +1188,7 @@ ipcMain.handle("file:downloadAllTexts", async (_e, data) => {
     if (!Array.isArray(b.files)) continue;
     for (const f of b.files) {
       if (typeof f !== "string" || !/^https?:\/\//i.test(f)) continue;
-      (b.format === "unicode" ? texts : docs).add(f);
+      (b.format === "unicode" && !/\.pdf(?:[?#]|$)/i.test(f) ? texts : docs).add(f);
     }
   }
 
@@ -1386,11 +1388,11 @@ ipcMain.handle("file:downloadFile", (_e, url, kind) => new Promise((resolve) => 
     dir: filesDir,
     pathPrefix: "userdata:files/",
     prefix: isPdf ? "doc" : "text",
-    allowedTypes: isPdf ? ["application/pdf"] : ["text/plain", "text/markdown", "application/octet-stream"],
+    allowedTypes: isPdf ? ["application/pdf"] : ["text/plain", "text/markdown", "application/octet-stream", "application/pdf"],
     typeLabel: isPdf ? "Not a PDF" : "Not a text file",
     maxBytes: MAX_DOC_BYTES,
     extFor: (type, pathname) => {
-      if (isPdf) return ".pdf";
+      if (isPdf || type === "application/pdf" || /\.pdf$/i.test(pathname)) return ".pdf";
       const fromPath = /\.(txt|md)$/i.exec(pathname);
       return fromPath ? fromPath[0] : ".txt";
     }

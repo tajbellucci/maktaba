@@ -304,6 +304,7 @@ function normalizeBook(b) {
   if (b.maktaba === undefined) b.maktaba = "";
   if (b.department === undefined) b.department = "";
   if (b.publisher === undefined) b.publisher = "";
+  if (b.pdfOffset === undefined) b.pdfOffset = "";
   if (b.image === undefined) b.image = "";
   if (b.format === undefined) b.format = "physical";
   if (!Array.isArray(b.files)) b.files = b.filePath ? [b.filePath] : [];
@@ -1473,7 +1474,7 @@ function renderDetail() {
    would leave the book with edits pending asks before discarding them. */
 const EDIT_FIELDS = {
   dTitle: "title", dAuthor: "author", dPublisher: "publisher", dCategory: "category", dVolumes: "volumes",
-  dMaktaba: "maktaba", dDepartment: "department", dAlmari: "almari", dNotes: "notes"
+  dMaktaba: "maktaba", dDepartment: "department", dAlmari: "almari", dNotes: "notes", dPdfOffset: "pdfOffset"
 };
 let editDraft = null;   // { id, values: { dTitle: "...", ... } } while there are unsaved edits
 
@@ -1555,6 +1556,7 @@ function _renderDetail() {
     <label class="chk hasprint"><input type="checkbox" id="dHasPrint" /><span>${t("hasPrintLabel")}</span></label>
     <p class="hint" id="hasPrintHint"></p>
     <div class="filerow" id="fileRow"></div>
+    <label class="pdfoff">${t("fPdfOffset")}</label><input id="dPdfOffset" class="pdfoff" dir="ltr" placeholder="${t("pdfOffsetHint")}" />
     <div class="tracking" id="tracking"></div>`;
 
   $("dTitle").value = b.title || "";
@@ -1567,6 +1569,7 @@ function _renderDetail() {
   $("dDepartment").value = b.department || "";
   $("dAlmari").value = b.almari || "";
   $("dNotes").value = b.notes || "";
+  $("dPdfOffset").value = b.pdfOffset || "";
   $("dFormat").value = b.format || "physical";
   // Rebuilt from scratch on every renderDetail() call — re-attach each time.
   attachCombobox($("dCategory"), () => categoryChoices());
@@ -2299,6 +2302,9 @@ function renderCover(b) {
 function renderFileRow(b) {
   const row = $("fileRow");
   if (!row) return;
+  // The PDF offset field only means something for a book holding both its text and its PDF scan.
+  const hasBoth = (b.files || []).some(isPdfPath) && (b.files || []).some((p) => !isPdfPath(p));
+  document.querySelectorAll("#detailBody .pdfoff").forEach((el) => el.classList.toggle("hidden", !hasBoth));
   if (b.format === "physical") { row.innerHTML = ""; return; }
 
   const items = (b.files || []).map((p, i) => `
@@ -4483,7 +4489,7 @@ const rdTab = (key) => rdTabs.find((x) => x.key === key);
 const isPdfPath = (p) => /\.pdf($|[?#])/i.test(String(p || ""));
 const isDocxPath = (p) => /\.docx($|[?#])/i.test(String(p || ""));
 // Files the text reader and the search panel can read: Unicode texts, and Word (.docx) shown as text.
-const searchableFiles = (b) => (b.format === "unicode" ? (b.files || []) : (b.files || []).filter(isDocxPath));
+const searchableFiles = (b) => (b.format === "unicode" ? (b.files || []).filter((p) => !isPdfPath(p)) : (b.files || []).filter(isDocxPath));
 const fileExt = (p) => ((/\.([a-z0-9]{1,5})(?:[?#]|$)/i.exec(String(p || "")) || [])[1] || "DOC").toUpperCase();
 
 function rdSaveState() {
@@ -4590,7 +4596,7 @@ async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly
     }
     return;
   }
-  const tab = { key: filePath, title: book.title || "", file: baseName(filePath), kind: "text", state: { query: preset || "" } };
+  const tab = { key: filePath, title: book.title || "", file: baseName(filePath), kind: "text", bookId: book.id, state: { query: preset || "" } };
   rdAddTab(tab);
   rdShow(tab);
 
@@ -4602,7 +4608,7 @@ async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly
     return;
   }
   const pages = paginate(res.text);
-  tab.state = { text: res.text, hits: [], at: 0, pages, page: 0, toc: buildToc(res.text, pages), index: null, query: preset || "", count: "" };
+  tab.state = { text: res.text, hits: [], at: 0, pages, page: 0, toc: buildToc(res.text, pages), index: null, query: preset || "", count: "", marks: pageMarks(res.text) };
   if (rdActive !== tab.key) return;                 // another tab was chosen meanwhile; this one is ready for later
   rdShow(tab);
   if (preset) { runReaderSearch(presetOpts, presetHeadingsOnly); rdSaveState(); }
@@ -4610,16 +4616,20 @@ async function openReader(book, filePath, preset, presetOpts, presetHeadingsOnly
 }
 
 // A PDF opens in a reader tab too, in Chromium's own PDF viewer.
-async function openPdfTab(book, filePath) {
+async function openPdfTab(book, filePath, page) {
   rdSaveState();
   const existing = rdTab(filePath);
-  if (existing) { rdShow(existing); return; }
+  if (existing && !page) { rdShow(existing); return; }
   const res = await window.maktaba.fileLocalUrl(filePath);
   if (!res || !res.ok) { toast(t(res && res.error === "offline" ? "fileOffline" : "fileMissing")); return; }
   const frame = document.createElement("iframe");
-  frame.src = res.url;
+  frame.src = res.url + (page ? "#page=" + page : "");
   frame.title = book.title || "";
   $("rdPdf").appendChild(frame);
+  /* Chromium's PDF viewer ignores a #page change on a document it already
+     shows (checked: it stayed on page 7 when asked for 4), so jumping an
+     open PDF means a fresh frame in the same tab. */
+  if (existing) { existing.frame.remove(); existing.frame = frame; rdShow(existing); refreshOfflineBadges(); return; }
   const tab = { key: filePath, title: book.title || "", file: baseName(filePath), kind: "pdf", frame };
   rdAddTab(tab);
   rdShow(tab);
@@ -4631,6 +4641,7 @@ async function openPdfTab(book, filePath) {
    current one marked. Built by slicing between hits rather than by replacing
    text, so overlapping or repeated words cannot corrupt the output. */
 function paintReader() {
+  updatePdfBtn();
   const box = $("rdText");
   const page = readerPages[readerPage] || { start: 0, end: readerText.length };
   const body = readerText.slice(page.start, page.end);
@@ -4783,9 +4794,12 @@ function renderRdResults() {
   let tocAt = 0;
   let pageAt = 0;
   let chapter = "";
+  const marks = rdMarks();
+  let markAt = 0, printed = null, vol = null;
   body.innerHTML = readerHits.slice(0, RD_MAX_ROWS).map((h, i) => {
     while (tocAt < readerToc.length && readerToc[tocAt].start <= h.start) chapter = readerToc[tocAt++].title;
     while (pageAt < readerPages.length - 1 && h.start >= readerPages[pageAt].end) pageAt++;
+    while (markAt < marks.length && marks[markAt].at <= h.start) { const mk = marks[markAt++]; if (mk.vol != null) vol = mk.vol; printed = mk.page; }
     const before = escapeHtml(readerText.slice(Math.max(0, h.start - RD_CONTEXT), h.start));
     const word = escapeHtml(readerText.slice(h.start, h.end));
     const after = escapeHtml(readerText.slice(h.end, h.end + RD_CONTEXT));
@@ -4794,7 +4808,7 @@ function renderRdResults() {
               <td class="rc-book">${bookName}</td>
               <td class="rc-text">…${before}<mark>${word}</mark>${after}…</td>
               <td class="rc-chap">${escapeHtml(chapter)}</td>
-              <td class="rc-page">${ud(pageAt + 1)}</td>
+              <td class="rc-page">${marks.length ? (printed == null ? "—" : (vol != null ? ud(vol) + "/" : "") + ud(printed)) : ud(pageAt + 1)}</td>
             </tr>`;
   }).join("");
 
@@ -4813,6 +4827,41 @@ function renderRdResults() {
     };
   });
 }
+
+/* Text <-> scan. A text book can hold its PDF scan too; [ص N] marks in the
+   text say which printed page a word is on, and the book's PDF offset rules
+   (shared/pagemap.js) say where that page sits in the scan. */
+function rdMarks() {
+  const tab = rdTab(rdActive);
+  return (tab && tab.kind === "text" && tab.state && tab.state.marks) || [];
+}
+
+function rdPdfTarget() {
+  const tab = rdTab(rdActive);
+  if (!tab || tab.kind !== "text") return null;
+  const book = DATA.books.find((b) => b.id === tab.bookId);
+  const pdfs = book ? (book.files || []).filter(isPdfPath) : [];
+  const marks = rdMarks();
+  if (!pdfs.length || !marks.length) return null;
+  const page = readerPages[readerPage] || { start: 0, end: Infinity };
+  const hit = readerHits[readerAt];
+  // the current search hit if it is on screen, else the top of the page on screen
+  const at = hit && hit.start >= page.start && hit.start < page.end ? hit.start : page.start;
+  const p = printedPageAt(marks, at) || printedPageAt(marks, marks[0].at);
+  const vol = p.vol || 1;
+  return { book, path: pdfs[Math.min(vol, pdfs.length) - 1], pdfPage: pdfPageFor(parsePdfOffsets(book.pdfOffset), p.vol, p.page), printed: p.page };
+}
+
+function updatePdfBtn() {
+  const target = rdPdfTarget();
+  $("rdPdfBtn").classList.toggle("hidden", !target);
+  if (target) $("rdPdfLabel").textContent = t("openInPdf").replace("{n}", ud(target.printed));
+}
+
+$("rdPdfBtn").onclick = () => {
+  const target = rdPdfTarget();
+  if (target) openPdfTab(target.book, target.path, target.pdfPage);
+};
 
 function markRdResultCurrent() {
   const body = $("rdRows");
