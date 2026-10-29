@@ -6329,6 +6329,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -22883,6 +22888,16 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-23",
           "action": "updated",
           "detail": ""
@@ -35491,7 +35506,7 @@
       "id": 1047,
       "title": "منهاج الصالحين",
       "author": "السيد محمد الحسيني الروحاني صاحب",
-      "publisher": "دار الزهراء",
+      "publisher": "دارالزهراء",
       "category": "الفتاوى",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
@@ -35499,10 +35514,15 @@
       "almari": "6،د",
       "hasPrint": true,
       "status": "available",
-      "notes": "صرف پہلی جلد موجود ہے",
+      "notes": "صرف پہلی جلدموجودہے",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-23",
           "action": "updated",
@@ -39093,6 +39113,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -39430,6 +39455,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -39916,7 +39946,7 @@
       "id": 1191,
       "title": "كافية",
       "author": "علامة ابن حاجب صاحب",
-      "publisher": "البشري",
+      "publisher": "البشرى",
       "category": "نحو",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
@@ -39928,6 +39958,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -39956,6 +39991,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "added",
           "detail": ""
@@ -39982,6 +40022,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -40956,8 +41001,8 @@
     {
       "id": 1224,
       "title": "الإستضعاف وأحكامه",
-      "author": "زياد بن عابدالمشوخي صاحب",
-      "publisher": "إدارة الشؤون الإسلامية",
+      "author": "زيادبن عابدالمشوخي صاحب",
+      "publisher": "إدارةالشؤون الإسلامية",
       "category": "أحكام",
       "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
@@ -40969,6 +41014,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-23",
           "action": "added",
@@ -47204,6 +47254,87 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1393"
+    },
+    {
+      "id": 1394,
+      "title": "فضائل القرآن",
+      "author": "الحافظ أبوالعباس جعفربن محمدالمستغفري صاحب",
+      "publisher": "دارابن حزم",
+      "category": "فضائل القرآن",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "6،د",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری جلدموجودہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1394"
+    },
+    {
+      "id": 1395,
+      "title": "خزائن السنن",
+      "author": "حضرت مولانا سرفراز خان صفدر صاحب",
+      "publisher": "مكتبة صفدرية",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة4،الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1395"
+    },
+    {
+      "id": 1396,
+      "title": "ازالة الأوهام کا ترجمہ",
+      "author": "حضرت مولانا رحمت اللہ کیرانوی ،مترجم مولانا ڈاکٹر محمد اسماعیل عارفی صاحب",
+      "publisher": "مكتبة دارالعلوم كراچى",
+      "category": "رد عيسائيت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة4،الف،صرف پہلی،دوسری جلد موجود ہے جلد موجود ہے",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1396"
     }
   ],
   "categories": [
