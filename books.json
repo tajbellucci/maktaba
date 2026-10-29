@@ -3232,6 +3232,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4562,6 +4567,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4599,6 +4609,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4622,19 +4637,24 @@
     {
       "id": 117,
       "title": "تفسير بيان القرآن",
-      "author": "حکیم الامت مولانا محمد اشرف علی تھانوی",
-      "publisher": "ادارہ تالیفات اشرفیہ",
+      "author": "حكيم الأمت مجدد ملت حضرت مولانا اشرف على تهانوي",
+      "publisher": "إدارة تاليفات اشرفية",
       "category": "التفسير",
-      "volumes": 3,
+      "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "ج- خزانہ 8",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -4688,6 +4708,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4724,6 +4749,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4762,6 +4792,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4798,6 +4833,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4836,6 +4876,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4864,19 +4909,24 @@
     {
       "id": 123,
       "title": "إحياء علوم الدين",
-      "author": "ابو حامد الغزالي",
-      "publisher": "دار المعرفه",
-      "category": "التصوف",
-      "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "الف - خزانہ ب",
+      "author": "أبو حامد محمد بن محمد الغزالي الطوسي (ت ٥٠٥هـ)",
+      "publisher": "دار القمر",
+      "category": "الأسرار والحكم",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -4955,6 +5005,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4980,7 +5035,7 @@
       "title": "العلماء الذين لم يتجاوزوا سن الأشد(15-40)سنة",
       "author": "علي بن محمد العمران",
       "publisher": "دار العاصمة",
-      "category": "التراجم والطبقات",
+      "category": "التراجم",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "الغرفة العامة",
@@ -4991,6 +5046,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5017,7 +5077,7 @@
       "title": "رسالة المسترشدين للحارث المحاسبي",
       "author": "أبي عبد الله الحارث بن أسد المحاسبي البصري ، (ت:243) محقق:عبد الفتاح أبو غدة،(ت:1418)،تخريج:سلمان بن عبد الفتاح أبو غدة",
       "publisher": "المكتوبات الإسلامية",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "الغرفة العامة",
@@ -5028,6 +5088,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5052,19 +5117,24 @@
     {
       "id": 127,
       "title": "شرح الصدور بشرح حال الموتى والقبور",
-      "author": "الحافظ جلال الدين عبد الرحمن السيوطي،(ت911 هـ)",
-      "publisher": "دار ابن كثير،م:يوسف علي بديوي",
-      "category": "عقائد",
+      "author": "الإمام الحافظ العلامة جلال الدين عبد الرحمن بن أبي بكر السيوطي،إعتنى به:قصي محمد نورس الحلاق",
+      "publisher": "دار المنهاج",
+      "category": "العقيدة",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "3-د",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة المحققة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5128,6 +5198,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5165,6 +5240,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5201,6 +5281,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5266,6 +5351,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5302,6 +5392,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5367,6 +5462,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5403,6 +5503,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5441,6 +5546,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5465,18 +5575,23 @@
       "id": 138,
       "title": "عمدة القاري شرح صحيح البخاري",
       "author": "بدر الدين أبو محمد محمود بن أحمد العينى (ت ٨٥٥ هـ)",
-      "publisher": "دار الفكر",
-      "category": "الحديث",
+      "publisher": "مكتبة رشيدية",
+      "category": "شروح الحديث",
       "volumes": 25,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "5-ب",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5525,6 +5640,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5561,6 +5681,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5599,6 +5724,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5622,19 +5752,24 @@
     {
       "id": 142,
       "title": "الأبواب والتراجم لصحيح البخاري",
-      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ،(ت: 1402 هـ)",
-      "publisher": "ایچ ایم سعيد کمپنی",
-      "category": "شروح الحديث",
-      "volumes": 1,
-      "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "7-ه",
+      "author": "العلامة المحدث محمد زكريا بن يحيى الكاندهلوي ، (ت:1402هـ)،راجعه وعلى عليه:محمد رحمة الله حافظ الندوي",
+      "publisher": "دار الكتب العلمية",
+      "category": "التراجم",
+      "volumes": 6,
+      "maktaba": "نعمانیہ جدید",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة القديمة",
+      "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5703,6 +5838,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5726,19 +5866,24 @@
     {
       "id": 144,
       "title": "فتح الباري بشرح صحيح البخاري",
-      "author": "للإمام الحافظ أحمد بن علي بن حجر العسقلاني، (ت:852هـ)",
-      "publisher": "دار الديان للتراث",
+      "author": "للعلامة الحافظ أحمد بن علي بن حجر العسقلاني ،(ت 852هـ)",
+      "publisher": "دار الحديث",
       "category": "شروح الحديث",
-      "volumes": 13,
+      "volumes": 14,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "6-د",
+      "department": "الغرفة العامة",
+      "almari": "2-أ",
       "hasPrint": true,
       "status": "available",
       "notes": "النسخة الجديدة",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5797,6 +5942,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5834,6 +5984,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5859,7 +6014,7 @@
       "title": "الرسالة القشيرية في علم التصوف",
       "author": "العلامة العارف بالله أبي القاسم عبد الكريم بن هوازن القشيري النيسابوري،مح:معروف تزریق و علي عبدالحميد أبو الخير",
       "publisher": "دارالخير",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "الغرفة العامة",
@@ -5870,6 +6025,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5896,7 +6056,7 @@
       "title": "كلمات عن منهج الإمام البخاري في صحيحه رواية ودراية",
       "author": "لفضيلة العلامة محمد عوامة ،جمعها ورتبها:الدكتور محيي الدين محمد عوامة",
       "publisher": "دارالحديث العوامة",
-      "category": "التصوف والسلوك",
+      "category": "التصوف",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
       "department": "الغرفة العامة",
@@ -5907,6 +6067,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -5945,6 +6110,11 @@
       "present": true,
       "history": [
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -5981,6 +6151,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
