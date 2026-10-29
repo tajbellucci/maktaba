@@ -46496,6 +46496,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -46521,6 +46526,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -46550,6 +46560,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -46577,6 +46592,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -46585,6 +46605,114 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1371"
+    },
+    {
+      "id": 1372,
+      "title": "كتاب الإرشاد إلى قواطع الإدلة في أصول الإعتقاد",
+      "author": "الشيخ برهان الدين ابراهيم بن حسن صاحب",
+      "publisher": "دارالكتب العلمية",
+      "category": "علم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1372"
+    },
+    {
+      "id": 1373,
+      "title": "مسئلہ علم وغیب توسل",
+      "author": "مفتی سرور قادری صاحب",
+      "publisher": "اشاعت القرآن",
+      "category": "عقائد",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1373"
+    },
+    {
+      "id": 1374,
+      "title": "التوضیح مع التلویح",
+      "author": "صدرالشريعة عبيدالله بن مسعود صاحب",
+      "publisher": "قديمى كتب خانه كراچی",
+      "category": "أصول الفقه",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، باء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1374"
+    },
+    {
+      "id": 1375,
+      "title": "المستصفی من علم الأصول",
+      "author": "محمد بن محمد الغزالی صاحب",
+      "publisher": "دارالحدیث",
+      "category": "أصول الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، باء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی،دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1375"
     }
   ],
   "categories": [
