@@ -47015,6 +47015,195 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1386"
+    },
+    {
+      "id": 1387,
+      "title": "رحمة الأمة في اختلاف الأئمة",
+      "author": "أبو عبدالله محمد بن عبد الرحمن الدمشقي العثماني صاحب",
+      "publisher": "دارالفكر",
+      "category": "الفقه",
+      "volumes": 0,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "یہ کتاب صرف ایک جلدپرمشتمل ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1387"
+    },
+    {
+      "id": 1388,
+      "title": "تيسيرالعزيزالحميد في شرح كتاب التوحيد",
+      "author": "الشيخ سليمان بن عبدالله بن محمد بن عبدالوهاب صاحب",
+      "publisher": "المكتب الإسلامي",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1388"
+    },
+    {
+      "id": 1389,
+      "title": "غررالخصائص الواضحة وعررالنقائص الفاضحة",
+      "author": "العلامة أبي اسحق برهان الدين الكتبي المعروف بلوطواط صاحب",
+      "publisher": "دار صعب",
+      "category": "علم البيان",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1389"
+    },
+    {
+      "id": 1390,
+      "title": "الحل المفهم لصحيح مسلم",
+      "author": "من افادات الفقيه الجليل المحدث الكبير الإمام الربانى الشيخ احمد الكنكوهى الانصارى",
+      "publisher": "مكتبة الشيخ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی،دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1390"
+    },
+    {
+      "id": 1391,
+      "title": "ینابيع المودة لذوى القربى",
+      "author": "سليمان بن ابراهيم الفندوزي الحنفي",
+      "publisher": "دارالأسوة",
+      "category": "الحديث",
+      "volumes": 4,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف چوتھی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1391"
+    },
+    {
+      "id": 1392,
+      "title": "فتح المجید شرح کتاب التوحید",
+      "author": "الشيخ عبدالرحمن بن حسن",
+      "publisher": "جمعيةاحياءالتراث الإسلامي",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1392"
+    },
+    {
+      "id": 1393,
+      "title": "اغاثةاللهفان مصايد الشيطان",
+      "author": "الشيخ محمد بن أبي بكر الشهير ابن قيم الجوزية",
+      "publisher": "دار المعرفة",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1393"
     }
   ],
   "categories": [
