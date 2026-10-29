@@ -46477,6 +46477,114 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1367"
+    },
+    {
+      "id": 1368,
+      "title": "المقالات السنية في كشف ضلالات أحمد بن تيمية",
+      "author": "الشيخ عبدالله الهروي صاحب",
+      "publisher": "دارالمشاريع",
+      "category": "عقيدة",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1368"
+    },
+    {
+      "id": 1369,
+      "title": "الفتاوى الإبراهيمية في مسائل الحنفية",
+      "author": "الشيخ برهان الدين ابراهيم بن حسن صاحب",
+      "publisher": "دارالضياء",
+      "category": "الفتاوى",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1369"
+    },
+    {
+      "id": 1370,
+      "title": "مجموعة الرسائل الكبرى لابن تيمية",
+      "author": "شيخ الإسلام تقي الدين أبي العباس أحمد بن عبد الحليم بن عبد السلام بن تيمية صاحب",
+      "publisher": "دارالإحياءالتراث العربي",
+      "category": "الرسائل",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف پہلی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1370"
+    },
+    {
+      "id": 1371,
+      "title": "قواعد التفسیر",
+      "author": "مولانا محمد نعمان صاحب",
+      "publisher": "إدارة المعارف كراچی",
+      "category": "قواعد",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1371"
     }
   ],
   "categories": [
