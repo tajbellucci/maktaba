@@ -1,6 +1,6 @@
 {
   "library": "دار الافتاء مکتبہ — مدرسہ نعمانیہ",
-  "updated": "2026-10-24",
+  "updated": "2026-10-29",
   "books": [
     {
       "id": 1,
@@ -8224,18 +8224,23 @@
       "id": 235,
       "title": "تسهيل اعراب القرآن المبين",
       "author": "مفتي روح الامين",
-      "publisher": "مكتبة الرشاد",
-      "category": "",
+      "publisher": "مكتبه الرشاد",
+      "category": "النحو",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "الف-1، ط: خلفي",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-10",
           "action": "added",
@@ -40634,6 +40639,362 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1224"
+    },
+    {
+      "id": 1225,
+      "title": "إملاء ما من به الرحمن",
+      "author": "عبد الله بن حسين بن عبد الله العبكري",
+      "publisher": "قدیمی کتب خانہ",
+      "category": "النحو",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1225"
+    },
+    {
+      "id": 1226,
+      "title": "تفسير الجلالين بهامش القران الكريم",
+      "author": "ماكتب",
+      "publisher": "دار المنار",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1226"
+    },
+    {
+      "id": 1227,
+      "title": "زبده التفسير",
+      "author": "محمد سليمان عبد الله الاشقر",
+      "publisher": "دار النفائس",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1227"
+    },
+    {
+      "id": 1228,
+      "title": "تفسير عزيزي",
+      "author": "شاه عبد العزيز محدث دهلوي",
+      "publisher": "اداره اسلاميات",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1228"
+    },
+    {
+      "id": 1229,
+      "title": "النجوم السائره في القراءات العشر المتواتره",
+      "author": "فضيله الامام الشيخ صلاح الدين التاجي",
+      "publisher": "الهيئه المصريه",
+      "category": "القراءة",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1229"
+    },
+    {
+      "id": 1230,
+      "title": "مسائل الرازي من غرائب ايه التنزيل",
+      "author": "محمد بن ابي بكر بن عبد القادر الرازي",
+      "publisher": "مطبعه",
+      "category": "التفسير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1230"
+    },
+    {
+      "id": 1231,
+      "title": "صفحات في علوم القران",
+      "author": "الدكتور عبد القيوم بن عبد الغفور السندي",
+      "publisher": "مكتبه الامداديه",
+      "category": "علوم القران",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1231"
+    },
+    {
+      "id": 1232,
+      "title": "الاتقان في علوم القران",
+      "author": "جلال الدين عبد الرحمن بن ابي بكر السيوطي",
+      "publisher": "دار الكتب العلميه",
+      "category": "علوم القران",
+      "volumes": 2,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1232"
+    },
+    {
+      "id": 1233,
+      "title": "البرهان في علوم القران",
+      "author": "عبد الله محمد بن بهادر بن عبد الله الزركشي",
+      "publisher": "دار الكتب العلميه",
+      "category": "علوم القران",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1233"
+    },
+    {
+      "id": 1234,
+      "title": "المعجم الفهرس للالفاظ القران الكريم",
+      "author": "محمد فؤاد عبد الباقي",
+      "publisher": "دار الدعوه",
+      "category": "الفهرس",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1234"
+    },
+    {
+      "id": 1235,
+      "title": "مفردات الفاظ القران",
+      "author": "علامہ راغب ا صفہانی",
+      "publisher": "ذوی القربی",
+      "category": "اللغۃ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1235"
+    },
+    {
+      "id": 1236,
+      "title": "معجم عربی الفاظ القران الکریم",
+      "author": "دکتور محمد سید طنطاوی",
+      "publisher": "المكتبه الفاروقیۃ",
+      "category": "النحو",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1236"
+    },
+    {
+      "id": 1237,
+      "title": "اعراب القران الكريم",
+      "author": "محي الدين الدرويش",
+      "publisher": "مكتبه اليمامه",
+      "category": "النحو",
+      "volumes": 9,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ھ- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1237"
     }
   ],
   "categories": [
