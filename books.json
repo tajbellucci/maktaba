@@ -8438,19 +8438,24 @@
     {
       "id": 235,
       "title": "تسهيل اعراب القرآن المبين",
-      "author": "مفتي روح الامين",
-      "publisher": "مكتبه الرشاد",
-      "category": "النحو",
+      "author": "مفتي روح الأمين",
+      "publisher": "مكتبة الرشاد",
+      "category": "ترکیب",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "ھ- خزانہ 8",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": ".",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -46713,6 +46718,303 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1375"
+    },
+    {
+      "id": 1376,
+      "title": "تذکرۂ شیخ المشائخ عارف باللہ حضرت مولانا شاہ محمد پرتاب گڈھی",
+      "author": "حضرت مولانا عمار احمد صاحب",
+      "publisher": "جامعہ اسلامیہ افضل المعارف وصی آباد",
+      "category": "ملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1376"
+    },
+    {
+      "id": 1377,
+      "title": "تعبيرالرؤيا",
+      "author": "علامة ابن سيرين صاحب",
+      "publisher": "زمزم پبلشرز",
+      "category": "خواب اور اسکی تعبیر",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1377"
+    },
+    {
+      "id": 1378,
+      "title": "تحفةالقاري شرح صحيح البخاري",
+      "author": "مفتی سعید احمد پالنپوری صاحب",
+      "publisher": "زمزم پبلشرز",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف 1,2,9,10جلدیں موجود ہیں",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1378"
+    },
+    {
+      "id": 1379,
+      "title": "مہتمم کی ڈائری",
+      "author": "مرتب محمد اسحاق صاحب",
+      "publisher": "مكتبة الرشاد",
+      "category": "ملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1379"
+    },
+    {
+      "id": 1380,
+      "title": "مسلك الثقات في نصوص الصفات",
+      "author": "خاتمة المتأخرين العلامة الشيخ أبي بكربن محمد الملا الأحسائي",
+      "publisher": "دارالهداية",
+      "category": "علم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1380"
+    },
+    {
+      "id": 1381,
+      "title": "زادالسالكين",
+      "author": "مرتب قاری عبد الرحمن کرخی",
+      "publisher": "جامعہ عربیہ دارالقرآن",
+      "category": "تصوف",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1381"
+    },
+    {
+      "id": 1382,
+      "title": "اسلاف پراعتماد",
+      "author": "مرتب محمد اسحاق ملتانی",
+      "publisher": "اداره تاليفات اشرفيه",
+      "category": "ملفوظات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1382"
+    },
+    {
+      "id": 1383,
+      "title": "ارشاد الشامزی علی جامع الترمذی",
+      "author": "ازافادات مفتی نظام الدین شامزئی",
+      "publisher": "مكتبة كليانوي",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1383"
+    },
+    {
+      "id": 1384,
+      "title": "میرے والد میرے شیخ",
+      "author": "مفتی محمد تقی عثمانی صاحب",
+      "publisher": "مكتبة معارف القرآن كراچی",
+      "category": "سوانحِ حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1384"
+    },
+    {
+      "id": 1385,
+      "title": "تحفة الأطفال",
+      "author": "مرتب مولانا محمد سفیان،مفتی اسد احمد",
+      "publisher": "مدرسة عربيه واصفيه",
+      "category": "متفرق موضوعات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1385"
+    },
+    {
+      "id": 1386,
+      "title": "الورد الوردالشذي على جامع الترمذي",
+      "author": "افادات مولانا محمود الحسن صاحب،مرتب مولانا سید اصغر حسین صاحب",
+      "publisher": "مكتبة الشیخ",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الف",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1386"
     }
   ],
   "categories": [
