@@ -542,6 +542,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -1280,6 +1285,16 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -1744,6 +1759,16 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -1958,6 +1983,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -2991,6 +3021,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -3052,6 +3087,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -3567,19 +3607,29 @@
     {
       "id": 92,
       "title": "سنن إبن ماجة",
-      "author": "الحافظ أبي عبد الله محمد بن يزيد القزويني،(ت:275هـ)",
-      "publisher": "دار ابن حزم",
-      "category": "الحديث",
+      "author": "أبی عبداللہ محمد ابن یزید ابن ماجہ",
+      "publisher": "ریاض",
+      "category": "الاحاديث",
       "volumes": 1,
       "maktaba": "نعمانیہ جدید",
-      "department": "دار التصنیف",
-      "almari": "مکتب:مفتي عبد الكبير صاحب",
+      "department": "دار الافتاء",
+      "almari": "ج- خزانہ ٧",
       "hasPrint": true,
       "status": "available",
-      "notes": "النسخة الجديدة",
+      "notes": "نیا نسخہ",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -4541,6 +4591,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -4767,6 +4822,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -5904,6 +5964,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
@@ -5957,6 +6022,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -8113,6 +8183,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
@@ -9055,6 +9130,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -10122,6 +10207,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -24549,6 +24644,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -25712,6 +25812,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -33548,6 +33653,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -38356,6 +38466,11 @@
           "detail": ""
         },
         {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
           "date": "2026-10-22",
           "action": "updated",
           "detail": ""
@@ -41124,6 +41239,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41149,6 +41274,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -41178,6 +41308,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41205,6 +41340,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41227,6 +41367,26 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41276,6 +41436,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41301,6 +41466,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -41330,6 +41500,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41355,6 +41530,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -41384,6 +41564,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41409,6 +41594,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -41438,6 +41628,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41463,6 +41658,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -41492,6 +41692,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41517,6 +41722,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41556,6 +41771,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41581,6 +41806,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41620,6 +41855,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41645,6 +41890,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41684,6 +41939,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41709,6 +41974,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41748,6 +42023,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41773,6 +42058,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41812,6 +42107,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41837,6 +42142,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41876,6 +42191,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41903,6 +42228,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41928,6 +42258,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -41967,6 +42307,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -41992,6 +42342,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -42031,6 +42391,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42056,6 +42426,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -42095,6 +42475,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42120,6 +42510,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -42159,6 +42559,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42184,6 +42594,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -42223,6 +42643,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42248,6 +42678,16 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -42287,6 +42727,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42312,6 +42762,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42341,6 +42796,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42366,6 +42826,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42395,6 +42860,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42420,6 +42890,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42449,6 +42924,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42474,6 +42954,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42503,6 +42988,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42530,6 +43020,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42555,6 +43050,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42589,6 +43089,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42614,6 +43124,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42643,6 +43158,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42668,6 +43188,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42697,6 +43222,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42722,6 +43252,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42751,6 +43286,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42776,6 +43316,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42805,6 +43350,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42830,6 +43380,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42859,6 +43414,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42884,6 +43444,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42913,6 +43478,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42938,6 +43508,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -42967,6 +43542,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -42992,6 +43572,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43021,6 +43606,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43046,6 +43636,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43075,6 +43670,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43100,6 +43700,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43129,6 +43734,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43154,6 +43764,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43183,6 +43798,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43208,6 +43828,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43237,6 +43862,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43262,6 +43892,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43291,6 +43926,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43316,6 +43956,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43345,6 +43990,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43370,6 +44020,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43404,6 +44059,16 @@
         },
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43429,6 +44094,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43458,6 +44128,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43483,6 +44158,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43512,6 +44192,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43537,6 +44222,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43566,6 +44256,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43591,6 +44286,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43620,6 +44320,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43645,6 +44350,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43674,6 +44384,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43699,6 +44414,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43728,6 +44448,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43753,6 +44478,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43782,6 +44512,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43807,6 +44542,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43836,6 +44576,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43861,6 +44606,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43890,6 +44640,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43915,6 +44670,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43944,6 +44704,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -43969,6 +44734,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -43998,6 +44768,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -44023,6 +44798,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -44052,6 +44832,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -44077,6 +44862,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -44106,6 +44896,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -44131,6 +44926,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -44160,6 +44960,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -44185,6 +44990,11 @@
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "added",
@@ -44214,6 +45024,11 @@
       "history": [
         {
           "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
           "action": "added",
           "detail": ""
         }
@@ -44222,6 +45037,146 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1347"
+    },
+    {
+      "id": 1348,
+      "title": "تفسیر حقانی",
+      "author": "شیخ ابو محمد الحق حقانی دہلوی",
+      "publisher": "الفیصل",
+      "category": "التفسير",
+      "volumes": 4,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ 8",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1348"
+    },
+    {
+      "id": 1349,
+      "title": "الاصابه في تمييز الصحابه",
+      "author": "شهاب الدين ابو الفضل احمد بن علي الاعسقلاني",
+      "publisher": "مكتبه الكليات الازهريه",
+      "category": "التاريخ",
+      "volumes": 13,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ب- خزانہ ٧",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1349"
+    },
+    {
+      "id": 1350,
+      "title": "الاثمار الجنيه في الاسماء الحنفيه",
+      "author": "الامام نور الدين علي بن سلطان محمد الهروي الحنفي",
+      "publisher": "منشورات الجمل",
+      "category": "الرجال",
+      "volumes": 1,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "د- خزانہ ٧",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1350"
+    },
+    {
+      "id": 1351,
+      "title": "مظاہر حق جدید شرح و مشکات شریف",
+      "author": "قطب الدین خان دہلوی",
+      "publisher": "ادارالاشاعت",
+      "category": "شرح الاحاديث",
+      "volumes": 5,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ہ- خزانہ ٧",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1351"
+    },
+    {
+      "id": 1352,
+      "title": "توضیحات شرح و مشکات شریف",
+      "author": "مولانا فضل محمد یوسف",
+      "publisher": "مکتبۃ العربیہ",
+      "category": "شرح الاحاديث",
+      "volumes": 8,
+      "maktaba": "نعمانیہ جدید",
+      "department": "دار الافتاء",
+      "almari": "ہ- خزانہ ٧",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "نیا نسخہ",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-10-29",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1352"
     }
   ],
   "categories": [
