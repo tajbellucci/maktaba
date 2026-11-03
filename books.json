@@ -7614,21 +7614,31 @@
       "department": "لائبریری",
       "almari": "ج-4، ط:خلفي",
       "hasPrint": true,
-      "status": "available",
+      "status": "issued",
       "notes": "",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "issued",
+          "detail": "حسن بن عبد الرحمن"
+        },
         {
           "date": "2026-10-10",
           "action": "added",
           "detail": ""
         }
       ],
-      "borrowerAddress": "",
-      "borrowerPhone": "",
+      "borrowerAddress": "الصف الثانی",
+      "borrowerPhone": "---",
       "issueType": "person",
-      "accession": "199"
+      "accession": "199",
+      "borrower": "حسن بن عبد الرحمن",
+      "issueDate": "2026-11-03",
+      "dueDate": "2026-11-05",
+      "borrowerContact": "الصف الثانی",
+      "borrowDays": 14
     },
     {
       "id": 200,
