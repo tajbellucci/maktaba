@@ -40586,11 +40586,16 @@
       "department": "لائبریری",
       "almari": "4جیم تحتی",
       "hasPrint": true,
-      "status": "available",
+      "status": "issued",
       "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "issued",
+          "detail": "حسن بن عبد الرحمن"
+        },
         {
           "date": "2026-10-23",
           "action": "updated",
@@ -40602,10 +40607,15 @@
           "detail": ""
         }
       ],
-      "borrowerAddress": "",
-      "borrowerPhone": "",
+      "borrowerAddress": "ثانیہ",
+      "borrowerPhone": "---",
       "issueType": "person",
-      "accession": "1205"
+      "accession": "1205",
+      "borrower": "حسن بن عبد الرحمن",
+      "issueDate": "2026-11-03",
+      "dueDate": "2026-11-05",
+      "borrowerContact": "ثانیہ",
+      "borrowDays": 2
     },
     {
       "id": 1206,
