@@ -10199,19 +10199,29 @@
     {
       "id": 288,
       "title": "مختصر القدوري",
-      "author": "أبو الحسين القدوري ت:428هـ، مع شرح التنقيح، للشيخ نظام الدين الكيرانوي، مت: محمد سعيد المظاهري",
-      "publisher": "دار الكتب العلمية بيروت",
+      "author": "أبو الحسن أحمد بن محمد بن احمد القدوري",
+      "publisher": "البشرى",
       "category": "الفقه",
-      "volumes": 2,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "4-د",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": ".",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "updated",
@@ -16951,19 +16961,24 @@
     {
       "id": 518,
       "title": "صفاتِ متشابہات اور سلفی عقائد",
-      "author": "مفتی عبد الواحد",
-      "publisher": "مجلس نشریات اسلام",
-      "category": "العقيدة وعلم الكلام",
+      "author": "ڈاکٹر مفتی عبد الواحد صاحب",
+      "publisher": "مجلس نشريات اسلام",
+      "category": "عقائد",
       "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "دار الافتاء",
-      "almari": "1ہ",
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،الباء",
       "hasPrint": true,
       "status": "available",
-      "notes": "",
+      "notes": "طباعتی",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-16",
           "action": "added",
@@ -34789,19 +34804,29 @@
     {
       "id": 1014,
       "title": "اصلاحى مجالس",
-      "author": "مفتى محمد تقى العثمانى",
-      "publisher": "ميمن اسلامک پبلشرز",
-      "category": "متفرقات",
-      "volumes": 9,
+      "author": "حضرت مولانا مفتی محمد تقی عثمانی صاحب",
+      "publisher": "میمن اسلامک پبلشرز",
+      "category": "ملفوظات",
+      "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "خزانة1-أ",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
       "hasPrint": true,
       "status": "available",
-      "notes": "مجلد 3 موجود فقط",
+      "notes": ".",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-22",
           "action": "added",
@@ -44796,19 +44821,29 @@
     {
       "id": 1313,
       "title": "درس ترمذی",
-      "author": "مولانا محمد تقی عثمانی",
-      "publisher": "ادارۃ القران والعلوم",
-      "category": "شرح حدیث",
-      "volumes": 2,
+      "author": "حضرت مولانا مفتی محمد تقی عثمانی صاحب",
+      "publisher": "مکتبہ الرشد",
+      "category": "الفقه",
+      "volumes": 1,
       "maktaba": "نعمانیہ قدیم",
-      "department": "دار الافتاء",
-      "almari": "ج - خزانہ ب",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
       "hasPrint": true,
       "status": "available",
-      "notes": "نیا نسخہ",
+      "notes": ".",
       "files": [],
       "present": true,
       "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
         {
           "date": "2026-10-29",
           "action": "updated",
@@ -47530,6 +47565,1129 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1396"
+    },
+    {
+      "id": 1397,
+      "title": "کلیاتِ امدادیہ",
+      "author": "حضرت حاجی امداد اللہ مہاجر مکی صاحب",
+      "publisher": "دارالإشاعت",
+      "category": "تصوّف",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1397"
+    },
+    {
+      "id": 1398,
+      "title": "آثارالسنن",
+      "author": "محمد بن علي النيموي صاحب",
+      "publisher": "مكتبة البشرى",
+      "category": "الحديث بن",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1398"
+    },
+    {
+      "id": 1399,
+      "title": "المنهاج السنة يعني راه سنت",
+      "author": "حضرت مولانا سرفراز خان صفدر صاحب",
+      "publisher": "مدرسہ نصرت العلوم",
+      "category": "سنت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1399"
+    },
+    {
+      "id": 1400,
+      "title": "سفر الحبيب إلى بيت رب العالمين",
+      "author": "حضرت مولانا مفتی عبد الرازق صاحب",
+      "publisher": "الميزاب پبلشرز",
+      "category": "حج",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1400"
+    },
+    {
+      "id": 1401,
+      "title": "حلال معیارات میں اختلاف",
+      "author": "حضرت مفتی یوسف عبد الرزاق صاحب",
+      "publisher": "شعبہ شرعی تحقیق",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1401"
+    },
+    {
+      "id": 1402,
+      "title": "مختارات من ادب العرب",
+      "author": "حضرت أبو الحسن علىي الندوي صاحب",
+      "publisher": "مجلس نشريات اسلام",
+      "category": "أدب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1402"
+    },
+    {
+      "id": 1403,
+      "title": "فارسی اردو بول چال",
+      "author": "مخدوم صابری صاحب",
+      "publisher": "ملک بک ڈپو",
+      "category": "فارسی سیکھنے کا قاعدہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1403"
+    },
+    {
+      "id": 1404,
+      "title": "خطبات الاحکام",
+      "author": "حضرت مولانا محمد اشرف علی تھانوی صاحب",
+      "publisher": "مجلس نشريات اسلام",
+      "category": "خطبات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1404"
+    },
+    {
+      "id": 1405,
+      "title": "حیلئہ ناجزہ",
+      "author": "حضرت حکیم الامت مولانا  محمد اشرف علی تھانوی صاحب",
+      "publisher": "دار الاشاعت",
+      "category": "عورتوں کا حق تنسیخ نکاح",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1405"
+    },
+    {
+      "id": 1406,
+      "title": "تأويلات أهل السنة",
+      "author": "أبو منصور محمد بن محمد بن محمود الماتريدي السمرقندي",
+      "publisher": "مطبعة الإرشاد",
+      "category": "علم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1406"
+    },
+    {
+      "id": 1407,
+      "title": "مختصر فلکیات",
+      "author": "مفتی محمد سلطان عالم صاحب",
+      "publisher": "السعادة",
+      "category": "علم الفلکیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1407"
+    },
+    {
+      "id": 1408,
+      "title": "تسہیل رؤیت ہلال",
+      "author": "مفتی محمد سلطان عالم صاحب",
+      "publisher": "الحجاز کراچی",
+      "category": "علم الفلکیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1408"
+    },
+    {
+      "id": 1409,
+      "title": "الأسنى في شرح أسماء الله الحسنى",
+      "author": "محمد بن احمد بن أبي بكر بن فرح الأنصاري القرطبي",
+      "publisher": "دار الصحابة",
+      "category": "علم الكلام",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1409"
+    },
+    {
+      "id": 1410,
+      "title": "تنزيه الأنبياء عمانسب اليهم حثالة الأغبياء",
+      "author": "أبو الحسن علي بن أحمد السبتي الأموي-المعروف بابن عمير",
+      "publisher": "دارالفكر",
+      "category": "خصائص الأنبياء",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1410"
+    },
+    {
+      "id": 1411,
+      "title": "الطرق الحكمية في السياسة الشرعية",
+      "author": "أبو عبدالله محمد بن قيم الجوزية",
+      "publisher": "داراحياءالعلوم",
+      "category": "السياسةوالقضاء",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1411"
+    },
+    {
+      "id": 1412,
+      "title": "منهاج السنة يعني راه سنت",
+      "author": "حضرت مولانا سرفراز خان صفدر صاحب",
+      "publisher": "مدرسہ نصرت العلوم",
+      "category": "سنت",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": ".",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1412"
+    },
+    {
+      "id": 1413,
+      "title": "زادالمعاد في هدي خير المعاد",
+      "author": "لابن قيم الجوزية",
+      "publisher": "مؤسسة الرسالة",
+      "category": "الحديث",
+      "volumes": 4,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف چوتھی،پانچوی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1413"
+    },
+    {
+      "id": 1414,
+      "title": "صفات متشابہات اور غیر مقلدین کے عقائد",
+      "author": "حضرت مولانا ابو حفص اعجاز صاحب",
+      "publisher": "دارالنعيم",
+      "category": "عقائد",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1414"
+    },
+    {
+      "id": 1415,
+      "title": "عدالتی فیصلے",
+      "author": "مفتی محمد تقی عثمانی صاحب",
+      "publisher": "اداره اسلاميات",
+      "category": "قضاء",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "صرف پہلی جلد موجود ہے، الخزانة3،الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1415"
+    },
+    {
+      "id": 1416,
+      "title": "فهرس الفهارس والأثبات",
+      "author": "عبد الحي بن عبد الكبير الكتاني",
+      "publisher": "دارالغرب الإسلامي",
+      "category": "سير",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،الباء",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1416"
+    },
+    {
+      "id": 1417,
+      "title": "لمحات النظر في سيرةالإمام زفر",
+      "author": "محمد زاهد الكوثري",
+      "publisher": "دارالكتب",
+      "category": "السيرة النبوية",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری الخزانة3،جیم",
+      "almari": "صرف دوسری جلد موجود ہے",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1417"
+    },
+    {
+      "id": 1418,
+      "title": "البحر الرائق",
+      "author": "زين الدين ابن نجيم صاحب",
+      "publisher": "ايچ ايم سعيد",
+      "category": "الفقه",
+      "volumes": 8,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "صرف پہلی جلد موجود ہے، الخزانة3،ج،صرف آٹھویں جلد موجود ہے،",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1418"
+    },
+    {
+      "id": 1419,
+      "title": "الوجه الصبيح في ختم الجامع الصحيح",
+      "author": "محمد علي الصديقي المكي صاحب",
+      "publisher": "إدارة القرآن",
+      "category": "سيرومناقب",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،ج، طباعتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1419"
+    },
+    {
+      "id": 1420,
+      "title": "منال الطالب في شرح طوال الغرائب",
+      "author": "المبارك بن محمد ابن الإثير صاحب",
+      "publisher": "إدارة القرآن",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،ج،صرف پہلی جلد موجود ہے،طباعتی",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1420"
+    },
+    {
+      "id": 1421,
+      "title": "تيسيرالمنطق",
+      "author": "المعرب نورالبشر محمد نور الحق",
+      "publisher": "مكتبة معهد عثمان بن عفان",
+      "category": "منطق",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3،ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "طباعتی",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1421"
+    },
+    {
+      "id": 1422,
+      "title": "أضواءالبيان في إيضاح القرأن بالقرأن",
+      "author": "محمد الأمين بن محمد المختار الجكني الشنقيطي صاحب",
+      "publisher": "الرئاسة العامة لإدرات البحوث العلمية والإفتاء والدعوة والإرشاد",
+      "category": "التفسير",
+      "volumes": 6,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف چھٹی جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1422"
+    },
+    {
+      "id": 1423,
+      "title": "حياة الصحابة",
+      "author": "محمد الأمين بن محمد المختار الجكني الشنقيطي صاحب",
+      "publisher": "کتب خانہ فیضی",
+      "category": "السيرة النبوية",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری ،تیسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1423"
+    },
+    {
+      "id": 1424,
+      "title": "بہشتی زیور",
+      "author": "حکیم الامت مولانا محمداشرف علی تھانوی صاحب",
+      "publisher": "کتب مكتبة الحرم",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1424"
+    },
+    {
+      "id": 1425,
+      "title": "اشرف السوانح",
+      "author": "حکیم الامت مولانا محمداشرف علی تھانوی صاحب",
+      "publisher": "دار الاشاعت",
+      "category": "سوانحِ حیات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1425"
+    },
+    {
+      "id": 1426,
+      "title": "الحج",
+      "author": "پروفیسر سید محمد سلیمان اشرف صاحب",
+      "publisher": "سید اکادمی",
+      "category": "الفقه",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1426"
+    },
+    {
+      "id": 1427,
+      "title": "الفقه وأصول الفقه",
+      "author": "محمد زاهد الكوثري صاحب",
+      "publisher": "مكتبة الاحرار",
+      "category": "فقہ،اصول فقہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1427"
+    },
+    {
+      "id": 1428,
+      "title": "مقدمہ کتاب التوحید",
+      "author": "افادات حضرت مولانا ابو محمد عبد الغنی الجاجروی،مرتب مفتی محمد الجاجروی صاحب",
+      "publisher": "محمدية دارالكتب",
+      "category": "تفسير واحكام",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1428"
+    },
+    {
+      "id": 1429,
+      "title": "ثبوت القدمين",
+      "author": "عبدالغني بن اسماعيل النابلسي صاحب",
+      "publisher": "مكتبة دارالشريف",
+      "category": "علم الكلام",
+      "volumes": 2,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف دوسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1429"
+    },
+    {
+      "id": 1430,
+      "title": "تحفة ذوى العرفان",
+      "author": "عبدالغني بن اسماعيل النابلسي صاحب",
+      "publisher": "مكتبة دارالشريف",
+      "category": "علم الكلام",
+      "volumes": 3,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "صرف تیسری جلد موجود ہے",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1430"
+    },
+    {
+      "id": 1431,
+      "title": "مقالات سعید",
+      "author": "علامة مولانا غلام رسول سعيدي صاحب",
+      "publisher": "رومی پبلیکیشنز",
+      "category": "مقالات",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1431"
+    },
+    {
+      "id": 1432,
+      "title": "درس بخاری",
+      "author": "مفتی نظام الدین صاحب",
+      "publisher": "النبراس",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1432"
+    },
+    {
+      "id": 1433,
+      "title": "حياة المسلمين",
+      "author": "مولانا اشرف علی تھانوی صاحب",
+      "publisher": "ااداره اسلاميات",
+      "category": "الحديث",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1433"
+    },
+    {
+      "id": 1434,
+      "title": "مبادي الفلسفة",
+      "author": "مولانا سعید احمد پالنپوری صاحب",
+      "publisher": "مکتبةالبشرى",
+      "category": "فلسفہ",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1434"
+    },
+    {
+      "id": 1435,
+      "title": "القاعدة النورانية",
+      "author": "معرب محمد عثمان الأفشاني صاحب",
+      "publisher": "مكتبة الفيحاء",
+      "category": "قاعدة",
+      "volumes": 1,
+      "maktaba": "نعمانیہ قدیم",
+      "department": "لائبریری",
+      "almari": "الخزانة3، ج",
+      "hasPrint": true,
+      "status": "available",
+      "notes": "۔",
+      "files": [],
+      "present": true,
+      "history": [
+        {
+          "date": "2026-11-03",
+          "action": "updated",
+          "detail": ""
+        },
+        {
+          "date": "2026-11-03",
+          "action": "added",
+          "detail": ""
+        }
+      ],
+      "borrowerAddress": "",
+      "borrowerPhone": "",
+      "issueType": "person",
+      "accession": "1435"
     }
   ],
   "categories": [
