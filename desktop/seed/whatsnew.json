@@ -1,6 +1,22 @@
 {
   "releases": [
     {
+      "version": "1.14.0",
+      "date": "2026-10-24",
+      "ur": [
+        "منسلک فائلیں (شامل، ہٹائی یا بدلی گئی) اب ہر کمپیوٹر پر خود آ جاتی ہیں: لائبریرین کے شائع کرتے ہی چند سیکنڈ میں، یا زیادہ سے زیادہ 6 منٹ میں۔ پڑھنے والے کمپیوٹر کو کچھ دبانا نہیں پڑتا۔",
+        "متن میں تلاش کر کے اسکین PDF اسی چھپے صفحے پر کھولیں: متن میں [ص 45] جیسے نشان ہوں تو نتائج میں صفحہ نمبر آتا ہے اور «PDF صفحہ» بٹن اسکین کو وہیں کھولتا ہے۔ کتاب میں «PDF صفحات کا فرق» لکھیں (مثلاً 2، یا 1:4، 121:5)۔"
+      ],
+      "ar": [
+        "الملفات المرفقة (المضافة أو المحذوفة أو المستبدلة) تصل الآن إلى كل جهاز تلقائيًا: خلال ثوانٍ من النشر، أو خلال 6 دقائق على الأكثر، دون أي نقرة على جهاز القارئ.",
+        "ابحث في النص وافتح الـPDF الممسوح على الصفحة المطبوعة نفسها: إذا كان في النص علامات مثل [ص 45] يظهر رقم الصفحة في النتائج ويفتح زر «PDF صفحة» الملف عليها. اكتب «فرق صفحات PDF» في بيانات الكتاب (مثل 2، أو 1:4، 121:5)."
+      ],
+      "en": [
+        "Attached files (added, removed or replaced) now reach every PC automatically: within seconds of publishing, or within 6 minutes at most, with no click on reader PCs.",
+        "Search the text, open the scanned PDF at the same printed page: with marks like [ص 45] in the text, results show the page and the «PDF page» button opens the scan there. Set «PDF page offset» on the book (e.g. 2, or 1:4, 121:5)."
+      ]
+    },
+    {
       "version": "1.13.0",
       "date": "2026-10-22",
       "ur": [
