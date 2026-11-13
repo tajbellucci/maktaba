@@ -1,6 +1,6 @@
 // Generates index.html from the scene table below. Run: node build.mjs
 // App-space coordinates are CSS px of the app at 1600x900 (the screenshots are 2x).
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync } from "node:fs";
 
 const W = 1600, H = 900;
 const FRAME = { x: 64, y: 128, w: 1328, chrome: 38 };
@@ -11,121 +11,114 @@ const SCREEN_H = Math.round(H * K);
 const INTRO = 5.0, OUTRO = 5.5, XF = 0.4;
 
 // ---- scene table ---------------------------------------------------------
-// cam: [at, dur, S, cx, cy]  · move: [at, dur, x, y]  · click: at
-// ring: [from, to, [x,y,w,h]] · chips: [text, activateAt] · shots: [name, at]
-const SCENES = [
-  { title: "لائبریری کھولیں", dur: 6.0, cur: [1150, 560],
-    chips: [["سرورق پر «لائبریری کھولیں» دبائیں", 0.5], ["کتابوں کی فہرست کھل جاتی ہے", 3.4]],
-    shots: [["01-home", 0], ["02-list", 3.3]],
-    cam: [[0.4, 1.4, 1.35, 800, 760], [3.1, 1.0, 1, 800, 450]],
-    moves: [[0.9, 0.9, 800, 782]], clicks: [2.0],
-    rings: [[1.2, 3.1, [717, 756, 166, 53]]] },
+// Positions come from rects.json (measured in the running app by the recorder),
+// so rings and zooms follow the real screens. Each scene is written as steps:
+//   { t, to:[screen,key], click, ring: seconds, S: zoom, move:false }  or  { t, reset:true }
+const rects = JSON.parse(readFileSync(new URL("./rects.json", import.meta.url), "utf8"));
+const MISSING = [];
+const R = (sc, k) => { const r = rects[sc] && rects[sc][k]; if (!r) { MISSING.push(`${sc}.${k}`); return [700, 400, 200, 60]; } return r; };
+const mid = (r) => [Math.round(r[0] + r[2] / 2), Math.round(r[1] + r[3] / 2)];
 
-  { title: "کتابوں کی فہرست", dur: 6.0, cur: [800, 700],
-    chips: [["ہر سطر میں نمبر، مصنف اور کتاب", 0.4], ["اوپر کے ٹیب: موجود، معار، مطلوب", 1.4], ["سرخ نشان: کتاب اس وقت موجود نہیں", 3.8]],
-    shots: [["02-list", 0]],
-    cam: [[0.5, 1.4, 1.45, 1180, 300], [3.0, 1.2, 1.5, 900, 400]],
-    moves: [[1.2, 0.9, 1230, 148], [3.4, 0.8, 1100, 374]], clicks: [],
-    rings: [[1.4, 3.0, [1010, 125, 445, 48]], [3.8, 5.6, [356, 354, 1109, 41]]] },
+function build(s) {
+  const out = { title: s.title, dur: s.dur, cur: s.cur || [800, 600], chips: s.chips, shots: s.shots, cam: [], moves: [], clicks: [], rings: [], special: s.special };
+  for (const st of s.steps || []) {
+    if (st.reset) { out.cam.push([st.t, 1.0, 1, 800, 450]); continue; }
+    const r = R(st.to[0], st.to[1]); const [cx, cy] = mid(r);
+    if (st.S) out.cam.push([Math.max(0.15, st.t - 0.15), 1.0, st.S, cx, cy]);
+    if (st.move !== false) out.moves.push([st.t, 0.8, cx, cy]);
+    if (st.click) out.clicks.push(+(st.t + 0.95).toFixed(2));
+    if (st.ring) out.rings.push([+(st.t + 0.25).toFixed(2), +(st.t + 0.25 + st.ring).toFixed(2), r]);
+  }
+  return out;
+}
 
-  { title: "موضوع اور الماری سے دیکھیں", dur: 8.0, cur: [1100, 374],
-    chips: [["دائیں پٹی سے «موضوع» چنیں", 0.4], ["موضوع پر کلک: اس کی سب کتابیں", 2.2], ["«الماری» سے الماری وار فہرست", 4.4]],
-    shots: [["02-list", 0], ["03-category", 1.7], ["04-almari", 5.5]],
-    cam: [[0.3, 1.0, 1.35, 1300, 320], [5.6, 1.0, 1.2, 1200, 400]],
-    moves: [[0.5, 0.8, 1521, 240], [2.2, 0.7, 1348, 288], [4.4, 0.7, 1521, 396]], clicks: [1.4, 3.0, 5.2],
-    rings: [[2.6, 4.3, [1232, 270, 233, 36]]] },
+const SPEC = [
+  { title: "لائبریری کھولیں", dur: 6.5, shots: [["01-home", 0], ["02-list", 3.7]],
+    chips: [["سرورق پر «افتح المكتبة» دبائیں", 0.5], ["کتابوں کی فہرست کھل جاتی ہے", 3.8]],
+    steps: [{ t: 0.6, to: ["01-home", "enter"], click: 1, ring: 2.5, S: 1.35 }, { t: 3.6, reset: true }] },
 
-  { title: "نام سے تلاش", dur: 6.5, cur: [1521, 396],
-    chips: [["تلاش کے خانے میں لکھیں", 0.4], ["نام یا مصنف، دونوں سے ملتی ہے", 2.4], ["نتیجہ فوراً سامنے", 4.0]],
-    shots: [["02-list", 0], ["05-search", 2.3]],
-    cam: [[0.3, 1.2, 1.7, 1180, 205], [3.4, 1.2, 1.35, 1000, 330]],
-    moves: [[0.5, 0.8, 1250, 205]], clicks: [1.4],
-    rings: [[1.3, 3.4, [408, 182, 1010, 47]], [4.0, 6.0, [356, 272, 1109, 83]]] },
+  { title: "کتابوں کی فہرست", dur: 7.5, shots: [["02-list", 0]],
+    chips: [["ہر سطر میں رقم، کتاب، مؤلف اور ناشر", 0.4], ["اوپر کے ٹیب: متوفر، معار، غیر موجود، متأخر", 2.4], ["ہر کتاب کے ساتھ رنگین نقطہ: موجود یا نہیں", 4.8]],
+    steps: [{ t: 0.4, to: ["02-list", "head"], move: false, ring: 1.7, S: 1.3 }, { t: 2.3, to: ["02-list", "tabs"], ring: 2.3, S: 1.5 }, { t: 4.8, to: ["02-list", "row3"], ring: 2.4, S: 1.4 }] },
 
-  { title: "کتاب کی تفصیل", dur: 7.5, cur: [1250, 205],
-    chips: [["کتاب پر ماؤس رکھیں: جھلک", 0.4], ["کلک کریں: مکمل تفصیل اور سرورق", 4.3]],
-    shots: [["02-list", 0], ["06-hover", 1.6], ["09-detail", 4.6]],
-    cam: [[0.3, 1.0, 1.3, 1150, 560], [4.6, 1.0, 1.25, 800, 400]],
-    moves: [[0.4, 0.9, 700, 456], [3.6, 0.5, 660, 456]], clicks: [4.3],
-    rings: [[2.0, 3.9, [1040, 436, 525, 350]]] },
+  { title: "موضوع اور خزانہ سے دیکھیں", dur: 8.5, shots: [["02-list", 0], ["03-category", 2.3], ["04-almari", 5.7]],
+    chips: [["دائیں پٹی سے «الموضوع» چنیں", 0.4], ["موضوع پر کلک: اس کی سب کتابیں", 2.4], ["«الخزانة» سے الماری وار فہرست", 5.0]],
+    steps: [{ t: 0.3, to: ["02-list", "railCategory"], click: 1, ring: 1.6, S: 1.3 }, { t: 2.4, to: ["03-category", "groupRow"], click: 1, ring: 2.4, S: 1.4 }, { t: 4.9, to: ["04-almari", "railShelf"], click: 1, ring: 1.8, S: 1.3 }] },
 
-  { title: "کتاب کے متن میں تلاش", dur: 8.0, cur: [660, 456],
-    chips: [["«متن میں تلاش» کے خانے میں لفظ لکھیں", 0.5], ["«تلاش کریں» دبائیں", 3.0], ["ہر کتاب میں کتنی جگہ ملا", 4.4]],
-    shots: [["02-list", 0], ["07-fts", 2.4]],
-    cam: [[0.3, 1.2, 1.75, 190, 400]],
-    moves: [[0.6, 0.9, 180, 220], [3.0, 0.7, 257, 484]], clicks: [1.7, 3.9],
-    rings: [[1.4, 2.9, [55, 203, 238, 35]], [3.0, 4.3, [192, 464, 130, 39]], [4.4, 7.6, [55, 540, 267, 95]]] },
+  { title: "نام سے تلاش", dur: 7.0, shots: [["02-list", 0], ["05-search", 2.4]],
+    chips: [["تلاش کے خانے میں «تفسير» لکھیں", 0.4], ["تلاش صرف کتاب کے نام میں ہوتی ہے", 2.6], ["جو لکھا وہی ملتا ہے، فوراً", 4.5]],
+    steps: [{ t: 0.4, to: ["02-list", "search"], click: 1, ring: 2.0, S: 1.6 }, { t: 3.2, to: ["05-search", "rows"], move: false, ring: 3.0, S: 1.25 }] },
 
-  { title: "کتاب پڑھیں", dur: 8.5, cur: [700, 400],
-    chips: [["نتیجے پر کلک: کتاب کھل جاتی ہے", 0.4], ["تلاش کا لفظ نمایاں", 2.0], ["نیچے ہر نتیجہ، باب اور صفحے کے ساتھ", 4.8]],
-    shots: [["08-reader", 0]],
-    cam: [[1.8, 1.4, 2.0, 820, 232], [4.6, 1.3, 1.35, 800, 690]],
-    moves: [[0.4, 0.8, 1400, 646], [5.0, 0.8, 1200, 646]], clicks: [1.4],
-    rings: [[2.8, 4.4, [796, 216, 50, 32]], [5.2, 8.1, [29, 628, 1555, 37]]] },
+  { title: "کتاب کی جھلک اور تفصیل", dur: 8.0, shots: [["02-list", 0], ["06-hover", 1.6], ["07-detail", 4.8]],
+    chips: [["کتاب پر ماؤس رکھیں: جھلک", 0.4], ["دو بار کلک: مکمل تفصیل", 4.5], ["نیا «حفظ» بٹن، تبدیلی کے بعد روشن", 5.8]],
+    steps: [{ t: 0.4, to: ["06-hover", "row"], ring: 2.6, S: 1.3 }, { t: 3.8, to: ["06-hover", "row"], click: 1, S: 1 }, { t: 5.9, to: ["07-detail", "save"], ring: 1.8, S: 1.7 }] },
 
-  { title: "نئی کتاب شامل کریں", dur: 8.5, cur: [800, 600],
-    chips: [["اوپر «شامل کریں» دبائیں", 0.4], ["نام، مصنف، موضوع اور جلدیں لکھیں", 2.6], ["«محفوظ کریں» دبائیں", 5.2]],
-    shots: [["01-home", 0], ["10-add", 1.8]],
-    cam: [[0.2, 1.0, 1.6, 1480, 60], [1.9, 1.1, 1.45, 1386, 300], [4.4, 1.0, 1.45, 1386, 640], [7.2, 0.9, 1, 800, 450]],
-    moves: [[0.4, 0.9, 1557, 30], [2.4, 0.8, 1450, 229], [4.8, 0.8, 1532, 817]], clicks: [1.5, 5.8],
-    rings: [[1.0, 1.9, [1528, 7, 58, 50]], [2.6, 4.2, [1208, 205, 373, 48]], [5.0, 6.6, [1485, 793, 95, 49]]] },
+  { title: "ترتیب اور Excel", dur: 8.0, shots: [["08-sort", 0], ["09-more", 3.6]],
+    chips: [["عنوان پر کلک: اسی کے مطابق ترتیب", 0.4], ["دوبارہ کلک: الٹی ترتیب", 1.8], ["«المزيد» ← «تصدير إلى Excel»: فہرست فائل میں", 4.0]],
+    steps: [{ t: 0.4, to: ["08-sort", "headTitle"], click: 1, ring: 2.8, S: 1.5 }, { t: 3.3, to: ["09-more", "more"], click: 1, ring: 1.4, S: 1.3 }, { t: 5.2, to: ["09-more", "excel"], ring: 2.4, S: 1.5 }] },
 
-  { title: "سرورق کی تصویر لگائیں", dur: 8.0, cur: [1532, 817],
-    chips: [["تصویر کے خانے پر کلک: کمپیوٹر سے", 0.7], ["یا «انٹرنیٹ سے تصویر»: لنک ڈالیں", 2.5], ["«محفوظ کریں» دبائیں", 5.8]],
-    shots: [["11a-cover-empty", 0], ["11b-cover-url", 3.9]],
-    cam: [[0.2, 1.1, 1.6, 805, 280], [3.9, 1.1, 1.7, 1386, 110]],
-    moves: [[0.5, 0.9, 805, 225], [2.5, 0.7, 647, 322], [5.4, 0.7, 1532, 180]], clicks: [3.4, 6.3],
-    rings: [[0.9, 2.4, [493, 165, 625, 121]], [2.5, 3.8, [493, 300, 309, 44]], [4.6, 5.8, [1192, 89, 390, 41]]] },
+  { title: "نئی کتاب شامل کریں", dur: 8.0, shots: [["01-home", 0], ["10-add", 1.6]],
+    chips: [["اوپر «إضافة» دبائیں", 0.4], ["نام، مؤلف، موضوع، جلدیں، شاخ اور خزانہ لکھیں", 2.6], ["«حفظ» دبائیں", 5.6]],
+    steps: [{ t: 0.3, to: ["01-home", "addOne"], click: 1, ring: 1.2, S: 1.6 }, { t: 1.8, reset: true }, { t: 2.4, to: ["10-add", "title"], ring: 2.6, S: 1.3 }, { t: 5.4, to: ["10-add", "save"], click: 1, ring: 1.7, S: 1.5 }] },
 
-  { title: "کتاب جاری کریں", dur: 9.5, cur: [800, 640],
-    chips: [["کتاب کھولیں: «کتاب جاری کریں»", 0.4], ["نام، پتہ، فون اور کتنے دن", 2.5], ["تصدیق میں «کتاب جاری کریں» دبائیں", 6.2], ["شعبے کو دینا ہو تو «شعبے کو منتقل کریں»", 8.2]],
-    shots: [["c1-detail-circ", 0], ["c2-issue-form", 1.9], ["c3-issue-confirm", 6.0], ["c4-issued-detail", 8.0]],
-    cam: [[0.2, 1.0, 1.3, 800, 480], [2.0, 1.0, 1.5, 1386, 300], [6.0, 0.9, 1.6, 1376, 160], [8.0, 0.9, 1.15, 800, 450]],
-    moves: [[0.5, 0.8, 805, 479], [2.4, 0.7, 1450, 220], [4.4, 0.8, 1521, 594], [6.6, 0.7, 1521, 272]], clicks: [1.5, 5.5, 7.6],
-    rings: [[0.9, 1.8, [493, 382, 625, 194]], [2.6, 3.5, [1192, 200, 390, 41]], [3.5, 4.4, [1192, 426, 390, 119]], [6.3, 7.5, [1463, 248, 117, 49]]] },
+  { title: "ترمیم اور «حفظ»", dur: 7.5, shots: [["11-edit", 0]],
+    chips: [["کتاب کھول کر کوئی خانہ بدلیں", 0.4], ["«حفظ» روشن ہو جاتا ہے، دبائیں", 2.6], ["غلطی ہو تو «تراجع» اور «إعادة»", 5.0]],
+    steps: [{ t: 0.4, to: ["11-edit", "category"], ring: 2.0, S: 1.5 }, { t: 2.6, to: ["11-edit", "save"], click: 1, ring: 2.0, S: 1.6 }, { t: 5.0, to: ["11-edit", "undo"], ring: 2.3, S: 1.4 }] },
 
-  { title: "کتاب واپس لیں", dur: 8.0, cur: [800, 700],
-    chips: [["جاری کتاب میں لینے والا اور واپسی کی تاریخ", 0.4], ["«واپس موصول ہوئی» دبائیں", 2.4], ["تصدیق کریں: کتاب دوبارہ موجود", 4.2]],
-    shots: [["c4-issued-detail", 0], ["c8-return-confirm", 3.4], ["c9-returned", 5.6]],
-    cam: [[0.2, 1.0, 1.35, 800, 420], [3.4, 0.9, 1.6, 1376, 145], [5.6, 0.9, 1.3, 800, 480]],
-    moves: [[1.0, 0.7, 700, 440], [2.3, 0.6, 805, 590], [3.9, 0.7, 1518, 248]], clicks: [3.0, 5.1],
-    rings: [[0.8, 2.3, [493, 406, 625, 76]], [2.4, 3.2, [493, 493, 625, 194]], [4.0, 5.0, [1457, 224, 122, 49]], [6.2, 7.6, [493, 382, 625, 194]]] },
+  { title: "فائلیں منسلک کریں", dur: 9.0, shots: [["12-attach-pair", 0], ["13-attach-docs", 4.6]],
+    chips: [["«إرفاق ملف»: PDF اور متن دونوں لگائیں", 0.4], ["Word، Excel، PowerPoint، EPUB اور تصویر: شکل «ملف آخر»", 4.8], ["«فتح الملف» اسے کمپیوٹر کے اپنے پروگرام میں کھولتا ہے", 6.8]],
+    steps: [{ t: 0.4, to: ["12-attach-pair", "fileRow"], ring: 2.2, S: 1.35 }, { t: 2.8, to: ["12-attach-pair", "offset"], ring: 1.6, S: 1.5 }, { t: 4.8, to: ["13-attach-docs", "fileRow"], ring: 2.0, S: 1.4 }, { t: 6.9, to: ["13-attach-docs", "open0"], ring: 1.6, S: 1.7 }] },
 
-  { title: "جاری اور میعاد ختم کتابیں", dur: 8.5, cur: [800, 600],
-    chips: [["«معار» ٹیب: سب جاری کتابیں", 0.4], ["«میعاد ختم»: جن کی واپسی کی تاریخ گزر گئی", 3.0], ["مزید: «جاری شدہ کتابیں» کی مکمل فہرست", 5.8]],
-    shots: [["c5-tab-issued", 0], ["c6-tab-overdue", 3.2], ["c7-issued-list", 5.6]],
-    cam: [[0.2, 1.0, 1.4, 1000, 260], [5.6, 0.9, 1.25, 1152, 160]],
-    moves: [[0.4, 0.8, 1226, 149], [2.3, 0.7, 1048, 149]], clicks: [1.3, 3.0],
-    rings: [[0.8, 2.6, [1188, 125, 76, 48]], [1.3, 3.0, [344, 271, 1121, 82]], [3.5, 5.4, [344, 271, 1121, 41]], [6.2, 8.1, [704, 4, 896, 272]]] },
+  { title: "Word فائل ایپ کے اندر", dur: 7.5, shots: [["14-docx-reader", 0]],
+    chips: [["Word فائل کے ساتھ «افتح في التطبيق وابحث» دبائیں", 0.4], ["سادہ متن کی طرح کھلتی ہے", 2.4], ["اندر تلاش، لفظ نمایاں اور نتائج کی فہرست", 4.2]],
+    steps: [{ t: 0.4, to: ["14-docx-reader", "tabs"], ring: 1.8, S: 1.6 }, { t: 2.6, to: ["14-docx-reader", "text"], ring: 2.0, S: 1.25 }, { t: 4.4, to: ["14-docx-reader", "results"], ring: 2.8, S: 1.3 }] },
 
-  { title: "کتاب حذف کریں", dur: 9.5, cur: [1200, 500], special: "delete",
-    chips: [["کتاب کے ساتھ والے خانے میں ٹک لگائیں", 0.3], ["اوپر «حذف کریں» دبائیں", 2.9], ["تصدیق پر OK: کئی کتابیں ایک ساتھ بھی", 4.6]],
-    shots: [["02-list", 0], ["14-delete-tick", 1.8]],
-    cam: [[0.2, 1.1, 1.45, 1150, 661], [2.6, 1.1, 1, 800, 450], [4.3, 0.6, 1.5, 800, 440], [6.1, 0.8, 1.15, 900, 600]],
-    moves: [[0.6, 0.9, 1457, 661], [3.0, 0.9, 1436, 30], [4.9, 0.7, 880, 495]], clicks: [1.7, 4.1, 5.9],
-    rings: [[1.2, 2.6, [1446, 650, 22, 22]], [3.2, 4.5, [1407, 7, 58, 50]]] },
+  { title: "متن میں تلاش، PDF اسی صفحے پر", dur: 10.0, shots: [["15-reader-marks", 0], ["16-pdf-page", 6.4]],
+    chips: [["متن میں [ص 45] جیسے نشان ہوں تو نتیجے میں چھپا صفحہ نمبر آتا ہے", 0.4], ["«PDF صفحة» دبائیں", 3.6], ["اسکین ٹھیک اسی صفحے پر کھل جاتا ہے", 6.6], ["کتاب میں «فرق صفحات PDF» ایک بار لکھیں", 8.2]],
+    steps: [{ t: 0.4, to: ["15-reader-marks", "pageCol"], ring: 2.6, S: 1.4 }, { t: 3.4, to: ["15-reader-marks", "pdfBtn"], click: 1, ring: 1.8, S: 1.6 }, { t: 6.2, reset: true }, { t: 6.6, to: ["16-pdf-page", "pdf"], move: false, ring: 2.8, S: 1.1 }] },
 
-  { title: "تبدیلیاں خود شائع ہوتی ہیں", dur: 7.0, cur: [1540, 860],
-    chips: [["ہر تبدیلی چند سیکنڈ بعد خود بخود", 0.3], ["باقی کمپیوٹروں تک فوراً پہنچتی ہے", 2.6], ["اختلاف کا پیغام آئے تو OK دبائیں", 4.4]],
-    shots: [["15-published", 0]],
-    cam: [[0.2, 1.3, 1.8, 800, 800], [4.2, 1.1, 1, 800, 450]],
-    moves: [], clicks: [],
-    rings: [[1.2, 3.6, [737, 800, 126, 48]]] },
+  { title: "کئی کتابیں ایک ساتھ", dur: 6.5, shots: [["17-tabs", 0]],
+    chips: [["ہر کتاب ریڈر میں الگ ٹیب میں کھلتی ہے", 0.4], ["اوپر «الكتب المفتوحة» سے واپس آئیں", 2.6], ["ہر ٹیب اپنی تلاش اور صفحہ یاد رکھتا ہے", 4.2]],
+    steps: [{ t: 0.4, to: ["17-tabs", "tabs"], ring: 3.2, S: 1.7 }, { t: 4.2, reset: true }] },
 
-  { title: "رنگ اور لکھائی", dur: 6.5, cur: [800, 600],
-    chips: [["اوپر «مظہر» دبائیں", 0.3], ["روشن یا تاریک انداز، اور رنگ", 2.4], ["لکھائی کا سائز اور ترتیب", 4.1]],
-    shots: [["01-home", 0], ["16-appearance", 1.5]],
-    cam: [[0.2, 0.9, 1.6, 1105, 60], [1.6, 1.0, 1.35, 1180, 300]],
-    moves: [[0.3, 0.8, 1105, 30]], clicks: [1.2],
-    rings: [[0.8, 1.6, [1076, 7, 58, 50]], [2.4, 3.9, [1320, 160, 268, 125]], [4.1, 6.2, [956, 327, 624, 45]]] },
+  { title: "کئی کتابوں کے متن میں تلاش", dur: 8.0, shots: [["18-fts", 0]],
+    chips: [["اوپر «البحث» دبائیں، کتابوں پر ٹک لگائیں", 0.4], ["لفظ لکھ کر «ابحث» دبائیں", 3.0], ["ہر کتاب میں کتنی جگہ ملا", 5.2]],
+    steps: [{ t: 0.4, to: ["18-fts", "ibSearch"], ring: 1.6, S: 1.4 }, { t: 2.2, to: ["18-fts", "term"], click: 1, ring: 1.8, S: 1.6 }, { t: 4.8, to: ["18-fts", "results"], ring: 2.8, S: 1.3 }] },
 
-  { title: "موضوعات اور بیک اپ", dur: 7.0, cur: [800, 600],
-    chips: [["مزید: «موضوعات کی فہرست»", 0.3], ["نیا موضوع لکھ کر شامل کریں", 1.4], ["«بیک اپ» سے محفوظ نقل بنائیں", 4.3]],
-    shots: [["18-cats", 0], ["01-home", 3.6]],
-    cam: [[0.2, 1.0, 1.5, 1300, 300], [3.7, 1.0, 1.6, 1331, 60]],
-    moves: [[1.0, 0.8, 1350, 86], [2.4, 0.6, 1076, 86], [4.0, 0.8, 1361, 30]], clicks: [3.1, 5.0],
-    rings: [[1.3, 2.6, [1127, 63, 455, 46]], [4.3, 6.6, [1332, 7, 58, 50]]] },
+  { title: "کتاب جاری کریں", dur: 10.0, shots: [["19-issue-btn", 0], ["20-issue-form", 1.9], ["21-issue-confirm", 6.0], ["22-issued", 8.0]],
+    chips: [["کتاب کھولیں: «إعارة الكتاب»", 0.4], ["نام، پتہ، فون اور کتنے دن", 2.6], ["تصدیق میں «إعارة الكتاب» دبائیں", 6.2], ["کتاب «معار» ہو گئی", 8.2]],
+    steps: [{ t: 0.4, to: ["19-issue-btn", "issue"], click: 1, ring: 1.4, S: 1.5 }, { t: 2.4, to: ["20-issue-form", "borrower"], ring: 3.2, S: 1.35 }, { t: 5.2, to: ["20-issue-form", "save"], click: 1, ring: 0.9, S: 1.5 }, { t: 6.4, to: ["21-issue-confirm", "go"], click: 1, ring: 1.2, S: 1.5 }, { t: 8.2, to: ["22-issued", "tracking"], ring: 1.5, S: 1.3 }] },
+
+  { title: "کتاب واپس لیں", dur: 7.5, shots: [["22-issued", 0], ["23-return-confirm", 3.2], ["24-returned", 5.6]],
+    chips: [["جاری کتاب میں لینے والا اور واپسی کی تاریخ", 0.4], ["«تم الإرجاع» دبائیں اور تصدیق کریں", 2.4], ["کتاب دوبارہ «متوفر»", 5.7]],
+    steps: [{ t: 0.4, to: ["22-issued", "ret"], click: 1, ring: 2.0, S: 1.4 }, { t: 3.4, to: ["23-return-confirm", "go"], click: 1, ring: 1.6, S: 1.5 }, { t: 5.8, to: ["24-returned", "tracking"], ring: 1.4, S: 1.3 }] },
+
+  { title: "جاری اور میعاد ختم کتابیں", dur: 9.0, shots: [["25-tab-issued", 0], ["26-tab-overdue", 3.2], ["27-issued-list", 6.0]],
+    chips: [["«معار» ٹیب: سب جاری کتابیں", 0.4], ["«متأخر»: واپسی کی تاریخ گزر چکی", 3.3], ["«المزيد» ← «الكتب المعارة»: مکمل فہرست", 6.2]],
+    steps: [{ t: 0.4, to: ["25-tab-issued", "tab"], click: 1, ring: 2.2, S: 1.4 }, { t: 3.2, to: ["26-tab-overdue", "tab"], click: 1, ring: 2.4, S: 1.4 }, { t: 6.1, to: ["27-issued-list", "dlg"], ring: 2.4, S: 1.15 }] },
+
+  { title: "کتاب حذف کریں", dur: 11.5, special: "delete", shots: [["28-delete-tick", 0], ["29-bin", 7.8]],
+    chips: [["کتاب کے ساتھ والے خانے میں ٹک لگائیں", 0.4], ["اوپر «حذف» دبائیں، تصدیق پر OK", 2.8], ["کتاب «سلة المحذوفات» میں 30 دن رہتی ہے", 7.9], ["وہاں سے «استعادة» سے واپس لائیں", 9.6]],
+    steps: [{ t: 0.4, to: ["28-delete-tick", "tick"], click: 1, ring: 1.6, S: 1.45 }, { t: 2.7, to: ["28-delete-tick", "del"], click: 1, ring: 1.6, S: 1.5 }, { t: 5.6, reset: true }, { t: 7.9, to: ["29-bin", "restore"], ring: 3.0, S: 1.3 }] },
+
+  { title: "تبدیلیاں خود شائع ہوتی ہیں", dur: 8.0, shots: [["30-publish", 0]],
+    chips: [["ہر تبدیلی چند سیکنڈ بعد خود شائع", 0.3], ["نئی کتاب، حذف اور منسلک فائلیں، سب کمپیوٹروں تک خود پہنچتی ہیں", 2.6], ["پڑھنے والے کمپیوٹر پر کچھ دبانا نہیں پڑتا", 5.0]],
+    steps: [{ t: 0.3, to: ["30-publish", "publish"], ring: 6.0, S: 1.7 }] },
+
+  { title: "سرورق کی تصویر", dur: 8.0, shots: [["33-cover", 0], ["34-cover-url", 3.9]],
+    chips: [["تصویر کے خانے میں کمپیوٹر سے تصویر لگائیں", 0.5], ["یا «من الإنترنت»: لنک ڈالیں", 3.4], ["«حفظ» دبائیں", 6.0]],
+    steps: [{ t: 0.4, to: ["33-cover", "cover"], ring: 3.0, S: 1.5 }, { t: 4.1, to: ["34-cover-url", "input"], ring: 2.8, S: 1.5 }] },
+
+  { title: "رنگ اور لکھائی", dur: 6.5, shots: [["31-appearance", 0]],
+    chips: [["اوپر «المظهر» دبائیں", 0.3], ["روشن یا تاریک انداز، اور رنگ", 2.2], ["لکھائی کا سائز اور ترتیب", 4.0]],
+    steps: [{ t: 0.3, to: ["31-appearance", "appearance"], ring: 1.6, S: 1.4 }, { t: 2.2, to: ["31-appearance", "dlg"], ring: 3.6, S: 1.2 }] },
+
+  { title: "موضوعات اور بیک اپ", dur: 7.5, shots: [["32-cats", 0], ["01-home", 3.8]],
+    chips: [["«المزيد» ← «قائمة الموضوعات»", 0.3], ["نیا موضوع لکھ کر شامل کریں", 1.6], ["«نسخة احتياطية» سے محفوظ نقل بنائیں", 4.2]],
+    steps: [{ t: 0.3, to: ["32-cats", "dlg"], ring: 3.2, S: 1.3 }, { t: 3.9, to: ["01-home", "backup"], click: 1, ring: 2.6, S: 1.6 }] },
 ];
+const SCENES = SPEC.map(build);
+if (MISSING.length) console.warn("MISSING RECTS (placeholder used):", MISSING.join(", "));
 
 // ---- timing --------------------------------------------------------------
 let t = INTRO - XF;
@@ -158,13 +151,13 @@ function sceneHTML(s) {
   let special = "";
   if (s.special === "delete") {
     special = `
-      <div id="${id}-wash" class="wash" style="left:356px;top:641px;width:1109px;height:41px"></div>
+      <div id="${id}-wash" class="wash" style="left:${R("28-delete-tick","row")[0]}px;top:${R("28-delete-tick","row")[1]}px;width:${R("28-delete-tick","row")[2]}px;height:${R("28-delete-tick","row")[3]}px"></div>
       <div id="${id}-confirm" class="confirm">
-        <div class="cf-bar">Maktaba Naumania</div>
-        <div class="cf-msg">«نور الایضاح» حذف کریں؟</div>
-        <div class="cf-btns"><span class="cf-ok">OK</span><span class="cf-cancel">Cancel</span></div>
+        <div class="cf-bar" data-layout-ignore>Maktaba Naumania</div>
+        <div class="cf-msg">کیا یہ کتاب حذف کریں؟</div>
+        <div class="cf-btns"><span class="cf-ok" data-layout-ignore>OK</span><span class="cf-cancel" data-layout-ignore>Cancel</span></div>
       </div>
-      <div id="${id}-toast" class="toast">کتاب حذف ہو گئی</div>`;
+      <div id="${id}-toast" class="toast">کتاب «سلة المحذوفات» میں گئی</div>`;
   }
   const chips = s.chips.map(([txt], k) => `
       <div id="${id}-chip${k}" class="chip">
@@ -201,8 +194,8 @@ js.push(`tl.fromTo("#glowA", { scale: 1, x: 0 }, { scale: 1.12, x: 40, duration:
 js.push(`tl.fromTo("#glowB", { scale: 1.1, y: 0 }, { scale: 1, y: -50, duration: ${(TOTAL / 4).toFixed(2)}, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);`);
 js.push(`tl.fromTo("#dots", { x: 0, y: 0 }, { x: 56, y: -56, duration: ${TOTAL}, ease: "none" }, 0);`);
 // intro
-js.push(`tl.fromTo("#introLogo", { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.6)" }, 0.3);`);
-js.push(`tl.fromTo("#introTitle", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.8);`);
+js.push(`tl.fromTo("#introLogo", { scale: 0.82, rotation: -6 }, { scale: 1, rotation: 0, duration: 0.9, ease: "back.out(1.6)" }, 0);`);
+js.push(`tl.fromTo("#introTitle", { y: 26 }, { y: 0, duration: 0.8, ease: "power3.out" }, 0);`);
 js.push(`tl.fromTo("#introSub", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.2);`);
 js.push(`tl.fromTo("#introPill", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 1.7);`);
 js.push(`tl.fromTo("#introRule", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power3.inOut" }, 1.0);`);
@@ -245,7 +238,7 @@ for (const s of SCENES) {
   let prev = { s: 1, x: 0, y: 0 };
   for (const [at, dur, S, cx, cy] of s.cam) {
     const n = camT(S, cx, cy);
-    js.push(`  tl.fromTo(c, { s: ${prev.s}, x: ${prev.x}, y: ${prev.y} }, { s: ${n.s}, x: ${n.x}, y: ${n.y}, duration: ${dur}, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, ${g(at)});`);
+    js.push(`  tl.fromTo(c, { s: ${prev.s}, x: ${prev.x}, y: ${prev.y} }, { s: ${n.s}, x: ${n.x}, y: ${n.y}, duration: ${dur}, ease: "power3.inOut", onUpdate: ap, immediateRender: false, overwrite: "auto" }, ${g(at)});`);
     prev = n;
   }
   js.push(`}`);
@@ -253,7 +246,7 @@ for (const s of SCENES) {
   js.push(`tl.fromTo("#${id}-cursor", { x: ${s.cur[0]}, y: ${s.cur[1]}, opacity: 0 }, { x: ${s.cur[0]}, y: ${s.cur[1]}, opacity: 1, duration: 0.3 }, ${g(0.1)});`);
   let cp = s.cur;
   for (const [at, dur, x, y] of s.moves) {
-    js.push(`tl.fromTo("#${id}-cursor", { x: ${cp[0]}, y: ${cp[1]} }, { x: ${x}, y: ${y}, duration: ${dur}, ease: "power2.inOut", immediateRender: false }, ${g(at)});`);
+    js.push(`tl.fromTo("#${id}-cursor", { x: ${cp[0]}, y: ${cp[1]} }, { x: ${x}, y: ${y}, duration: ${dur}, ease: "power2.inOut", immediateRender: false, overwrite: "auto" }, ${g(at)});`);
     cp = [x, y];
   }
   s.clicks.forEach((at, k) => {
@@ -267,10 +260,10 @@ for (const s of SCENES) {
     js.push(`tl.fromTo("#${id}-ring${k}", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, ${g(b)});`);
   });
   if (s.special === "delete") {
-    js.push(`tl.fromTo("#${id}-confirm", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }, ${g(4.4)});`);
-    js.push(`tl.to("#${id}-confirm", { scale: 0.9, opacity: 0, duration: 0.25, ease: "power2.in" }, ${g(6.1)});`);
-    js.push(`tl.fromTo("#${id}-wash", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "power3.out" }, ${g(6.2)});`);
-    js.push(`tl.fromTo("#${id}-toast", { y: 40, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, ${g(6.7)});`);
+    js.push(`tl.fromTo("#${id}-confirm", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }, ${g(3.9)});`);
+    js.push(`tl.to("#${id}-confirm", { scale: 0.9, opacity: 0, duration: 0.25, ease: "power2.in" }, ${g(6.0)});`);
+    js.push(`tl.fromTo("#${id}-wash", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "power3.out" }, ${g(6.1)});`);
+    js.push(`tl.fromTo("#${id}-toast", { y: 40, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, ${g(6.5)});`);
   }
 }
 js.push(`window.__timelines["main"] = tl;`);
@@ -373,7 +366,7 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--
       <div id="introTitle" class="ur">مکتبہ نعمانیہ</div>
       <div id="introRule"></div>
       <div id="introSub" class="ur">ایپ استعمال کرنے کا مکمل طریقہ</div>
-      <div id="introPill" class="pill ur">لائبریری عملے کے لیے، ${urdu(N)} آسان مراحل</div>
+      <div id="introPill" class="pill ur">لائبریری عملے کے لیے، ${urdu(N)} آسان مراحل · ورژن ۱٫۱۴</div>
     </div>
   </section>
 

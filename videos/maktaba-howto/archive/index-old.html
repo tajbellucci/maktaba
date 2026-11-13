@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>Maktaba Naumania: how to use</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Jameel Noori Nastaleeq"; src: url("assets/JameelNooriNastaleeq.ttf") format("truetype"); font-display: block; }
+:root { --bg: #edf2f7; --ink: #17222e; --muted: #56657a; --blue: #125fb0; --blue-2: #1873cf; --green: #14724a; --line: #c9d3df; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: "Jameel Noori Nastaleeq", serif; color: var(--ink); }
+.ur { font-family: "Jameel Noori Nastaleeq", serif; }
+.mono { font-family: "Space Mono", monospace; }
+
+/* background */
+#bgLayer { position: absolute; inset: 0; overflow: hidden; }
+#dots { position: absolute; inset: -80px; background-image: radial-gradient(circle, rgba(18,95,176,0.22) 1.6px, transparent 1.8px); background-size: 28px 28px; }
+.glow { position: absolute; border-radius: 50%; }
+#glowA { width: 1100px; height: 1100px; left: -380px; top: -460px; background: radial-gradient(circle, rgba(18,95,176,0.26) 0%, rgba(18,95,176,0) 68%); }
+#glowB { width: 1000px; height: 1000px; right: -360px; bottom: -520px; background: radial-gradient(circle, rgba(20,114,74,0.22) 0%, rgba(20,114,74,0) 68%); }
+
+/* intro / outro */
+.center-card { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+#introLogo, #outroLogo { width: 230px; height: 230px; border-radius: 50%; object-fit: cover; box-shadow: 0 24px 60px rgba(18,52,90,0.22); border: 6px solid #fff; }
+#introTitle, #outroTitle { font-size: 150px; line-height: 1.55; margin-top: 18px; color: var(--ink); }
+#introRule { width: 520px; height: 5px; border-radius: 3px; background: var(--blue); transform-origin: 50% 50%; }
+#introSub, #outroSub { font-size: 58px; line-height: 1.9; color: #2b3847; }
+.pill { font-size: 36px; line-height: 1.9; padding: 4px 38px 10px; border-radius: 999px; background: var(--blue); color: #fff; }
+#outroTag { background: var(--green); }
+
+/* chrome */
+#topbar { position: absolute; top: 34px; left: 64px; right: 64px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+#brand { display: flex; align-items: center; gap: 18px; }
+#brand img { width: 62px; height: 62px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 6px 16px rgba(18,52,90,0.18); }
+#brand span { font-size: 46px; line-height: 1.6; }
+#topPill { font-size: 30px; line-height: 1.8; padding: 2px 30px 8px; border-radius: 999px; background: #fff; border: 2px solid var(--line); color: #2b3847; }
+#frameWrap { position: absolute; left: 64px; top: 128px; width: 1328px; height: 785px; border-radius: 16px; background: #fff; border: 2px solid var(--line); box-shadow: 0 40px 90px rgba(18,52,90,0.22), 0 8px 20px rgba(18,52,90,0.10); overflow: hidden; }
+#frameBar { height: 38px; background: #f6f8fb; border-bottom: 2px solid #e1e7ef; display: flex; align-items: center; justify-content: center; position: relative; }
+#frameBar span { font-size: 22px; line-height: 1.7; color: #3b4857; }
+.wc { position: absolute; right: 18px; top: 0; height: 100%; display: flex; gap: 22px; align-items: center; }
+.wc i { display: block; width: 14px; height: 14px; border: 2px solid #7a8797; border-radius: 3px; }
+.wc i:first-child { height: 2px; border-width: 1px; border-radius: 0; background: #7a8797; }
+#progress { position: absolute; top: 943px; left: 0; width: 1920px; height: 8px; }
+.seg { position: absolute; top: 0; height: 8px; border-radius: 4px; background: #d6dee8; overflow: hidden; }
+.seg-fill { width: 100%; height: 100%; background: var(--blue); transform-origin: 100% 50%; }
+
+/* scenes */
+.scene { position: absolute; inset: 0; }
+.sc-screen { position: absolute; left: 66px; top: 168px; width: 1324px; height: 743px; overflow: hidden; border-radius: 0 0 14px 14px; background: #eaeef3; }
+.scaler { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; transform: scale(0.8275); transform-origin: 0 0; }
+.world { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; transform-origin: 50% 50%; will-change: transform; }
+.shot { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; display: block; }
+.ring { position: absolute; border-radius: 12px; border: 4px solid var(--blue); box-shadow: 0 0 0 7px rgba(24,115,207,0.20), 0 0 28px rgba(24,115,207,0.45); opacity: 0; }
+.ripple { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%; border: 4px solid var(--blue-2); opacity: 0; }
+.cursor { position: absolute; left: 0; top: 0; width: 34px; height: 34px; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.35)); opacity: 0; }
+.cursor svg { display: block; }
+.wash { position: absolute; background: rgba(178,49,39,0.30); border: 3px solid #b23127; border-radius: 6px; transform-origin: 100% 50%; opacity: 0; }
+.confirm { position: absolute; left: 565px; top: 335px; width: 470px; height: 190px; background: #fff; border: 1px solid #b9c3cf; border-radius: 10px; box-shadow: 0 30px 70px rgba(0,0,0,0.30); opacity: 0; overflow: hidden; direction: ltr; }
+.cf-bar { height: 40px; padding: 8px 16px; background: #f3f3f3; font-family: "Segoe UI", sans-serif; font-size: 17px; color: #444; }
+.cf-msg { padding: 8px 22px 0; text-align: right; font-size: 30px; line-height: 1.8; color: #111; direction: rtl; }
+.cf-btns { position: absolute; right: 18px; bottom: 16px; display: flex; gap: 12px; }
+.cf-btns span { width: 96px; height: 36px; display: grid; place-items: center; border-radius: 5px; font-family: "Segoe UI", sans-serif; font-size: 18px; }
+.cf-ok { background: #fff; border: 2px solid #0067c0; color: #111; }
+.cf-cancel { background: #fbfbfb; border: 1px solid #c8c8c8; color: #111; }
+.toast { position: absolute; left: 560px; top: 780px; width: 480px; height: 76px; border-radius: 14px; background: #1b2733; color: #fff; display: grid; place-items: center; font-size: 34px; line-height: 1.6; box-shadow: 0 18px 40px rgba(0,0,0,0.30); opacity: 0; }
+
+/* caption rail */
+.rail { position: absolute; top: 156px; right: 64px; width: 408px; height: 767px; text-align: right; }
+.step { display: flex; align-items: baseline; gap: 12px; justify-content: flex-start; }
+.step-n { font-family: "Space Mono", monospace; font-weight: 700; font-size: 64px; color: var(--blue); line-height: 1; }
+.step-of { font-family: "Space Mono", monospace; font-weight: 400; font-size: 28px; color: var(--muted); }
+.rule { width: 100%; height: 4px; margin: 20px 0 6px; border-radius: 2px; background: linear-gradient(to left, var(--blue), rgba(18,95,176,0.08)); transform-origin: 100% 50%; }
+.title { font-weight: 400; font-size: 64px; line-height: 1.75; color: var(--ink); }
+.chips { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
+.chip { position: relative; display: flex; align-items: flex-start; gap: 16px; padding: 12px 16px 12px 16px; }
+.chip-bg { position: absolute; inset: 0; border-radius: 16px; background: #fff; border: 2px solid #d3dce7; box-shadow: 0 10px 24px rgba(18,52,90,0.10); opacity: 0; }
+.chip-n { position: relative; flex: none; width: 44px; height: 44px; margin-top: 8px; border-radius: 50%; border: 2px solid #9fb0c4; display: grid; place-items: center; }
+.chip-nbg { position: absolute; inset: -2px; border-radius: 50%; background: var(--blue); }
+.chip-n span { position: relative; font-family: "Space Mono", monospace; font-weight: 700; font-size: 22px; color: var(--muted); }
+.chip-t { position: relative; font-size: 31px; line-height: 1.85; color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="126.7">
+
+  <div id="bgLayer" class="clip" data-start="0" data-duration="126.7" data-track-index="0">
+    <div id="dots" data-layout-allow-overflow></div><div id="glowA" class="glow" data-layout-allow-overflow></div><div id="glowB" class="glow" data-layout-allow-overflow></div>
+  </div>
+
+  <section id="intro" class="clip" data-start="0" data-duration="5" data-track-index="3">
+    <div id="introIn" class="center-card" dir="rtl">
+      <img id="introLogo" src="assets/logo.png" alt="">
+      <div id="introTitle" class="ur">مکتبہ نعمانیہ</div>
+      <div id="introRule"></div>
+      <div id="introSub" class="ur">ایپ استعمال کرنے کا مکمل طریقہ</div>
+      <div id="introPill" class="pill ur">لائبریری عملے کے لیے، ۱۶ آسان مراحل</div>
+    </div>
+  </section>
+
+  <div id="chrome" class="clip" data-start="4.4" data-duration="117.40" data-track-index="4">
+    <div id="chromeIn" style="position:absolute;inset:0">
+      <div id="topbar" dir="rtl">
+        <div id="brand"><img src="assets/logo.png" alt=""><span class="ur">مکتبہ نعمانیہ</span></div>
+        <div id="topPill" class="ur">استعمال کا طریقہ</div>
+      </div>
+      <div id="frameWrap"><div id="frameBar"><span class="ur">مکتبہ نعمانیہ · لوحہ کنٹرول</span><div class="wc"><i></i><i></i><i></i></div></div></div>
+      <div id="progress"><div class="seg" style="right:64.0px;width:75.5px"><div class="seg-fill" id="seg0"></div></div><div class="seg" style="right:147.5px;width:75.5px"><div class="seg-fill" id="seg1"></div></div><div class="seg" style="right:231.0px;width:75.5px"><div class="seg-fill" id="seg2"></div></div><div class="seg" style="right:314.5px;width:75.5px"><div class="seg-fill" id="seg3"></div></div><div class="seg" style="right:398.0px;width:75.5px"><div class="seg-fill" id="seg4"></div></div><div class="seg" style="right:481.5px;width:75.5px"><div class="seg-fill" id="seg5"></div></div><div class="seg" style="right:565.0px;width:75.5px"><div class="seg-fill" id="seg6"></div></div><div class="seg" style="right:648.5px;width:75.5px"><div class="seg-fill" id="seg7"></div></div><div class="seg" style="right:732.0px;width:75.5px"><div class="seg-fill" id="seg8"></div></div><div class="seg" style="right:815.5px;width:75.5px"><div class="seg-fill" id="seg9"></div></div><div class="seg" style="right:899.0px;width:75.5px"><div class="seg-fill" id="seg10"></div></div><div class="seg" style="right:982.5px;width:75.5px"><div class="seg-fill" id="seg11"></div></div><div class="seg" style="right:1066.0px;width:75.5px"><div class="seg-fill" id="seg12"></div></div><div class="seg" style="right:1149.5px;width:75.5px"><div class="seg-fill" id="seg13"></div></div><div class="seg" style="right:1233.0px;width:75.5px"><div class="seg-fill" id="seg14"></div></div><div class="seg" style="right:1316.5px;width:75.5px"><div class="seg-fill" id="seg15"></div></div></div>
+    </div>
+  </div>
+
+  <section id="s1" class="clip scene" data-start="4.6" data-duration="6" data-track-index="1">
+    <div class="sc-screen" id="s1-screen">
+      <div class="scaler"><div class="world" id="s1-world">
+        <img id="s1-img0" class="shot" src="screens/01-home.png" alt="" style="opacity:1"><img id="s1-img1" class="shot" src="screens/02-list.png" alt="" style="opacity:0"><div id="s1-ring0" class="ring" style="left:710px;top:749px;width:180px;height:67px"></div><div id="s1-rip0" class="ripple" style="left:776px;top:758px"></div>
+        <div class="cursor" id="s1-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s1-rail" dir="rtl">
+      <div class="step" id="s1-step"><span class="step-n">01</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s1-rule"></div>
+      <h2 class="title" id="s1-title">لائبریری کھولیں</h2>
+      <div class="chips">
+      <div id="s1-chip0" class="chip">
+        <div class="chip-bg" id="s1-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s1-chipn0"></div><span id="s1-chipd0">1</span></div>
+        <div class="chip-t" id="s1-chipt0">سرورق پر «لائبریری کھولیں» دبائیں</div>
+      </div>
+      <div id="s1-chip1" class="chip">
+        <div class="chip-bg" id="s1-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s1-chipn1"></div><span id="s1-chipd1">2</span></div>
+        <div class="chip-t" id="s1-chipt1">کتابوں کی فہرست کھل جاتی ہے</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s2" class="clip scene" data-start="10.2" data-duration="6" data-track-index="2">
+    <div class="sc-screen" id="s2-screen">
+      <div class="scaler"><div class="world" id="s2-world">
+        <img id="s2-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><div id="s2-ring0" class="ring" style="left:1003px;top:118px;width:459px;height:62px"></div><div id="s2-ring1" class="ring" style="left:349px;top:347px;width:1123px;height:55px"></div>
+        <div class="cursor" id="s2-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s2-rail" dir="rtl">
+      <div class="step" id="s2-step"><span class="step-n">02</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s2-rule"></div>
+      <h2 class="title" id="s2-title">کتابوں کی فہرست</h2>
+      <div class="chips">
+      <div id="s2-chip0" class="chip">
+        <div class="chip-bg" id="s2-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s2-chipn0"></div><span id="s2-chipd0">1</span></div>
+        <div class="chip-t" id="s2-chipt0">ہر سطر میں نمبر، مصنف اور کتاب</div>
+      </div>
+      <div id="s2-chip1" class="chip">
+        <div class="chip-bg" id="s2-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s2-chipn1"></div><span id="s2-chipd1">2</span></div>
+        <div class="chip-t" id="s2-chipt1">اوپر کے ٹیب: موجود، معار، مطلوب</div>
+      </div>
+      <div id="s2-chip2" class="chip">
+        <div class="chip-bg" id="s2-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s2-chipn2"></div><span id="s2-chipd2">3</span></div>
+        <div class="chip-t" id="s2-chipt2">سرخ نشان: کتاب اس وقت موجود نہیں</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s3" class="clip scene" data-start="15.8" data-duration="8" data-track-index="1">
+    <div class="sc-screen" id="s3-screen">
+      <div class="scaler"><div class="world" id="s3-world">
+        <img id="s3-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><img id="s3-img1" class="shot" src="screens/03-category.png" alt="" style="opacity:0"><img id="s3-img2" class="shot" src="screens/04-almari.png" alt="" style="opacity:0"><div id="s3-ring0" class="ring" style="left:1225px;top:263px;width:247px;height:50px"></div><div id="s3-rip0" class="ripple" style="left:1497px;top:216px"></div><div id="s3-rip1" class="ripple" style="left:1324px;top:264px"></div><div id="s3-rip2" class="ripple" style="left:1497px;top:372px"></div>
+        <div class="cursor" id="s3-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s3-rail" dir="rtl">
+      <div class="step" id="s3-step"><span class="step-n">03</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s3-rule"></div>
+      <h2 class="title" id="s3-title">موضوع اور الماری سے دیکھیں</h2>
+      <div class="chips">
+      <div id="s3-chip0" class="chip">
+        <div class="chip-bg" id="s3-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s3-chipn0"></div><span id="s3-chipd0">1</span></div>
+        <div class="chip-t" id="s3-chipt0">دائیں پٹی سے «موضوع» چنیں</div>
+      </div>
+      <div id="s3-chip1" class="chip">
+        <div class="chip-bg" id="s3-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s3-chipn1"></div><span id="s3-chipd1">2</span></div>
+        <div class="chip-t" id="s3-chipt1">موضوع پر کلک: اس کی سب کتابیں</div>
+      </div>
+      <div id="s3-chip2" class="chip">
+        <div class="chip-bg" id="s3-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s3-chipn2"></div><span id="s3-chipd2">3</span></div>
+        <div class="chip-t" id="s3-chipt2">«الماری» سے الماری وار فہرست</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s4" class="clip scene" data-start="23.4" data-duration="6.5" data-track-index="2">
+    <div class="sc-screen" id="s4-screen">
+      <div class="scaler"><div class="world" id="s4-world">
+        <img id="s4-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><img id="s4-img1" class="shot" src="screens/05-search.png" alt="" style="opacity:0"><div id="s4-ring0" class="ring" style="left:401px;top:175px;width:1024px;height:61px"></div><div id="s4-ring1" class="ring" style="left:349px;top:265px;width:1123px;height:97px"></div><div id="s4-rip0" class="ripple" style="left:1226px;top:181px"></div>
+        <div class="cursor" id="s4-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s4-rail" dir="rtl">
+      <div class="step" id="s4-step"><span class="step-n">04</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s4-rule"></div>
+      <h2 class="title" id="s4-title">نام سے تلاش</h2>
+      <div class="chips">
+      <div id="s4-chip0" class="chip">
+        <div class="chip-bg" id="s4-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s4-chipn0"></div><span id="s4-chipd0">1</span></div>
+        <div class="chip-t" id="s4-chipt0">تلاش کے خانے میں لکھیں</div>
+      </div>
+      <div id="s4-chip1" class="chip">
+        <div class="chip-bg" id="s4-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s4-chipn1"></div><span id="s4-chipd1">2</span></div>
+        <div class="chip-t" id="s4-chipt1">نام یا مصنف، دونوں سے ملتی ہے</div>
+      </div>
+      <div id="s4-chip2" class="chip">
+        <div class="chip-bg" id="s4-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s4-chipn2"></div><span id="s4-chipd2">3</span></div>
+        <div class="chip-t" id="s4-chipt2">نتیجہ فوراً سامنے</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s5" class="clip scene" data-start="29.5" data-duration="7.5" data-track-index="1">
+    <div class="sc-screen" id="s5-screen">
+      <div class="scaler"><div class="world" id="s5-world">
+        <img id="s5-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><img id="s5-img1" class="shot" src="screens/06-hover.png" alt="" style="opacity:0"><img id="s5-img2" class="shot" src="screens/09-detail.png" alt="" style="opacity:0"><div id="s5-ring0" class="ring" style="left:1033px;top:429px;width:539px;height:364px"></div><div id="s5-rip0" class="ripple" style="left:636px;top:432px"></div>
+        <div class="cursor" id="s5-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s5-rail" dir="rtl">
+      <div class="step" id="s5-step"><span class="step-n">05</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s5-rule"></div>
+      <h2 class="title" id="s5-title">کتاب کی تفصیل</h2>
+      <div class="chips">
+      <div id="s5-chip0" class="chip">
+        <div class="chip-bg" id="s5-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s5-chipn0"></div><span id="s5-chipd0">1</span></div>
+        <div class="chip-t" id="s5-chipt0">کتاب پر ماؤس رکھیں: جھلک</div>
+      </div>
+      <div id="s5-chip1" class="chip">
+        <div class="chip-bg" id="s5-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s5-chipn1"></div><span id="s5-chipd1">2</span></div>
+        <div class="chip-t" id="s5-chipt1">کلک کریں: مکمل تفصیل اور سرورق</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s6" class="clip scene" data-start="36.6" data-duration="8" data-track-index="2">
+    <div class="sc-screen" id="s6-screen">
+      <div class="scaler"><div class="world" id="s6-world">
+        <img id="s6-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><img id="s6-img1" class="shot" src="screens/07-fts.png" alt="" style="opacity:0"><div id="s6-ring0" class="ring" style="left:48px;top:196px;width:252px;height:49px"></div><div id="s6-ring1" class="ring" style="left:185px;top:457px;width:144px;height:53px"></div><div id="s6-ring2" class="ring" style="left:48px;top:533px;width:281px;height:109px"></div><div id="s6-rip0" class="ripple" style="left:156px;top:196px"></div><div id="s6-rip1" class="ripple" style="left:233px;top:460px"></div>
+        <div class="cursor" id="s6-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s6-rail" dir="rtl">
+      <div class="step" id="s6-step"><span class="step-n">06</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s6-rule"></div>
+      <h2 class="title" id="s6-title">کتاب کے متن میں تلاش</h2>
+      <div class="chips">
+      <div id="s6-chip0" class="chip">
+        <div class="chip-bg" id="s6-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s6-chipn0"></div><span id="s6-chipd0">1</span></div>
+        <div class="chip-t" id="s6-chipt0">«متن میں تلاش» کے خانے میں لفظ لکھیں</div>
+      </div>
+      <div id="s6-chip1" class="chip">
+        <div class="chip-bg" id="s6-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s6-chipn1"></div><span id="s6-chipd1">2</span></div>
+        <div class="chip-t" id="s6-chipt1">«تلاش کریں» دبائیں</div>
+      </div>
+      <div id="s6-chip2" class="chip">
+        <div class="chip-bg" id="s6-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s6-chipn2"></div><span id="s6-chipd2">3</span></div>
+        <div class="chip-t" id="s6-chipt2">ہر کتاب میں کتنی جگہ ملا</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s7" class="clip scene" data-start="44.2" data-duration="8.5" data-track-index="1">
+    <div class="sc-screen" id="s7-screen">
+      <div class="scaler"><div class="world" id="s7-world">
+        <img id="s7-img0" class="shot" src="screens/08-reader.png" alt="" style="opacity:1"><div id="s7-ring0" class="ring" style="left:789px;top:209px;width:64px;height:46px"></div><div id="s7-ring1" class="ring" style="left:22px;top:621px;width:1569px;height:51px"></div><div id="s7-rip0" class="ripple" style="left:1376px;top:622px"></div>
+        <div class="cursor" id="s7-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s7-rail" dir="rtl">
+      <div class="step" id="s7-step"><span class="step-n">07</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s7-rule"></div>
+      <h2 class="title" id="s7-title">کتاب پڑھیں</h2>
+      <div class="chips">
+      <div id="s7-chip0" class="chip">
+        <div class="chip-bg" id="s7-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s7-chipn0"></div><span id="s7-chipd0">1</span></div>
+        <div class="chip-t" id="s7-chipt0">نتیجے پر کلک: کتاب کھل جاتی ہے</div>
+      </div>
+      <div id="s7-chip1" class="chip">
+        <div class="chip-bg" id="s7-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s7-chipn1"></div><span id="s7-chipd1">2</span></div>
+        <div class="chip-t" id="s7-chipt1">تلاش کا لفظ نمایاں</div>
+      </div>
+      <div id="s7-chip2" class="chip">
+        <div class="chip-bg" id="s7-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s7-chipn2"></div><span id="s7-chipd2">3</span></div>
+        <div class="chip-t" id="s7-chipt2">نیچے ہر نتیجہ، باب اور صفحے کے ساتھ</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s8" class="clip scene" data-start="52.3" data-duration="8.5" data-track-index="2">
+    <div class="sc-screen" id="s8-screen">
+      <div class="scaler"><div class="world" id="s8-world">
+        <img id="s8-img0" class="shot" src="screens/01-home.png" alt="" style="opacity:1"><img id="s8-img1" class="shot" src="screens/10-add.png" alt="" style="opacity:0"><div id="s8-ring0" class="ring" style="left:1521px;top:0px;width:72px;height:64px"></div><div id="s8-ring1" class="ring" style="left:1201px;top:198px;width:387px;height:62px"></div><div id="s8-ring2" class="ring" style="left:1478px;top:786px;width:109px;height:63px"></div><div id="s8-rip0" class="ripple" style="left:1533px;top:6px"></div><div id="s8-rip1" class="ripple" style="left:1508px;top:793px"></div>
+        <div class="cursor" id="s8-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s8-rail" dir="rtl">
+      <div class="step" id="s8-step"><span class="step-n">08</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s8-rule"></div>
+      <h2 class="title" id="s8-title">نئی کتاب شامل کریں</h2>
+      <div class="chips">
+      <div id="s8-chip0" class="chip">
+        <div class="chip-bg" id="s8-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s8-chipn0"></div><span id="s8-chipd0">1</span></div>
+        <div class="chip-t" id="s8-chipt0">اوپر «شامل کریں» دبائیں</div>
+      </div>
+      <div id="s8-chip1" class="chip">
+        <div class="chip-bg" id="s8-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s8-chipn1"></div><span id="s8-chipd1">2</span></div>
+        <div class="chip-t" id="s8-chipt1">نام، مصنف، موضوع اور جلدیں لکھیں</div>
+      </div>
+      <div id="s8-chip2" class="chip">
+        <div class="chip-bg" id="s8-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s8-chipn2"></div><span id="s8-chipd2">3</span></div>
+        <div class="chip-t" id="s8-chipt2">«محفوظ کریں» دبائیں</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s9" class="clip scene" data-start="60.4" data-duration="8" data-track-index="1">
+    <div class="sc-screen" id="s9-screen">
+      <div class="scaler"><div class="world" id="s9-world">
+        <img id="s9-img0" class="shot" src="screens/11a-cover-empty.png" alt="" style="opacity:1"><img id="s9-img1" class="shot" src="screens/11b-cover-url.png" alt="" style="opacity:0"><div id="s9-ring0" class="ring" style="left:486px;top:158px;width:639px;height:135px"></div><div id="s9-ring1" class="ring" style="left:486px;top:293px;width:323px;height:58px"></div><div id="s9-ring2" class="ring" style="left:1185px;top:82px;width:404px;height:55px"></div><div id="s9-rip0" class="ripple" style="left:623px;top:298px"></div><div id="s9-rip1" class="ripple" style="left:1508px;top:156px"></div>
+        <div class="cursor" id="s9-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s9-rail" dir="rtl">
+      <div class="step" id="s9-step"><span class="step-n">09</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s9-rule"></div>
+      <h2 class="title" id="s9-title">سرورق کی تصویر لگائیں</h2>
+      <div class="chips">
+      <div id="s9-chip0" class="chip">
+        <div class="chip-bg" id="s9-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s9-chipn0"></div><span id="s9-chipd0">1</span></div>
+        <div class="chip-t" id="s9-chipt0">تصویر کے خانے پر کلک: کمپیوٹر سے</div>
+      </div>
+      <div id="s9-chip1" class="chip">
+        <div class="chip-bg" id="s9-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s9-chipn1"></div><span id="s9-chipd1">2</span></div>
+        <div class="chip-t" id="s9-chipt1">یا «انٹرنیٹ سے تصویر»: لنک ڈالیں</div>
+      </div>
+      <div id="s9-chip2" class="chip">
+        <div class="chip-bg" id="s9-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s9-chipn2"></div><span id="s9-chipd2">3</span></div>
+        <div class="chip-t" id="s9-chipt2">«محفوظ کریں» دبائیں</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s10" class="clip scene" data-start="68" data-duration="9.5" data-track-index="2">
+    <div class="sc-screen" id="s10-screen">
+      <div class="scaler"><div class="world" id="s10-world">
+        <img id="s10-img0" class="shot" src="screens/c1-detail-circ.png" alt="" style="opacity:1"><img id="s10-img1" class="shot" src="screens/c2-issue-form.png" alt="" style="opacity:0"><img id="s10-img2" class="shot" src="screens/c3-issue-confirm.png" alt="" style="opacity:0"><img id="s10-img3" class="shot" src="screens/c4-issued-detail.png" alt="" style="opacity:0"><div id="s10-ring0" class="ring" style="left:486px;top:375px;width:639px;height:208px"></div><div id="s10-ring1" class="ring" style="left:1185px;top:193px;width:404px;height:55px"></div><div id="s10-ring2" class="ring" style="left:1185px;top:419px;width:404px;height:133px"></div><div id="s10-ring3" class="ring" style="left:1456px;top:241px;width:131px;height:63px"></div><div id="s10-rip0" class="ripple" style="left:781px;top:455px"></div><div id="s10-rip1" class="ripple" style="left:1497px;top:570px"></div><div id="s10-rip2" class="ripple" style="left:1497px;top:248px"></div>
+        <div class="cursor" id="s10-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s10-rail" dir="rtl">
+      <div class="step" id="s10-step"><span class="step-n">10</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s10-rule"></div>
+      <h2 class="title" id="s10-title">کتاب جاری کریں</h2>
+      <div class="chips">
+      <div id="s10-chip0" class="chip">
+        <div class="chip-bg" id="s10-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s10-chipn0"></div><span id="s10-chipd0">1</span></div>
+        <div class="chip-t" id="s10-chipt0">کتاب کھولیں: «کتاب جاری کریں»</div>
+      </div>
+      <div id="s10-chip1" class="chip">
+        <div class="chip-bg" id="s10-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s10-chipn1"></div><span id="s10-chipd1">2</span></div>
+        <div class="chip-t" id="s10-chipt1">نام، پتہ، فون اور کتنے دن</div>
+      </div>
+      <div id="s10-chip2" class="chip">
+        <div class="chip-bg" id="s10-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s10-chipn2"></div><span id="s10-chipd2">3</span></div>
+        <div class="chip-t" id="s10-chipt2">تصدیق میں «کتاب جاری کریں» دبائیں</div>
+      </div>
+      <div id="s10-chip3" class="chip">
+        <div class="chip-bg" id="s10-chipbg3"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s10-chipn3"></div><span id="s10-chipd3">4</span></div>
+        <div class="chip-t" id="s10-chipt3">شعبے کو دینا ہو تو «شعبے کو منتقل کریں»</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s11" class="clip scene" data-start="77.1" data-duration="8" data-track-index="1">
+    <div class="sc-screen" id="s11-screen">
+      <div class="scaler"><div class="world" id="s11-world">
+        <img id="s11-img0" class="shot" src="screens/c4-issued-detail.png" alt="" style="opacity:1"><img id="s11-img1" class="shot" src="screens/c8-return-confirm.png" alt="" style="opacity:0"><img id="s11-img2" class="shot" src="screens/c9-returned.png" alt="" style="opacity:0"><div id="s11-ring0" class="ring" style="left:486px;top:399px;width:639px;height:90px"></div><div id="s11-ring1" class="ring" style="left:486px;top:486px;width:639px;height:208px"></div><div id="s11-ring2" class="ring" style="left:1450px;top:217px;width:136px;height:63px"></div><div id="s11-ring3" class="ring" style="left:486px;top:375px;width:639px;height:208px"></div><div id="s11-rip0" class="ripple" style="left:781px;top:566px"></div><div id="s11-rip1" class="ripple" style="left:1494px;top:224px"></div>
+        <div class="cursor" id="s11-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s11-rail" dir="rtl">
+      <div class="step" id="s11-step"><span class="step-n">11</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s11-rule"></div>
+      <h2 class="title" id="s11-title">کتاب واپس لیں</h2>
+      <div class="chips">
+      <div id="s11-chip0" class="chip">
+        <div class="chip-bg" id="s11-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s11-chipn0"></div><span id="s11-chipd0">1</span></div>
+        <div class="chip-t" id="s11-chipt0">جاری کتاب میں لینے والا اور واپسی کی تاریخ</div>
+      </div>
+      <div id="s11-chip1" class="chip">
+        <div class="chip-bg" id="s11-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s11-chipn1"></div><span id="s11-chipd1">2</span></div>
+        <div class="chip-t" id="s11-chipt1">«واپس موصول ہوئی» دبائیں</div>
+      </div>
+      <div id="s11-chip2" class="chip">
+        <div class="chip-bg" id="s11-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s11-chipn2"></div><span id="s11-chipd2">3</span></div>
+        <div class="chip-t" id="s11-chipt2">تصدیق کریں: کتاب دوبارہ موجود</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s12" class="clip scene" data-start="84.7" data-duration="8.5" data-track-index="2">
+    <div class="sc-screen" id="s12-screen">
+      <div class="scaler"><div class="world" id="s12-world">
+        <img id="s12-img0" class="shot" src="screens/c5-tab-issued.png" alt="" style="opacity:1"><img id="s12-img1" class="shot" src="screens/c6-tab-overdue.png" alt="" style="opacity:0"><img id="s12-img2" class="shot" src="screens/c7-issued-list.png" alt="" style="opacity:0"><div id="s12-ring0" class="ring" style="left:1181px;top:118px;width:90px;height:62px"></div><div id="s12-ring1" class="ring" style="left:337px;top:264px;width:1135px;height:96px"></div><div id="s12-ring2" class="ring" style="left:337px;top:264px;width:1135px;height:55px"></div><div id="s12-ring3" class="ring" style="left:697px;top:-3px;width:910px;height:286px"></div><div id="s12-rip0" class="ripple" style="left:1202px;top:125px"></div><div id="s12-rip1" class="ripple" style="left:1024px;top:125px"></div>
+        <div class="cursor" id="s12-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s12-rail" dir="rtl">
+      <div class="step" id="s12-step"><span class="step-n">12</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s12-rule"></div>
+      <h2 class="title" id="s12-title">جاری اور میعاد ختم کتابیں</h2>
+      <div class="chips">
+      <div id="s12-chip0" class="chip">
+        <div class="chip-bg" id="s12-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s12-chipn0"></div><span id="s12-chipd0">1</span></div>
+        <div class="chip-t" id="s12-chipt0">«معار» ٹیب: سب جاری کتابیں</div>
+      </div>
+      <div id="s12-chip1" class="chip">
+        <div class="chip-bg" id="s12-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s12-chipn1"></div><span id="s12-chipd1">2</span></div>
+        <div class="chip-t" id="s12-chipt1">«میعاد ختم»: جن کی واپسی کی تاریخ گزر گئی</div>
+      </div>
+      <div id="s12-chip2" class="chip">
+        <div class="chip-bg" id="s12-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s12-chipn2"></div><span id="s12-chipd2">3</span></div>
+        <div class="chip-t" id="s12-chipt2">مزید: «جاری شدہ کتابیں» کی مکمل فہرست</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s13" class="clip scene" data-start="92.8" data-duration="9.5" data-track-index="1">
+    <div class="sc-screen" id="s13-screen">
+      <div class="scaler"><div class="world" id="s13-world">
+        <img id="s13-img0" class="shot" src="screens/02-list.png" alt="" style="opacity:1"><img id="s13-img1" class="shot" src="screens/14-delete-tick.png" alt="" style="opacity:0"><div id="s13-ring0" class="ring" style="left:1439px;top:643px;width:36px;height:36px"></div><div id="s13-ring1" class="ring" style="left:1400px;top:0px;width:72px;height:64px"></div>
+      <div id="s13-wash" class="wash" style="left:356px;top:641px;width:1109px;height:41px"></div>
+      <div id="s13-confirm" class="confirm">
+        <div class="cf-bar">Maktaba Naumania</div>
+        <div class="cf-msg">«نور الایضاح» حذف کریں؟</div>
+        <div class="cf-btns"><span class="cf-ok">OK</span><span class="cf-cancel">Cancel</span></div>
+      </div>
+      <div id="s13-toast" class="toast">کتاب حذف ہو گئی</div><div id="s13-rip0" class="ripple" style="left:1433px;top:637px"></div><div id="s13-rip1" class="ripple" style="left:1412px;top:6px"></div><div id="s13-rip2" class="ripple" style="left:856px;top:471px"></div>
+        <div class="cursor" id="s13-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s13-rail" dir="rtl">
+      <div class="step" id="s13-step"><span class="step-n">13</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s13-rule"></div>
+      <h2 class="title" id="s13-title">کتاب حذف کریں</h2>
+      <div class="chips">
+      <div id="s13-chip0" class="chip">
+        <div class="chip-bg" id="s13-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s13-chipn0"></div><span id="s13-chipd0">1</span></div>
+        <div class="chip-t" id="s13-chipt0">کتاب کے ساتھ والے خانے میں ٹک لگائیں</div>
+      </div>
+      <div id="s13-chip1" class="chip">
+        <div class="chip-bg" id="s13-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s13-chipn1"></div><span id="s13-chipd1">2</span></div>
+        <div class="chip-t" id="s13-chipt1">اوپر «حذف کریں» دبائیں</div>
+      </div>
+      <div id="s13-chip2" class="chip">
+        <div class="chip-bg" id="s13-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s13-chipn2"></div><span id="s13-chipd2">3</span></div>
+        <div class="chip-t" id="s13-chipt2">تصدیق پر OK: کئی کتابیں ایک ساتھ بھی</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s14" class="clip scene" data-start="101.9" data-duration="7" data-track-index="2">
+    <div class="sc-screen" id="s14-screen">
+      <div class="scaler"><div class="world" id="s14-world">
+        <img id="s14-img0" class="shot" src="screens/15-published.png" alt="" style="opacity:1"><div id="s14-ring0" class="ring" style="left:730px;top:793px;width:140px;height:62px"></div>
+        <div class="cursor" id="s14-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s14-rail" dir="rtl">
+      <div class="step" id="s14-step"><span class="step-n">14</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s14-rule"></div>
+      <h2 class="title" id="s14-title">تبدیلیاں خود شائع ہوتی ہیں</h2>
+      <div class="chips">
+      <div id="s14-chip0" class="chip">
+        <div class="chip-bg" id="s14-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s14-chipn0"></div><span id="s14-chipd0">1</span></div>
+        <div class="chip-t" id="s14-chipt0">ہر تبدیلی چند سیکنڈ بعد خود بخود</div>
+      </div>
+      <div id="s14-chip1" class="chip">
+        <div class="chip-bg" id="s14-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s14-chipn1"></div><span id="s14-chipd1">2</span></div>
+        <div class="chip-t" id="s14-chipt1">باقی کمپیوٹروں تک فوراً پہنچتی ہے</div>
+      </div>
+      <div id="s14-chip2" class="chip">
+        <div class="chip-bg" id="s14-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s14-chipn2"></div><span id="s14-chipd2">3</span></div>
+        <div class="chip-t" id="s14-chipt2">اختلاف کا پیغام آئے تو OK دبائیں</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s15" class="clip scene" data-start="108.5" data-duration="6.5" data-track-index="1">
+    <div class="sc-screen" id="s15-screen">
+      <div class="scaler"><div class="world" id="s15-world">
+        <img id="s15-img0" class="shot" src="screens/01-home.png" alt="" style="opacity:1"><img id="s15-img1" class="shot" src="screens/16-appearance.png" alt="" style="opacity:0"><div id="s15-ring0" class="ring" style="left:1069px;top:0px;width:72px;height:64px"></div><div id="s15-ring1" class="ring" style="left:1313px;top:153px;width:282px;height:139px"></div><div id="s15-ring2" class="ring" style="left:949px;top:320px;width:638px;height:59px"></div><div id="s15-rip0" class="ripple" style="left:1081px;top:6px"></div>
+        <div class="cursor" id="s15-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s15-rail" dir="rtl">
+      <div class="step" id="s15-step"><span class="step-n">15</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s15-rule"></div>
+      <h2 class="title" id="s15-title">رنگ اور لکھائی</h2>
+      <div class="chips">
+      <div id="s15-chip0" class="chip">
+        <div class="chip-bg" id="s15-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s15-chipn0"></div><span id="s15-chipd0">1</span></div>
+        <div class="chip-t" id="s15-chipt0">اوپر «مظہر» دبائیں</div>
+      </div>
+      <div id="s15-chip1" class="chip">
+        <div class="chip-bg" id="s15-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s15-chipn1"></div><span id="s15-chipd1">2</span></div>
+        <div class="chip-t" id="s15-chipt1">روشن یا تاریک انداز، اور رنگ</div>
+      </div>
+      <div id="s15-chip2" class="chip">
+        <div class="chip-bg" id="s15-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s15-chipn2"></div><span id="s15-chipd2">3</span></div>
+        <div class="chip-t" id="s15-chipt2">لکھائی کا سائز اور ترتیب</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="s16" class="clip scene" data-start="114.6" data-duration="7" data-track-index="2">
+    <div class="sc-screen" id="s16-screen">
+      <div class="scaler"><div class="world" id="s16-world">
+        <img id="s16-img0" class="shot" src="screens/18-cats.png" alt="" style="opacity:1"><img id="s16-img1" class="shot" src="screens/01-home.png" alt="" style="opacity:0"><div id="s16-ring0" class="ring" style="left:1120px;top:56px;width:469px;height:60px"></div><div id="s16-ring1" class="ring" style="left:1325px;top:0px;width:72px;height:64px"></div><div id="s16-rip0" class="ripple" style="left:1052px;top:62px"></div><div id="s16-rip1" class="ripple" style="left:1337px;top:6px"></div>
+        <div class="cursor" id="s16-cursor"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2 L3 19 L7.6 14.9 L10.6 21.6 L13.6 20.3 L10.7 13.7 L17 13.7 Z" fill="#fff" stroke="#17222e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div></div>
+    </div>
+    <div class="rail" id="s16-rail" dir="rtl">
+      <div class="step" id="s16-step"><span class="step-n">16</span><span class="step-of">/ 16</span></div>
+      <div class="rule" id="s16-rule"></div>
+      <h2 class="title" id="s16-title">موضوعات اور بیک اپ</h2>
+      <div class="chips">
+      <div id="s16-chip0" class="chip">
+        <div class="chip-bg" id="s16-chipbg0"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s16-chipn0"></div><span id="s16-chipd0">1</span></div>
+        <div class="chip-t" id="s16-chipt0">مزید: «موضوعات کی فہرست»</div>
+      </div>
+      <div id="s16-chip1" class="chip">
+        <div class="chip-bg" id="s16-chipbg1"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s16-chipn1"></div><span id="s16-chipd1">2</span></div>
+        <div class="chip-t" id="s16-chipt1">نیا موضوع لکھ کر شامل کریں</div>
+      </div>
+      <div id="s16-chip2" class="chip">
+        <div class="chip-bg" id="s16-chipbg2"></div>
+        <div class="chip-n"><div class="chip-nbg" id="s16-chipn2"></div><span id="s16-chipd2">3</span></div>
+        <div class="chip-t" id="s16-chipt2">«بیک اپ» سے محفوظ نقل بنائیں</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="outro" class="clip" data-start="121.2" data-duration="5.5" data-track-index="3">
+    <div class="center-card" dir="rtl">
+      <img id="outroLogo" src="assets/logo.png" alt="">
+      <div id="outroTitle" class="ur">مکتبہ نعمانیہ</div>
+      <div id="outroSub" class="ur">جامعہ نعمانیہ، لیاری، کراچی</div>
+      <div id="outroTag" class="pill ur">ہر کتاب، چند سیکنڈ میں</div>
+    </div>
+  </section>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#glowA", { scale: 1, x: 0 }, { scale: 1.12, x: 40, duration: 31.68, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+tl.fromTo("#glowB", { scale: 1.1, y: 0 }, { scale: 1, y: -50, duration: 31.68, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+tl.fromTo("#dots", { x: 0, y: 0 }, { x: 56, y: -56, duration: 126.7, ease: "none" }, 0);
+tl.fromTo("#introLogo", { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.6)" }, 0.3);
+tl.fromTo("#introTitle", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.8);
+tl.fromTo("#introSub", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.2);
+tl.fromTo("#introPill", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 1.7);
+tl.fromTo("#introRule", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power3.inOut" }, 1.0);
+tl.fromTo("#introIn", { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.96, duration: 0.5, ease: "power2.in", immediateRender: false }, 4.3);
+tl.fromTo("#frameWrap", { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 4.5);
+tl.fromTo("#topbar", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 4.7);
+tl.fromTo("#progress", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 4.8);
+tl.fromTo("#chromeIn", { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.in", immediateRender: false }, 121.10000000000001);
+tl.fromTo("#outroLogo", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.5)" }, 121.60000000000001);
+tl.fromTo("#outroTitle", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 122);
+tl.fromTo("#outroSub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 122.4);
+tl.fromTo("#outroTag", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 123);
+tl.fromTo("#seg0", { scaleX: 0 }, { scaleX: 1, duration: 5.6, ease: "none" }, 4.6);
+tl.fromTo("#s1-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 4.6);
+tl.fromTo("#s1-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 10.05);
+tl.fromTo("#s1-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 4.9);
+tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 4.95);
+tl.fromTo("#s1-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 4.98);
+tl.fromTo("#s1-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 5.1);
+tl.fromTo("#s1-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 5.2);
+tl.fromTo("#s1-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 5.2);
+tl.fromTo("#s1-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 5.2);
+tl.fromTo("#s1-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 5.25);
+tl.fromTo("#s1-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 5.19);
+tl.fromTo("#s1-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 8);
+tl.fromTo("#s1-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 8);
+tl.fromTo("#s1-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 8);
+tl.fromTo("#s1-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 8.05);
+tl.fromTo("#s1-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 7.9);
+{ const w = document.getElementById("s1-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.35, x: 0, y: -157.5, duration: 1.4, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 5);
+  tl.fromTo(c, { s: 1.35, x: 0, y: -157.5 }, { s: 1, x: 0, y: 0, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 7.7);
+}
+tl.fromTo("#s1-cursor", { x: 1150, y: 560, opacity: 0 }, { x: 1150, y: 560, opacity: 1, duration: 0.3 }, 4.7);
+tl.fromTo("#s1-cursor", { x: 1150, y: 560 }, { x: 800, y: 782, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 5.5);
+tl.to("#s1-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 6.6);
+tl.fromTo("#s1-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 6.62);
+tl.fromTo("#s1-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 5.8);
+tl.fromTo("#s1-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 7.7);
+tl.fromTo("#seg1", { scaleX: 0 }, { scaleX: 1, duration: 5.6, ease: "none" }, 10.2);
+tl.fromTo("#s2-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 10.2);
+tl.fromTo("#s2-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 15.65);
+tl.fromTo("#s2-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 10.5);
+tl.fromTo("#s2-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 10.55);
+tl.fromTo("#s2-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 10.58);
+tl.fromTo("#s2-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 10.7);
+tl.fromTo("#s2-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 10.8);
+tl.fromTo("#s2-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 10.8);
+tl.fromTo("#s2-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 10.8);
+tl.fromTo("#s2-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 10.85);
+tl.fromTo("#s2-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 10.79);
+tl.fromTo("#s2-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 11.6);
+tl.fromTo("#s2-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 11.6);
+tl.fromTo("#s2-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 11.6);
+tl.fromTo("#s2-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 11.65);
+tl.fromTo("#s2-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 10.88);
+tl.fromTo("#s2-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 14);
+tl.fromTo("#s2-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 14);
+tl.fromTo("#s2-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 14);
+tl.fromTo("#s2-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 14.05);
+{ const w = document.getElementById("s2-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.45, x: -360, y: 202.5, duration: 1.4, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 10.7);
+  tl.fromTo(c, { s: 1.45, x: -360, y: 202.5 }, { s: 1.5, x: -150, y: 75, duration: 1.2, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 13.2);
+}
+tl.fromTo("#s2-cursor", { x: 800, y: 700, opacity: 0 }, { x: 800, y: 700, opacity: 1, duration: 0.3 }, 10.3);
+tl.fromTo("#s2-cursor", { x: 800, y: 700 }, { x: 1230, y: 148, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 11.4);
+tl.fromTo("#s2-cursor", { x: 1230, y: 148 }, { x: 1100, y: 374, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 13.6);
+tl.fromTo("#s2-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 11.6);
+tl.fromTo("#s2-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 13.2);
+tl.fromTo("#s2-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 14);
+tl.fromTo("#s2-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 15.8);
+tl.fromTo("#seg2", { scaleX: 0 }, { scaleX: 1, duration: 7.6, ease: "none" }, 15.8);
+tl.fromTo("#s3-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 15.8);
+tl.fromTo("#s3-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 23.25);
+tl.fromTo("#s3-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 16.1);
+tl.fromTo("#s3-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 16.15);
+tl.fromTo("#s3-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 16.18);
+tl.fromTo("#s3-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 16.3);
+tl.fromTo("#s3-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 16.4);
+tl.fromTo("#s3-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 16.4);
+tl.fromTo("#s3-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 16.4);
+tl.fromTo("#s3-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 16.45);
+tl.fromTo("#s3-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 16.39);
+tl.fromTo("#s3-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 18);
+tl.fromTo("#s3-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 18);
+tl.fromTo("#s3-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 18);
+tl.fromTo("#s3-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 18.05);
+tl.fromTo("#s3-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 16.48);
+tl.fromTo("#s3-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 20.2);
+tl.fromTo("#s3-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 20.2);
+tl.fromTo("#s3-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 20.2);
+tl.fromTo("#s3-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 20.25);
+tl.fromTo("#s3-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 17.5);
+tl.fromTo("#s3-img2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 21.3);
+{ const w = document.getElementById("s3-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.35, x: -280, y: 157.5, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 16.1);
+  tl.fromTo(c, { s: 1.35, x: -280, y: 157.5 }, { s: 1.2, x: -160, y: 60, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 21.4);
+}
+tl.fromTo("#s3-cursor", { x: 1100, y: 374, opacity: 0 }, { x: 1100, y: 374, opacity: 1, duration: 0.3 }, 15.9);
+tl.fromTo("#s3-cursor", { x: 1100, y: 374 }, { x: 1521, y: 240, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 16.3);
+tl.fromTo("#s3-cursor", { x: 1521, y: 240 }, { x: 1348, y: 288, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 18);
+tl.fromTo("#s3-cursor", { x: 1348, y: 288 }, { x: 1521, y: 396, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 20.2);
+tl.to("#s3-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 17.2);
+tl.fromTo("#s3-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 17.22);
+tl.to("#s3-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 18.8);
+tl.fromTo("#s3-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 18.82);
+tl.to("#s3-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 21);
+tl.fromTo("#s3-rip2", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 21.02);
+tl.fromTo("#s3-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 18.4);
+tl.fromTo("#s3-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 20.1);
+tl.fromTo("#seg3", { scaleX: 0 }, { scaleX: 1, duration: 6.1, ease: "none" }, 23.4);
+tl.fromTo("#s4-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 23.4);
+tl.fromTo("#s4-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 29.35);
+tl.fromTo("#s4-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 23.7);
+tl.fromTo("#s4-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 23.75);
+tl.fromTo("#s4-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 23.78);
+tl.fromTo("#s4-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 23.9);
+tl.fromTo("#s4-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 24);
+tl.fromTo("#s4-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 24);
+tl.fromTo("#s4-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 24);
+tl.fromTo("#s4-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 24.05);
+tl.fromTo("#s4-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 23.99);
+tl.fromTo("#s4-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 25.8);
+tl.fromTo("#s4-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 25.8);
+tl.fromTo("#s4-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 25.8);
+tl.fromTo("#s4-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 25.85);
+tl.fromTo("#s4-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 24.08);
+tl.fromTo("#s4-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 27.4);
+tl.fromTo("#s4-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 27.4);
+tl.fromTo("#s4-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 27.4);
+tl.fromTo("#s4-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 27.45);
+tl.fromTo("#s4-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 25.7);
+{ const w = document.getElementById("s4-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.7, x: -560, y: 315, duration: 1.2, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 23.7);
+  tl.fromTo(c, { s: 1.7, x: -560, y: 315 }, { s: 1.35, x: -270, y: 157.5, duration: 1.2, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 26.8);
+}
+tl.fromTo("#s4-cursor", { x: 1521, y: 396, opacity: 0 }, { x: 1521, y: 396, opacity: 1, duration: 0.3 }, 23.5);
+tl.fromTo("#s4-cursor", { x: 1521, y: 396 }, { x: 1250, y: 205, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 23.9);
+tl.to("#s4-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 24.8);
+tl.fromTo("#s4-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 24.82);
+tl.fromTo("#s4-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 24.7);
+tl.fromTo("#s4-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 26.8);
+tl.fromTo("#s4-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 27.4);
+tl.fromTo("#s4-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 29.4);
+tl.fromTo("#seg4", { scaleX: 0 }, { scaleX: 1, duration: 7.1, ease: "none" }, 29.5);
+tl.fromTo("#s5-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 29.5);
+tl.fromTo("#s5-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 36.45);
+tl.fromTo("#s5-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 29.8);
+tl.fromTo("#s5-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 29.85);
+tl.fromTo("#s5-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 29.88);
+tl.fromTo("#s5-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 30);
+tl.fromTo("#s5-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 30.1);
+tl.fromTo("#s5-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 30.1);
+tl.fromTo("#s5-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 30.1);
+tl.fromTo("#s5-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 30.15);
+tl.fromTo("#s5-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 30.09);
+tl.fromTo("#s5-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 33.8);
+tl.fromTo("#s5-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 33.8);
+tl.fromTo("#s5-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 33.8);
+tl.fromTo("#s5-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 33.85);
+tl.fromTo("#s5-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 31.1);
+tl.fromTo("#s5-img2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 34.1);
+{ const w = document.getElementById("s5-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.3, x: -240, y: -135, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 29.8);
+  tl.fromTo(c, { s: 1.3, x: -240, y: -135 }, { s: 1.25, x: 0, y: 62.5, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 34.1);
+}
+tl.fromTo("#s5-cursor", { x: 1250, y: 205, opacity: 0 }, { x: 1250, y: 205, opacity: 1, duration: 0.3 }, 29.6);
+tl.fromTo("#s5-cursor", { x: 1250, y: 205 }, { x: 700, y: 456, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 29.9);
+tl.fromTo("#s5-cursor", { x: 700, y: 456 }, { x: 660, y: 456, duration: 0.5, ease: "power2.inOut", immediateRender: false }, 33.1);
+tl.to("#s5-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 33.8);
+tl.fromTo("#s5-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 33.82);
+tl.fromTo("#s5-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 31.5);
+tl.fromTo("#s5-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 33.4);
+tl.fromTo("#seg5", { scaleX: 0 }, { scaleX: 1, duration: 7.6, ease: "none" }, 36.6);
+tl.fromTo("#s6-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 36.6);
+tl.fromTo("#s6-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 44.05);
+tl.fromTo("#s6-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 36.9);
+tl.fromTo("#s6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 36.95);
+tl.fromTo("#s6-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 36.98);
+tl.fromTo("#s6-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 37.1);
+tl.fromTo("#s6-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 37.2);
+tl.fromTo("#s6-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 37.2);
+tl.fromTo("#s6-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 37.2);
+tl.fromTo("#s6-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 37.25);
+tl.fromTo("#s6-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 37.19);
+tl.fromTo("#s6-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 39.6);
+tl.fromTo("#s6-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 39.6);
+tl.fromTo("#s6-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 39.6);
+tl.fromTo("#s6-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 39.65);
+tl.fromTo("#s6-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 37.28);
+tl.fromTo("#s6-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 41);
+tl.fromTo("#s6-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 41);
+tl.fromTo("#s6-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 41);
+tl.fromTo("#s6-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 41.05);
+tl.fromTo("#s6-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 39);
+{ const w = document.getElementById("s6-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.75, x: 600, y: 87.5, duration: 1.2, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 36.9);
+}
+tl.fromTo("#s6-cursor", { x: 660, y: 456, opacity: 0 }, { x: 660, y: 456, opacity: 1, duration: 0.3 }, 36.7);
+tl.fromTo("#s6-cursor", { x: 660, y: 456 }, { x: 180, y: 220, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 37.2);
+tl.fromTo("#s6-cursor", { x: 180, y: 220 }, { x: 257, y: 484, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 39.6);
+tl.to("#s6-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 38.3);
+tl.fromTo("#s6-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 38.32);
+tl.to("#s6-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 40.5);
+tl.fromTo("#s6-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 40.52);
+tl.fromTo("#s6-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 38);
+tl.fromTo("#s6-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 39.5);
+tl.fromTo("#s6-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 39.6);
+tl.fromTo("#s6-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 40.9);
+tl.fromTo("#s6-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 41);
+tl.fromTo("#s6-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 44.2);
+tl.fromTo("#seg6", { scaleX: 0 }, { scaleX: 1, duration: 8.1, ease: "none" }, 44.2);
+tl.fromTo("#s7-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 44.2);
+tl.fromTo("#s7-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 52.15);
+tl.fromTo("#s7-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 44.5);
+tl.fromTo("#s7-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 44.55);
+tl.fromTo("#s7-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 44.58);
+tl.fromTo("#s7-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 44.7);
+tl.fromTo("#s7-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 44.8);
+tl.fromTo("#s7-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 44.8);
+tl.fromTo("#s7-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 44.8);
+tl.fromTo("#s7-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 44.85);
+tl.fromTo("#s7-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 44.79);
+tl.fromTo("#s7-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 46.2);
+tl.fromTo("#s7-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 46.2);
+tl.fromTo("#s7-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 46.2);
+tl.fromTo("#s7-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 46.25);
+tl.fromTo("#s7-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 44.88);
+tl.fromTo("#s7-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 49);
+tl.fromTo("#s7-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 49);
+tl.fromTo("#s7-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 49);
+tl.fromTo("#s7-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 49.05);
+{ const w = document.getElementById("s7-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 2, x: -40, y: 436, duration: 1.4, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 46);
+  tl.fromTo(c, { s: 2, x: -40, y: 436 }, { s: 1.35, x: 0, y: -157.5, duration: 1.3, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 48.8);
+}
+tl.fromTo("#s7-cursor", { x: 700, y: 400, opacity: 0 }, { x: 700, y: 400, opacity: 1, duration: 0.3 }, 44.3);
+tl.fromTo("#s7-cursor", { x: 700, y: 400 }, { x: 1400, y: 646, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 44.6);
+tl.fromTo("#s7-cursor", { x: 1400, y: 646 }, { x: 1200, y: 646, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 49.2);
+tl.to("#s7-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 45.6);
+tl.fromTo("#s7-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 45.62);
+tl.fromTo("#s7-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 47);
+tl.fromTo("#s7-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 48.6);
+tl.fromTo("#s7-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 49.4);
+tl.fromTo("#s7-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 52.3);
+tl.fromTo("#seg7", { scaleX: 0 }, { scaleX: 1, duration: 8.1, ease: "none" }, 52.3);
+tl.fromTo("#s8-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 52.3);
+tl.fromTo("#s8-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 60.25);
+tl.fromTo("#s8-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 52.6);
+tl.fromTo("#s8-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 52.65);
+tl.fromTo("#s8-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 52.68);
+tl.fromTo("#s8-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 52.8);
+tl.fromTo("#s8-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 52.9);
+tl.fromTo("#s8-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 52.9);
+tl.fromTo("#s8-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 52.9);
+tl.fromTo("#s8-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 52.95);
+tl.fromTo("#s8-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 52.89);
+tl.fromTo("#s8-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 54.9);
+tl.fromTo("#s8-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 54.9);
+tl.fromTo("#s8-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 54.9);
+tl.fromTo("#s8-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 54.95);
+tl.fromTo("#s8-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 52.98);
+tl.fromTo("#s8-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 57.5);
+tl.fromTo("#s8-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 57.5);
+tl.fromTo("#s8-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 57.5);
+tl.fromTo("#s8-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 57.55);
+tl.fromTo("#s8-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 54.1);
+{ const w = document.getElementById("s8-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.6, x: -480, y: 270, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 52.5);
+  tl.fromTo(c, { s: 1.6, x: -480, y: 270 }, { s: 1.45, x: -360, y: 202.5, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 54.2);
+  tl.fromTo(c, { s: 1.45, x: -360, y: 202.5 }, { s: 1.45, x: -360, y: -202.5, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 56.7);
+  tl.fromTo(c, { s: 1.45, x: -360, y: -202.5 }, { s: 1, x: 0, y: 0, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 59.5);
+}
+tl.fromTo("#s8-cursor", { x: 800, y: 600, opacity: 0 }, { x: 800, y: 600, opacity: 1, duration: 0.3 }, 52.4);
+tl.fromTo("#s8-cursor", { x: 800, y: 600 }, { x: 1557, y: 30, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 52.7);
+tl.fromTo("#s8-cursor", { x: 1557, y: 30 }, { x: 1450, y: 229, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 54.7);
+tl.fromTo("#s8-cursor", { x: 1450, y: 229 }, { x: 1532, y: 817, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 57.1);
+tl.to("#s8-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 53.8);
+tl.fromTo("#s8-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 53.82);
+tl.to("#s8-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 58.1);
+tl.fromTo("#s8-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 58.12);
+tl.fromTo("#s8-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 53.3);
+tl.fromTo("#s8-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 54.2);
+tl.fromTo("#s8-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 54.9);
+tl.fromTo("#s8-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 56.5);
+tl.fromTo("#s8-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 57.3);
+tl.fromTo("#s8-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 58.9);
+tl.fromTo("#seg8", { scaleX: 0 }, { scaleX: 1, duration: 7.6, ease: "none" }, 60.4);
+tl.fromTo("#s9-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 60.4);
+tl.fromTo("#s9-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 67.85);
+tl.fromTo("#s9-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 60.7);
+tl.fromTo("#s9-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 60.75);
+tl.fromTo("#s9-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 60.78);
+tl.fromTo("#s9-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 60.9);
+tl.fromTo("#s9-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 61.1);
+tl.fromTo("#s9-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 61.1);
+tl.fromTo("#s9-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 61.1);
+tl.fromTo("#s9-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 61.15);
+tl.fromTo("#s9-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 60.99);
+tl.fromTo("#s9-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 62.9);
+tl.fromTo("#s9-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 62.9);
+tl.fromTo("#s9-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 62.9);
+tl.fromTo("#s9-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 62.95);
+tl.fromTo("#s9-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 61.08);
+tl.fromTo("#s9-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 66.2);
+tl.fromTo("#s9-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 66.2);
+tl.fromTo("#s9-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 66.2);
+tl.fromTo("#s9-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 66.25);
+tl.fromTo("#s9-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 64.3);
+{ const w = document.getElementById("s9-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.6, x: -8, y: 270, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 60.6);
+  tl.fromTo(c, { s: 1.6, x: -8, y: 270 }, { s: 1.7, x: -560, y: 315, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 64.3);
+}
+tl.fromTo("#s9-cursor", { x: 1532, y: 817, opacity: 0 }, { x: 1532, y: 817, opacity: 1, duration: 0.3 }, 60.5);
+tl.fromTo("#s9-cursor", { x: 1532, y: 817 }, { x: 805, y: 225, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 60.9);
+tl.fromTo("#s9-cursor", { x: 805, y: 225 }, { x: 647, y: 322, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 62.9);
+tl.fromTo("#s9-cursor", { x: 647, y: 322 }, { x: 1532, y: 180, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 65.8);
+tl.to("#s9-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 63.8);
+tl.fromTo("#s9-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 63.82);
+tl.to("#s9-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 66.7);
+tl.fromTo("#s9-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 66.72);
+tl.fromTo("#s9-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 61.3);
+tl.fromTo("#s9-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 62.8);
+tl.fromTo("#s9-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 62.9);
+tl.fromTo("#s9-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 64.2);
+tl.fromTo("#s9-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 65);
+tl.fromTo("#s9-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 66.2);
+tl.fromTo("#seg9", { scaleX: 0 }, { scaleX: 1, duration: 9.1, ease: "none" }, 68);
+tl.fromTo("#s10-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 68);
+tl.fromTo("#s10-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 76.95);
+tl.fromTo("#s10-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 68.3);
+tl.fromTo("#s10-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 68.35);
+tl.fromTo("#s10-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 68.38);
+tl.fromTo("#s10-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 68.5);
+tl.fromTo("#s10-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 68.6);
+tl.fromTo("#s10-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 68.6);
+tl.fromTo("#s10-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 68.6);
+tl.fromTo("#s10-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 68.65);
+tl.fromTo("#s10-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 68.59);
+tl.fromTo("#s10-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 70.5);
+tl.fromTo("#s10-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 70.5);
+tl.fromTo("#s10-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 70.5);
+tl.fromTo("#s10-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 70.55);
+tl.fromTo("#s10-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 68.68);
+tl.fromTo("#s10-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 74.2);
+tl.fromTo("#s10-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 74.2);
+tl.fromTo("#s10-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 74.2);
+tl.fromTo("#s10-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 74.25);
+tl.fromTo("#s10-chip3", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 68.77);
+tl.fromTo("#s10-chipbg3", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 76.2);
+tl.fromTo("#s10-chipn3", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 76.2);
+tl.fromTo("#s10-chipt3", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 76.2);
+tl.fromTo("#s10-chipd3", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 76.25);
+tl.fromTo("#s10-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 69.9);
+tl.fromTo("#s10-img2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 74);
+tl.fromTo("#s10-img3", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 76);
+{ const w = document.getElementById("s10-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.3, x: 0, y: -39, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 68.2);
+  tl.fromTo(c, { s: 1.3, x: 0, y: -39 }, { s: 1.5, x: -400, y: 225, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 70);
+  tl.fromTo(c, { s: 1.5, x: -400, y: 225 }, { s: 1.6, x: -480, y: 270, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 74);
+  tl.fromTo(c, { s: 1.6, x: -480, y: 270 }, { s: 1.15, x: 0, y: 0, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 76);
+}
+tl.fromTo("#s10-cursor", { x: 800, y: 640, opacity: 0 }, { x: 800, y: 640, opacity: 1, duration: 0.3 }, 68.1);
+tl.fromTo("#s10-cursor", { x: 800, y: 640 }, { x: 805, y: 479, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 68.5);
+tl.fromTo("#s10-cursor", { x: 805, y: 479 }, { x: 1450, y: 220, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 70.4);
+tl.fromTo("#s10-cursor", { x: 1450, y: 220 }, { x: 1521, y: 594, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 72.4);
+tl.fromTo("#s10-cursor", { x: 1521, y: 594 }, { x: 1521, y: 272, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 74.6);
+tl.to("#s10-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 69.5);
+tl.fromTo("#s10-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 69.52);
+tl.to("#s10-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 73.5);
+tl.fromTo("#s10-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 73.52);
+tl.to("#s10-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 75.6);
+tl.fromTo("#s10-rip2", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 75.62);
+tl.fromTo("#s10-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 68.9);
+tl.fromTo("#s10-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 69.8);
+tl.fromTo("#s10-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 70.6);
+tl.fromTo("#s10-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 71.5);
+tl.fromTo("#s10-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 71.5);
+tl.fromTo("#s10-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 72.4);
+tl.fromTo("#s10-ring3", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 74.3);
+tl.fromTo("#s10-ring3", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 75.5);
+tl.fromTo("#seg10", { scaleX: 0 }, { scaleX: 1, duration: 7.6, ease: "none" }, 77.1);
+tl.fromTo("#s11-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 77.1);
+tl.fromTo("#s11-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 84.55);
+tl.fromTo("#s11-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 77.4);
+tl.fromTo("#s11-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 77.45);
+tl.fromTo("#s11-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 77.48);
+tl.fromTo("#s11-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 77.6);
+tl.fromTo("#s11-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 77.7);
+tl.fromTo("#s11-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 77.7);
+tl.fromTo("#s11-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 77.7);
+tl.fromTo("#s11-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 77.75);
+tl.fromTo("#s11-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 77.69);
+tl.fromTo("#s11-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 79.5);
+tl.fromTo("#s11-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 79.5);
+tl.fromTo("#s11-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 79.5);
+tl.fromTo("#s11-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 79.55);
+tl.fromTo("#s11-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 77.78);
+tl.fromTo("#s11-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 81.3);
+tl.fromTo("#s11-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 81.3);
+tl.fromTo("#s11-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 81.3);
+tl.fromTo("#s11-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 81.35);
+tl.fromTo("#s11-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 80.5);
+tl.fromTo("#s11-img2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 82.7);
+{ const w = document.getElementById("s11-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.35, x: 0, y: 40.5, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 77.3);
+  tl.fromTo(c, { s: 1.35, x: 0, y: 40.5 }, { s: 1.6, x: -480, y: 270, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 80.5);
+  tl.fromTo(c, { s: 1.6, x: -480, y: 270 }, { s: 1.3, x: 0, y: -39, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 82.7);
+}
+tl.fromTo("#s11-cursor", { x: 800, y: 700, opacity: 0 }, { x: 800, y: 700, opacity: 1, duration: 0.3 }, 77.2);
+tl.fromTo("#s11-cursor", { x: 800, y: 700 }, { x: 700, y: 440, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 78.1);
+tl.fromTo("#s11-cursor", { x: 700, y: 440 }, { x: 805, y: 590, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 79.4);
+tl.fromTo("#s11-cursor", { x: 805, y: 590 }, { x: 1518, y: 248, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 81);
+tl.to("#s11-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 80.1);
+tl.fromTo("#s11-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 80.12);
+tl.to("#s11-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 82.2);
+tl.fromTo("#s11-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 82.22);
+tl.fromTo("#s11-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 77.9);
+tl.fromTo("#s11-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 79.4);
+tl.fromTo("#s11-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 79.5);
+tl.fromTo("#s11-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 80.3);
+tl.fromTo("#s11-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 81.1);
+tl.fromTo("#s11-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 82.1);
+tl.fromTo("#s11-ring3", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 83.3);
+tl.fromTo("#s11-ring3", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 84.7);
+tl.fromTo("#seg11", { scaleX: 0 }, { scaleX: 1, duration: 8.1, ease: "none" }, 84.7);
+tl.fromTo("#s12-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 84.7);
+tl.fromTo("#s12-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 92.65);
+tl.fromTo("#s12-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 85);
+tl.fromTo("#s12-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 85.05);
+tl.fromTo("#s12-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 85.08);
+tl.fromTo("#s12-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 85.2);
+tl.fromTo("#s12-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 85.3);
+tl.fromTo("#s12-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 85.3);
+tl.fromTo("#s12-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 85.3);
+tl.fromTo("#s12-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 85.35);
+tl.fromTo("#s12-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 85.29);
+tl.fromTo("#s12-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 87.7);
+tl.fromTo("#s12-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 87.7);
+tl.fromTo("#s12-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 87.7);
+tl.fromTo("#s12-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 87.75);
+tl.fromTo("#s12-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 85.38);
+tl.fromTo("#s12-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 90.5);
+tl.fromTo("#s12-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 90.5);
+tl.fromTo("#s12-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 90.5);
+tl.fromTo("#s12-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 90.55);
+tl.fromTo("#s12-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 87.9);
+tl.fromTo("#s12-img2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 90.3);
+{ const w = document.getElementById("s12-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.4, x: -280, y: 180, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 84.9);
+  tl.fromTo(c, { s: 1.4, x: -280, y: 180 }, { s: 1.25, x: -200, y: 112.5, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 90.3);
+}
+tl.fromTo("#s12-cursor", { x: 800, y: 600, opacity: 0 }, { x: 800, y: 600, opacity: 1, duration: 0.3 }, 84.8);
+tl.fromTo("#s12-cursor", { x: 800, y: 600 }, { x: 1226, y: 149, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 85.1);
+tl.fromTo("#s12-cursor", { x: 1226, y: 149 }, { x: 1048, y: 149, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 87);
+tl.to("#s12-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 86);
+tl.fromTo("#s12-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 86.02);
+tl.to("#s12-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 87.7);
+tl.fromTo("#s12-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 87.72);
+tl.fromTo("#s12-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 85.5);
+tl.fromTo("#s12-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 87.3);
+tl.fromTo("#s12-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 86);
+tl.fromTo("#s12-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 87.7);
+tl.fromTo("#s12-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 88.2);
+tl.fromTo("#s12-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 90.1);
+tl.fromTo("#s12-ring3", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 90.9);
+tl.fromTo("#s12-ring3", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 92.8);
+tl.fromTo("#seg12", { scaleX: 0 }, { scaleX: 1, duration: 9.1, ease: "none" }, 92.8);
+tl.fromTo("#s13-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 92.8);
+tl.fromTo("#s13-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 101.75);
+tl.fromTo("#s13-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 93.1);
+tl.fromTo("#s13-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 93.15);
+tl.fromTo("#s13-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 93.18);
+tl.fromTo("#s13-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 93.3);
+tl.fromTo("#s13-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 93.4);
+tl.fromTo("#s13-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 93.4);
+tl.fromTo("#s13-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 93.4);
+tl.fromTo("#s13-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 93.45);
+tl.fromTo("#s13-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 93.39);
+tl.fromTo("#s13-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 95.7);
+tl.fromTo("#s13-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 95.7);
+tl.fromTo("#s13-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 95.7);
+tl.fromTo("#s13-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 95.75);
+tl.fromTo("#s13-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 93.48);
+tl.fromTo("#s13-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 97.4);
+tl.fromTo("#s13-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 97.4);
+tl.fromTo("#s13-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 97.4);
+tl.fromTo("#s13-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 97.45);
+tl.fromTo("#s13-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 94.6);
+{ const w = document.getElementById("s13-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.45, x: -360, y: -202.5, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 93);
+  tl.fromTo(c, { s: 1.45, x: -360, y: -202.5 }, { s: 1, x: 0, y: 0, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 95.4);
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.5, x: 0, y: 15, duration: 0.6, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 97.1);
+  tl.fromTo(c, { s: 1.5, x: 0, y: 15 }, { s: 1.15, x: -115, y: -67.5, duration: 0.8, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 98.9);
+}
+tl.fromTo("#s13-cursor", { x: 1200, y: 500, opacity: 0 }, { x: 1200, y: 500, opacity: 1, duration: 0.3 }, 92.9);
+tl.fromTo("#s13-cursor", { x: 1200, y: 500 }, { x: 1457, y: 661, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 93.4);
+tl.fromTo("#s13-cursor", { x: 1457, y: 661 }, { x: 1436, y: 30, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 95.8);
+tl.fromTo("#s13-cursor", { x: 1436, y: 30 }, { x: 880, y: 495, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 97.7);
+tl.to("#s13-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 94.5);
+tl.fromTo("#s13-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 94.52);
+tl.to("#s13-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 96.9);
+tl.fromTo("#s13-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 96.92);
+tl.to("#s13-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 98.7);
+tl.fromTo("#s13-rip2", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 98.72);
+tl.fromTo("#s13-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 94);
+tl.fromTo("#s13-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 95.4);
+tl.fromTo("#s13-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 96);
+tl.fromTo("#s13-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 97.3);
+tl.fromTo("#s13-confirm", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }, 97.2);
+tl.to("#s13-confirm", { scale: 0.9, opacity: 0, duration: 0.25, ease: "power2.in" }, 98.9);
+tl.fromTo("#s13-wash", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "power3.out" }, 99);
+tl.fromTo("#s13-toast", { y: 40, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 99.5);
+tl.fromTo("#seg13", { scaleX: 0 }, { scaleX: 1, duration: 6.6, ease: "none" }, 101.9);
+tl.fromTo("#s14-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 101.9);
+tl.fromTo("#s14-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 108.35);
+tl.fromTo("#s14-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 102.2);
+tl.fromTo("#s14-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 102.25);
+tl.fromTo("#s14-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 102.28);
+tl.fromTo("#s14-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 102.4);
+tl.fromTo("#s14-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 102.5);
+tl.fromTo("#s14-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 102.5);
+tl.fromTo("#s14-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 102.5);
+tl.fromTo("#s14-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 102.55);
+tl.fromTo("#s14-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 102.49);
+tl.fromTo("#s14-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 104.5);
+tl.fromTo("#s14-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 104.5);
+tl.fromTo("#s14-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 104.5);
+tl.fromTo("#s14-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 104.55);
+tl.fromTo("#s14-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 102.58);
+tl.fromTo("#s14-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 106.3);
+tl.fromTo("#s14-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 106.3);
+tl.fromTo("#s14-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 106.3);
+tl.fromTo("#s14-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 106.35);
+{ const w = document.getElementById("s14-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.8, x: 0, y: -360, duration: 1.3, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 102.1);
+  tl.fromTo(c, { s: 1.8, x: 0, y: -360 }, { s: 1, x: 0, y: 0, duration: 1.1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 106.1);
+}
+tl.fromTo("#s14-cursor", { x: 1540, y: 860, opacity: 0 }, { x: 1540, y: 860, opacity: 1, duration: 0.3 }, 102);
+tl.fromTo("#s14-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 103.1);
+tl.fromTo("#s14-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 105.5);
+tl.fromTo("#seg14", { scaleX: 0 }, { scaleX: 1, duration: 6.1, ease: "none" }, 108.5);
+tl.fromTo("#s15-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 108.5);
+tl.fromTo("#s15-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 114.45);
+tl.fromTo("#s15-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 108.8);
+tl.fromTo("#s15-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 108.85);
+tl.fromTo("#s15-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 108.88);
+tl.fromTo("#s15-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 109);
+tl.fromTo("#s15-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 109.1);
+tl.fromTo("#s15-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 109.1);
+tl.fromTo("#s15-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 109.1);
+tl.fromTo("#s15-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 109.15);
+tl.fromTo("#s15-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 109.09);
+tl.fromTo("#s15-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 110.9);
+tl.fromTo("#s15-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 110.9);
+tl.fromTo("#s15-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 110.9);
+tl.fromTo("#s15-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 110.95);
+tl.fromTo("#s15-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 109.18);
+tl.fromTo("#s15-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 112.6);
+tl.fromTo("#s15-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 112.6);
+tl.fromTo("#s15-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 112.6);
+tl.fromTo("#s15-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 112.65);
+tl.fromTo("#s15-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 110);
+{ const w = document.getElementById("s15-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.6, x: -480, y: 270, duration: 0.9, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 108.7);
+  tl.fromTo(c, { s: 1.6, x: -480, y: 270 }, { s: 1.35, x: -280, y: 157.5, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 110.1);
+}
+tl.fromTo("#s15-cursor", { x: 800, y: 600, opacity: 0 }, { x: 800, y: 600, opacity: 1, duration: 0.3 }, 108.6);
+tl.fromTo("#s15-cursor", { x: 800, y: 600 }, { x: 1105, y: 30, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 108.8);
+tl.to("#s15-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 109.7);
+tl.fromTo("#s15-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 109.72);
+tl.fromTo("#s15-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 109.3);
+tl.fromTo("#s15-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 110.1);
+tl.fromTo("#s15-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 110.9);
+tl.fromTo("#s15-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 112.4);
+tl.fromTo("#s15-ring2", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 112.6);
+tl.fromTo("#s15-ring2", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 114.7);
+tl.fromTo("#seg15", { scaleX: 0 }, { scaleX: 1, duration: 6.6, ease: "none" }, 114.6);
+tl.fromTo("#s16-screen", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 114.6);
+tl.fromTo("#s16-rail", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.in", immediateRender: false }, 121.05);
+tl.fromTo("#s16-step", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 114.9);
+tl.fromTo("#s16-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, 114.95);
+tl.fromTo("#s16-title", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 114.98);
+tl.fromTo("#s16-chip0", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 115.1);
+tl.fromTo("#s16-chipbg0", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 115.2);
+tl.fromTo("#s16-chipn0", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 115.2);
+tl.fromTo("#s16-chipt0", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 115.2);
+tl.fromTo("#s16-chipd0", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 115.25);
+tl.fromTo("#s16-chip1", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 115.19);
+tl.fromTo("#s16-chipbg1", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 116);
+tl.fromTo("#s16-chipn1", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 116);
+tl.fromTo("#s16-chipt1", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 116);
+tl.fromTo("#s16-chipd1", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 116.05);
+tl.fromTo("#s16-chip2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 115.28);
+tl.fromTo("#s16-chipbg2", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 118.9);
+tl.fromTo("#s16-chipn2", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 118.9);
+tl.fromTo("#s16-chipt2", { color: "#56657a" }, { color: "#17222e", duration: 0.3, ease: "none" }, 118.9);
+tl.fromTo("#s16-chipd2", { color: "#56657a" }, { color: "#ffffff", duration: 0.2, ease: "none" }, 118.95);
+tl.fromTo("#s16-img1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 118.2);
+{ const w = document.getElementById("s16-world"); const c = { s: 1, x: 0, y: 0 };
+    const ap = () => { w.style.transform = "translate(" + c.x + "px," + c.y + "px) scale(" + c.s + ")"; }; ap();
+  tl.fromTo(c, { s: 1, x: 0, y: 0 }, { s: 1.5, x: -400, y: 225, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 114.8);
+  tl.fromTo(c, { s: 1.5, x: -400, y: 225 }, { s: 1.6, x: -480, y: 270, duration: 1, ease: "power3.inOut", onUpdate: ap, immediateRender: false }, 118.3);
+}
+tl.fromTo("#s16-cursor", { x: 800, y: 600, opacity: 0 }, { x: 800, y: 600, opacity: 1, duration: 0.3 }, 114.7);
+tl.fromTo("#s16-cursor", { x: 800, y: 600 }, { x: 1350, y: 86, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 115.6);
+tl.fromTo("#s16-cursor", { x: 1350, y: 86 }, { x: 1076, y: 86, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 117);
+tl.fromTo("#s16-cursor", { x: 1076, y: 86 }, { x: 1361, y: 30, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 118.6);
+tl.to("#s16-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 117.7);
+tl.fromTo("#s16-rip0", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 117.72);
+tl.to("#s16-cursor", { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, transformOrigin: "0 0" }, 119.6);
+tl.fromTo("#s16-rip1", { scale: 0, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, 119.62);
+tl.fromTo("#s16-ring0", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 115.9);
+tl.fromTo("#s16-ring0", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 117.2);
+tl.fromTo("#s16-ring1", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 118.9);
+tl.fromTo("#s16-ring1", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.in", immediateRender: false }, 121.2);
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>
