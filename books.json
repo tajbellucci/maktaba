@@ -7619,43 +7619,6 @@
       "accession": "198"
     },
     {
-      "id": 199,
-      "title": "علماء حق کے مجاهدانه كارنامے",
-      "author": "مولانا سيد محمد مياں",
-      "publisher": "جمعيت پبلشر",
-      "category": "",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "ج-4، ط:خلفي",
-      "hasPrint": true,
-      "status": "issued",
-      "notes": "",
-      "files": [],
-      "present": true,
-      "history": [
-        {
-          "date": "2026-11-03",
-          "action": "issued",
-          "detail": "حسن بن عبد الرحمن"
-        },
-        {
-          "date": "2026-10-10",
-          "action": "added",
-          "detail": ""
-        }
-      ],
-      "borrowerAddress": "الصف الثانی",
-      "borrowerPhone": "---",
-      "issueType": "person",
-      "accession": "199",
-      "borrower": "حسن بن عبد الرحمن",
-      "issueDate": "2026-11-03",
-      "dueDate": "2026-11-05",
-      "borrowerContact": "الصف الثانی",
-      "borrowDays": 14
-    },
-    {
       "id": 200,
       "title": "حياة الحيوان",
       "author": "علامه كمال الدين الدميري (ت:808)",
@@ -40764,48 +40727,6 @@
       "borrowerPhone": "",
       "issueType": "person",
       "accession": "1204"
-    },
-    {
-      "id": 1205,
-      "title": "علماء دیوبند کادینی رخ اور مسلکی مزاج",
-      "author": "حکیم الاسلام مولانا محمد قاری طیب صاحب",
-      "publisher": "ادارہ اسلامیات لاھور",
-      "category": "سوانحِ حیات",
-      "volumes": 1,
-      "maktaba": "نعمانیہ جدید",
-      "department": "لائبریری",
-      "almari": "4جیم تحتی",
-      "hasPrint": true,
-      "status": "issued",
-      "notes": "طباعتی",
-      "files": [],
-      "present": true,
-      "history": [
-        {
-          "date": "2026-11-03",
-          "action": "issued",
-          "detail": "حسن بن عبد الرحمن"
-        },
-        {
-          "date": "2026-10-23",
-          "action": "updated",
-          "detail": ""
-        },
-        {
-          "date": "2026-10-22",
-          "action": "added",
-          "detail": ""
-        }
-      ],
-      "borrowerAddress": "ثانیہ",
-      "borrowerPhone": "---",
-      "issueType": "person",
-      "accession": "1205",
-      "borrower": "حسن بن عبد الرحمن",
-      "issueDate": "2026-11-03",
-      "dueDate": "2026-11-05",
-      "borrowerContact": "ثانیہ",
-      "borrowDays": 2
     },
     {
       "id": 1206,
